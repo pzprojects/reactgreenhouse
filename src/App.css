@@ -19,3 +19,104 @@
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
 }
+
+/*Register Page*/
+
+/*Personal Details*/
+
+.PersonalDetails {
+  width: 50%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.form-group label {
+  width: 30%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+}
+
+.form-group input {
+  width: 70%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+}
+
+.SizeArea {
+  width: 70%;
+  border-color: #329258;
+  background-color: white;
+}
+
+.AboutMe {
+  width: 70%;
+  border-color: #329258;
+}
+
+/*Upload Image*/
+
+.UploadImage {
+  width: 50%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.UploadImage #profileimg {
+  display:none;
+}
+
+.ProfileImage {
+  width: 32vw;
+  height: 32vw;
+}
+
+/*Spinner Loader*/
+
+.SpinnerHolder {
+  text-align: center;
+}
+
+.SpinnerHolder .Spinner1 {
+  width: 3vw;
+  height: 3vw;
+  animation-delay: 0.5s;
+}
+
+.SpinnerHolder .Spinner2 {
+  width: 3vw;
+  height: 3vw;
+  animation-delay: 1s;
+}
+
+.SpinnerHolder .Spinner3 {
+  width: 3vw;
+  height: 3vw;
+  animation-delay: 1.5s;
+}
+
+/*User register choice*/
+
+.UserTypesHolder {
+  text-align: center;
+  position: relative;
+  display: block;
+  position: relative;
+}
+
+.UserTypesHolder .UserTypesButton {
+  text-align: center;
+  margin: 5vw;
+}
+
+.UserTypesHolder .UserTypesHeader {
+  text-align: center;
+  margin-top: 15vw;
+  font-size: 1.93vw;
+}

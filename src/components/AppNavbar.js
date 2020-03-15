@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RegisterModal from './auth/RegisterModal';
+import RegisterPage from './RegisterPage';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
 
@@ -41,6 +42,11 @@ class AppNavbar extends Component {
           </span>
         </NavItem>
         <NavItem>
+          <NavLink href='/ShoppingList'>
+          ShoppingList
+          </NavLink>
+        </NavItem>
+        <NavItem>
           <Logout />
         </NavItem>
       </Fragment>
@@ -49,7 +55,9 @@ class AppNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem>
-          <RegisterModal />
+          <NavLink href='/RegisterUserType'>
+            Register
+          </NavLink>
         </NavItem>
         <NavItem>
           <LoginModal />
