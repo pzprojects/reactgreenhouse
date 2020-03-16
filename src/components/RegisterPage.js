@@ -20,6 +20,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Spinner } from 'reactstrap';
 import Loader from '../components/Loader';
+import Vegetables from '../components/Vegetables';
 
 
 class RegisterPage extends Component {
@@ -39,7 +40,9 @@ class RegisterPage extends Component {
     imageurl: '',
     imagePreviewUrl: '',
     imagename: '',
-    ActivateLoader: false
+    role: 'חקלאי',
+    ActivateLoader: false,
+    VegtButtonOn: true
   };
 
   static propTypes = {
@@ -178,6 +181,15 @@ class RegisterPage extends Component {
     });
   };
 
+  OpenListOfvegetables = e => {
+    e.preventDefault();
+
+    this.setState({
+      VegtButtonOn: !this.state.VegtButtonOn
+    });
+
+  }
+
   render() {
     let {imagePreviewUrl} = this.state;
     let $imagePreview = (<img className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
@@ -289,6 +301,13 @@ class RegisterPage extends Component {
                 <div className='UploadImage'>
                   <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
                   {$imagePreview}
+                </div>
+                <div className='vegetables'>
+                  <h3>יש לי את התנאים והניסיון לגדל:</h3>
+                  { this.state.VegtButtonOn ? 
+                  <Button color="success" onClick={this.OpenListOfvegetables}>רשימת ירקות לגידול</Button> : null }
+                  { this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} /> }
+                  
                 </div>
                 <Button color='dark' style={{ marginTop: '2rem' }} block >
                   Register

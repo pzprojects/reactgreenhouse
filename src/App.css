@@ -120,3 +120,15 @@
   margin-top: 15vw;
   font-size: 1.93vw;
 }
+
+/*vegetables*/
+
+.vegetables {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-top: 4vw;
+  margin-bottom: 4vw;
+}
