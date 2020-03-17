@@ -21,6 +21,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Spinner } from 'reactstrap';
 import Loader from '../components/Loader';
 import Vegetables from '../components/Vegetables';
+import { getChoosenVegetables, addChoosenVegetable, deleteChoosenVegetable } from '../actions/choosenVegetablesAction';
 
 
 class RegisterPage extends Component {
@@ -42,14 +43,17 @@ class RegisterPage extends Component {
     imagename: '',
     role: 'חקלאי',
     ActivateLoader: false,
-    VegtButtonOn: true
+    VegtButtonOn: true,
+    AddBackgroundClassToVeg: 'vegetables'
   };
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func.isRequired,
+    getChoosenVegetables: PropTypes.func.isRequired,
+    choosenvegetable: PropTypes.object.isRequired
   };
 
   componentDidUpdate(prevProps) {
@@ -183,9 +187,17 @@ class RegisterPage extends Component {
 
   OpenListOfvegetables = e => {
     e.preventDefault();
+    
+    let ChoosenClass = this.state.AddBackgroundClassToVeg;
+
+    if(ChoosenClass == 'vegetablesOpen'){
+      ChoosenClass = 'vegetables';
+    }
+    else ChoosenClass = 'vegetablesOpen';
 
     this.setState({
-      VegtButtonOn: !this.state.VegtButtonOn
+      VegtButtonOn: !this.state.VegtButtonOn,
+      AddBackgroundClassToVeg: ChoosenClass
     });
 
   }
@@ -302,12 +314,14 @@ class RegisterPage extends Component {
                   <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
                   {$imagePreview}
                 </div>
-                <div className='vegetables'>
+                <div className={this.state.AddBackgroundClassToVeg}>
                   <h3>יש לי את התנאים והניסיון לגדל:</h3>
                   { this.state.VegtButtonOn ? 
                   <Button color="success" onClick={this.OpenListOfvegetables}>רשימת ירקות לגידול</Button> : null }
                   { this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} /> }
-                  
+                </div>
+                <div className="ListOfVegCost">
+                  <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
                 </div>
                 <Button color='dark' style={{ marginTop: '2rem' }} block >
                   Register
@@ -323,10 +337,11 @@ class RegisterPage extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
+  choosenvegetable: state.choosenvegetable
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors }
+  { register, clearErrors, getChoosenVegetables }
 )(RegisterPage);
