@@ -20,10 +20,6 @@ class VegetablesPricing extends Component {
     this.props.getChoosenVegetables();
   }
 
-  componentDidUpdate(prevProps) {
-    
-  }
-
   onVegtClick = (id, name, price) => {
     this.props.addChoosenVegetable({id: id, name: name, price: price});
   
@@ -44,7 +40,7 @@ class VegetablesPricing extends Component {
 
     return (
       <Container>
-        <ListGroup horizontal>
+        <ListGroup>
           <TransitionGroup className='ChoosenVegetablesList'>
             {ChoosenVegetables.map(({ id, name, price }) => (
               <CSSTransition key={id} timeout={500} classNames='fade'>

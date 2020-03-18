@@ -45,7 +45,13 @@ class RegisterPage extends Component {
     role: 'חקלאי',
     ActivateLoader: false,
     VegtButtonOn: true,
-    AddBackgroundClassToVeg: 'vegetables'
+    AddBackgroundClassToVeg: 'vegetables',
+    cost1 : '',
+    plan1 : false,
+    cost2 : '',
+    plan2 : false,
+    cost3 : '',
+    plan3 : false,
   };
 
   static propTypes = {
@@ -324,6 +330,157 @@ class RegisterPage extends Component {
                 <div className="ListOfVegCost">
                   <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
                   <VegetablesPricing />
+                </div>
+                <div className="Plans">
+                  <div className="PlanCard">
+                    <div className="PlanCardHeader">
+                      <div className="Card1Image">
+                         <img
+                          src={require('../Resources/Leaf.png')}
+                          className='ChoosenVegetableImage'
+                         />
+                        <Label check for='plan1'>
+                          <Input 
+                          type="checkbox"
+                          name='plan1'
+                          id='plan1'
+                          className='mb-3'
+                          onChange={this.onChange} />
+                        </Label> 
+                        <span>מגדל עצמאי</span>
+                      </div>
+                    </div>
+                    <div className="PlanCardBody">
+                      <div className="CardCost">
+                        <Label check for='cost1'>
+                          <Input 
+                          type="text"
+                          name='cost1'
+                          id='cost1'
+                          className='mb-3'
+                          onChange={this.onChange} />
+                        </Label> 
+                        <span>ש"ח</span>
+                      </div>
+                      <div>
+                        <span>במסלול זה אין התערבות של החקלאי, המסלול כולל:</span>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>שטח</span>
+                        </div>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>מים</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="PlanCard">
+                    <div className="PlanCardHeader">
+                      <div className="Card2Image">
+                         <img
+                          src={require('../Resources/Leaf.png')}
+                          className='ChoosenVegetableImage'
+                         />
+                        <Label check for='plan2'>
+                          <Input 
+                          type="checkbox"
+                          name='plan2'
+                          id='plan2'
+                          className='mb-3'
+                          onChange={this.onChange} />
+                        </Label> 
+                        <span>ביניים</span>
+                      </div>
+                    </div>
+                    <div className="PlanCardBody">
+                      <div className="CardCost">
+                        <Label check for='cost2'>
+                          <Input 
+                          type="text"
+                          name='cost2'
+                          id='cost2'
+                          className='mb-3'
+                          onChange={this.onChange} />
+                        </Label> 
+                        <span>ש"ח</span>
+                      </div>
+                      <div>
+                        <span>במסלול זה יש התערבות חלקית של החקלאי, המסלול כולל:</span>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>ייעוץ אישי</span>
+                        </div>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>שטח</span>
+                        </div>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>מים</span>
+                        </div>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>דישון</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="PlanCard">
+                    <div className="PlanCardHeader">
+                      <div className="Card3Image">
+                         <img
+                          src={require('../Resources/Leaf.png')}
+                          className='ChoosenVegetableImage'
+                         />
+                        <Label check for='plan3'>
+                          <Input 
+                          type="checkbox"
+                          name='plan3'
+                          id='plan3'
+                          className='mb-3'
+                          onChange={this.onChange} />
+                        </Label> 
+                        <span>ליווי שוטף</span>
+                      </div>
+                    </div>
+                    <div className="PlanCardBody">
+                      <div className="CardCost">
+                        <Label check for='cost3'>
+                          <Input 
+                          type="text"
+                          name='cost3'
+                          id='cost3'
+                          className='mb-3'
+                          onChange={this.onChange} />
+                        </Label> 
+                        <span>ש"ח</span>
+                      </div>
+                      <div>
+                        <span>במסלול זה יש התערבות מלאה של החקלאי, המסלול כולל:</span>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>ייעוץ אישי</span>
+                        </div>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>שטח</span>
+                        </div>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>מים</span>
+                          <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>דישון</span>
+                        </div>
+                        <div className='PlanIncludeSection'>
+                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
+                          <span>טיפול מלא בחלקה</span>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <Button color='dark' style={{ marginTop: '2rem' }} block >
                   Register

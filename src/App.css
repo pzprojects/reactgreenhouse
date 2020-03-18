@@ -187,3 +187,54 @@
   margin-top: 1vw;
   margin-bottom: 1vw;
 }
+
+.ListOfVegCost p {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ChoosenVegetablesList {
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  width: 45%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ChoosenVegetablesList li {
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  width: 100%;
+  border: none;
+}
+
+.ChoosenVegetablesList span {
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.ChoosenVegetablesList span img.ChoosenVegetableImage {
+  margin-left: 0.5vw;
+}
+
+.ChoosenVegetablesList span.ChoosenVegetablePrice {
+  width: 6vw;
+  margin-left: -1vw;
+}
+
+.ChoosenVegetablesList span.ChoosenVegetableName {
+  margin-left: 1vw;
+  width: 8vw;
+  text-align: right;
+}
+
+.ChoosenVegetablesList span.ChoosenVegetabletext {
+  margin-left: 0.5vw;
+}
+
