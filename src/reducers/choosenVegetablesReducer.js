@@ -17,7 +17,7 @@ import {
       case DELETE_CHOOSEN_VEGETABLES:
         return {
           ...state,
-          ChoosenVegetables: state.ChoosenVegetables.filter(choosenvegetable => choosenvegetable.id !== action.payload)
+          ChoosenVegetables: state.ChoosenVegetables.filter(choosenvegetable => choosenvegetable.name !== action.payload)
         };
       case ADD_CHOOSEN_VEGETABLES:
         return {

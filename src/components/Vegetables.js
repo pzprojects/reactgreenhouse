@@ -25,20 +25,20 @@ class Vegetables extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { ChosenVegt } = this.props.choosenvegetable;
+    
   }
 
-  onVegtClick = (id, name) => {
-  this.props.addChoosenVegetable({id: id, name: name, price: "0"});
+  onVegtClick = (id, name, price) => {
+  this.props.addChoosenVegetable({id: id, name: name, price: price});
 
   };
 
-  RemoveVegtClick = id => {
-    this.props.deleteChoosenVegetable(id);
+  RemoveVegtClick = name => {
+    this.props.deleteChoosenVegetable(name);
    };
 
-   ImgToPresent = id => {
-     const index = this.props.choosenvegetable.ChoosenVegetables.findIndex(x => x.id === id);
+   ImgToPresent = name => {
+     const index = this.props.choosenvegetable.ChoosenVegetables.findIndex(x => x.name === name);
      if(index < 0){
        return true
      }
@@ -53,17 +53,17 @@ class Vegetables extends Component {
       <Container>
         <ListGroup horizontal>
           <TransitionGroup className='vegetablesList'>
-            {vegetables.map(({ _id, name }) => (
+            {vegetables.map(({ _id, name, price }) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
-                  { this.ImgToPresent(_id) ? 
+                  { this.ImgToPresent(name) ? 
                   <span><img
                   src={require('../Resources/EmptyLeaf.png')}
                   className='vegetableImage'
                   color='danger'
                   size='sm'
                   id={_id}
-                  onClick={this.onVegtClick.bind(this, _id, name)}
+                  onClick={this.onVegtClick.bind(this, _id, name, price)}
                   /></span>
                    :
                    <span><img
@@ -72,7 +72,7 @@ class Vegetables extends Component {
                   color='danger'
                   size='sm'
                   id={_id}
-                  onClick={this.RemoveVegtClick.bind(this, _id)}
+                  onClick={this.RemoveVegtClick.bind(this, name)}
                   /></span> }
                   <span className='vegetablesItemName'>{name}</span>
                 </ListGroupItem>

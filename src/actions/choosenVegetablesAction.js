@@ -16,9 +16,9 @@ export const addChoosenVegetable = (data) => {
     };
 };
   
-export const deleteChoosenVegetable = id => {
+export const deleteChoosenVegetable = name => {
     return{
         type: DELETE_CHOOSEN_VEGETABLES,
-        payload: id
+        payload: name
     };
 };

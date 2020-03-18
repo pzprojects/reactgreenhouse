@@ -21,6 +21,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Spinner } from 'reactstrap';
 import Loader from '../components/Loader';
 import Vegetables from '../components/Vegetables';
+import VegetablesPricing from '../components/VegetablesPricing';
 import { getChoosenVegetables, addChoosenVegetable, deleteChoosenVegetable } from '../actions/choosenVegetablesAction';
 
 
@@ -322,6 +323,7 @@ class RegisterPage extends Component {
                 </div>
                 <div className="ListOfVegCost">
                   <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
+                  <VegetablesPricing />
                 </div>
                 <Button color='dark' style={{ marginTop: '2rem' }} block >
                   Register
