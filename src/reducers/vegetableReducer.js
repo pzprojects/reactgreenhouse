@@ -21,7 +21,7 @@ import {
       case DELETE_VEGTABLES:
         return {
           ...state,
-          vegetables: state.items.filter(vegetable => vegetable._id !== action.payload)
+          vegetables: state.vegetables.filter(vegetable => vegetable._id !== action.payload)
         };
       case ADD_VEGTABLES:
         return {

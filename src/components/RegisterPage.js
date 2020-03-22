@@ -10,6 +10,7 @@ import {
   Input,
   Container,
   NavLink,
+  CustomInput,
   Alert
 } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -23,6 +24,7 @@ import Loader from '../components/Loader';
 import Vegetables from '../components/Vegetables';
 import VegetablesPricing from '../components/VegetablesPricing';
 import { getChoosenVegetables, addChoosenVegetable, deleteChoosenVegetable } from '../actions/choosenVegetablesAction';
+import { addFarmer } from '../actions/farmerAction';
 
 
 class RegisterPage extends Component {
@@ -60,8 +62,14 @@ class RegisterPage extends Component {
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
     getChoosenVegetables: PropTypes.func.isRequired,
-    choosenvegetable: PropTypes.object.isRequired
+    choosenvegetable: PropTypes.object.isRequired,
+    addFarmer: PropTypes.func.isRequired,
+    farmer: PropTypes.object.isRequired
   };
+
+  componentDidMount() {
+    this.props.getChoosenVegetables();
+  }
 
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
@@ -73,6 +81,9 @@ class RegisterPage extends Component {
         this.setState({ msg: null });
       }
     }
+
+    const test = this.props.choosenvegetable;
+    console.log(test);
 
     // If authenticated, close modal
     if (this.state.modal) {
@@ -110,6 +121,7 @@ class RegisterPage extends Component {
       this.uploadFile();
     }
 
+
     const { name, email, password, familyname, phone, sizearea, hamamasize, aboutme, imageurl } = this.state;
 
     // Create user object
@@ -125,7 +137,19 @@ class RegisterPage extends Component {
       imageurl
     };
 
+    const newFarmer = {
+      name,
+      familyname,
+      phone,
+      email,
+      sizearea,
+      hamamasize,
+      aboutme,
+      imageurl
+    };
+
     // Attempt to register
+    this.props.addFarmer(newFarmer);
     this.props.register(newUser);
   };
 
@@ -336,41 +360,44 @@ class RegisterPage extends Component {
                     <div className="PlanCardHeader">
                       <div className="Card1Image">
                          <img
-                          src={require('../Resources/Leaf.png')}
-                          className='ChoosenVegetableImage'
+                          src={require('../Resources/plan1.png')}
+                          className='PlanHeaderVegetableImage'
                          />
                         <Label check for='plan1'>
-                          <Input 
+                          <CustomInput 
                           type="checkbox"
                           name='plan1'
                           id='plan1'
                           className='mb-3'
                           onChange={this.onChange} />
                         </Label> 
-                        <span>מגדל עצמאי</span>
+                        <span className='PlanTitle' >מגדל עצמאי</span>
                       </div>
                     </div>
                     <div className="PlanCardBody">
                       <div className="CardCost">
-                        <Label check for='cost1'>
-                          <Input 
-                          type="text"
-                          name='cost1'
-                          id='cost1'
-                          className='mb-3'
-                          onChange={this.onChange} />
-                        </Label> 
+                        <div className="CardCostLabel">
+                          <Label check for='cost1'>
+                            <Input 
+                            type="text"
+                            name='cost1'
+                            id='cost1'
+                            className='mb-3'
+                            placeholder='200'
+                            onChange={this.onChange} />
+                          </Label> 
                         <span>ש"ח</span>
+                        </div>
                       </div>
-                      <div>
-                        <span>במסלול זה אין התערבות של החקלאי, המסלול כולל:</span>
+                      <div className="CardDetails">
+                        <span className="CardDetailsHeader">במסלול זה אין התערבות של החקלאי<br /> המסלול כולל:</span>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>שטח</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>שטח</span>
                         </div>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>מים</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>מים</span>
                         </div>
                       </div>
                     </div>
@@ -379,49 +406,52 @@ class RegisterPage extends Component {
                     <div className="PlanCardHeader">
                       <div className="Card2Image">
                          <img
-                          src={require('../Resources/Leaf.png')}
-                          className='ChoosenVegetableImage'
+                          src={require('../Resources/plan2.png')}
+                          className='PlanHeaderVegetableImage'
                          />
                         <Label check for='plan2'>
-                          <Input 
+                          <CustomInput 
                           type="checkbox"
                           name='plan2'
                           id='plan2'
                           className='mb-3'
                           onChange={this.onChange} />
                         </Label> 
-                        <span>ביניים</span>
+                        <span className='PlanTitle' >ביניים</span>
                       </div>
                     </div>
                     <div className="PlanCardBody">
                       <div className="CardCost">
-                        <Label check for='cost2'>
-                          <Input 
-                          type="text"
-                          name='cost2'
-                          id='cost2'
-                          className='mb-3'
-                          onChange={this.onChange} />
-                        </Label> 
-                        <span>ש"ח</span>
+                        <div className="CardCostLabel">
+                          <Label check for='cost2'>
+                            <Input 
+                            type="text"
+                            name='cost2'
+                            id='cost2'
+                            className='mb-3'
+                            placeholder='300'
+                            onChange={this.onChange} />
+                          </Label> 
+                          <span>ש"ח</span>
+                        </div>
                       </div>
-                      <div>
-                        <span>במסלול זה יש התערבות חלקית של החקלאי, המסלול כולל:</span>
+                      <div className="CardDetails">
+                        <span className="CardDetailsHeader">במסלול זה יש התערבות חלקית של החקלאי<br /> המסלול כולל:</span>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>ייעוץ אישי</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>ייעוץ אישי</span>
                         </div>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>שטח</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>שטח</span>
                         </div>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>מים</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>מים</span>
                         </div>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>דישון</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>דישון</span>
                         </div>
                       </div>
                     </div>
@@ -430,53 +460,56 @@ class RegisterPage extends Component {
                     <div className="PlanCardHeader">
                       <div className="Card3Image">
                          <img
-                          src={require('../Resources/Leaf.png')}
-                          className='ChoosenVegetableImage'
+                          src={require('../Resources/plan3.png')}
+                          className='PlanHeaderVegetableImage'
                          />
                         <Label check for='plan3'>
-                          <Input 
+                          <CustomInput 
                           type="checkbox"
                           name='plan3'
                           id='plan3'
                           className='mb-3'
                           onChange={this.onChange} />
                         </Label> 
-                        <span>ליווי שוטף</span>
+                        <span className='PlanTitle' >ליווי שוטף</span>
                       </div>
                     </div>
                     <div className="PlanCardBody">
                       <div className="CardCost">
-                        <Label check for='cost3'>
-                          <Input 
-                          type="text"
-                          name='cost3'
-                          id='cost3'
-                          className='mb-3'
-                          onChange={this.onChange} />
-                        </Label> 
-                        <span>ש"ח</span>
+                        <div className="CardCostLabel">
+                          <Label check for='cost3'>
+                            <Input 
+                            type="text"
+                            name='cost3'
+                            id='cost3'
+                            className='mb-3'
+                            placeholder='400'
+                            onChange={this.onChange} />
+                          </Label> 
+                          <span>ש"ח</span>
+                        </div>
                       </div>
-                      <div>
-                        <span>במסלול זה יש התערבות מלאה של החקלאי, המסלול כולל:</span>
+                      <div className="CardDetails" >
+                        <span className="CardDetailsHeader">במסלול זה יש התערבות מלאה של החקלאי<br /> המסלול כולל:</span>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>ייעוץ אישי</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>ייעוץ אישי</span>
                         </div>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>שטח</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>שטח</span>
                         </div>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>מים</span>
-                          <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>דישון</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>מים</span>
                         </div>
                         <div className='PlanIncludeSection'>
-                          <img src={require('../Resources/Leaf.png')} className='ChoosenVegetableImage' size='sm' />
-                          <span>טיפול מלא בחלקה</span>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>דישון</span>
                         </div>
+                        <div className='PlanIncludeSection'>
+                          <span className='PlanVegetableImage'><img src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PlanVegetableImageText'>טיפול מלא בחלקה</span>
                         </div>
                       </div>
                     </div>
@@ -497,10 +530,11 @@ class RegisterPage extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
-  choosenvegetable: state.choosenvegetable
+  choosenvegetable: state.choosenvegetable,
+  farmer: state.farmer
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables }
+  { register, clearErrors, getChoosenVegetables, addFarmer }
 )(RegisterPage);
