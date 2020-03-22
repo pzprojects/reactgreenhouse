@@ -198,7 +198,7 @@ div.PersonalDetails .form-group input {
   display: block;
   float: right;
   text-align: center;
-  width: 45%;
+  width: 50%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -225,7 +225,7 @@ div.PersonalDetails .form-group input {
 
 .ChoosenVegetablesList span.ChoosenVegetablePrice {
   width: 6vw;
-  margin-left: -1vw;
+  margin-left: 0.5vw;
 }
 
 .ChoosenVegetablesList span.ChoosenVegetableName {
@@ -306,6 +306,7 @@ div.PersonalDetails .form-group input {
   background-color: #7ECCC5;
   text-align: center;
   font-size: 0.83vw;
+  border-radius: 2vw;
 }
 
 .Plans div.PlanCard div.PlanCardBody div.CardCost {
