@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Button,
-  Label
+  Button
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -21,7 +20,7 @@ class RegisterUserType extends Component {
   };
 
   Register = (UserType) => {
-    if(UserType == "1"){
+    if(UserType === "1"){
       this.props.history.push('/RegisterPage');
     }
     else this.props.history.push('/RegisterPage');

@@ -1,364 +1,1182 @@
-.remove-btn {
-  margin-right: 0.5rem;
+/* Desktop View*/
+
+@media screen and (min-width: 800px) {
+  .remove-btn {
+    margin-right: 0.5rem;
+  }
+  
+  .fade-enter {
+    opacity: 0.01;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms ease-in;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+  }
+  
+  .fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 1000ms ease-in;
+  }
+  
+  /* Site NavBar */
+  
+  nav {
+    height: 6vw;
+    z-index: 10;
+  }
+  
+  .COHeader {
+    height: 100%;
+    width: 10vw;
+    background-color: #ADC742;
+    position: absolute;
+    top: 0vw;
+    left: 22vw;
+    text-align: center;
+  }
+  
+  .COHeader a {
+    color: white !important;
+    margin-top: 1.7vw;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 1.2vw;
+    font-weight: bold;
+  }
+  
+  /*Register Page*/
+  
+  /*Personal Details*/
+  
+  .RegisterStatus {
+    position: relative;
+    display: block;
+    float: right;
+    width: 100%;
+    margin-bottom: 2vw;
+    margin-top: 2vw;
+  }
+
+  .RegisterStatus img {
+    width: 38vw;
+    height: 2.5vw;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    display: block;
+  }
+
+  .ProfileName {
+    position: relative;
+    display: block;
+    float: right;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 1.5vw;
+  }
+  
+  .PersonalDetails {
+    width: 50%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  div.PersonalDetails .form-group label {
+    width: 30%;
+    float: right;
+    text-align: right;
+    position: relative;
+    display: block;
+  }
+  
+  div.PersonalDetails .form-group input {
+    width: 70%;
+    float: right;
+    text-align: right;
+    position: relative;
+    display: block;
+    border-color: #329258;
+  }
+  
+  .SizeArea {
+    width: 70%;
+    border-color: #329258;
+    background-color: white;
+  }
+  
+  .AboutMe {
+    width: 70%;
+    border-color: #329258;
+  }
+  
+  /*Upload Image*/
+  
+  .UploadImage {
+    width: 50%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .UploadImage #profileimg {
+    display:none;
+  }
+  
+  .ProfileImage {
+    width: 22vw;
+    height: 22vw;
+  }
+  
+  /*Spinner Loader*/
+  
+  .SpinnerHolder {
+    text-align: center;
+  }
+  
+  .SpinnerHolder .Spinner1 {
+    width: 3vw;
+    height: 3vw;
+    animation-delay: 0.5s;
+  }
+  
+  .SpinnerHolder .Spinner2 {
+    width: 3vw;
+    height: 3vw;
+    animation-delay: 1s;
+  }
+  
+  .SpinnerHolder .Spinner3 {
+    width: 3vw;
+    height: 3vw;
+    animation-delay: 1.5s;
+  }
+  
+  /*User register choice*/
+  
+  .UserTypesHolder {
+    text-align: center;
+    position: relative;
+    display: block;
+    position: relative;
+  }
+  
+  .UserTypesHolder .UserTypesButton {
+    text-align: center;
+    margin: 5vw;
+  }
+  
+  .UserTypesHolder .UserTypesHeader {
+    text-align: center;
+    margin-top: 15vw;
+    font-size: 1.93vw;
+  }
+  
+  /*vegetables*/
+  
+  .vegetables {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+  }
+  
+  .vegetablesOpen {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+    background-color: #E4FBDC;
+    border-radius: 4vw;
+  }
+  
+  .vegetables h3 {
+    margin-bottom: 2vw;
+  }
+  
+  .vegetablesList {
+    width: 100%;
+    margin-bottom: 1vw;
+  }
+  
+  .vegetablesList li {
+    position: relative;
+    display: block;
+    float: right;
+    border: none;
+    background-color: #E4FBDC;
+  }
+  
+  .vegetablesList li span {
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .vegetablesList li span.vegetablesItemName {
+    margin-right: 0.5vw;
+  }
+  
+  .vegetablesApproveButton {
+    margin-bottom: 1vw;
+  }
+  
+  /* List Of Veg Cost */
+  
+  .ListOfVegCost {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+  }
+  
+  .ListOfVegCost p {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .ChoosenVegetablesList {
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .ChoosenVegetablesList li {
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    width: 100%;
+    border: none;
+  }
+  
+  .ChoosenVegetablesList span {
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+  }
+  
+  .ChoosenVegetablesList span img.ChoosenVegetableImage {
+    margin-left: 0.5vw;
+  }
+  
+  .ChoosenVegetablesList span.ChoosenVegetablePrice {
+    width: 6vw;
+    margin-left: 0.5vw;
+  }
+  
+  .ChoosenVegetablesList span.ChoosenVegetableName {
+    margin-left: 1vw;
+    width: 8vw;
+    text-align: right;
+  }
+  
+  .ChoosenVegetablesList span.ChoosenVegetabletext {
+    margin-left: 0.5vw;
+  }
+  
+  /* Plan cards */
+  
+  .Plans {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 2vw;
+  }
+  
+  .Plans div.PlanCard {
+    width: 29.3%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader div.Card1Image {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader div img.PlanHeaderVegetableImage {
+    width: 100%;
+    height: 25vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader div .form-check-label {
+    position: absolute;
+    display: block;
+    top: 1vw;
+    right: 1vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader div span.PlanTitle {
+    text-align: center;
+    position: absolute;
+    display: block;
+    right: 27.5%;
+    bottom: -2%;
+    width: 45%;
+    background-color: #7ECCC5;
+    color: white;
+    font-size: 1.20vw;
+    z-index: 10;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody {
+    width: 100%;
+    height: 15vw;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 5vw;
+    background-color: #7ECCC5;
+    text-align: center;
+    font-size: 0.83vw;
+    border-radius: 2vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardCost {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 1vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel {
+    width: 32%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel span {
+    vertical-align: -webkit-baseline-middle;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel .form-check-label {
+    width: 3vw;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardDetails {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardDetails span.CardDetailsHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 0.5vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection span.PlanVegetableImage {
+    margin-right: 5vw;
+    margin-left: 1vw;
+  }
+  
+  /* Approve Regulations */
+  
+  .ApproveRegulations {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+  }
+  
+  .ApproveRegulations div.RegulationsCheckBox {
+    display: block;
+    position: relative;
+    float: right;
+    margin-right: 1vw;
+    margin-left: 1vw;
+  }
+  
+  .ApproveRegulations div.RegulationsLink {
+    display: block;
+    position: relative;
+    float: right;
+  }
+  
+  /* Screen buttons */
+  
+  .MoveToPaymentScreenButton {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-bottom: 2vw;
+    margin-top: 1vw;
+  }
+  
+  .MoveToPaymentScreenButton button {
+    color: white;
+    background-color: #7ECCC5;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .MoveToSecondPaymentScreenButton {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-top: 1vw;
+  }
+  
+  .MoveToSecondPaymentScreenButton button {
+    color: white;
+    background-color: #7ECCC5;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .RegisterButtonContainer button.RegisterButton {
+    color: white;
+    background-color: #7ECCC5;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+  }
+  
+  .RegisterButtonContainer {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-top: 3vw;
+    margin-bottom: 9vw;
+  }
+  
+  
+  /* Recive Payment */
+  
+  .BankCollectPaymentContainer {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-bottom: 2vw;
+    margin-top: 5vw;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 40%;
+    background-color: #DDF4D5;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    border-radius: 4vw;
+    overflow: hidden;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment span.RecivePaymentHeader {
+    display: block;
+    width: 100%;
+    position: relative;
+    float: right;
+    padding-bottom: 1vw;
+    text-align: center;
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: #329258;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group {
+    line-height: 0vw;
+    height: 3vw;
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.bankDetails {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.bankname {
+    width: 48%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-left: 2%;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.banknumber {
+    width: 48%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-right: 2%;
+  }
+  
+  /* Farmer Submission MSG page */
+  
+  .FarmerSubmissionMSGHolder {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-top: 5vw;
+    text-align: center;
+  }
+  
+  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGHeader {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-bottom: 1vw;
+    font-size: 1.8vw;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+  }
+  
+  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder a.FarmerSubmissionMSGButton {
+    color: white;
+    background-color: #7ECCC5;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 25%;
+    margin-top: 1vw;
+  }
 }
 
-.fade-enter {
-  opacity: 0.01;
+
+/* Mobile and tablet View */ 
+
+@media screen and (max-width: 580px) {
+  .remove-btn {
+    margin-right: 0.5rem;
+  }
+  
+  .fade-enter {
+    opacity: 0.01;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms ease-in;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+  }
+  
+  .fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 1000ms ease-in;
+  }
+  
+  /* Site NavBar */
+  
+  nav {
+    z-index: 10;
+  }
+  
+  .COHeader {
+    
+  }
+  
+  .COHeader a {
+    
+  }
+  
+  /*Register Page*/
+  
+  /*Personal Details*/
+  
+  .ProfileName {
+    position: relative;
+    display: block;
+    float: right;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 1.5vw;
+  }
+  
+  .PersonalDetails {
+    width: 50%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  div.PersonalDetails .form-group label {
+    width: 30%;
+    float: right;
+    text-align: right;
+    position: relative;
+    display: block;
+  }
+  
+  div.PersonalDetails .form-group input {
+    width: 70%;
+    float: right;
+    text-align: right;
+    position: relative;
+    display: block;
+    border-color: #329258;
+  }
+  
+  .SizeArea {
+    width: 70%;
+    border-color: #329258;
+    background-color: white;
+  }
+  
+  .AboutMe {
+    width: 70%;
+    border-color: #329258;
+  }
+  
+  /*Upload Image*/
+  
+  .UploadImage {
+    width: 50%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .UploadImage #profileimg {
+    display:none;
+  }
+  
+  .ProfileImage {
+    width: 22vw;
+    height: 22vw;
+  }
+  
+  /*Spinner Loader*/
+  
+  .SpinnerHolder {
+    text-align: center;
+  }
+  
+  .SpinnerHolder .Spinner1 {
+    width: 3vw;
+    height: 3vw;
+    animation-delay: 0.5s;
+  }
+  
+  .SpinnerHolder .Spinner2 {
+    width: 3vw;
+    height: 3vw;
+    animation-delay: 1s;
+  }
+  
+  .SpinnerHolder .Spinner3 {
+    width: 3vw;
+    height: 3vw;
+    animation-delay: 1.5s;
+  }
+  
+  /*User register choice*/
+  
+  .UserTypesHolder {
+    text-align: center;
+    position: relative;
+    display: block;
+    position: relative;
+  }
+  
+  .UserTypesHolder .UserTypesButton {
+    text-align: center;
+    margin: 5vw;
+  }
+  
+  .UserTypesHolder .UserTypesHeader {
+    text-align: center;
+    margin-top: 15vw;
+    font-size: 1.93vw;
+  }
+  
+  /*vegetables*/
+  
+  .vegetables {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+  }
+  
+  .vegetablesOpen {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+    background-color: #E4FBDC;
+    border-radius: 4vw;
+  }
+  
+  .vegetables h3 {
+    margin-bottom: 2vw;
+  }
+  
+  .vegetablesList {
+    width: 100%;
+    margin-bottom: 1vw;
+  }
+  
+  .vegetablesList li {
+    position: relative;
+    display: block;
+    float: right;
+    border: none;
+    background-color: #E4FBDC;
+  }
+  
+  .vegetablesList li span {
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .vegetablesList li span.vegetablesItemName {
+    margin-right: 0.5vw;
+  }
+  
+  .vegetablesApproveButton {
+    margin-bottom: 1vw;
+  }
+  
+  /* List Of Veg Cost */
+  
+  .ListOfVegCost {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+  }
+  
+  .ListOfVegCost p {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .ChoosenVegetablesList {
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .ChoosenVegetablesList li {
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    width: 100%;
+    border: none;
+  }
+  
+  .ChoosenVegetablesList span {
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+  }
+  
+  .ChoosenVegetablesList span img.ChoosenVegetableImage {
+    margin-left: 0.5vw;
+  }
+  
+  .ChoosenVegetablesList span.ChoosenVegetablePrice {
+    width: 6vw;
+    margin-left: 0.5vw;
+  }
+  
+  .ChoosenVegetablesList span.ChoosenVegetableName {
+    margin-left: 1vw;
+    width: 8vw;
+    text-align: right;
+  }
+  
+  .ChoosenVegetablesList span.ChoosenVegetabletext {
+    margin-left: 0.5vw;
+  }
+  
+  /* Plan cards */
+  
+  .Plans {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 2vw;
+  }
+  
+  .Plans div.PlanCard {
+    width: 29.3%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader div.Card1Image {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader div img.PlanHeaderVegetableImage {
+    width: 100%;
+    height: 25vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader div .form-check-label {
+    position: absolute;
+    display: block;
+    top: 1vw;
+    right: 1vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardHeader div span.PlanTitle {
+    text-align: center;
+    position: absolute;
+    display: block;
+    right: 27.5%;
+    bottom: -2%;
+    width: 45%;
+    background-color: #7ECCC5;
+    color: white;
+    font-size: 1.20vw;
+    z-index: 10;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody {
+    width: 100%;
+    height: 15vw;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 5vw;
+    background-color: #7ECCC5;
+    text-align: center;
+    font-size: 0.83vw;
+    border-radius: 2vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardCost {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 1vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel {
+    width: 32%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel span {
+    vertical-align: -webkit-baseline-middle;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel .form-check-label {
+    width: 3vw;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardDetails {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardDetails span.CardDetailsHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 0.5vw;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: right;
+  }
+  
+  .Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection span.PlanVegetableImage {
+    margin-right: 5vw;
+    margin-left: 1vw;
+  }
+  
+  /* Approve Regulations */
+  
+  .ApproveRegulations {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+  }
+  
+  .ApproveRegulations div.RegulationsCheckBox {
+    display: block;
+    position: relative;
+    float: right;
+    margin-right: 1vw;
+    margin-left: 1vw;
+  }
+  
+  .ApproveRegulations div.RegulationsLink {
+    display: block;
+    position: relative;
+    float: right;
+  }
+  
+  /* Screen buttons */
+  
+  .MoveToPaymentScreenButton {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-bottom: 2vw;
+    margin-top: 1vw;
+  }
+  
+  .MoveToPaymentScreenButton button {
+    color: white;
+    background-color: #7ECCC5;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .MoveToSecondPaymentScreenButton {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-top: 1vw;
+  }
+  
+  .MoveToSecondPaymentScreenButton button {
+    color: white;
+    background-color: #7ECCC5;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .RegisterButtonContainer button.RegisterButton {
+    color: white;
+    background-color: #7ECCC5;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+  }
+  
+  .RegisterButtonContainer {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-top: 3vw;
+    margin-bottom: 9vw;
+  }
+  
+  
+  /* Recive Payment */
+  
+  .BankCollectPaymentContainer {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-bottom: 2vw;
+    margin-top: 5vw;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 40%;
+    background-color: #DDF4D5;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    border-radius: 4vw;
+    overflow: hidden;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment span.RecivePaymentHeader {
+    display: block;
+    width: 100%;
+    position: relative;
+    float: right;
+    padding-bottom: 1vw;
+    text-align: center;
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: #329258;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group {
+    line-height: 0vw;
+    height: 3vw;
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.bankDetails {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.bankname {
+    width: 48%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-left: 2%;
+  }
+  
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.banknumber {
+    width: 48%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-right: 2%;
+  }
+  
+  /* Farmer Submission MSG page */
+  
+  .FarmerSubmissionMSGHolder {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-top: 5vw;
+    text-align: center;
+  }
+  
+  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGHeader {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-bottom: 1vw;
+    font-size: 1.8vw;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+  }
+  
+  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder a.FarmerSubmissionMSGButton {
+    color: white;
+    background-color: #7ECCC5;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 25%;
+    margin-top: 1vw;
+  }
 }
-
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms ease-in;
-}
-
-.fade-exit {
-  opacity: 1;
-}
-
-.fade-exit-active {
-  opacity: 0.01;
-  transition: opacity 1000ms ease-in;
-}
-
-/*Register Page*/
-
-/*Personal Details*/
-
-.PersonalDetails {
-  width: 50%;
-  position: relative;
-  display: block;
-  float: right;
-}
-
-div.PersonalDetails .form-group label {
-  width: 30%;
-  float: right;
-  text-align: right;
-  position: relative;
-  display: block;
-}
-
-div.PersonalDetails .form-group input {
-  width: 70%;
-  float: right;
-  text-align: right;
-  position: relative;
-  display: block;
-  border-color: #329258;
-}
-
-.SizeArea {
-  width: 70%;
-  border-color: #329258;
-  background-color: white;
-}
-
-.AboutMe {
-  width: 70%;
-  border-color: #329258;
-}
-
-/*Upload Image*/
-
-.UploadImage {
-  width: 50%;
-  position: relative;
-  display: block;
-  float: right;
-}
-
-.UploadImage #profileimg {
-  display:none;
-}
-
-.ProfileImage {
-  width: 22vw;
-  height: 22vw;
-}
-
-/*Spinner Loader*/
-
-.SpinnerHolder {
-  text-align: center;
-}
-
-.SpinnerHolder .Spinner1 {
-  width: 3vw;
-  height: 3vw;
-  animation-delay: 0.5s;
-}
-
-.SpinnerHolder .Spinner2 {
-  width: 3vw;
-  height: 3vw;
-  animation-delay: 1s;
-}
-
-.SpinnerHolder .Spinner3 {
-  width: 3vw;
-  height: 3vw;
-  animation-delay: 1.5s;
-}
-
-/*User register choice*/
-
-.UserTypesHolder {
-  text-align: center;
-  position: relative;
-  display: block;
-  position: relative;
-}
-
-.UserTypesHolder .UserTypesButton {
-  text-align: center;
-  margin: 5vw;
-}
-
-.UserTypesHolder .UserTypesHeader {
-  text-align: center;
-  margin-top: 15vw;
-  font-size: 1.93vw;
-}
-
-/*vegetables*/
-
-.vegetables {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-  text-align: center;
-  margin-top: 4vw;
-  margin-bottom: 4vw;
-}
-
-.vegetablesOpen {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-  text-align: center;
-  margin-top: 4vw;
-  margin-bottom: 4vw;
-  background-color: #E4FBDC;
-  border-radius: 4vw;
-}
-
-.vegetables h3 {
-  margin-bottom: 2vw;
-}
-
-.vegetablesList {
-  width: 100%;
-  margin-bottom: 1vw;
-}
-
-.vegetablesList li {
-  position: relative;
-  display: block;
-  float: right;
-  border: none;
-  background-color: #E4FBDC;
-}
-
-.vegetablesList li span {
-  position: relative;
-  display: block;
-  float: right;
-}
-
-.vegetablesList li span.vegetablesItemName {
-  margin-right: 0.5vw;
-}
-
-.vegetablesApproveButton {
-  margin-bottom: 1vw;
-}
-
-/* List Of Veg Cost */
-
-.ListOfVegCost {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-  text-align: center;
-  margin-top: 1vw;
-  margin-bottom: 1vw;
-}
-
-.ListOfVegCost p {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.ChoosenVegetablesList {
-  position: relative;
-  display: block;
-  float: right;
-  text-align: center;
-  width: 50%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.ChoosenVegetablesList li {
-  position: relative;
-  display: block;
-  float: right;
-  text-align: center;
-  width: 100%;
-  border: none;
-}
-
-.ChoosenVegetablesList span {
-  position: relative;
-  display: block;
-  float: right;
-  text-align: center;
-}
-
-.ChoosenVegetablesList span img.ChoosenVegetableImage {
-  margin-left: 0.5vw;
-}
-
-.ChoosenVegetablesList span.ChoosenVegetablePrice {
-  width: 6vw;
-  margin-left: 0.5vw;
-}
-
-.ChoosenVegetablesList span.ChoosenVegetableName {
-  margin-left: 1vw;
-  width: 8vw;
-  text-align: right;
-}
-
-.ChoosenVegetablesList span.ChoosenVegetabletext {
-  margin-left: 0.5vw;
-}
-
-/* Plan cards */
-
-.Plans {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-  margin-bottom: 2vw;
-}
-
-.Plans div.PlanCard {
-  width: 29.3%;
-  position: relative;
-  display: block;
-  float: right;
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-.Plans div.PlanCard div.PlanCardHeader {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-}
-
-.Plans div.PlanCard div.PlanCardHeader div.Card1Image {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-}
-
-.Plans div.PlanCard div.PlanCardHeader div img.PlanHeaderVegetableImage {
-  width: 100%;
-  height: 25vw;
-}
-
-.Plans div.PlanCard div.PlanCardHeader div .form-check-label {
-  position: absolute;
-  display: block;
-  top: 1vw;
-  right: 1vw;
-}
-
-.Plans div.PlanCard div.PlanCardHeader div span.PlanTitle {
-  text-align: center;
-  position: absolute;
-  display: block;
-  right: 27.5%;
-  bottom: -2%;
-  width: 45%;
-  background-color: #7ECCC5;
-  color: white;
-  font-size: 1.20vw;
-  z-index: 10;
-}
-
-.Plans div.PlanCard div.PlanCardBody {
-  width: 100%;
-  height: 15vw;
-  position: relative;
-  display: block;
-  float: right;
-  margin-top: 5vw;
-  background-color: #7ECCC5;
-  text-align: center;
-  font-size: 0.83vw;
-  border-radius: 2vw;
-}
-
-.Plans div.PlanCard div.PlanCardBody div.CardCost {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-  margin-top: 1vw;
-}
-
-.Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel {
-  width: 32%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel span {
-  vertical-align: -webkit-baseline-middle;
-}
-
-.Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel .form-check-label {
-  width: 3vw;
-  position: relative;
-  display: block;
-  float: right;
-}
-
-.Plans div.PlanCard div.PlanCardBody div.CardDetails {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-}
-
-.Plans div.PlanCard div.PlanCardBody div.CardDetails span.CardDetailsHeader {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-  margin-bottom: 0.5vw;
-}
-
-.Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection {
-  width: 100%;
-  position: relative;
-  display: block;
-  float: right;
-  text-align: right;
-}
-
-.Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection span.PlanVegetableImage {
-  margin-right: 5vw;
-  margin-left: 1vw;
-}
-

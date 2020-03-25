@@ -58,6 +58,7 @@ class Vegetables extends Component {
                 <ListGroupItem>
                   { this.ImgToPresent(name) ? 
                   <span><img
+                  alt=""
                   src={require('../Resources/EmptyLeaf.png')}
                   className='vegetableImage'
                   color='danger'
@@ -67,6 +68,7 @@ class Vegetables extends Component {
                   /></span>
                    :
                    <span><img
+                  alt=""
                   src={require('../Resources/Leaf.png')}
                   className='vegetableImage'
                   color='danger'

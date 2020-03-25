@@ -6,6 +6,7 @@ import ShoppingList from './components/ShoppingList';
 import RegisterPage from './components/RegisterPage';
 import RegisterUserType from './components/RegisterUserType';
 import ItemModal from './components/ItemModal';
+import FarmersubmissionMSG from './components/FarmersubmissionMSG';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -32,6 +33,7 @@ class App extends Component {
               <Route path="/ShoppingList" component={ShoppingList} />
               <Route path="/RegisterPage" component={RegisterPage} />
               <Route path="/RegisterUserType" component={RegisterUserType} />
+              <Route path="/FarmersubmissionMSG" component={FarmersubmissionMSG} />
             </Container>
           </div>
         </Router>

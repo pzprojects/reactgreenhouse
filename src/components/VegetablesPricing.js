@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { Input, Container, ListGroup, ListGroupItem } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getChoosenVegetables, addChoosenVegetable, deleteChoosenVegetable } from '../actions/choosenVegetablesAction';
@@ -30,7 +30,6 @@ class VegetablesPricing extends Component {
   };
 
   UpdateChoosenVegetable = (id, name, price) => {
-      console.log(price);
       this.props.deleteChoosenVegetable(name);
       this.props.addChoosenVegetable({id: id, name: name, price: price});
   };
@@ -46,6 +45,7 @@ class VegetablesPricing extends Component {
               <CSSTransition key={id} timeout={500} classNames='fade'>
                 <ListGroupItem>
                   <span><img
+                  alt=""
                   src={require('../Resources/Leaf.png')}
                   className='ChoosenVegetableImage'
                   size='sm'
@@ -55,7 +55,6 @@ class VegetablesPricing extends Component {
                   <span className='ChoosenVegetablePrice'>
                     <Input
                       type='text'
-                      id='VegCost'
                       placeholder={price}
                       className='mb-3'
                       onBlur={event => this.UpdateChoosenVegetable(id, name, event.target.value)}

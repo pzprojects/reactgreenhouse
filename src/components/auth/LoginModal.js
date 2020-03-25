@@ -80,7 +80,7 @@ class LoginModal extends Component {
     return (
       <div>
         <NavLink onClick={this.toggle} href='#'>
-          Login
+          Log In
         </NavLink>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>

@@ -1,7 +1,4 @@
-import axios from 'axios';
 import { GET_CHOOSEN_VEGETABLES,  ADD_CHOOSEN_VEGETABLES, DELETE_CHOOSEN_VEGETABLES} from './types';
-import { tokenConfig } from './authActions';
-import { returnErrors } from './errorActions';
 
 export const getChoosenVegetables = () => {
     return{

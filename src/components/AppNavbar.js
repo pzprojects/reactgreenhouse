@@ -11,8 +11,6 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import RegisterModal from './auth/RegisterModal';
-import RegisterPage from './RegisterPage';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
 
@@ -43,7 +41,7 @@ class AppNavbar extends Component {
         </NavItem>
         <NavItem>
           <NavLink href='/ShoppingList'>
-          ShoppingList
+            חנות
           </NavLink>
         </NavItem>
         <NavItem>
@@ -56,7 +54,7 @@ class AppNavbar extends Component {
       <Fragment>
         <NavItem>
           <NavLink href='/RegisterUserType'>
-            Register
+            הירשם עכשיו
           </NavLink>
         </NavItem>
         <NavItem>
@@ -67,14 +65,16 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar color='dark' dark expand='sm' className='mb-5'>
+        <Navbar color='faded' light expand='sm' className='mb-5'>
           <Container>
-            <NavbarBrand href='/'>ShoppingList</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='ml-auto' navbar>
                 {isAuthenticated ? authLinks : guestLinks}
               </Nav>
+              <div className='COHeader' >
+                <NavbarBrand href='/'>CO-Greenhouse</NavbarBrand>
+              </div>
             </Collapse>
           </Container>
         </Navbar>
