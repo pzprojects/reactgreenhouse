@@ -17,13 +17,10 @@ import { clearErrors } from '../actions/errorActions';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
-import Vegetables from '../components/Vegetables';
-import VegetablesPricing from '../components/VegetablesPricing';
-import { getChoosenVegetables } from '../actions/choosenVegetablesAction';
 import { addFarmer } from '../actions/farmerAction';
 
 
-class RegisterPage extends Component {
+class GrowerRegisterPage extends Component {
   state = {
     modal: false,
     name: '',
@@ -41,17 +38,17 @@ class RegisterPage extends Component {
     imageurl: '',
     imagePreviewUrl: '',
     imagename: '',
-    usertype: 'חקלאי',
+    usertype: 'מגדל',
     ActivateLoader: false,
     VegtButtonOn: true,
     AddBackgroundClassToVeg: 'vegetables',
-    cost1 : '200',
+    cost1 : '',
     plan1 : false,
     Checkplan1: '',
-    cost2 : '300',
+    cost2 : '',
     plan2 : false,
     Checkplan2: '',
-    cost3 : '400',
+    cost3 : '',
     plan3 : false,
     Checkplan3: '',
     PasswordValidation: true,
@@ -73,7 +70,9 @@ class RegisterPage extends Component {
     emailValidation: true,
     familynameValidation: true,
     phoneValidation: true,
-    hamamasizeValidation: true
+    hamamasizeValidation: true,
+    addressValidation: true,
+    address: ''
   };
 
   static propTypes = {
@@ -81,14 +80,12 @@ class RegisterPage extends Component {
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
-    getChoosenVegetables: PropTypes.func.isRequired,
-    choosenvegetable: PropTypes.object.isRequired,
     addFarmer: PropTypes.func.isRequired,
     farmer: PropTypes.object.isRequired
   };
 
   componentDidMount() {
-    this.props.getChoosenVegetables();
+
   }
 
   componentDidUpdate(prevProps) {
@@ -197,13 +194,13 @@ class RegisterPage extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.hamamasize === ''){
-      this.setState({
-        hamamasizeValidation: false
-      });
-      Validated = false;
-      ScrollToLocation = "top";
-    }
+    if(this.state.address === ''){
+        this.setState({
+          addressValidation: false
+        });
+        Validated = false;
+        ScrollToLocation = "top";
+      }
 
     if(!Validated){
       if(ScrollToLocation === "top"){
@@ -270,10 +267,10 @@ class RegisterPage extends Component {
           phoneValidation: true
         });
         break;
-      case "hamamasize":
+      case "address":
         // Regulations
         this.setState({
-          hamamasizeValidation: true
+          addressValidation: true
         });
         break;
       default:
@@ -282,19 +279,25 @@ class RegisterPage extends Component {
 
   onChange = e => {
     // deal with checkbox
-    switch(e.target.name) {
+    switch(e.target.value) {
       case "Checkplan1":
         this.setState({
-          plan1: e.target.checked
+          plan1: e.target.checked,
+          plan2: !e.target.checked,
+          plan3: !e.target.checked
         });
         break;
       case "Checkplan2":
         this.setState({
-          plan2: e.target.checked
+          plan1: !e.target.checked,
+          plan2: e.target.checked,
+          plan3: !e.target.checked
         });
         break;
       case "Checkplan3":
         this.setState({
+          plan1: !e.target.checked,
+          plan2: !e.target.checked,
           plan3: e.target.checked
         });
         break;
@@ -348,10 +351,10 @@ class RegisterPage extends Component {
           this.ResetValidation("phone")
         }
         break;
-      case "hamamasize":
+      case "address":
         // password strength validation
-        if(this.state.hamamasizeValidation === false){
-          this.ResetValidation("hamamasize")
+        if(this.state.addressValidation === false){
+          this.ResetValidation("address")
         }
         break;
       default:
@@ -481,23 +484,6 @@ class RegisterPage extends Component {
     });
   };
 
-  OpenListOfvegetables = e => {
-    e.preventDefault();
-    
-    let ChoosenClass = this.state.AddBackgroundClassToVeg;
-
-    if(ChoosenClass === 'vegetablesOpen'){
-      ChoosenClass = 'vegetables';
-    }
-    else ChoosenClass = 'vegetablesOpen';
-
-    this.setState({
-      VegtButtonOn: !this.state.VegtButtonOn,
-      AddBackgroundClassToVeg: ChoosenClass
-    });
-
-  }
-
   render() {
     let {imagePreviewUrl} = this.state;
     let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
@@ -513,38 +499,31 @@ class RegisterPage extends Component {
             ) : null}
             {this.state.ScreenNumber === "1" ? (
                   <div className='RegisterStatus'>
-                    <img alt="" src={require('../Resources/Step1-farmer.png')} />
+                    <img alt="" src={require('../Resources/Step1-client.png')} />
                   </div>
                 ) : 
                   null
             }
             {this.state.ScreenNumber === "2" ? (
                   <div className='RegisterStatus'>
-                    <img alt="" src={require('../Resources/Step2-farmer.png')} />
+                    <img alt="" src={require('../Resources/Step2-client.png')} />
                   </div>
                 ) : 
                   null
             }
             {this.state.ScreenNumber === "3" ? (
                   <div className='RegisterStatus'>
-                    <img alt="" src={require('../Resources/Step3-farmer.png')} />
-                  </div>
-                ) : 
-                  null
-            }
-            {this.state.ScreenNumber === "4" ? (
-                  <div className='RegisterStatus'>
-                    <img alt="" src={require('../Resources/Step4-farmer.png')} />
+                    <img alt="" src={require('../Resources/Step3-client.png')} />
                   </div>
                 ) : 
                   null
             }
             <Form onSubmit={this.onSubmit}>
-            {this.state.ScreenNumber === "1" || this.state.ScreenNumber === "4" ? (
+            {this.state.ScreenNumber === "1" || this.state.ScreenNumber === "3" ? (
               <FormGroup>
                 {this.state.ScreenNumber === "1" ? (
                   <div className='ProfileName'>
-                    <h1>פרופיל חקלאי</h1>
+                    <h1>פרופיל מגדל</h1>
                   </div>
                 ) : 
                   <div className='ProfileName'>
@@ -643,46 +622,24 @@ class RegisterPage extends Component {
                   <FormFeedback>הסיסמאות לא זהות!</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='sizearea'>אזור השטח לגידול</Label>
-                  <Input type="select" name="sizearea" id="sizearea" className='SizeArea mb-3' onChange={this.onChange} value={this.state.sizearea}>
-                    <option>מרכז</option>
-                    <option>דרום</option>
-                    <option>צפון</option>
-                  </Input>
-                </div>
-                <div className="form-group">
-                  <Label for='hamamasize'>גודל שטח החממה</Label>
+                  <Label for='address'>כתובת</Label>
                   <Input
                     type='text'
-                    name='hamamasize'
-                    id='hamamasize'
+                    name='address'
+                    id='address'
                     placeholder=''
                     className='mb-3'
                     onChange={this.onChange}
-                    value={this.state.hamamasize}
-                    invalid= {!this.state.hamamasizeValidation}
+                    value={this.state.address}
+                    invalid= {!this.state.addressValidation}
                     required
                   />
                   <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
-                </div>
-                <div className="form-group">
-                  <Label for='aboutme'>על עצמי</Label>
-                  <Input type="textarea" name="aboutme" id="aboutme" className='AboutMe mb-3' onChange={this.onChange} value={this.state.aboutme}/>
                 </div>
               </div>
               <div className='UploadImage'>
                 <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
                 {$imagePreview}
-              </div>
-              <div className={this.state.AddBackgroundClassToVeg}>
-                <h3>יש לי את התנאים והניסיון לגדל:</h3>
-                { this.state.VegtButtonOn ? 
-                <Button color="success" onClick={this.OpenListOfvegetables}>רשימת ירקות לגידול</Button> : null }
-                { this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} /> }
-              </div>
-              <div className="ListOfVegCost">
-                <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
-                <VegetablesPricing />
               </div>
               <div className="Plans">
                 <div className="PlanCard">
@@ -695,34 +652,19 @@ class RegisterPage extends Component {
                        />
                       <Label check for='Checkplan1'>
                         <CustomInput 
-                        type="checkbox"
-                        name='Checkplan1'
+                        type="radio"
+                        name='Checkplan'
                         id='Checkplan1'
+                        value='Checkplan1'
                         className='mb-3'
-                        defaultChecked={this.state.plan1}
                         onChange={this.onChange} />
                       </Label> 
                       <span className='PlanTitle' >מגדל עצמאי</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
-                    <div className="CardCost">
-                      <div className="CardCostLabel">
-                        <Label check for='cost1'>
-                          <Input 
-                          type="text"
-                          name='cost1'
-                          id='cost1'
-                          className='mb-3'
-                          placeholder={this.state.cost1}
-                          value={this.state.cost1}
-                          onChange={this.onChange} />
-                        </Label> 
-                      <span>ש"ח</span>
-                      </div>
-                    </div>
                     <div className="CardDetails">
-                      <span className="CardDetailsHeader">במסלול זה אין התערבות של החקלאי<br /> המסלול כולל:</span>
+                      <span className="GrowerCardDetailsHeader">במסלול זה אין התערבות של החקלאי<br /> המסלול כולל:</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
                         <span className='PlanVegetableImageText'>שטח</span>
@@ -744,34 +686,19 @@ class RegisterPage extends Component {
                        />
                       <Label check for='Checkplan2'>
                         <CustomInput 
-                        type="checkbox"
-                        name='Checkplan2'
+                        type="radio"
+                        name='Checkplan'
                         id='Checkplan2'
                         className='mb-3'
-                        defaultChecked={this.state.plan2}
+                        value='Checkplan2'
                         onChange={this.onChange} />
                       </Label> 
                       <span className='PlanTitle' >ביניים</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
-                    <div className="CardCost">
-                      <div className="CardCostLabel">
-                        <Label check for='cost2'>
-                          <Input 
-                          type="text"
-                          name='cost2'
-                          id='cost2'
-                          value={this.state.cost2}
-                          className='mb-3'
-                          placeholder={this.state.cost2}
-                          onChange={this.onChange} />
-                        </Label> 
-                        <span>ש"ח</span>
-                      </div>
-                    </div>
                     <div className="CardDetails">
-                      <span className="CardDetailsHeader">במסלול זה יש התערבות חלקית של החקלאי<br /> המסלול כולל:</span>
+                      <span className="GrowerCardDetailsHeader">במסלול זה יש התערבות חלקית של החקלאי<br /> המסלול כולל:</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
                         <span className='PlanVegetableImageText'>ייעוץ אישי</span>
@@ -801,34 +728,19 @@ class RegisterPage extends Component {
                        />
                       <Label check for='Checkplan3'>
                         <CustomInput 
-                        type="checkbox"
-                        name='Checkplan3'
+                        type="radio"
+                        name='Checkplan'
                         id='Checkplan3'
+                        value='Checkplan3'
                         className='mb-3'
-                        defaultChecked={this.state.plan3}
                         onChange={this.onChange} />
                       </Label> 
                       <span className='PlanTitle' >ליווי שוטף</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
-                    <div className="CardCost">
-                      <div className="CardCostLabel">
-                        <Label check for='cost3'>
-                          <Input 
-                          type="text"
-                          name='cost3'
-                          id='cost3'
-                          className='mb-3'
-                          placeholder={this.state.cost3}
-                          value={this.state.cost3}
-                          onChange={this.onChange} />
-                        </Label> 
-                        <span>ש"ח</span>
-                      </div>
-                    </div>
                     <div className="CardDetails" >
-                      <span className="CardDetailsHeader">במסלול זה יש התערבות מלאה של החקלאי<br /> המסלול כולל:</span>
+                      <span className="GrowerCardDetailsHeader">במסלול זה יש התערבות מלאה של החקלאי<br /> המסלול כולל:</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
                         <span className='PlanVegetableImageText'>ייעוץ אישי</span>
@@ -851,6 +763,16 @@ class RegisterPage extends Component {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div className="Growersizearea">
+                <div className="form-group">
+                  <Label for='sizearea'>אזור השטח לגידול</Label>
+                  <Input type="select" name="sizearea" id="sizearea" className='SizeArea mb-3' onChange={this.onChange} value={this.state.sizearea}>
+                    <option>מרכז</option>
+                    <option>דרום</option>
+                    <option>צפון</option>
+                  </Input>
                 </div>
               </div>
               <div className='ApproveRegulations'>
@@ -882,77 +804,7 @@ class RegisterPage extends Component {
             </FormGroup>
             ) : null}
 
-            {this.state.ScreenNumber === "2" || this.state.ScreenNumber === "4" ? (
-              <FormGroup>
-                <div className='BankCollectPaymentContainer'>
-                  <div className='BankCollectPayment'>
-                    <span className='RecivePaymentHeader'>חשבון בנק לקבלת תשלום</span>
-                    <div className="payment-form-group">
-                      <Label for='fullname'></Label>
-                      <Input
-                        type='text'
-                        name='fullname'
-                        id='fullname'
-                        placeholder='שם בעל החשבון'
-                        className='mb-3'
-                        onChange={this.onChange}
-                        value={this.state.fullname}
-                      />
-                    </div>
-                    <div className="payment-form-group">
-                      <Label for='accountnumber'></Label>
-                      <Input
-                        type='text'
-                        name='accountnumber'
-                        id='accountnumber'
-                        placeholder='מספר חשבון הבנק'
-                        className='mb-3'
-                        onChange={this.onChange}
-                        value={this.state.accountnumber}
-                      />
-                    </div>
-                    <div className="payment-form-group">
-                      <div className="bankDetails">
-                        <div className="bankname">
-                          <Label for='bankname'></Label>
-                          <Input type="select" name="bankname" id="bankname" className='mb-3' placeholder='בנק' onChange={this.onChange} value={this.state.bankname}>
-                            <option>בחר בנק</option>
-                            <option>בנק אגוד</option>
-                            <option>בנק אוצר החייל</option>
-                            <option>בנק דיסקונט</option>
-                            <option>בנק הפועלים</option>
-                            <option>בנק לאומי</option>
-                            <option>בנק מזרחי</option>
-                            <option>הבנק הבינלאומי</option>
-                        </Input>
-                        </div>
-                        <div className="banknumber">
-                          <Label for='banknumber'></Label>
-                          <Input
-                            type='text'
-                            name='banknumber'
-                            id='banknumber'
-                            placeholder='שם בעל החשבון'
-                            className='mb-3'
-                            onChange={this.onChange}
-                            value={this.state.banknumber}
-                          />
-                        </div>
-                    </div>
-                   </div>
-                   {this.state.ScreenNumber === "2" ? (
-                     <div className='MoveToSecondPaymentScreenButton'>
-                       <Button color="info" onClick={() => this.ChangeScreen("3")} type="button" >
-                          אישור
-                       </Button>
-                     </div>
-                   ) : null}                  
-                  </div>
-                </div>
-              </FormGroup>
-            ) : null}
-
-            {this.state.ScreenNumber === "3" || this.state.ScreenNumber === "4" ? (
+            {this.state.ScreenNumber === "2" || this.state.ScreenNumber === "3" ? (
               <FormGroup>
                 <div className='BankCollectPaymentContainer'>
                   <div className='BankCollectPayment'>
@@ -1017,9 +869,9 @@ class RegisterPage extends Component {
                         onChange={this.onChange}
                       />
                     </div>
-                    {this.state.ScreenNumber === "3" ? (
+                    {this.state.ScreenNumber === "2" ? (
                      <div className='MoveToSecondPaymentScreenButton'>
-                       <Button color="info" onClick={() => this.ChangeScreen("4")} type="button" >
+                       <Button color="info" onClick={() => this.ChangeScreen("3")} type="button" >
                          אישור
                        </Button>
                      </div>
@@ -1029,7 +881,7 @@ class RegisterPage extends Component {
               </FormGroup>
             ) : null}
 
-            {this.state.ScreenNumber === "4" ? (
+            {this.state.ScreenNumber === "3" ? (
               <div className='RegisterButtonContainer'>
                 <Button className='RegisterButton' >
                   הירשם
@@ -1047,11 +899,10 @@ class RegisterPage extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
-  choosenvegetable: state.choosenvegetable,
   farmer: state.farmer
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, addFarmer }
-)(RegisterPage);
+  { register, clearErrors, addFarmer }
+)(GrowerRegisterPage);

@@ -30,7 +30,7 @@ class RegisterUserType extends Component {
     return (
       <div className="UserTypesHolder">
         <div className="UserTypesHeader">אנא בחר/י מה ברצונך להיות</div>
-        <Button className="UserTypesButton" outline color="secondary" size="lg" href="/">מגדל</Button>
+        <Button className="UserTypesButton" outline color="secondary" size="lg" href="/GrowerRegisterPage">מגדל</Button>
         <Button className="UserTypesButton" outline color="secondary" size="lg" href="/RegisterPage">חקלאי</Button>
       </div>
     );

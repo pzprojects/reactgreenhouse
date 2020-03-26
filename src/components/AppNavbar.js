@@ -23,6 +23,13 @@ class AppNavbar extends Component {
     auth: PropTypes.object.isRequired
   };
 
+  GetActiveLink = (path) => {
+    if(window.location.pathname === path){
+      return "active"
+    }
+    else return ""
+  };
+
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
@@ -36,13 +43,8 @@ class AppNavbar extends Component {
       <Fragment>
         <NavItem>
           <span className='navbar-text mr-3'>
-            <strong>{user ? `Welcome ${user.name}` : ''}</strong>
+            <strong>{user ? `${user.name}` : ''}</strong>
           </span>
-        </NavItem>
-        <NavItem>
-          <NavLink href='/ShoppingList'>
-            חנות
-          </NavLink>
         </NavItem>
         <NavItem>
           <Logout />
@@ -53,12 +55,12 @@ class AppNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem>
+          <LoginModal />
+        </NavItem>
+        <NavItem className='RegisterLink'>
           <NavLink href='/RegisterUserType'>
             הירשם עכשיו
           </NavLink>
-        </NavItem>
-        <NavItem>
-          <LoginModal />
         </NavItem>
       </Fragment>
     );
@@ -70,7 +72,39 @@ class AppNavbar extends Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='ml-auto' navbar>
-                {isAuthenticated ? authLinks : guestLinks}
+                <div className="ConnectionLinks">
+                  {isAuthenticated ? authLinks : guestLinks}
+                </div>
+                <NavItem className={this.GetActiveLink('/')}>
+                  <NavLink href='/'>
+                    דף הבית
+                  </NavLink>
+                </NavItem>
+                <NavItem className={this.GetActiveLink('/AboutUs')}>
+                  <NavLink href='/'>
+                    מי אנחנו
+                  </NavLink>
+                </NavItem>
+                <NavItem className={this.GetActiveLink('/OurVision')}>
+                  <NavLink href='/'>
+                    החזון
+                  </NavLink>
+                </NavItem>
+                <NavItem className={this.GetActiveLink('/CommunityServices')}>
+                  <NavLink href='/'>
+                    שירותי הקהילה 
+                  </NavLink>
+                </NavItem>
+                <NavItem className={this.GetActiveLink('/Plans')}>
+                   <NavLink href='/'>
+                    מסלולים
+                  </NavLink>
+                </NavItem>
+                <NavItem className={this.GetActiveLink('/ContactUs')}>
+                  <NavLink href='/'>
+                    צור קשר
+                   </NavLink>
+                </NavItem>
               </Nav>
               <div className='COHeader' >
                 <NavbarBrand href='/'>CO-Greenhouse</NavbarBrand>
