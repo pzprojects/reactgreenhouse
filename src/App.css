@@ -403,7 +403,7 @@
     display: block;
     float: right;
     margin-top: 5vw;
-    background-color: #7ECCC5;
+    background-color: #D5F3F0;
     text-align: center;
     font-size: 0.83vw;
     border-radius: 2vw;
@@ -686,6 +686,439 @@
     margin-top: 1.5vw;
   }
 
+  .FarmerListContent {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .FarmerListContent .container {
+    width: 100%;
+  }
+
+  .FarmerListContent .container div.ListOfFarmersByArea {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 2vw;
+  }
+
+  .FarmerListContent div.container > li {
+    background-color: #CCEEC0;
+  }
+
+  .FarmerListContent div.container > li:nth-child(odd) {
+    background-color: E4FBDC;
+  }
+
+  .FarmerListContent div.container li div.FarmerList {
+    width: 100%;
+    text-align: right;
+  }
+
+  .FarmerListContent div.container li div.FarmerList div.FarmerListRadioBtn {
+    width: 4%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.2vw;
+  }
+
+  .FarmerListContent div.container li div.FarmerList div.FarmerListImage {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.2vw;
+  }
+
+  .FarmerListContent div.container li div.FarmerList div.FarmerListImage img.FarmerThemeImage {
+    width: 10%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 3.5vw;
+    height: 3.5vw;
+  }
+
+  .FarmerListContent div.container li div.FarmerList div.FarmerListName {
+    width: 14%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.2vw;
+  }
+
+  .FarmerListContent div.container li div.FarmerList div.FarmerListAboutme {
+    width: 20%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.2vw;
+  }
+
+  .FarmerListContent div.container li div.FarmerList div.FarmerListchoosenvegetables {
+    width: 20%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.2vw;
+  }
+
+  .FarmerListContent div.container li div.FarmerList div.FarmerListplans {
+    width: 20%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.2vw;
+  }
+
+  .FarmerListContent div.container li div.FarmerList div.FarmerListplans {
+    width: 25%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.2vw;
+  }
+  
+  .FarmerListContent div.container li div.FarmerList div.FarmerListReadMore {
+    width: 7%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.2vw;
+  }
+
+  .FarmerListContent .container div.GrowerMainPicking {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 2vw;
+    margin-top: 2vw;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 {
+    width: 50%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 2vw;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul {
+    width: 80%;
+    text-align: right;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul > li {
+    background-color: #CCEEC0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul > li:nth-child(odd) {
+    background-color: #E4FBDC;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerVegHolder {
+    width: 33.3%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.3vw;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegAVGPrice {
+    width: 33.3%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.3vw;
+    padding-right: 0.3vw;
+    margin-top: 1.5vw;
+    text-align: center;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo {
+    width: 33.3%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.3vw;
+    margin-top: 1.5vw;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo span.GrowerChoosenVegMoreInfoIMG {
+    width: 30%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo span.GrowerChoosenVegMoreInfoIMG img {
+    width: 1.2vw;
+    height: 1.2vw;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo span.GrowerChoosenVegMoreInfoText {
+    width: 70%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .FarmerListContent .container div.GrowerFieldsGroupsContainer {
+    width: 50%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 2vw;
+  }
+
+  .FarmerListContent .container div.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection {
+    width: 80%;
+    position: relative;
+    display: block;
+    float: left;
+    margin-bottom: 2vw;
+    text-align: center;
+  }
+
+  div.GrowerMainPickingTitle {
+    text-align: center;
+    height: 3vw;
+    padding-top: 0.75vw;
+    background-color: #98D084;
+  }
+
+  div.FarmerListTitle {
+    text-align: right;
+    height: 2vw;
+    padding-top: 0.5vw;
+    font-weight: bold;
+  }
+
+  .FarmerListContent .container div.ListOfFarmersByArea ul > li.FarmerListTitleListItem{
+    background-color: #98D084;
+  }
+
+  div.FarmerListTitle div.FarmerListTitleText1 {
+    width: 28%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  div.FarmerListTitle div.FarmerListTitleText2 {
+    width: 20%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  div.FarmerListTitle div.FarmerListTitleText3 {
+    width: 20%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  div.FarmerListTitle div.FarmerListTitleText4 {
+    width: 32%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka1 {
+    width: 25%;
+    position: relative;
+    display: block;
+    float: right;
+    background-color: #E38788;
+  }
+
+  .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka2 {
+    width: 25%;
+    position: relative;
+    display: block;
+    float: right;
+    background-color: #A8E5E8;
+  }
+
+  .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka3 {
+    width: 25%;
+    position: relative;
+    display: block;
+    float: right;
+    background-color: #F3E990;
+  }
+
+  .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka4 {
+    width: 25%;
+    position: relative;
+    display: block;
+    float: right;
+    background-color: #98D085;
+  }
+
+  .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaName {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    font-weight: bold;
+    margin-top: 2vw;
+  }
+
+  .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaAmount {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 2vw;
+  }
+
+  .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotal {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 2vw;
+  }
+
+  .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotalPrice {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 2vw;
+  }
+
+  .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsContainerExample {
+    width: 80%;
+    position: relative;
+    display: block;
+    float: left;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0.5vw;
+  }
+
+  .GrowerVegContainer2 div.GrowerVegContainer2Example {
+    width: 80%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0.5vw;
+    padding-right: 40px;
+  }
+
+  /* Total Billing */
+
+  .GrowerFinalBilling {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 3vw;
+    text-align: right;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer {
+    width: 60%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer div.GrowerFinalBillingExample {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-right: 40px;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    list-style: none;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection > li {
+    background-color: #CCEEC0;
+    padding: 0;
+    width: 100%;
+    height: 2vw;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection > li:nth-child(odd) {
+    background-color: #E4FBDC;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection > li.GrowerFinalBillingMainHeader1 {
+    background-color: #98D084;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection > li.GrowerFinalBillingMainHeader2 {
+    background-color: #98D084;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemName {
+    width: 40%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-right: 0.5vw;
+    padding-top: 0.3vw;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemPrice {
+    width: 20%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-right: 0.5vw;
+    padding-top: 0.3vw;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemAmount {
+    width: 20%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-right: 0.5vw;
+    padding-top: 0.3vw;
+  }
+
+  .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemTotal {
+    width: 20%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-right: 0.5vw;
+    padding-top: 0.3vw;
+  }
+
+  .PlansAlert {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4vw;
+  }
+  
 }
 
 
@@ -1020,7 +1453,7 @@
     display: block;
     float: right;
     margin-top: 5vw;
-    background-color: #7ECCC5;
+    background-color: #D5F3F0;
     text-align: center;
     font-size: 0.83vw;
     border-radius: 2vw;

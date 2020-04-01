@@ -17,6 +17,7 @@ import { clearErrors } from '../actions/errorActions';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
+import ChooseFarmer from '../components/ChooseFarmer';
 import { addFarmer } from '../actions/farmerAction';
 
 
@@ -72,7 +73,8 @@ class GrowerRegisterPage extends Component {
     phoneValidation: true,
     hamamasizeValidation: true,
     addressValidation: true,
-    address: ''
+    address: '',
+    ActivePlan: ''
   };
 
   static propTypes = {
@@ -284,21 +286,24 @@ class GrowerRegisterPage extends Component {
         this.setState({
           plan1: e.target.checked,
           plan2: !e.target.checked,
-          plan3: !e.target.checked
+          plan3: !e.target.checked,
+          ActivePlan: 'מגדל עצמאי'
         });
         break;
       case "Checkplan2":
         this.setState({
           plan1: !e.target.checked,
           plan2: e.target.checked,
-          plan3: !e.target.checked
+          plan3: !e.target.checked,
+          ActivePlan: 'ביניים'
         });
         break;
       case "Checkplan3":
         this.setState({
           plan1: !e.target.checked,
           plan2: !e.target.checked,
-          plan3: e.target.checked
+          plan3: e.target.checked,
+          ActivePlan: 'ליווי שוטף'
         });
         break;
       default:
@@ -641,6 +646,7 @@ class GrowerRegisterPage extends Component {
                 <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
                 {$imagePreview}
               </div>
+              <div className="PlansAlert">בחירת מסלול (יש לבחור מסלול אחד)</div>
               <div className="Plans">
                 <div className="PlanCard">
                   <div className="PlanCardHeader">
@@ -775,6 +781,7 @@ class GrowerRegisterPage extends Component {
                   </Input>
                 </div>
               </div>
+              { this.state.ActivePlan !== '' ? <div className='FarmerListContent'><ChooseFarmer SizeAreaParam={this.state.sizearea} PlanParam={this.state.ActivePlan}/></div> : null}
               <div className='ApproveRegulations'>
                 <div  className='RegulationsCheckBox'>
                   <Label check for='CheckRegulations'>

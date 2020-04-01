@@ -8,7 +8,8 @@ import {
   Container,
   CustomInput,
   Alert,
-  FormFeedback
+  FormFeedback,
+  FormText
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -663,11 +664,13 @@ class RegisterPage extends Component {
                     invalid= {!this.state.hamamasizeValidation}
                     required
                   />
+                  <FormText>* יש להזין את גודל השטח בכפולות של X מ"ר</FormText>
                   <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
                 </div>
                 <div className="form-group">
                   <Label for='aboutme'>על עצמי</Label>
                   <Input type="textarea" name="aboutme" id="aboutme" className='AboutMe mb-3' onChange={this.onChange} value={this.state.aboutme}/>
+                  <FormText>* טקסט זה יופיע כאשר הלקוח יבחר חקלאי</FormText>
                 </div>
               </div>
               <div className='UploadImage'>

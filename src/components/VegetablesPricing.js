@@ -20,8 +20,8 @@ class VegetablesPricing extends Component {
     this.props.getChoosenVegetables();
   }
 
-  onVegtClick = (id, name, price) => {
-    this.props.addChoosenVegetable({id: id, name: name, price: price});
+  onVegtClick = (id, name, price, averagecrop, amount) => {
+    this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount});
   
     };
   
@@ -29,9 +29,9 @@ class VegetablesPricing extends Component {
     this.props.deleteChoosenVegetable(name);
   };
 
-  UpdateChoosenVegetable = (id, name, price) => {
+  UpdateChoosenVegetable = (id, name, price, averagecrop, amount) => {
       this.props.deleteChoosenVegetable(name);
-      this.props.addChoosenVegetable({id: id, name: name, price: price});
+      this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount});
   };
 
   render() {
@@ -41,8 +41,8 @@ class VegetablesPricing extends Component {
       <Container>
         <ListGroup>
           <TransitionGroup className='ChoosenVegetablesList'>
-            {ChoosenVegetables.map(({ id, name, price }) => (
-              <CSSTransition key={id} timeout={500} classNames='fade'>
+            {ChoosenVegetables.map(({ _id, name, price, averagecrop, amount }) => (
+              <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
                   <span><img
                   alt=""
@@ -57,7 +57,7 @@ class VegetablesPricing extends Component {
                       type='text'
                       placeholder={price}
                       className='mb-3'
-                      onBlur={event => this.UpdateChoosenVegetable(id, name, event.target.value)}
+                      onBlur={event => this.UpdateChoosenVegetable(_id, name, event.target.value, averagecrop, amount)}
                       />
                   </span>
                   <span className='ChoosenVegetabletext2'>ש"ח</span>

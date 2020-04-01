@@ -6,6 +6,8 @@ import authReducer from './authReducer';
 import vegetableReducer from './vegetableReducer';
 import choosenVegetablesReducer from './choosenVegetablesReducer';
 import farmerReducer from './farmerReducer';
+import choosenFarmerReducer from './choosenFarmerReducer';
+import growerVegChoiceReducer from './growerVegChoiceReducer';
 
 export default combineReducers({
   item: itemReducer,
@@ -13,5 +15,7 @@ export default combineReducers({
   auth: authReducer,
   vegetable: vegetableReducer,
   choosenvegetable: choosenVegetablesReducer,
-  farmer: farmerReducer
+  farmer: farmerReducer,
+  choosenfarmer: choosenFarmerReducer,
+  growervegbuyingbag: growerVegChoiceReducer
 });

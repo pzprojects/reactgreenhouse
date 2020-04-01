@@ -2,7 +2,8 @@ import {
     GET_FARMERS,
     ADD_fARMER, 
     DELETE_FARMER,
-    FARMERS_LOADING
+    FARMERS_LOADING,
+    GET_FARMERS_BYAREA
   } from '../actions/types';
   
   const initialState = {
@@ -14,7 +15,15 @@ import {
     switch (action.type) {
       case GET_FARMERS:
         return {
-          ...state
+          ...state,
+          farmers: action.payload,
+          FarmersLoading: false
+        };
+      case GET_FARMERS_BYAREA:
+        return {
+          ...state,
+          farmers: action.payload,
+          FarmersLoading: false
         };
       case DELETE_FARMER:
         return {
