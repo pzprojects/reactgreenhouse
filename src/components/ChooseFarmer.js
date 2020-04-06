@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button, Input, Label, CustomInput } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput } from 'reactstrap';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getfarmersbyarea } from '../actions/farmerAction';
 import { updatechoosenfarmer, getchoosenfarmer } from '../actions/choosenFarmerAction';
-import { addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag } from '../actions/growerVegChoiceAction';
+import { addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag } from '../actions/growerVegChoiceAction';
 import PropTypes from 'prop-types';
 
 class ChooseFarmer extends Component {
@@ -14,7 +14,7 @@ class ChooseFarmer extends Component {
     GrowerVeg2 :  '',
     GrowerVeg3 :  '',
     GrowerVeg4 :  '',
-    TotalPayment: '0',
+    TotalPayment: '0'
   };
 
   static propTypes = {
@@ -26,7 +26,10 @@ class ChooseFarmer extends Component {
     growervegbuyingbag: PropTypes.object.isRequired,
     deleteFromGrowerVegBag: PropTypes.func.isRequired,
     addToGrowerVegBag: PropTypes.func.isRequired,
-    getGrowerVegBag: PropTypes.func.isRequired
+    getGrowerVegBag: PropTypes.func.isRequired,
+    ResetGrowerVegBag: PropTypes.func.isRequired,
+    SetTotalGrowerVegBag: PropTypes.func.isRequired,
+    SetPlanGrowerVegBag: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -41,6 +44,9 @@ class ChooseFarmer extends Component {
             this.UpdateAllSelectedFields();
         });
     }
+    else {
+      this.props.getfarmersbyarea(this.props.SizeAreaParam, this.props.PlanParam);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -49,29 +55,72 @@ class ChooseFarmer extends Component {
         ChoosenFarmerId: ''
       },() => {
         this.props.updatechoosenfarmer();
+        this.props.ResetGrowerVegBag();
         this.props.getfarmersbyarea(this.props.SizeAreaParam, this.props.PlanParam);
       });
     };
   }
   
   UpdateAllSelectedFields = () => {
-    var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
-    var GrowerBag = this.props.growervegbuyingbag.VegToBuy;
-    console.log(GrowerBag[0]);
-
-    if(this.state.GrowerVeg1 === ''){
-      if(GrowerBag[0] !== undefined){
+     try{
+      var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
+      var GrowerBag = this.props.growervegbuyingbag.VegToBuy;
+  
+      if(this.state.GrowerVeg1 === ''){
+        if(GrowerBag[0] !== undefined){
+            this.setState({
+              GrowerVeg1: GrowerBag[0].name
+            })
+        }
+        else {
           this.setState({
-            GrowerVeg1: GrowerBag[0].name
+              GrowerVeg1: ChoosenVegArray[0].name
           })
+        }
       }
-      else {
-        console.log("here")
-        this.setState({
-            GrowerVeg1: ChoosenVegArray[0].name
-        })
+  
+      if(this.state.GrowerVeg2 === ''){
+        if(GrowerBag[1] !== undefined){
+            this.setState({
+              GrowerVeg2: GrowerBag[1].name
+            })
+        }
+        else {
+          this.setState({
+              GrowerVeg2: ChoosenVegArray[1].name
+          })
+        }
       }
+  
+      if(this.state.GrowerVeg3 === ''){
+        if(GrowerBag[2] !== undefined){
+            this.setState({
+              GrowerVeg3: GrowerBag[2].name
+            })
+        }
+        else {
+          this.setState({
+              GrowerVeg3: ChoosenVegArray[2].name
+          })
+        }
+      }
+  
+      if(this.state.GrowerVeg1 === ''){
+        if(GrowerBag[3] !== undefined){
+            this.setState({
+              GrowerVeg4: GrowerBag[3].name
+            })
+        }
+        else {
+          this.setState({
+              GrowerVeg4: ChoosenVegArray[3].name
+          })
+        }
+      }
+    }catch(e){
+     
     }
+    
   };
 
   ReturnChoosingVegtabilesAsString = (Mychoosenvegetables) => {
@@ -86,182 +135,226 @@ class ChooseFarmer extends Component {
   };
 
   GetVegAmount = (ItemId) => {
-    var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
     var Amount = '';
-    switch(ItemId) {
-        case "1":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-              if(ChoosenVegArray[i].name === this.state.GrowerVeg1){
-                Amount = ChoosenVegArray[i].averagecrop;
-              }
-          }
-          break;
-        case "2":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-              if(ChoosenVegArray[i].name === this.state.GrowerVeg2){
-                Amount = ChoosenVegArray[i].averagecrop;
-              }
-          }
-          break;
-        case "3":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-              if(ChoosenVegArray[i].name === this.state.GrowerVeg3){
-                Amount = ChoosenVegArray[i].averagecrop;
-              }
-          }
-          break;
-        case "4":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-              if(ChoosenVegArray[i].name === this.state.GrowerVeg4){
-                Amount = ChoosenVegArray[i].averagecrop;
-              }
-          }
-          break;
-        default:
-          Amount = "0";
+    try{ 
+    if(this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined){
+      var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
+        switch(ItemId) {
+          case "1":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg1){
+                  Amount = ChoosenVegArray[i].averagecrop;
+                }
+            }
+            break;
+          case "2":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg2){
+                  Amount = ChoosenVegArray[i].averagecrop;
+                }
+            }
+            break;
+          case "3":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg3){
+                  Amount = ChoosenVegArray[i].averagecrop;
+                }
+            }
+            break;
+          case "4":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg4){
+                  Amount = ChoosenVegArray[i].averagecrop;
+                }
+            }
+            break;
+          default:
+            Amount = "0";
+        }
+      }
+      else Amount = "0";
+  
+      Amount += ' ק"ג';
+    }catch(e){
+      return Amount;       
     }
-
-    Amount += ' ק"ג'
 
     return Amount;
   };
 
   GetPlanData = (DataType) => {
     var PlanDataToReturn = '';
-    if(this.props.PlanParam !== '' && this.props.PlanParam !== null && this.props.PlanParam !== undefined ){
-      const planprice = this.props.choosenfarmer.ChoosenFarmerById[0].plans.find(item => item.name === this.props.PlanParam);
-      if( planprice !== undefined ){
-        if(DataType === "name"){
-          PlanDataToReturn = this.props.PlanParam + ' ש"ח';
+    try{
+      if(this.props.PlanParam !== '' && this.props.PlanParam !== null && this.props.PlanParam !== undefined ){
+        if( this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined ){
+          const planprice = this.props.choosenfarmer.ChoosenFarmerById[0].plans.find(item => item.name === this.props.PlanParam);
+          if(DataType === "name"){
+            PlanDataToReturn = this.props.PlanParam + ' ש"ח';
+          }
+          else PlanDataToReturn = planprice.cost + ' ש"ח';
         }
-        else PlanDataToReturn = planprice.cost + ' ש"ח';
       }
+      else PlanDataToReturn = '';
+    }catch(e){
+      return PlanDataToReturn;       
     }
-    else PlanDataToReturn = '';
 
     return PlanDataToReturn;
   }
 
   GetVegData = (ItemId, DataType) => {
-    var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
     var DataToRetrive = '';
-    switch(ItemId) {
-        case "1":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-              if(ChoosenVegArray[i].name === this.state.GrowerVeg1){
-                if(DataType === "amount"){
-                  DataToRetrive = ChoosenVegArray[i].amount;
+    try{
+      if( this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined){
+        var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
+        switch(ItemId) {
+          case "1":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg1){
+                  if(DataType === "amount"){
+                    DataToRetrive = ChoosenVegArray[i].amount;
+                  }
+                  else {
+                    var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+                    DataToRetrive = CaculatedData.toString();
+                  }
                 }
-                else {
-                  var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-                  DataToRetrive = CaculatedData.toString();
-                }
+            }
+            break;
+          case "2":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+              if(ChoosenVegArray[i].name === this.state.GrowerVeg2){
+                  if(DataType === "amount"){
+                    DataToRetrive = ChoosenVegArray[i].amount;
+                  }
+                  else {
+                    var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+                    DataToRetrive = CaculatedData.toString();
+                  }
               }
-          }
-          break;
-        case "2":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-            if(ChoosenVegArray[i].name === this.state.GrowerVeg2){
-                if(DataType === "amount"){
-                  DataToRetrive = ChoosenVegArray[i].amount;
-                }
-                else {
-                  var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-                  DataToRetrive = CaculatedData.toString();
-                }
             }
-          }
-          break;
-        case "3":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-            if(ChoosenVegArray[i].name === this.state.GrowerVeg3){
-                if(DataType === "amount"){
-                  DataToRetrive = ChoosenVegArray[i].amount;
-                }
-                else {
-                  var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-                  DataToRetrive = CaculatedData.toString();
-                }
+            break;
+          case "3":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+              if(ChoosenVegArray[i].name === this.state.GrowerVeg3){
+                  if(DataType === "amount"){
+                    DataToRetrive = ChoosenVegArray[i].amount;
+                  }
+                  else {
+                    var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+                    DataToRetrive = CaculatedData.toString();
+                  }
+              }
             }
-          }
-          break;
-        case "4":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-            if(ChoosenVegArray[i].name === this.state.GrowerVeg4){
-                if(DataType === "amount"){
-                  DataToRetrive = ChoosenVegArray[i].amount;
-                }
-                else {
-                  var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-                  DataToRetrive = CaculatedData.toString();
-                }
+            break;
+          case "4":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+              if(ChoosenVegArray[i].name === this.state.GrowerVeg4){
+                  if(DataType === "amount"){
+                    DataToRetrive = ChoosenVegArray[i].amount;
+                  }
+                  else {
+                    var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+                    DataToRetrive = CaculatedData.toString();
+                  }
+              }
             }
-          }
-          break;
-        default:
-        DataToRetrive = "0";
+            break;
+          default:
+          DataToRetrive = "0";
+      }
+  
+        if(DataType === "amount"){
+          DataToRetrive += ' שתילים';
+        }
+        else DataToRetrive += ' ש"ח';
+      }
+    }catch(e){
+      return DataToRetrive;      
     }
-
-    if(DataType === "amount"){
-      DataToRetrive += ' שתילים'
-    }
-    else DataToRetrive += ' ש"ח'
-
+    
     return DataToRetrive;
   };
 
   GetTotalPayment = () => {
-    var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
     var DataToRetrive = 0;
-
-    for( var i=0;  i < ChoosenVegArray.length; i++ ){
-      if(ChoosenVegArray[i].name === this.state.GrowerVeg1 ){
-        DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-        break;
+    try{
+      if(this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined){
+        var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
+  
+        for( var i=0;  i < ChoosenVegArray.length; i++ ){
+          if(ChoosenVegArray[i].name === this.state.GrowerVeg1 ){
+            DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+            break;
+          }
+        }
+    
+        for( var i=0;  i < ChoosenVegArray.length; i++ ){
+          if(ChoosenVegArray[i].name === this.state.GrowerVeg2 ){
+            DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+            break;
+          }
+        }
+    
+        for( var i=0;  i < ChoosenVegArray.length; i++ ){
+          if(ChoosenVegArray[i].name === this.state.GrowerVeg3 ){
+            DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+            break;
+          }
+        }
+    
+        for( var i=0;  i < ChoosenVegArray.length; i++ ){
+          if(ChoosenVegArray[i].name === this.state.GrowerVeg4 ){
+            DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+            break;
+          }
+        }
+    
+        if(this.props.PlanParam !== '' && this.props.PlanParam !== null && this.props.PlanParam !== undefined){
+          const planprice = this.props.choosenfarmer.ChoosenFarmerById[0].plans.find(item => item.name === this.props.PlanParam);
+          if(planprice !== undefined){
+            DataToRetrive +=  parseFloat(planprice.cost);
+          }
+        }
       }
-    }
-
-    for( var i=0;  i < ChoosenVegArray.length; i++ ){
-      if(ChoosenVegArray[i].name === this.state.GrowerVeg2 ){
-        DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-        break;
-      }
-    }
-
-    for( var i=0;  i < ChoosenVegArray.length; i++ ){
-      if(ChoosenVegArray[i].name === this.state.GrowerVeg3 ){
-        DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-        break;
-      }
-    }
-
-    for( var i=0;  i < ChoosenVegArray.length; i++ ){
-      if(ChoosenVegArray[i].name === this.state.GrowerVeg4 ){
-        DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-        break;
-      }
-    }
-
-    if(this.props.PlanParam !== '' && this.props.PlanParam !== null && this.props.PlanParam !== undefined){
-      const planprice = this.props.choosenfarmer.ChoosenFarmerById[0].plans.find(item => item.name === this.props.PlanParam);
-      if(planprice !== undefined){
-        DataToRetrive +=  parseFloat(planprice.cost);
-      }
-    }
-
-    DataToRetrive = DataToRetrive.toString() + ' ש"ח';
+      //this.props.SetTotalGrowerVegBag(this.GetTotalPayment());
+      DataToRetrive = DataToRetrive.toString() + ' ש"ח';
+    }catch(e){
+      return DataToRetrive;        
+    } 
 
     return DataToRetrive;
   
   }
 
   GetVegTotalBilling = (ItemId, DataType) => {
-    var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
     var DataToRetrive = '';
-    switch(ItemId) {
-        case "1":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-              if(ChoosenVegArray[i].name === this.state.GrowerVeg1){
+    try{
+      if(this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined){
+        var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
+        switch(ItemId) {
+          case "1":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg1){
+                  switch(DataType) {
+                    case "averagecrop":
+                      DataToRetrive = ChoosenVegArray[i].amount;
+                      break;
+                    case "price":
+                      DataToRetrive = ChoosenVegArray[i].price;
+                      break;
+                    case "Total":
+                      var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+                      DataToRetrive = CaculatedData.toString();
+                      break;
+                    default:
+                  }
+                }
+            }
+            break;
+          case "2":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+              if(ChoosenVegArray[i].name === this.state.GrowerVeg2){
                 switch(DataType) {
                   case "averagecrop":
                     DataToRetrive = ChoosenVegArray[i].amount;
@@ -276,89 +369,78 @@ class ChooseFarmer extends Component {
                   default:
                 }
               }
-          }
-          break;
-        case "2":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-            if(ChoosenVegArray[i].name === this.state.GrowerVeg2){
-              switch(DataType) {
-                case "averagecrop":
-                  DataToRetrive = ChoosenVegArray[i].amount;
-                  break;
-                case "price":
-                  DataToRetrive = ChoosenVegArray[i].price;
-                  break;
-                case "Total":
-                  var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-                  DataToRetrive = CaculatedData.toString();
-                  break;
-                default:
+            }
+            break;
+          case "3":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+              if(ChoosenVegArray[i].name === this.state.GrowerVeg3){
+                switch(DataType) {
+                  case "averagecrop":
+                    DataToRetrive = ChoosenVegArray[i].amount;
+                    break;
+                  case "price":
+                    DataToRetrive = ChoosenVegArray[i].price;
+                    break;
+                  case "Total":
+                    var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+                    DataToRetrive = CaculatedData.toString();
+                    break;
+                  default:
+                }
               }
             }
-          }
-          break;
-        case "3":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-            if(ChoosenVegArray[i].name === this.state.GrowerVeg3){
-              switch(DataType) {
-                case "averagecrop":
-                  DataToRetrive = ChoosenVegArray[i].amount;
-                  break;
-                case "price":
-                  DataToRetrive = ChoosenVegArray[i].price;
-                  break;
-                case "Total":
-                  var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-                  DataToRetrive = CaculatedData.toString();
-                  break;
-                default:
+            break;
+          case "4":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+              if(ChoosenVegArray[i].name === this.state.GrowerVeg4){
+                switch(DataType) {
+                  case "averagecrop":
+                    DataToRetrive = ChoosenVegArray[i].amount;
+                    break;
+                  case "price":
+                    DataToRetrive = ChoosenVegArray[i].price;
+                    break;
+                  case "Total":
+                    var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
+                    DataToRetrive = CaculatedData.toString();
+                    break;
+                  default:
+                }
               }
             }
-          }
-          break;
-        case "4":
-          for( var i=0;  i < ChoosenVegArray.length; i++ ){
-            if(ChoosenVegArray[i].name === this.state.GrowerVeg4){
-              switch(DataType) {
-                case "averagecrop":
-                  DataToRetrive = ChoosenVegArray[i].amount;
-                  break;
-                case "price":
-                  DataToRetrive = ChoosenVegArray[i].price;
-                  break;
-                case "Total":
-                  var CaculatedData = parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
-                  DataToRetrive = CaculatedData.toString();
-                  break;
-                default:
-              }
-            }
-          }
-          break;
-        default:
-        DataToRetrive = "0";
-    }
-
-    if(DataType !== "averagecrop"){
-      DataToRetrive += ' ש"ח'
+            break;
+          default:
+          DataToRetrive = "0";
+        }
+  
+        if(DataType !== "averagecrop"){
+          DataToRetrive += ' ש"ח';
+        }
+      }
+    }catch(e){
+      return DataToRetrive;      
     }
 
     return DataToRetrive;
   };
 
   AddVegToGrowerBag = (VegValue, ValueToDelete) => {
-    var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
-    var ObjectToAdd = {};
-    for( var i=0;  i < ChoosenVegArray.length; i++ ){
+    try{
+      var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
+      var ObjectToAdd = {};
+      for( var i=0;  i < ChoosenVegArray.length; i++ ){
         if(ChoosenVegArray[i].name === VegValue){
           ObjectToAdd = ChoosenVegArray[i];
         }
-    }
+      }
 
-    if(ValueToDelete !== ''){
-      this.props.deleteFromGrowerVegBag(ValueToDelete);
+      if(ValueToDelete !== ''){
+        this.props.deleteFromGrowerVegBag(ValueToDelete);
+      }
+      this.props.addToGrowerVegBag(ObjectToAdd);
+    }catch(e){
+      console.log('error', e);        
     }
-    this.props.addToGrowerVegBag(ObjectToAdd);
   };
 
   onChange = e => {
@@ -367,6 +449,7 @@ class ChooseFarmer extends Component {
         case "FarmerChoice":
           var FilteredChoosenFarmer = this.props.farmer.farmers.filter(farmer => farmer._id === e.target.value);
           this.props.updatechoosenfarmer(FilteredChoosenFarmer);
+          this.props.ResetGrowerVegBag();
           var ChoosenVegArrayToPlace = FilteredChoosenFarmer[0].choosenvegetables;
           this.setState({
             ChoosenFarmerId : e.target.value,
@@ -374,28 +457,40 @@ class ChooseFarmer extends Component {
             GrowerVeg2: ChoosenVegArrayToPlace[0].name,
             GrowerVeg3: ChoosenVegArrayToPlace[0].name,
             GrowerVeg4: ChoosenVegArrayToPlace[0].name
-          })
+          },() => {
+            var DefaultTotalCalc = parseFloat(ChoosenVegArrayToPlace[0].price)*parseFloat(ChoosenVegArrayToPlace[0].amount)*4 + parseFloat(FilteredChoosenFarmer[0].plans.find(element => element.name === this.props.PlanParam).cost);
+            this.props.SetTotalGrowerVegBag(DefaultTotalCalc.toString() + ' ש"ח');
+          });
+
+          this.props.SetPlanGrowerVegBag(FilteredChoosenFarmer[0].plans.find(element => element.name === this.props.PlanParam));
 
           for( var j=0;  j < 4; j++ ){
             this.props.addToGrowerVegBag(ChoosenVegArrayToPlace[0], '');
           }
-          
           break;
         case "GrowerVeg1":
           this.AddVegToGrowerBag(e.target.value, this.state.GrowerVeg1);
-          this.setState({ [e.target.name]: e.target.value });
+          this.setState({ [e.target.name]: e.target.value },() => {
+            this.props.SetTotalGrowerVegBag(this.GetTotalPayment());
+          });
           break;
         case "GrowerVeg2":
           this.AddVegToGrowerBag(e.target.value, this.state.GrowerVeg2);
-          this.setState({ [e.target.name]: e.target.value });
+          this.setState({ [e.target.name]: e.target.value },() => {
+            this.props.SetTotalGrowerVegBag(this.GetTotalPayment());
+          });
           break;
         case "GrowerVeg3":
           this.AddVegToGrowerBag(e.target.value, this.state.GrowerVeg3);
-          this.setState({ [e.target.name]: e.target.value });
+          this.setState({ [e.target.name]: e.target.value },() => {
+            this.props.SetTotalGrowerVegBag(this.GetTotalPayment());
+          });
           break;
         case "GrowerVeg4":
           this.AddVegToGrowerBag(e.target.value, this.state.GrowerVeg4);
-          this.setState({ [e.target.name]: e.target.value });
+          this.setState({ [e.target.name]: e.target.value },() => {
+            this.props.SetTotalGrowerVegBag(this.GetTotalPayment());
+          });
           break;
         default:
     }
@@ -489,7 +584,7 @@ class ChooseFarmer extends Component {
             <ListGroup>
               <ListGroupItem>
                 <div className="GrowerMainPickingTitle">
-                  צפי ייבול ממוצע
+                צפי ייבול ממוצע לשנה
                 </div>
               </ListGroupItem>
             </ListGroup>
@@ -618,42 +713,49 @@ class ChooseFarmer extends Component {
                 <span className="GrowerFinalBillingItemPrice" >מחיר פריט</span>
                 <span className="GrowerFinalBillingItemAmount" >כמות</span>
                 <span className="GrowerFinalBillingItemTotal" >סה"כ</span>
+                <span className="GrowerFinalBillingItemBullingType" >סוג התשלום</span>
               </li>
               <li>
                 <span className="GrowerFinalBillingItemName" >{this.GetPlanData("name")}</span>
                 <span className="GrowerFinalBillingItemPrice" >{this.GetPlanData("price")}</span>
                 <span className="GrowerFinalBillingItemAmount" >1</span>
                 <span className="GrowerFinalBillingItemTotal" >{this.GetPlanData("price")}</span>
+                <span className="GrowerFinalBillingItemBullingType" >חודשי</span>
               </li>
               <li>
                 <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerVeg1}</span>
                 <span className="GrowerFinalBillingItemPrice" >{this.GetVegTotalBilling("1", "price")}</span>
                 <span className="GrowerFinalBillingItemAmount" >{this.GetVegTotalBilling("1", "averagecrop")}</span>
                 <span className="GrowerFinalBillingItemTotal" >{this.GetVegTotalBilling("1", "Total")}</span>
+                <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
               </li>
               <li>
                 <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerVeg2}</span>
                 <span className="GrowerFinalBillingItemPrice" >{this.GetVegTotalBilling("2", "price")}</span>
                 <span className="GrowerFinalBillingItemAmount" >{this.GetVegTotalBilling("2", "averagecrop")}</span>
                 <span className="GrowerFinalBillingItemTotal" >{this.GetVegTotalBilling("2", "Total")}</span>
+                <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
               </li>
               <li>
                 <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerVeg3}</span>
                 <span className="GrowerFinalBillingItemPrice" >{this.GetVegTotalBilling("3", "price")}</span>
                 <span className="GrowerFinalBillingItemAmount" >{this.GetVegTotalBilling("3", "averagecrop")}</span>
                 <span className="GrowerFinalBillingItemTotal" >{this.GetVegTotalBilling("3", "Total")}</span>
+                <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
               </li>
               <li>
                 <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerVeg4}</span>
                 <span className="GrowerFinalBillingItemPrice" >{this.GetVegTotalBilling("4", "price")}</span>
                 <span className="GrowerFinalBillingItemAmount" >{this.GetVegTotalBilling("4", "averagecrop")}</span>
                 <span className="GrowerFinalBillingItemTotal" >{this.GetVegTotalBilling("4", "Total")}</span>
+                <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
               </li>
               <li className="GrowerFinalBillingMainHeader2" >
                 <span className="GrowerFinalBillingItemName" >סה"כ לתשלום</span>
                 <span className="GrowerFinalBillingItemPrice" ></span>
                 <span className="GrowerFinalBillingItemAmount" ></span>
                 <span className="GrowerFinalBillingItemTotal" >{this.GetTotalPayment()}</span>
+                <span className="GrowerFinalBillingItemBullingType" ></span>
               </li>
             </ul>
           </div>
@@ -673,5 +775,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getfarmersbyarea, updatechoosenfarmer, getchoosenfarmer, addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag }
+  { getfarmersbyarea, updatechoosenfarmer, getchoosenfarmer, addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag }
 )(ChooseFarmer);

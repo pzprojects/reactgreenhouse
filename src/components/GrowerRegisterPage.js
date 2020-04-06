@@ -19,6 +19,9 @@ import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
 import ChooseFarmer from '../components/ChooseFarmer';
 import { addFarmer } from '../actions/farmerAction';
+import { getchoosenfarmer } from '../actions/choosenFarmerAction';
+import { getGrowerVegBag } from '../actions/growerVegChoiceAction';
+import { addgrower } from '../actions/growerAction';
 
 
 class GrowerRegisterPage extends Component {
@@ -31,8 +34,8 @@ class GrowerRegisterPage extends Component {
     familyname: '',
     phone: '',
     sizearea: 'מרכז',
-    hamamasize: '',
-    aboutme: '',
+    hamamasize: 'null',
+    aboutme: 'null',
     msg: null,
     profileimg: '',
     file: '',
@@ -83,11 +86,18 @@ class GrowerRegisterPage extends Component {
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
     addFarmer: PropTypes.func.isRequired,
-    farmer: PropTypes.object.isRequired
+    farmer: PropTypes.object.isRequired,
+    getchoosenfarmer: PropTypes.func.isRequired,
+    choosenfarmer: PropTypes.object.isRequired,
+    growervegbuyingbag: PropTypes.object.isRequired,
+    getGrowerVegBag: PropTypes.func.isRequired,
+    grower: PropTypes.object.isRequired,
+    addgrower: PropTypes.func.isRequired
   };
 
   componentDidMount() {
-
+    this.props.getchoosenfarmer();
+    this.props.getGrowerVegBag();
   }
 
   componentDidUpdate(prevProps) {
@@ -121,7 +131,7 @@ class GrowerRegisterPage extends Component {
     this.setState({
       ActivateLoader: !this.state.ActivateLoader
     });
-    this.props.history.push('/FarmersubmissionMSG');
+    this.props.history.push('/GrowersubmissionMSG');
   };
 
   ValidateEmail = (mail) => {
@@ -373,11 +383,16 @@ class GrowerRegisterPage extends Component {
 
     if(this.ValidateForm()){
 
-      const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
+      const choosenvegetables = this.props.growervegbuyingbag.VegToBuy;
+      const GrowerChoosenFarmer =  this.props.choosenfarmer.ChoosenFarmerById[0];
+      let workingwith = [{email: GrowerChoosenFarmer.email, usertype: 'חקלאי' ,active: true, totalpayed: this.props.growervegbuyingbag.Total}];
       let plans = [];
-      if(this.state.plan1) plans.push({name: "מגדל עצמאי", cost: this.state.cost1});
-      if(this.state.plan2) plans.push({name: "ביניים", cost: this.state.cost2});
-      if(this.state.plan3) plans.push({name: "ליווי שוטף", cost: this.state.cost3});
+      let plan = {};
+      let chossenfarmer = GrowerChoosenFarmer.email;
+      let totalpayment = this.props.growervegbuyingbag.Total;
+      let isactive = true;
+      plans.push(this.props.growervegbuyingbag.Plan);
+      plan = this.props.growervegbuyingbag.Plan;
     
       this.setState({
         ActivateLoader: !this.state.ActivateLoader,
@@ -389,7 +404,7 @@ class GrowerRegisterPage extends Component {
       }
 
 
-      const { name, email, password, familyname, phone, sizearea, hamamasize, aboutme, imageurl, usertype } = this.state;
+      const { name, email, password, familyname, phone, sizearea, hamamasize, aboutme, imageurl, usertype, address } = this.state;
 
       // Create user object
       const newUser = {
@@ -404,24 +419,28 @@ class GrowerRegisterPage extends Component {
         imageurl,
         choosenvegetables,
         plans,
-        usertype
+        usertype,
+        workingwith,
+        address
       };
 
-      const newFarmer = {
+      const newGrower = {
         name,
         familyname,
         phone,
         email,
         sizearea,
-        hamamasize,
-        aboutme,
+        address,
         imageurl,
         choosenvegetables,
-        plans
+        plan,
+        chossenfarmer,
+        totalpayment,
+        isactive
       };
 
       // Attempt to register
-      this.props.addFarmer(newFarmer);
+      this.props.addgrower(newGrower);
       this.props.register(newUser);
 
     }
@@ -663,6 +682,7 @@ class GrowerRegisterPage extends Component {
                         id='Checkplan1'
                         value='Checkplan1'
                         className='mb-3'
+                        checked={this.state.plan1}
                         onChange={this.onChange} />
                       </Label> 
                       <span className='PlanTitle' >מגדל עצמאי</span>
@@ -673,7 +693,7 @@ class GrowerRegisterPage extends Component {
                       <span className="GrowerCardDetailsHeader">במסלול זה אין התערבות של החקלאי<br /> המסלול כולל:</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח</span>
+                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -697,6 +717,7 @@ class GrowerRegisterPage extends Component {
                         id='Checkplan2'
                         className='mb-3'
                         value='Checkplan2'
+                        checked={this.state.plan2}
                         onChange={this.onChange} />
                       </Label> 
                       <span className='PlanTitle' >ביניים</span>
@@ -711,7 +732,7 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח</span>
+                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -738,6 +759,7 @@ class GrowerRegisterPage extends Component {
                         name='Checkplan'
                         id='Checkplan3'
                         value='Checkplan3'
+                        checked={this.state.plan3}
                         className='mb-3'
                         onChange={this.onChange} />
                       </Label> 
@@ -753,7 +775,7 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח</span>
+                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -906,10 +928,13 @@ class GrowerRegisterPage extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
-  farmer: state.farmer
+  farmer: state.farmer,
+  choosenfarmer: state.choosenfarmer,
+  growervegbuyingbag: state.growervegbuyingbag,
+  grower: state.grower
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, addFarmer }
+  { register, clearErrors, addFarmer, getchoosenfarmer, getGrowerVegBag, addgrower }
 )(GrowerRegisterPage);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_FARMERS, ADD_fARMER, DELETE_FARMER, FARMERS_LOADING, GET_FARMERS_BYAREA } from './types';
+import { GET_FARMERS, ADD_fARMER, DELETE_FARMER, FARMERS_LOADING, GET_FARMERS_BYAREA, GET_FARMER_BY_EMAIL } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
@@ -11,6 +11,22 @@ export const getfarmers = () => dispatch => {
       dispatch({
         type: GET_FARMERS,
         payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getfarmerbyemail = (email) => dispatch => {
+  dispatch(setFarmersLoading());
+  axios
+    .get('/api/farmers')
+    .then(res =>
+      dispatch({
+        type: GET_FARMER_BY_EMAIL,
+        payload: res.data,
+        email: email
       })
     )
     .catch(err =>

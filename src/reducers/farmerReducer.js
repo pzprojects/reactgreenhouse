@@ -3,7 +3,8 @@ import {
     ADD_fARMER, 
     DELETE_FARMER,
     FARMERS_LOADING,
-    GET_FARMERS_BYAREA
+    GET_FARMERS_BYAREA,
+    GET_FARMER_BY_EMAIL
   } from '../actions/types';
   
   const initialState = {
@@ -17,6 +18,12 @@ import {
         return {
           ...state,
           farmers: action.payload,
+          FarmersLoading: false
+        };
+      case GET_FARMER_BY_EMAIL:
+        return {
+          ...state,
+          farmers: action.payload.filter(farmer => farmer.email === action.email),
           FarmersLoading: false
         };
       case GET_FARMERS_BYAREA:

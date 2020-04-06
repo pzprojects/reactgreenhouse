@@ -8,6 +8,8 @@ import choosenVegetablesReducer from './choosenVegetablesReducer';
 import farmerReducer from './farmerReducer';
 import choosenFarmerReducer from './choosenFarmerReducer';
 import growerVegChoiceReducer from './growerVegChoiceReducer';
+import growerReducer from './growerReducer';
+import updateUserReducer from './updateUserReducer';
 
 export default combineReducers({
   item: itemReducer,
@@ -17,5 +19,7 @@ export default combineReducers({
   choosenvegetable: choosenVegetablesReducer,
   farmer: farmerReducer,
   choosenfarmer: choosenFarmerReducer,
-  growervegbuyingbag: growerVegChoiceReducer
+  growervegbuyingbag: growerVegChoiceReducer,
+  grower: growerReducer,
+  updateduser: updateUserReducer
 });

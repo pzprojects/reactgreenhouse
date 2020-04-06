@@ -74,7 +74,7 @@ class RegisterPage extends Component {
     emailValidation: true,
     familynameValidation: true,
     phoneValidation: true,
-    hamamasizeValidation: true
+    hamamasizeValidation: true,
   };
 
   static propTypes = {
@@ -367,6 +367,8 @@ class RegisterPage extends Component {
     if(this.ValidateForm()){
 
       const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
+      let address = '';
+      let workingwith = [];
       let plans = [];
       if(this.state.plan1) plans.push({name: "מגדל עצמאי", cost: this.state.cost1});
       if(this.state.plan2) plans.push({name: "ביניים", cost: this.state.cost2});
@@ -397,7 +399,9 @@ class RegisterPage extends Component {
         imageurl,
         choosenvegetables,
         plans,
-        usertype
+        usertype,
+        workingwith,
+        address
       };
 
       const newFarmer = {
@@ -664,7 +668,7 @@ class RegisterPage extends Component {
                     invalid= {!this.state.hamamasizeValidation}
                     required
                   />
-                  <FormText>* יש להזין את גודל השטח בכפולות של X מ"ר</FormText>
+                  <FormText>* יש להזין את גודל השטח בכפולות של 36 מ"ר</FormText>
                   <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
                 </div>
                 <div className="form-group">
@@ -728,7 +732,7 @@ class RegisterPage extends Component {
                       <span className="CardDetailsHeader">במסלול זה אין התערבות של החקלאי<br /> המסלול כולל:</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח</span>
+                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -781,7 +785,7 @@ class RegisterPage extends Component {
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח</span>
+                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -838,7 +842,7 @@ class RegisterPage extends Component {
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח</span>
+                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>

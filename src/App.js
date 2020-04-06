@@ -3,11 +3,14 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
 import ShoppingList from './components/ShoppingList';
+import PersonalArea from './components/PersonalArea';
 import RegisterPage from './components/RegisterPage';
 import RegisterUserType from './components/RegisterUserType';
 import ItemModal from './components/ItemModal';
 import FarmersubmissionMSG from './components/FarmersubmissionMSG';
 import GrowerRegisterPage from './components/GrowerRegisterPage';
+import GrowersubmissionMSG from './components/GrowersubmissionMSG';
+import DeatilsUpdatedMSG from './components/DeatilsUpdatedMSG';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -29,13 +32,15 @@ class App extends Component {
           <div className='App' dir="rtl">
             <AppNavbar />
             <Container>
-              <Route exact path="/" component={ShoppingList} />
+              <Route exact path="/" component={PersonalArea} />
               <Route path="/ItemModal" component={ItemModal} />
               <Route path="/ShoppingList" component={ShoppingList} />
               <Route path="/RegisterPage" component={RegisterPage} />
               <Route path="/GrowerRegisterPage" component={GrowerRegisterPage} />
               <Route path="/RegisterUserType" component={RegisterUserType} />
               <Route path="/FarmersubmissionMSG" component={FarmersubmissionMSG} />
+              <Route path="/GrowersubmissionMSG" component={GrowersubmissionMSG} />
+              <Route path="/DeatilsUpdatedMSG" component={DeatilsUpdatedMSG} />
             </Container>
           </div>
         </Router>
