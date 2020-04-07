@@ -7,7 +7,10 @@ import {
   Input,
   Container,
   Alert,
-  FormFeedback
+  FormFeedback,
+  UncontrolledCollapse,
+  CardBody,
+  Card
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -17,7 +20,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
 import { getfarmerbyemail } from '../actions/farmerAction';
-import { updategrowerprofile, updategrowerbyemail } from '../actions/updateUserAction';
+import { updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan } from '../actions/updateUserAction';
 import { Redirect } from "react-router-dom";
 
 class GrowerPersonalArea extends Component {
@@ -57,7 +60,8 @@ class GrowerPersonalArea extends Component {
     FarmerEmail: '',
     FarmerPhone:'',
     UserID: '',
-    redirect: null
+    redirect: null,
+    UserActive: false
   };
 
   static propTypes = {
@@ -69,7 +73,9 @@ class GrowerPersonalArea extends Component {
     farmer: PropTypes.object.isRequired,
     updategrowerprofile : PropTypes.func.isRequired,
     updateduser: PropTypes.object.isRequired,
-    updategrowerbyemail: PropTypes.func.isRequired
+    updategrowerbyemail: PropTypes.func.isRequired,
+    deactivategrowerplan: PropTypes.func.isRequired,
+    deactivateuserplan: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -87,7 +93,8 @@ class GrowerPersonalArea extends Component {
         address: user.address,
         imageurl: user.imageurl,
         imagePreviewUrl: user.imageurl,
-        UserID: user._id
+        UserID: user._id,
+        UserActive: user.workingwith[0].active
     })
   }
 
@@ -108,12 +115,14 @@ class GrowerPersonalArea extends Component {
     // Update the farmer details
     if(typeof(this.props.farmer.farmers[0]) !== "undefined"){
         try{
-            var FarmerDetails = this.props.farmer.farmers[0];
-            this.setState({
+            if(this.state.UserActive){
+              var FarmerDetails = this.props.farmer.farmers[0];
+              this.setState({
                 FarmerFullNmae: FarmerDetails.name + " " + FarmerDetails.familyname,
                 FarmerEmail: FarmerDetails.phone,
                 FarmerPhone: FarmerDetails.email
-            })
+              })
+            }
         }catch(e){
 
         } 
@@ -327,6 +336,41 @@ class GrowerPersonalArea extends Component {
     }
   };
 
+  DeactivateAcount = () => {
+    const { user } = this.props.auth;
+
+    try{
+        this.setState({
+            ActivateLoader: !this.state.ActivateLoader,
+            modal: !this.state.modal
+          });
+      
+          const chossenfarmer = user.workingwith[0].email;
+      
+          let workingwith = [{email: user.workingwith[0].email, usertype: user.workingwith[0].usertype ,active: false, totalpayed: user.workingwith[0].totalpayed}];
+      
+      
+            // Create user object
+            const newUser = {
+              workingwith
+            };
+      
+            const newGrower = {
+              chossenfarmer
+            };
+      
+          // Attempt to deactivate
+          this.props.deactivategrowerplan(this.state.email, newGrower);
+          this.props.deactivateuserplan(this.state.UserID, newUser);
+        
+    }catch(e){
+        this.setState({
+          ActivateLoader: false,
+          modal: false
+        });
+    }
+  };
+
   handleUploadFile = e => {
     e.preventDefault();
 
@@ -397,7 +441,10 @@ class GrowerPersonalArea extends Component {
         var RegisterDate = new Date(user.workingwith[0].activation_date);
         var RegisterDateToStringFormat = RegisterDate.getDate() + "/"+ parseInt(RegisterDate.getMonth()+1) +"/"+RegisterDate.getFullYear();
         var ChoosenPersonalUserVeg = user.choosenvegetables;
-        var PlanName = user.plans[0].name;
+        if(user.workingwith[0].active){
+          var PlanName = user.plans[0].name;
+        }
+        else PlanName = 'ללקוח זה לא משוייך מסלול';
     }catch(e){
         var RegisterDateToStringFormat = '';
         var ChoosenPersonalUserVeg = user.choosenvegetables;
@@ -520,6 +567,20 @@ class GrowerPersonalArea extends Component {
                 <div className="personal-form-group">
                   <Label>תאריך תחילת מנוי:</Label>
                   <div className="RegisterDate">{RegisterDateToStringFormat}</div>
+                  <div className="CancelSubscription">
+                    <Button color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" disabled={!this.state.UserActive} >ביטול מנוי</Button>
+                    <UncontrolledCollapse toggler="#toggler">
+                      <Card>
+                        <CardBody>
+                          <span className="CancelSubscriptionAlertText">האם אתה בטוח שברצונך לבטל את המנוי?</span>
+                          <span className="CancelSubscriptionAlertButtons">
+                            <span><Button outline color="success" onClick={() => this.DeactivateAcount()} type="button" >אישור</Button></span>
+                            <span><Button outline color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" >ביטול</Button></span>
+                          </span>
+                        </CardBody>
+                      </Card>
+                    </UncontrolledCollapse>
+                  </div>
                 </div>
                 <div className="personal-form-group">
                   <Label>מסלול שנבחר:</Label>
@@ -648,5 +709,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getfarmerbyemail, updategrowerprofile, updategrowerbyemail }
+  { register, clearErrors, getfarmerbyemail, updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan }
 )(GrowerPersonalArea);

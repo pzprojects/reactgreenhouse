@@ -1158,7 +1158,15 @@
 
   .RegisterDate {
     text-align: right;
-    width: 70%;
+    width: 30%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 1.5vw;
+  }
+
+  .CancelSubscription {
+    width: 40%;
     position: relative;
     display: block;
     float: right;
@@ -1254,6 +1262,31 @@
     margin-left: auto;
     position: relative;
     display: block;
+  }
+
+  .CancelSubscriptionAlertText {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+  }
+
+  .CancelSubscriptionAlertButtons {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    margin-top: 1vw;
+  }
+
+  .CancelSubscriptionAlertButtons span {
+    width: 50%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
   }
 }
 
