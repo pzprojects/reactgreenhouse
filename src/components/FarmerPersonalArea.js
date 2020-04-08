@@ -25,7 +25,7 @@ class FarmerPersonalArea extends Component {
 
     return (
       <Container>
-        <div>hi2</div>
+        <div>hi22</div>
       </Container>
     );
   }
