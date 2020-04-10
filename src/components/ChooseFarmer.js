@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput, Badge } from 'reactstrap';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getfarmersbyarea } from '../actions/farmerAction';
@@ -526,7 +526,7 @@ class ChooseFarmer extends Component {
             </ListGroupItem>
         </ListGroup>
         <ListGroup>
-            {farmers.map(({ _id, name, familyname, phone, email, sizearea, hamamasize, aboutme, imageurl, choosenvegetables, plans}) => (
+            {farmers.map(({ _id, name, familyname, phone, email, sizearea, hamamasize, numberofactivefarms, aboutme, imageurl, choosenvegetables, plans}) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
                   <div className='FarmerList'>
@@ -539,6 +539,7 @@ class ChooseFarmer extends Component {
                           value={_id}
                           className='mb-3'
                           checked={this.state.ChoosenFarmerId === _id}
+                          disabled={parseFloat(numberofactivefarms)>0 ? false : true}
                           onChange={this.onChange} />
                       </Label> 
                     </div>
@@ -551,6 +552,7 @@ class ChooseFarmer extends Component {
                     </div>
                     <div  className='FarmerListName'>
                       <span>{name + " " + familyname}</span>
+                      <Badge color="secondary">{numberofactivefarms}</Badge>
                     </div>
                     <div  className='FarmerListAboutme'>
                       <span>{aboutme}</span>

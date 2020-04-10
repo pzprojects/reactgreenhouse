@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { UPDATE_GROWER_PROFILE, UPDATE_GROWER_BY_EMAIL, DEACTIVATE_GROWER, DEACTIVATE_USER } from './types';
+import { UPDATE_GROWER_PROFILE, UPDATE_GROWER_BY_EMAIL, DEACTIVATE_GROWER, DEACTIVATE_USER, UPDATE_FARMER_PROFILE, UPDATE_FARMER_BY_EMAIL } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
@@ -29,7 +29,7 @@ export const deactivateuserplan = (id,user) => (dispatch, getState) => {
       .catch(err =>
         dispatch(returnErrors(err.response.data, err.response.status))
       );
-  };
+};
 
 export const updategrowerbyemail = (email,grower) => (dispatch, getState) => {
     axios
@@ -43,7 +43,7 @@ export const updategrowerbyemail = (email,grower) => (dispatch, getState) => {
       .catch(err =>
         dispatch(returnErrors(err.response.data, err.response.status))
       );
-  };
+};
 
 export const deactivategrowerplan = (email,grower) => (dispatch, getState) => {
     axios
@@ -57,4 +57,32 @@ export const deactivategrowerplan = (email,grower) => (dispatch, getState) => {
       .catch(err =>
         dispatch(returnErrors(err.response.data, err.response.status))
       );
-  };
+};
+
+export const updatefarmerprofile = (id,user) => (dispatch, getState) => {
+    axios
+      .post('/api/updatefarmeruser/' + id, user, tokenConfig(getState))
+      .then(res =>
+        dispatch({
+          type: UPDATE_FARMER_PROFILE,
+          payload: res.data
+        })
+      )
+      .catch(err =>
+        dispatch(returnErrors(err.response.data, err.response.status))
+      );
+};
+
+export const updatefarmerbyemail = (email,farmer) => (dispatch, getState) => {
+  axios
+    .post('/api/updatefarmer/' + email, farmer, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: UPDATE_FARMER_BY_EMAIL,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};

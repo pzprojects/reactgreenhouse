@@ -138,6 +138,7 @@ class RegisterPage extends Component {
     var lowerCaseLetters = /[a-z]/g;
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
+    let numberofactivefarms = (parseFloat(this.state.hamamasize)/36).toString();
 
     // Regulations
     if(this.state.Regulations === false){
@@ -198,7 +199,7 @@ class RegisterPage extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.hamamasize === ''){
+    if(this.state.hamamasize === '' || (numberofactivefarms%1) !== 0){
       this.setState({
         hamamasizeValidation: false
       });
@@ -370,6 +371,7 @@ class RegisterPage extends Component {
       let address = '';
       let workingwith = [];
       let plans = [];
+      let numberofactivefarms = (parseFloat(this.state.hamamasize)/36).toString();
       if(this.state.plan1) plans.push({name: "מגדל עצמאי", cost: this.state.cost1});
       if(this.state.plan2) plans.push({name: "ביניים", cost: this.state.cost2});
       if(this.state.plan3) plans.push({name: "ליווי שוטף", cost: this.state.cost3});
@@ -395,6 +397,7 @@ class RegisterPage extends Component {
         phone,
         sizearea,
         hamamasize,
+        numberofactivefarms,
         aboutme,
         imageurl,
         choosenvegetables,
@@ -411,6 +414,7 @@ class RegisterPage extends Component {
         email,
         sizearea,
         hamamasize,
+        numberofactivefarms,
         aboutme,
         imageurl,
         choosenvegetables,
@@ -669,7 +673,7 @@ class RegisterPage extends Component {
                     required
                   />
                   <FormText>* יש להזין את גודל השטח בכפולות של 36 מ"ר</FormText>
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  <FormFeedback>שדה זה אינו יכול להישאר ריק או לא להיות בכפולות שצוינו</FormFeedback>
                 </div>
                 <div className="form-group">
                   <Label for='aboutme'>על עצמי</Label>

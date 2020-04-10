@@ -750,6 +750,10 @@
     padding-left: 0.2vw;
   }
 
+  .FarmerListContent div.container li div.FarmerList div.FarmerListName span {
+    margin-left: 0.3vw;
+  }
+
   .FarmerListContent div.container li div.FarmerList div.FarmerListAboutme {
     width: 20%;
     position: relative;
@@ -1288,6 +1292,274 @@
     float: right;
     text-align: center;
   }
+
+  /* Farmer personal area */
+
+  .farmer-personal-form-group {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    text-align: center;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer {
+    width: 40%;
+    position: relative;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlansHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 0.5vw;
+    font-size: 1.4vw;
+    font-weight: bold;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer {
+    width: 30%;
+    position: relative;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 0.5vw;
+    margin-top: 0.5vw;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName span.PersonalChoosenPlanItemImage {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: left;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName span.PersonalChoosenPlanItemTitle {
+    width: 40%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName span.PersonalChoosenPlanItemCost {
+    width: 25%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName span.PersonalChoosenPlanItemText1 {
+    width: 25%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  /* List of growers */
+
+  .MyGrowersList {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+  }
+
+  .ListOfGrowersByFarmer {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .ListOfGrowersByFarmer {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .ListOfGrowersByFarmer ul li.GrowerListTitleListItem {
+    background-color: #98D084;
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1vw;
+  }
+
+  .ListOfGrowersByFarmer ul li.GrowerListMainTitleListItem {
+    background-color: #28a745;
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+  }
+
+  .ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText1 {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText2 {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText3 {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText4 {
+    width: 30%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText5 {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText6 {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText7 {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem {
+    background-color: #CCEEC0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.93vw;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem:nth-child(odd) {
+    background-color: #E4FBDC;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListName {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListPhone {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListEmail {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListOfchoosenvegetables2 {
+    width: 30%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListIsActive {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListPlanActivation {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+
+  .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListplan {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+  
 }
 
 

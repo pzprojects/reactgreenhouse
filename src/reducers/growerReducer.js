@@ -2,7 +2,8 @@ import {
     GET_GROWERS,
     ADD_GROWER,
     DELETE_GROWER,
-    GROWERS_LOADING
+    GROWERS_LOADING,
+    GET_GROWERS_BY_FARMER
   } from '../actions/types';
   
   const initialState = {
@@ -16,7 +17,13 @@ import {
         return {
           ...state,
           growers: action.payload,
-          FarmersLoading: false
+          GrowersLoading: false
+        };
+      case GET_GROWERS_BY_FARMER:
+        return {
+          ...state,
+          growers: action.payload,
+          GrowersLoading: false
         };
       case DELETE_GROWER:
         return {

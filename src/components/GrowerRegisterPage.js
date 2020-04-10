@@ -22,6 +22,7 @@ import { addFarmer } from '../actions/farmerAction';
 import { getchoosenfarmer } from '../actions/choosenFarmerAction';
 import { getGrowerVegBag } from '../actions/growerVegChoiceAction';
 import { addgrower } from '../actions/growerAction';
+import { updatefarmeractivefarms, updateuseractivefarms } from '../actions/updateFarmerActiveFarmsAction.js';
 
 
 class GrowerRegisterPage extends Component {
@@ -92,7 +93,8 @@ class GrowerRegisterPage extends Component {
     growervegbuyingbag: PropTypes.object.isRequired,
     getGrowerVegBag: PropTypes.func.isRequired,
     grower: PropTypes.object.isRequired,
-    addgrower: PropTypes.func.isRequired
+    addgrower: PropTypes.func.isRequired,
+    FarmerActiveFarms: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -391,6 +393,7 @@ class GrowerRegisterPage extends Component {
       let chossenfarmer = GrowerChoosenFarmer.email;
       let totalpayment = this.props.growervegbuyingbag.Total;
       let isactive = true;
+      let numberofactivefarms = (parseFloat(GrowerChoosenFarmer.numberofactivefarms) -1).toString();
       plans.push(this.props.growervegbuyingbag.Plan);
       plan = this.props.growervegbuyingbag.Plan;
     
@@ -439,9 +442,17 @@ class GrowerRegisterPage extends Component {
         isactive
       };
 
+      const newnumberofactivefarms = {
+        numberofactivefarms
+      };
+
       // Attempt to register
       this.props.addgrower(newGrower);
       this.props.register(newUser);
+
+      // update Farmer Active farms
+      this.props.updatefarmeractivefarms(chossenfarmer, newnumberofactivefarms);
+      this.props.updateuseractivefarms(chossenfarmer, newnumberofactivefarms);
 
     }
   };
@@ -931,10 +942,11 @@ const mapStateToProps = state => ({
   farmer: state.farmer,
   choosenfarmer: state.choosenfarmer,
   growervegbuyingbag: state.growervegbuyingbag,
-  grower: state.grower
+  grower: state.grower,
+  FarmerActiveFarms: state.FarmerActiveFarms
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, addFarmer, getchoosenfarmer, getGrowerVegBag, addgrower }
+  { register, clearErrors, addFarmer, getchoosenfarmer, getGrowerVegBag, addgrower, updatefarmeractivefarms, updateuseractivefarms }
 )(GrowerRegisterPage);
