@@ -8,7 +8,10 @@ import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 
 class ListOfGrowers extends Component {
   state = {
-    IsActiveOrder: true
+    IsActiveOrder: true,
+    ActiveSort: 'IsActiveOrder',
+    NameOrder: true,
+    DateOrder: true
   };
 
   static propTypes = {
@@ -45,16 +48,41 @@ class ListOfGrowers extends Component {
   };
 
   render() {
-
     try{
         const { growers } = this.props.grower;
-        if(this.state.IsActiveOrder){
-          const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
-          var SortedGrowers = growers.slice().sort(sortByKey('isactive'));
-        }
-        else{
-          const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
-          var SortedGrowers = growers.slice().sort(sortByKey('isactive'));
+
+        switch(this.state.ActiveSort){
+          case "IsActiveOrder":
+            if(this.state.IsActiveOrder){
+              const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
+              var SortedGrowers = growers.slice().sort(sortByKey('isactive'));
+            }
+            else{
+              const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
+              var SortedGrowers = growers.slice().sort(sortByKey('isactive'));
+            }
+            break;
+          case "NameOrder":
+            if(this.state.NameOrder){
+              const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
+              var SortedGrowers = growers.slice().sort(sortByKey('name'));
+            }
+            else{
+              const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
+              var SortedGrowers = growers.slice().sort(sortByKey('name'));
+            }
+            break;
+          case "DateOrder":
+            if(this.state.DateOrder){
+              const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
+              var SortedGrowers = growers.slice().sort(sortByKey('name'));
+            }
+            else{
+              const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
+              var SortedGrowers = growers.slice().sort(sortByKey('name'));
+            }
+            break;
+          default:
         }
         
     }
@@ -77,6 +105,7 @@ class ListOfGrowers extends Component {
             <div className='GrowerListTitle'>
                     <div className='GrowerListTitleText1'>
                       <span>שם מלא</span>
+                      <span className='IsActiveArrow' onClick={() => this.setState({ NameOrder: !this.state.NameOrder, ActiveSort: "NameOrder" })} >{this.state.NameOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
                     <div className='GrowerListTitleText2'>
                       <span>טלפון</span>
@@ -89,10 +118,11 @@ class ListOfGrowers extends Component {
                     </div>
                     <div className='GrowerListTitleText5'>
                       <span>לקוח פעיל</span>
-                      <span className='IsActiveArrow' onClick={() => this.setState({ IsActiveOrder: !this.state.IsActiveOrder })} >{this.state.IsActiveOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
+                      <span className='IsActiveArrow' onClick={() => this.setState({ IsActiveOrder: !this.state.IsActiveOrder, ActiveSort: "IsActiveOrder" })} >{this.state.IsActiveOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
                     <div className='GrowerListTitleText6'>
                       <span>תחילת מסלול</span>
+                      <span className='IsActiveArrow' onClick={() => this.setState({ DateOrder: !this.state.DateOrder, ActiveSort: "DateOrder" })} >{this.state.DateOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
                     <div className='GrowerListTitleText7'>
                       <span>מסלול</span>
