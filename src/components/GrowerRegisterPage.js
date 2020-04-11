@@ -100,6 +100,7 @@ class GrowerRegisterPage extends Component {
   componentDidMount() {
     this.props.getchoosenfarmer();
     this.props.getGrowerVegBag();
+
   }
 
   componentDidUpdate(prevProps) {
@@ -121,6 +122,13 @@ class GrowerRegisterPage extends Component {
         if (isAuthenticated) {
           this.toggle();
         }
+    }
+
+    // If modal closed and authenticated, go to homepage
+    if (!this.state.modal) {
+      if (isAuthenticated) {
+        this.props.history.push('/');
+      }
     }
   }
 

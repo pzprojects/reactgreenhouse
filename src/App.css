@@ -1466,6 +1466,10 @@
     float: right;
   }
 
+  .ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText5 span.IsActiveArrow {
+    margin-right: 0.2vw;
+  }
+
   .ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText6 {
     width: 15%;
     position: relative;
@@ -1558,6 +1562,12 @@
     float: right;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
+  }
+
+  /* Login Modal */
+
+  .login-form-group {
+    text-align: right;
   }
   
 }

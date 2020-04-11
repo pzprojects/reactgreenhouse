@@ -28,7 +28,7 @@ class PersonalArea extends Component {
     return (
       <Container>
         {isAuthenticated ? 
-         user.usertype === 'חקלאי' ? <FarmerPersonalArea/> : <GrowerPersonalArea/>
+         user.usertype === 'חקלאי' ? <FarmerPersonalArea/> : user.usertype === 'מגדל' ? <GrowerPersonalArea/> : null
         : null}
       </Container>
     );

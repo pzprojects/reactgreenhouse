@@ -4,10 +4,11 @@ import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getgrowersbyfarmer } from '../actions/growerAction';
 import PropTypes from 'prop-types';
+import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 
 class ListOfGrowers extends Component {
   state = {
-    
+    IsActiveOrder: true
   };
 
   static propTypes = {
@@ -44,7 +45,22 @@ class ListOfGrowers extends Component {
   };
 
   render() {
-    const { growers } = this.props.grower;
+
+    try{
+        const { growers } = this.props.grower;
+        if(this.state.IsActiveOrder){
+          const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
+          var SortedGrowers = growers.slice().sort(sortByKey('isactive'));
+        }
+        else{
+          const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
+          var SortedGrowers = growers.slice().sort(sortByKey('isactive'));
+        }
+        
+    }
+    catch{
+        var SortedGrowers = [];
+    }
 
     return (
       <Container>
@@ -73,6 +89,7 @@ class ListOfGrowers extends Component {
                     </div>
                     <div className='GrowerListTitleText5'>
                       <span>לקוח פעיל</span>
+                      <span className='IsActiveArrow' onClick={() => this.setState({ IsActiveOrder: !this.state.IsActiveOrder })} >{this.state.IsActiveOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
                     <div className='GrowerListTitleText6'>
                       <span>תחילת מסלול</span>
@@ -84,7 +101,7 @@ class ListOfGrowers extends Component {
             </ListGroupItem>
         </ListGroup>
         <ListGroup>
-            {growers.map(({ _id, name, familyname, phone, email, sizearea, choosenvegetables, plan, isactive, register_date}) => (
+            {SortedGrowers.map(({ _id, name, familyname, phone, email, sizearea, choosenvegetables, plan, isactive, register_date}) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem className="GrowerListBodyListItem">
                   <div className='GrowerList'>
@@ -101,7 +118,7 @@ class ListOfGrowers extends Component {
                       <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}</span>
                     </div>
                     <div className='GrowerListIsActive'>
-                      <span>{isactive ? 'לא' : 'כן'}</span>
+                      <span>{isactive ? 'כן' : 'לא'}</span>
                     </div>
                     <div className='GrowerListPlanActivation'>
                       <span>{this.GetDateAsString(register_date)}</span>
