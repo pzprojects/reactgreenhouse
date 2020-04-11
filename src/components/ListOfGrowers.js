@@ -41,7 +41,6 @@ class ListOfGrowers extends Component {
   };
 
   GetDateAsString = (DateToConvert) => {
-    var VegAsString = '';
     var RegisterDate = new Date(DateToConvert);
     var RegisterDateToStringFormat = RegisterDate.getDate() + "/"+ parseInt(RegisterDate.getMonth()+1) +"/"+RegisterDate.getFullYear();
     return RegisterDateToStringFormat;
