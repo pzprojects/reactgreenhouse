@@ -29,7 +29,7 @@ class PersonalArea extends Component {
       <Container>
         {isAuthenticated ? 
          user.usertype === 'חקלאי' ? <FarmerPersonalArea/> : user.usertype === 'מגדל' ? <GrowerPersonalArea/> : null
-        : null}
+        : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >ברוכים הבאים ל</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>}
       </Container>
     );
   }
