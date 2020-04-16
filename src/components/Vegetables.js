@@ -28,8 +28,8 @@ class Vegetables extends Component {
     
   }
 
-  onVegtClick = (id, name, price, averagecrop, amount) => {
-  this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount});
+  onVegtClick = (id, name, price, averagecrop, amount, numberofveginrow, moreinfolink) => {
+  this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount, numberofveginrow: numberofveginrow, moreinfolink: moreinfolink});
 
   };
 
@@ -53,7 +53,7 @@ class Vegetables extends Component {
       <Container>
         <ListGroup horizontal>
           <TransitionGroup className='vegetablesList'>
-            {vegetables.map(({ _id, name, price, averagecrop, amount }) => (
+            {vegetables.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink }) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
                   { this.ImgToPresent(name) ? 
@@ -64,7 +64,7 @@ class Vegetables extends Component {
                   color='danger'
                   size='sm'
                   id={_id}
-                  onClick={this.onVegtClick.bind(this, _id, name, price, averagecrop, amount)}
+                  onClick={this.onVegtClick.bind(this, _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink)}
                   /></span>
                    :
                    <span><img

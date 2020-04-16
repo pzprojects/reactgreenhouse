@@ -23,6 +23,7 @@ import { getchoosenfarmer } from '../actions/choosenFarmerAction';
 import { getGrowerVegBag } from '../actions/growerVegChoiceAction';
 import { addgrower } from '../actions/growerAction';
 import { updatefarmeractivefarms, updateuseractivefarms } from '../actions/updateFarmerActiveFarmsAction.js';
+import { API_URL } from '../config/keys';
 
 
 class GrowerRegisterPage extends Component {
@@ -502,7 +503,7 @@ class GrowerRegisterPage extends Component {
     const { file } = this.state;
     const contentType = file.type; // eg. image/jpeg or image/svg+xml
 
-    const generatePutUrl = '/generate-put-url';
+    const generatePutUrl = API_URL + '/generate-put-url';
     const options = {
       params: {
         Key: this.state.imagename,

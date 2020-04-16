@@ -65,6 +65,61 @@ class AppNavbar extends Component {
       </Fragment>
     );
 
+    const navitems = (
+      <Fragment>
+        <NavItem className={this.GetActiveLink('/')}>
+          <NavLink href='/'>
+           דף הבית
+          </NavLink>
+        </NavItem>
+        <NavItem className={this.GetActiveLink('/AboutUs')}>
+          <NavLink href='/'>
+           מי אנחנו
+          </NavLink>
+        </NavItem>
+        <NavItem className={this.GetActiveLink('/OurVision')}>
+          <NavLink href='/'>
+            החזון
+          </NavLink>
+        </NavItem>
+        <NavItem className={this.GetActiveLink('/CommunityServices')}>
+          <NavLink href='/'>
+            שירותי הקהילה 
+          </NavLink>
+        </NavItem>
+        <NavItem className={this.GetActiveLink('/Plans')}>
+          <NavLink href='/'>
+            מסלולים
+          </NavLink>
+        </NavItem>
+        <NavItem className={this.GetActiveLink('/ContactUs')}>
+          <NavLink href='/'>
+            צור קשר
+          </NavLink>
+        </NavItem>
+      </Fragment>
+    );
+
+    const adminnavitems = (
+      <Fragment>
+        <NavItem className={this.GetActiveLink('/')}>
+          <NavLink href='/'>
+           ניהול משתמשים
+          </NavLink>
+        </NavItem>
+        <NavItem className={this.GetActiveLink('/VegManagment')}>
+          <NavLink href='/VegManagment'>
+           ניהול ירקות
+          </NavLink>
+        </NavItem>
+        <NavItem className={this.GetActiveLink('/SysManagment')}>
+          <NavLink href='/'>
+           ניהול נתוני מערכת
+          </NavLink>
+        </NavItem>
+      </Fragment>
+    );
+
     return (
       <div>
         <Navbar color='faded' light expand='sm' className='mb-5'>
@@ -75,36 +130,8 @@ class AppNavbar extends Component {
                 <div className="ConnectionLinks">
                   {isAuthenticated ? authLinks : guestLinks}
                 </div>
-                <NavItem className={this.GetActiveLink('/')}>
-                  <NavLink href='/'>
-                    דף הבית
-                  </NavLink>
-                </NavItem>
-                <NavItem className={this.GetActiveLink('/AboutUs')}>
-                  <NavLink href='/'>
-                    מי אנחנו
-                  </NavLink>
-                </NavItem>
-                <NavItem className={this.GetActiveLink('/OurVision')}>
-                  <NavLink href='/'>
-                    החזון
-                  </NavLink>
-                </NavItem>
-                <NavItem className={this.GetActiveLink('/CommunityServices')}>
-                  <NavLink href='/'>
-                    שירותי הקהילה 
-                  </NavLink>
-                </NavItem>
-                <NavItem className={this.GetActiveLink('/Plans')}>
-                   <NavLink href='/'>
-                    מסלולים
-                  </NavLink>
-                </NavItem>
-                <NavItem className={this.GetActiveLink('/ContactUs')}>
-                  <NavLink href='/'>
-                    צור קשר
-                   </NavLink>
-                </NavItem>
+                { isAuthenticated ? user.usertype === 'SysAdmin' && user.usertype !== "null" ?  adminnavitems : navitems 
+                : navitems}
               </Nav>
               <div className='COHeader' >
                 <NavbarBrand href='/'>CO-Greenhouse</NavbarBrand>

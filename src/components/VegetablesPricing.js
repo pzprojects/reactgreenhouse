@@ -20,8 +20,8 @@ class VegetablesPricing extends Component {
     this.props.getChoosenVegetables();
   }
 
-  onVegtClick = (id, name, price, averagecrop, amount) => {
-    this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount});
+  onVegtClick = (id, name, price, averagecrop, amount, numberofveginrow, moreinfolink) => {
+    this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount, numberofveginrow: numberofveginrow, moreinfolink: moreinfolink});
   
     };
   
@@ -29,9 +29,9 @@ class VegetablesPricing extends Component {
     this.props.deleteChoosenVegetable(name);
   };
 
-  UpdateChoosenVegetable = (id, name, price, averagecrop, amount) => {
+  UpdateChoosenVegetable = (id, name, price, averagecrop, amount, numberofveginrow, moreinfolink) => {
       this.props.deleteChoosenVegetable(name);
-      this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount});
+      this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount, numberofveginrow, moreinfolink: moreinfolink});
   };
 
   render() {
@@ -41,7 +41,7 @@ class VegetablesPricing extends Component {
       <Container>
         <ListGroup>
           <TransitionGroup className='ChoosenVegetablesList'>
-            {ChoosenVegetables.map(({ _id, name, price, averagecrop, amount }) => (
+            {ChoosenVegetables.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink}) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
                   <span><img
@@ -57,7 +57,7 @@ class VegetablesPricing extends Component {
                       type='text'
                       placeholder={price}
                       className='mb-3'
-                      onBlur={event => this.UpdateChoosenVegetable(_id, name, event.target.value, averagecrop, amount)}
+                      onBlur={event => this.UpdateChoosenVegetable(_id, name, event.target.value, averagecrop, amount, numberofveginrow, moreinfolink)}
                       />
                   </span>
                   <span className='ChoosenVegetabletext2'>ש"ח</span>

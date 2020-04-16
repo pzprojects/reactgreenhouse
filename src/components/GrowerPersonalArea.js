@@ -22,6 +22,7 @@ import Loader from '../components/Loader';
 import { getfarmerbyemail } from '../actions/farmerAction';
 import { updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan } from '../actions/updateUserAction';
 import { Redirect } from "react-router-dom";
+import { API_URL } from '../config/keys';
 
 class GrowerPersonalArea extends Component {
   state = {
@@ -408,7 +409,7 @@ class GrowerPersonalArea extends Component {
     const { file } = this.state;
     const contentType = file.type; // eg. image/jpeg or image/svg+xml
 
-    const generatePutUrl = '/generate-put-url';
+    const generatePutUrl = API_URL + '/generate-put-url';
     const options = {
       params: {
         Key: this.state.imagename,

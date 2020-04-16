@@ -22,6 +22,7 @@ import Vegetables from '../components/Vegetables';
 import VegetablesPricing from '../components/VegetablesPricing';
 import { getChoosenVegetables } from '../actions/choosenVegetablesAction';
 import { addFarmer } from '../actions/farmerAction';
+import { API_URL } from '../config/keys';
 
 
 class RegisterPage extends Component {
@@ -472,7 +473,7 @@ class RegisterPage extends Component {
     const { file } = this.state;
     const contentType = file.type; // eg. image/jpeg or image/svg+xml
 
-    const generatePutUrl = '/generate-put-url';
+    const generatePutUrl = API_URL + '/generate-put-url';
     const options = {
       params: {
         Key: this.state.imagename,

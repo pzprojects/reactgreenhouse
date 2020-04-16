@@ -2,11 +2,12 @@ import axios from 'axios';
 import { GET_FARMERS, ADD_fARMER, DELETE_FARMER, FARMERS_LOADING, GET_FARMERS_BYAREA, GET_FARMER_BY_EMAIL } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
+import { API_URL } from '../config/keys';
 
 export const getfarmers = () => dispatch => {
   dispatch(setFarmersLoading());
   axios
-    .get('/api/farmers')
+    .get(API_URL + '/api/farmers')
     .then(res =>
       dispatch({
         type: GET_FARMERS,
@@ -21,7 +22,7 @@ export const getfarmers = () => dispatch => {
 export const getfarmerbyemail = (email) => dispatch => {
   dispatch(setFarmersLoading());
   axios
-    .get('/api/farmers')
+    .get(API_URL + '/api/farmers')
     .then(res =>
       dispatch({
         type: GET_FARMER_BY_EMAIL,
@@ -37,7 +38,7 @@ export const getfarmerbyemail = (email) => dispatch => {
 export const getfarmersbyarea = (area,plan) => dispatch => {
   dispatch(setFarmersLoading());
   axios
-    .get('/api/farmers/' + encodeURI(area) + "/" + encodeURI(plan))
+    .get(API_URL + '/api/farmers/' + encodeURI(area) + "/" + encodeURI(plan))
     .then(res =>
       dispatch({
         type: GET_FARMERS_BYAREA,
@@ -51,7 +52,7 @@ export const getfarmersbyarea = (area,plan) => dispatch => {
 
 export const addFarmer = farmer => (dispatch, getState) => {
   axios
-    .post('/api/farmers', farmer, tokenConfig(getState))
+    .post(API_URL + '/api/farmers', farmer, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: ADD_fARMER,
@@ -65,7 +66,7 @@ export const addFarmer = farmer => (dispatch, getState) => {
 
 export const deleteFarmer = email => (dispatch, getState) => {
   axios
-    .delete(`/api/farmers/${email}`, tokenConfig(getState))
+    .delete(API_URL + `/api/farmers/${email}`, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: DELETE_FARMER,

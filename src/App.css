@@ -1132,6 +1132,14 @@
     font-size: 1.4vw;
   }
 
+  .DuplicatesAlert {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+  }
+
   /* Grower Personal area */
 
 

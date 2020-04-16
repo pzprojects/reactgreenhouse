@@ -25,6 +25,7 @@ import { updatefarmerprofile, updatefarmerbyemail } from '../actions/updateUserA
 import { addFarmer } from '../actions/farmerAction';
 import ListOfGrowers from '../components/ListOfGrowers';
 import { Redirect } from "react-router-dom";
+import { API_URL } from '../config/keys';
 
 
 class FarmerPersonalArea extends Component {
@@ -385,7 +386,7 @@ class FarmerPersonalArea extends Component {
     const { file } = this.state;
     const contentType = file.type; // eg. image/jpeg or image/svg+xml
 
-    const generatePutUrl = '/generate-put-url';
+    const generatePutUrl = API_URL + '/generate-put-url';
     const options = {
       params: {
         Key: this.state.imagename,

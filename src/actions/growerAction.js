@@ -2,11 +2,12 @@ import axios from 'axios';
 import { GET_GROWERS, ADD_GROWER, DELETE_GROWER, GROWERS_LOADING, GET_GROWERS_BY_FARMER } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
+import { API_URL } from '../config/keys';
 
 export const getgrowers = () => dispatch => {
   dispatch(setgrowersLoading());
   axios
-    .get('/api/growers')
+    .get(API_URL + '/api/growers')
     .then(res =>
       dispatch({
         type: GET_GROWERS,
@@ -21,7 +22,7 @@ export const getgrowers = () => dispatch => {
 export const getgrowersbyfarmer = (email) => dispatch => {
   dispatch(setgrowersLoading());
   axios
-    .get('/api/growers/' + email)
+    .get(API_URL + '/api/growers/' + email)
     .then(res =>
       dispatch({
         type: GET_GROWERS_BY_FARMER,
@@ -35,7 +36,7 @@ export const getgrowersbyfarmer = (email) => dispatch => {
 
 export const addgrower = grower => (dispatch, getState) => {
   axios
-    .post('/api/growers', grower, tokenConfig(getState))
+    .post(API_URL + '/api/growers', grower, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: ADD_GROWER,
@@ -49,7 +50,7 @@ export const addgrower = grower => (dispatch, getState) => {
 
 export const deletegrower = email => (dispatch, getState) => {
   axios
-    .delete(`/api/growers/${email}`, tokenConfig(getState))
+    .delete(API_URL + `/api/growers/${email}`, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: DELETE_GROWER,

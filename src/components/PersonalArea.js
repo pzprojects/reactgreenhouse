@@ -6,6 +6,7 @@ import { getItems, deleteItem } from '../actions/itemActions';
 import LoginModal from './auth/LoginModal';
 import GrowerPersonalArea from '../components/GrowerPersonalArea';
 import FarmerPersonalArea from '../components/FarmerPersonalArea';
+import AdminPersonalArea from '../components/AdminPersonalArea';
 import PropTypes from 'prop-types';
 
 class PersonalArea extends Component {
@@ -28,7 +29,7 @@ class PersonalArea extends Component {
     return (
       <Container>
         {isAuthenticated ? 
-         user.usertype === 'חקלאי' ? <FarmerPersonalArea/> : user.usertype === 'מגדל' ? <GrowerPersonalArea/> : null
+         user.usertype === 'חקלאי' ? <FarmerPersonalArea/> : user.usertype === 'מגדל' ? <GrowerPersonalArea/> : user.usertype === 'SysAdmin' ? <AdminPersonalArea/> : null
         : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >ברוכים הבאים ל</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>}
       </Container>
     );

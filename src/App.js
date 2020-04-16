@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
@@ -11,6 +10,7 @@ import FarmersubmissionMSG from './components/FarmersubmissionMSG';
 import GrowerRegisterPage from './components/GrowerRegisterPage';
 import GrowersubmissionMSG from './components/GrowersubmissionMSG';
 import DeatilsUpdatedMSG from './components/DeatilsUpdatedMSG';
+import VegManagment from './components/VegManagment';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -41,6 +41,7 @@ class App extends Component {
               <Route path="/FarmersubmissionMSG" component={FarmersubmissionMSG} />
               <Route path="/GrowersubmissionMSG" component={GrowersubmissionMSG} />
               <Route path="/DeatilsUpdatedMSG" component={DeatilsUpdatedMSG} />
+              <Route path="/VegManagment" component={VegManagment} />
             </Container>
           </div>
         </Router>

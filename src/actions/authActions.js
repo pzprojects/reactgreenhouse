@@ -11,6 +11,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from './types';
+import { API_URL } from '../config/keys';
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
@@ -18,7 +19,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get('/api/auth/user', tokenConfig(getState))
+    .get(API_URL + '/api/auth/user', tokenConfig(getState))
     .then(res =>
       dispatch({
         type: USER_LOADED,
@@ -46,7 +47,7 @@ export const register = ({ name, email, password, familyname, phone, sizearea, h
   const body = JSON.stringify({ name, email, password, familyname, phone, sizearea, hamamasize, numberofactivefarms, aboutme, imageurl, choosenvegetables, plans, usertype, workingwith, address});
 
   axios
-    .post('/api/users', body, config)
+    .post(API_URL + '/api/users', body, config)
     .then(res =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -76,7 +77,7 @@ export const login = ({ email, password }) => dispatch => {
   const body = JSON.stringify({ email, password });
 
   axios
-    .post('/api/auth', body, config)
+    .post(API_URL + '/api/auth', body, config)
     .then(res =>
       dispatch({
         type: LOGIN_SUCCESS,

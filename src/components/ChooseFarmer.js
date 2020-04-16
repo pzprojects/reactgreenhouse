@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput, Badge } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput, Badge, Alert } from 'reactstrap';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getfarmersbyarea } from '../actions/farmerAction';
@@ -14,7 +14,9 @@ class ChooseFarmer extends Component {
     GrowerVeg2 :  '',
     GrowerVeg3 :  '',
     GrowerVeg4 :  '',
-    TotalPayment: '0'
+    TotalPayment: '0',
+    DuplicatesVegInBag: '',
+    DuplicaesValidationActive: false
   };
 
   static propTypes = {
@@ -443,6 +445,97 @@ class ChooseFarmer extends Component {
     }
   };
 
+  ValidateDuplicates = () => {
+    try{
+      const GrowerBag = this.props.growervegbuyingbag.VegToBuy;
+      var GrowerBagSpecialVeg = '';
+      var DuplicateCounter = 0;
+      var DuplicateList = [];
+      for( var k=0;  k < 4; k++ ){
+        if(GrowerBag[k].numberofveginrow === "2"){
+          DuplicateList.push(GrowerBag[k].name);
+          DuplicateCounter++;
+        }
+      }
+      console.log(DuplicateCounter);
+      console.log(DuplicateList);
+
+      switch(DuplicateCounter){
+        case 1:
+          GrowerBagSpecialVeg = DuplicateList[0];
+          break;
+        case 2:
+          if(DuplicateList[0] !== DuplicateList[1]){
+            GrowerBagSpecialVeg = DuplicateList[0] + " וגם " + DuplicateList[1];
+          }
+          break;
+        case 3:
+          if(DuplicateList[0] !== DuplicateList[1] && DuplicateList[0] !== DuplicateList[2]){
+            GrowerBagSpecialVeg = DuplicateList[0];
+            if(DuplicateList[2] !== DuplicateList[1]){
+              GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + " וגם " + DuplicateList[2];
+            }
+          }
+          else{
+            if(DuplicateList[0] === DuplicateList[1]){
+              GrowerBagSpecialVeg = DuplicateList[2];
+            }
+            else GrowerBagSpecialVeg = DuplicateList[1];
+          }
+          break;
+        case 4:
+            if(DuplicateList[0] !== DuplicateList[1] && DuplicateList[0] !== DuplicateList[2] && DuplicateList[0] !== DuplicateList[3]){
+              GrowerBagSpecialVeg = DuplicateList[0];
+              if(DuplicateList[1] !== DuplicateList[2] && DuplicateList[1] !== DuplicateList[3]){
+                if(DuplicateList[2] === DuplicateList[3]){
+                  GrowerBagSpecialVeg = GrowerBagSpecialVeg + " וגם " + DuplicateList[1];
+                }
+                else{
+                  GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + ", " + DuplicateList[2]+ " וגם " + DuplicateList[3];
+                }
+              }
+            }
+            else{
+              if(DuplicateList[0] === DuplicateList[1]){
+                if(DuplicateList[2] !== DuplicateList[3]){
+                  GrowerBagSpecialVeg = DuplicateList[2]+ " וגם " + DuplicateList[3];
+                }
+              }
+              else{
+                if(DuplicateList[0] === DuplicateList[2]){
+                  if(DuplicateList[1] !== DuplicateList[3]){
+                    GrowerBagSpecialVeg = DuplicateList[1]+ " וגם " + DuplicateList[3];
+                  }
+                }
+                else {
+                  if(DuplicateList[1] !== DuplicateList[2]){
+                    GrowerBagSpecialVeg = DuplicateList[1]+ " וגם " + DuplicateList[2];
+                  }
+                }
+              }
+            }
+            break;
+        default:
+      }
+
+      if(GrowerBagSpecialVeg === ''){
+        this.setState({
+          DuplicatesVegInBag: '',
+          DuplicaesValidationActive: false
+        })
+      }
+      else{
+        this.setState({
+          DuplicatesVegInBag: GrowerBagSpecialVeg,
+          DuplicaesValidationActive: true
+        })
+      }
+    }
+    catch{
+      console.log();
+    }
+  };
+
   onChange = e => {
 
     switch(e.target.getAttribute('name')) {
@@ -494,6 +587,9 @@ class ChooseFarmer extends Component {
           break;
         default:
     }
+
+    this.ValidateDuplicates();
+    
   }
 
   render() {
@@ -706,6 +802,7 @@ class ChooseFarmer extends Component {
               </div>
             </div>
           </div>
+          {this.state.DuplicaesValidationActive ? <div className="DuplicatesAlert" ><Alert color="danger">לגידול הירקות הבאים: {this.state.DuplicatesVegInBag}, יש צורך בשתי חלקות</Alert></div> : null}
           <div className="GrowerFinalBilling" >
             <div className="GrowerFinalBillingContainer" >
             <div className="GrowerFinalBillingExample" >פירוט חשבון</div>

@@ -2,11 +2,12 @@ import axios from 'axios';
 import { GET_VEGTABLES, ADD_VEGTABLES, DELETE_VEGTABLES, VEGTABLES_LOADING } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
+import { API_URL } from '../config/keys';
 
 export const getVegetables = () => dispatch => {
   dispatch(setVegetablesLoading());
   axios
-    .get('/api/Vegetables')
+    .get(API_URL + '/api/Vegetables')
     .then(res =>
       dispatch({
         type: GET_VEGTABLES,
@@ -20,7 +21,7 @@ export const getVegetables = () => dispatch => {
 
 export const addVegetable = vegetable => (dispatch, getState) => {
   axios
-    .post('/api/Vegetables', vegetable, tokenConfig(getState))
+    .post(API_URL + '/api/Vegetables', vegetable, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: ADD_VEGTABLES,
@@ -34,7 +35,7 @@ export const addVegetable = vegetable => (dispatch, getState) => {
 
 export const deleteVegetable = id => (dispatch, getState) => {
   axios
-    .delete(`/api/Vegetables/${id}`, tokenConfig(getState))
+    .delete(API_URL + `/api/Vegetables/${id}`, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: DELETE_VEGTABLES,
