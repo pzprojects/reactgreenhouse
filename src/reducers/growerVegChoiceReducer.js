@@ -4,13 +4,15 @@ import {
     ADD__GROWER_CHOOSEN_VEG,
     RESET__GROWER_CHOOSEN_VEG,
     SET_TOTAL_GROWER_CHOOSEN_VEG,
-    SET_PLAN_GROWER_CHOOSEN_VEG
+    SET_PLAN_GROWER_CHOOSEN_VEG,
+    SET_ISVALIDATED_GROWER_CHOOSEN_VEG
   } from '../actions/types';
   
   const initialState = {
     VegToBuy: [],
     Total: '',
-    Plan: {}
+    Plan: {},
+    IsValidated: true
   };
   
   export default function(state = initialState, action) {
@@ -24,7 +26,8 @@ import {
           ...state,
           VegToBuy: [],
           Total: '',
-          Plan: {}
+          Plan: {},
+          IsValidated: true
         };
       case DELETE__GROWER_CHOOSEN_VEG:
         var ItemIndex = state.VegToBuy.findIndex(choosenvegetable => choosenvegetable.name === action.payload)
@@ -46,6 +49,11 @@ import {
         return {
           ...state,
           Plan: action.payload
+        };
+      case SET_ISVALIDATED_GROWER_CHOOSEN_VEG:
+        return {
+          ...state,
+          IsValidated: action.payload
         };
       default:
         return state;

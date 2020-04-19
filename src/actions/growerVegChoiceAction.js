@@ -1,4 +1,4 @@
-import { DELETE__GROWER_CHOOSEN_VEG, GET_GROWER_CHOOSEN_VEG, ADD__GROWER_CHOOSEN_VEG, RESET__GROWER_CHOOSEN_VEG, SET_TOTAL_GROWER_CHOOSEN_VEG, SET_PLAN_GROWER_CHOOSEN_VEG } from './types'
+import { DELETE__GROWER_CHOOSEN_VEG, GET_GROWER_CHOOSEN_VEG, ADD__GROWER_CHOOSEN_VEG, RESET__GROWER_CHOOSEN_VEG, SET_TOTAL_GROWER_CHOOSEN_VEG, SET_PLAN_GROWER_CHOOSEN_VEG, SET_ISVALIDATED_GROWER_CHOOSEN_VEG } from './types'
 
 export const getGrowerVegBag = () => {
   return {
@@ -37,5 +37,12 @@ export const SetPlanGrowerVegBag = plan => {
   return{
       type: SET_PLAN_GROWER_CHOOSEN_VEG,
       payload: plan
+  };
+};
+
+export const SetIsValidatedVegBag = validate => {
+  return {
+    type: SET_ISVALIDATED_GROWER_CHOOSEN_VEG,
+    payload: validate
   };
 };

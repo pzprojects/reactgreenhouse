@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getfarmersbyarea } from '../actions/farmerAction';
 import { updatechoosenfarmer, getchoosenfarmer } from '../actions/choosenFarmerAction';
-import { addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag } from '../actions/growerVegChoiceAction';
+import { addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag, SetIsValidatedVegBag } from '../actions/growerVegChoiceAction';
 import PropTypes from 'prop-types';
 
 class ChooseFarmer extends Component {
@@ -16,7 +16,7 @@ class ChooseFarmer extends Component {
     GrowerVeg4 :  '',
     TotalPayment: '0',
     DuplicatesVegInBag: '',
-    DuplicaesValidationActive: false
+    DuplicaesValidationActive: true
   };
 
   static propTypes = {
@@ -31,7 +31,8 @@ class ChooseFarmer extends Component {
     getGrowerVegBag: PropTypes.func.isRequired,
     ResetGrowerVegBag: PropTypes.func.isRequired,
     SetTotalGrowerVegBag: PropTypes.func.isRequired,
-    SetPlanGrowerVegBag: PropTypes.func.isRequired
+    SetPlanGrowerVegBag: PropTypes.func.isRequired,
+    SetIsValidatedVegBag: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -51,7 +52,7 @@ class ChooseFarmer extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevStates) {
     if (this.props.SizeAreaParam !== prevProps.SizeAreaParam || this.props.PlanParam !== prevProps.PlanParam) {
       this.setState({
         ChoosenFarmerId: ''
@@ -61,6 +62,23 @@ class ChooseFarmer extends Component {
         this.props.getfarmersbyarea(this.props.SizeAreaParam, this.props.PlanParam);
       });
     };
+
+    if (this.props.growervegbuyingbag !== prevProps.growervegbuyingbag) {
+      
+      const { VegToBuy } = this.props.growervegbuyingbag;
+
+      try{
+        const GrowerBag = VegToBuy;
+        this.ValidateDuplicates(GrowerBag);
+      }
+      catch{
+
+      }
+    }
+
+    if(this.state.DuplicaesValidationActive !== prevStates.DuplicaesValidationActive){
+      this.props.SetIsValidatedVegBag(this.state.DuplicaesValidationActive);
+    }
   }
   
   UpdateAllSelectedFields = () => {
@@ -445,9 +463,8 @@ class ChooseFarmer extends Component {
     }
   };
 
-  ValidateDuplicates = () => {
+  ValidateDuplicates = (GrowerBag) => {
     try{
-      const GrowerBag = this.props.growervegbuyingbag.VegToBuy;
       var GrowerBagSpecialVeg = '';
       var DuplicateCounter = 0;
       var DuplicateList = [];
@@ -457,8 +474,6 @@ class ChooseFarmer extends Component {
           DuplicateCounter++;
         }
       }
-      console.log(DuplicateCounter);
-      console.log(DuplicateList);
 
       switch(DuplicateCounter){
         case 1:
@@ -521,14 +536,14 @@ class ChooseFarmer extends Component {
       if(GrowerBagSpecialVeg === ''){
         this.setState({
           DuplicatesVegInBag: '',
-          DuplicaesValidationActive: false
-        })
+          DuplicaesValidationActive: true
+        });
       }
       else{
         this.setState({
           DuplicatesVegInBag: GrowerBagSpecialVeg,
-          DuplicaesValidationActive: true
-        })
+          DuplicaesValidationActive: false
+        });
       }
     }
     catch{
@@ -587,8 +602,6 @@ class ChooseFarmer extends Component {
           break;
         default:
     }
-
-    this.ValidateDuplicates();
     
   }
 
@@ -802,7 +815,7 @@ class ChooseFarmer extends Component {
               </div>
             </div>
           </div>
-          {this.state.DuplicaesValidationActive ? <div className="DuplicatesAlert" ><Alert color="danger">לגידול הירקות הבאים: {this.state.DuplicatesVegInBag}, יש צורך בשתי חלקות</Alert></div> : null}
+          {!this.state.DuplicaesValidationActive ? <div className="DuplicatesAlert" ><Alert color="danger">לגידול הירקות הבאים: {this.state.DuplicatesVegInBag}, יש צורך בשתי חלקות</Alert></div> : null}
           <div className="GrowerFinalBilling" >
             <div className="GrowerFinalBillingContainer" >
             <div className="GrowerFinalBillingExample" >פירוט חשבון</div>
@@ -874,5 +887,6 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getfarmersbyarea, updatechoosenfarmer, getchoosenfarmer, addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag }
+  { getfarmersbyarea, updatechoosenfarmer, getchoosenfarmer, addToGrowerVegBag,
+     deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag, SetIsValidatedVegBag }
 )(ChooseFarmer);

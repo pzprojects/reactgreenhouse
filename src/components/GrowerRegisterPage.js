@@ -157,6 +157,7 @@ class GrowerRegisterPage extends Component {
     var lowerCaseLetters = /[a-z]/g;
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
+    const { IsValidated } = this.props.growervegbuyingbag;
 
     // Regulations
     if(this.state.Regulations === false){
@@ -223,7 +224,13 @@ class GrowerRegisterPage extends Component {
         });
         Validated = false;
         ScrollToLocation = "top";
-      }
+    }
+
+    // VegBag
+    if(!IsValidated){
+      Validated = false;
+      ScrollToLocation = "bottom";
+    }
 
     if(!Validated){
       if(ScrollToLocation === "top"){
