@@ -112,8 +112,8 @@ class AppNavbar extends Component {
            ניהול ירקות
           </NavLink>
         </NavItem>
-        <NavItem className={this.GetActiveLink('/SysManagment')}>
-          <NavLink href='/'>
+        <NavItem className={this.GetActiveLink('/SystemSettings')}>
+          <NavLink href='/SystemSettings'>
            ניהול נתוני מערכת
           </NavLink>
         </NavItem>

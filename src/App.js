@@ -11,6 +11,7 @@ import GrowerRegisterPage from './components/GrowerRegisterPage';
 import GrowersubmissionMSG from './components/GrowersubmissionMSG';
 import DeatilsUpdatedMSG from './components/DeatilsUpdatedMSG';
 import VegManagment from './components/VegManagment';
+import SystemSettings from './components/SystemSettings';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -42,6 +43,7 @@ class App extends Component {
               <Route path="/GrowersubmissionMSG" component={GrowersubmissionMSG} />
               <Route path="/DeatilsUpdatedMSG" component={DeatilsUpdatedMSG} />
               <Route path="/VegManagment" component={VegManagment} />
+              <Route path="/SystemSettings" component={SystemSettings} />
             </Container>
           </div>
         </Router>

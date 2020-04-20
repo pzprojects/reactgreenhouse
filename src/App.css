@@ -1612,6 +1612,177 @@
     text-align: center;
     margin-top: 2vw;
   }
+
+  /* Managment screen */
+
+  .AdminVegListHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+  }
+  
+  .AdminVegListHeader li {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    background-color: #CCEEC0;
+    font-size: 0.83vw;
+    font-weight: bold;
+  } 
+
+  .AdminVegListHeader li span.AdminVegetableItemHeaderText1 {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListHeader li span.AdminVegetableItemHeaderText2 {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListHeader li span.AdminVegetableItemHeaderText3 {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListHeader li span.AdminVegetableItemHeaderText4 {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListHeader li span.AdminVegetableItemHeaderText5 {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListHeader li span.AdminVegetableItemHeaderText6 {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListHeader li span.AdminVegetableItemHeaderText7 {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListBody {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+  }
+  
+  .AdminVegListBody li {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    font-size: 0.83vw;
+  } 
+
+  .AdminVegListBody li span.AdminVegetableItemName {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListBody li span.AdminVegetableItemPrice {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListBody li span.AdminVegetableItemAveragecrop {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListBody li span.AdminVegetableItemAmount {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListBody li span.AdminVegetableItemRows {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListBody li span.AdminVegetableItemLink {
+    width: 15%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListBody li span.AdminVegetableItemButtons {
+    width: 10%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListBody li span.AdminVegetableItemButtons span.AdminVegetableItemButtonsHolder {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  } 
+
+  .AdminVegListBody li span.AdminVegetableItemButtons span.AdminVegetableItemButtonsHolder .AdminVegRemoveBtn {
+    margin-left: 1vw;
+    float: right;
+    position: relative;
+    display: block;
+  }
+
+  .Admin-veg-form-group label {
+    width: 100%;
+    float: right;
+    text-align: right;
+    position: relative;
+    display: block;
+  }
+  
+  .Admin-veg-form-group input {
+    width: 100%;
+    float: right;
+    text-align: right;
+    position: relative;
+    display: block;
+    border-color: #329258;
+  }
+
+  .AdminVegUpdateButtonHolder {
+    float: right;
+    position: relative;
+    display: block;
+  }
   
 }
 

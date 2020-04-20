@@ -2,6 +2,7 @@ import {
     GET_VEGTABLES,
     ADD_VEGTABLES,
     DELETE_VEGTABLES,
+    UPDATE_VEGTABLES,
     VEGTABLES_LOADING
   } from '../actions/types';
   
@@ -27,6 +28,11 @@ import {
         return {
           ...state,
           vegetables: [action.payload, ...state.vegetables]
+        };
+      case UPDATE_VEGTABLES:
+        return {
+          ...state,
+          vegetables: [action.payload, ...state.vegetables.filter(vegetable => vegetable._id !== action.payload._id)]
         };
       case VEGTABLES_LOADING:
         return {

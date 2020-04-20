@@ -664,10 +664,10 @@ class ChooseFarmer extends Component {
                       <Badge color="secondary">{numberofactivefarms}</Badge>
                     </div>
                     <div  className='FarmerListAboutme'>
-                      <span>{aboutme}</span>
+                      <span>{aboutme}&nbsp;</span>
                     </div>
                     <div  className='FarmerListchoosenvegetables'>
-                      <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}</span>
+                      <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}&nbsp;</span>
                     </div>
                     <div className='FarmerListplans'>
                     {plans.map(function(item, secondkey) {

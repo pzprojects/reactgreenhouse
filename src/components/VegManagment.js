@@ -19,45 +19,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../actions/authActions';
 import { clearErrors } from '../actions/errorActions';
-import { getVegetables } from '../actions/vegetableAction';
+import { getVegetables, deleteVegetable } from '../actions/vegetableAction';
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { TiDeleteOutline } from "react-icons/ti";
+import { FiEdit } from "react-icons/fi";
+import ItemModal from './ItemModal';
+import UpdateItemModal from './UpdateItemModal';
 
 class VegManagment extends Component {
   state = {
     modal: false,
-    name:'',
-    email: '',
-    familyname: '',
-    phone: '',
     msg: null,
-    profileimg: '',
-    file: '',
-    imageurl: '',
-    imagePreviewUrl: '',
-    imagename: '',
-    usertype: 'מגדל',
     ActivateLoader: false,
-    ScreenNumber: "1",
-    fullname: '',
-    accountnumber: '',
-    bankname: '',
-    banknumber: '',
-    CreditCardfullname: '',
-    CreditCardNumber: '',
-    CreditCardDate: '',
-    CreditCardCVV: '',
-    CreditCardBusniessNumber: '',
-    nameValidation: true,
-    emailValidation: true,
-    familynameValidation: true,
-    phoneValidation: true,
-    addressValidation: true,
-    address: '',
-    ActivePlan: '',
-    RegisterDate: '',
-    FarmerFullNmae: '',
-    FarmerEmail: '',
-    FarmerPhone:'',
-    UserID: '',
     redirect: null,
     UserActive: false
   };
@@ -67,8 +40,8 @@ class VegManagment extends Component {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired,
-    farmer: PropTypes.object.isRequired,
     getVegetables: PropTypes.func.isRequired,
+    deleteVegetable: PropTypes.func.isRequired,
     vegetable: PropTypes.object.isRequired
   };
 
@@ -79,9 +52,6 @@ class VegManagment extends Component {
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
-      this.setState({
-        ActivateLoader: false
-      });
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {
         this.setState({ msg: error.msg.msg });
@@ -89,39 +59,14 @@ class VegManagment extends Component {
         this.setState({ msg: null });
       }
     }
-
-    // If authenticated, close modal
-    if (this.state.modal) {
-      if (isAuthenticated) {
-        this.toggle();
-      }
-    }
   }
-
-  toggle = () => {
-    // Clear errors
-    this.props.clearErrors();
-    this.setState({
-        modal: !this.state.modal
-    });
-    this.setState({
-      ActivateLoader: !this.state.ActivateLoader,
-      redirect: '/DeatilsUpdatedMSG'
-    });
-  };
-
- 
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
-    e.preventDefault();
-  };
-
   onDeleteClick = id => {
-    //this.props.deleteItem(id);
+    this.props.deleteVegetable(id);
   };
 
   render() {
@@ -130,28 +75,54 @@ class VegManagment extends Component {
 
     return (
       <div>
+        {this.state.msg ? (
+          <Alert color='danger'>{this.state.msg}</Alert>
+        ) : null}
         {isAuthenticated ? 
           user.usertype === 'SysAdmin' ?
           <Container>
+          <ItemModal />
           <ListGroup>
-            <TransitionGroup className='shopping-list'>
-              {vegetables.map(({ _id, name, price, averagecrop, amount }) => (
+            <TransitionGroup className='AdminVegListHeader'>
+                <CSSTransition timeout={500} classNames='fade'>
+                  <ListGroupItem>
+                    <span className='AdminVegetableItemHeaderText1'>שם</span>
+                    <span className='AdminVegetableItemHeaderText2'>מחיר</span>
+                    <span className='AdminVegetableItemHeaderText3'>ייבול ממוצע לשנה</span>
+                    <span className='AdminVegetableItemHeaderText4'>כמות שתילים</span>
+                    <span className='AdminVegetableItemHeaderText5'>מספר שורות לגידול</span>
+                    <span className='AdminVegetableItemHeaderText6'>לינק למוצר</span>
+                    <span className='AdminVegetableItemHeaderText7'></span>
+                  </ListGroupItem>
+                </CSSTransition>
+            </TransitionGroup>
+          </ListGroup>
+          <ListGroup>
+            <TransitionGroup className='AdminVegListBody'>
+              {vegetables.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink }) => (
                 <CSSTransition key={_id} timeout={500} classNames='fade'>
                   <ListGroupItem>
-                    <span className='AdminVegetableItemName'>{name}</span>
-                    <span className='AdminVegetableItemPrice'>{price}</span>
-                    <span className='AdminVegetableItemAveragecrop'>{averagecrop}</span>
-                    <span className='AdminVegetableItemAmount'>{amount}</span>
-                    {this.props.isAuthenticated ? (
-                      <Button
-                        className='remove-btn'
-                        color='danger'
-                        size='sm'
-                        onClick={this.onDeleteClick.bind(this, _id)}
-                      >
-                        &times;
-                      </Button>
-                    ) : null}
+                    <span className='AdminVegetableItemName'>{name}&nbsp;</span>
+                    <span className='AdminVegetableItemPrice'>{price}&nbsp;</span>
+                    <span className='AdminVegetableItemAveragecrop'>{averagecrop}&nbsp;</span>
+                    <span className='AdminVegetableItemAmount'>{amount}&nbsp;</span>
+                    <span className='AdminVegetableItemRows'>{numberofveginrow}&nbsp;</span>
+                    <span className='AdminVegetableItemLink'><a href={moreinfolink} >לינק לפריט</a>&nbsp;</span>
+                    <span className='AdminVegetableItemButtons'>
+                      {this.props.isAuthenticated ? (
+                        <span className='AdminVegetableItemButtonsHolder'>
+                        <Button
+                          className='AdminVegRemoveBtn'
+                          color='danger'
+                          size='sm'
+                          onClick={this.onDeleteClick.bind(this, _id)}
+                        >
+                          <TiDeleteOutline size={24} />
+                        </Button>
+                        <UpdateItemModal ItemId={_id} ItemName={name} ItemPrice={price} ItemAveragecrop={averagecrop} ItemAmont={amount} ItemNumberofveginrow={numberofveginrow} ItemLink={moreinfolink} />
+                        </span>
+                      ) : null}
+                    </span>
                   </ListGroupItem>
                 </CSSTransition>
               ))}
@@ -169,11 +140,10 @@ const mapStateToProps = state => ({
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
-  farmer: state.farmer,
   vegetable: state.vegetable
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getVegetables }
+  { register, clearErrors, getVegetables, deleteVegetable }
 )(VegManagment);

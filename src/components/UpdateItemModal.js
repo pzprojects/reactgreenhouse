@@ -10,10 +10,11 @@ import {
   Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { addVegetable } from '../actions/vegetableAction';
+import { updateVegetable } from '../actions/vegetableAction';
 import PropTypes from 'prop-types';
+import { FiEdit } from "react-icons/fi";
 
-class ItemModal extends Component {
+class UpdateItemModal extends Component {
   state = {
     modal: false,
     name: '',
@@ -21,8 +22,21 @@ class ItemModal extends Component {
     numberofveginrow: '',
     amount: '',
     averagecrop: '',
-    price: ''
+    price: '',
+    ItemId: ''
   };
+
+  componentDidMount() {
+    this.setState({
+      name: this.props.ItemName,
+      moreinfolink: this.props.ItemLink,
+      numberofveginrow: this.props.ItemNumberofveginrow,
+      amount: this.props.ItemAmont,
+      averagecrop: this.props.ItemAveragecrop,
+      price: this.props.ItemPrice,
+      ItemId: this.props.ItemId
+    });
+  }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool
@@ -53,7 +67,7 @@ class ItemModal extends Component {
     };
 
     // Add item via addItem action
-    this.props.addVegetable(newItem);
+    this.props.updateVegetable(this.state.ItemId, newItem);
 
     // Close modal
     this.toggle();
@@ -61,21 +75,22 @@ class ItemModal extends Component {
 
   render() {
     return (
-      <div>
+      <div className='AdminVegUpdateButtonHolder' >
         {this.props.isAuthenticated ? (
           <Button
-            color='success'
-            style={{ marginBottom: '2rem' }}
+            className='AdminVegUpdateBtn'
+            color='info'
+            size='sm'
             onClick={this.toggle}
           >
-            הוסף ירק
+            <FiEdit size={20} />
           </Button>
         ) : (
-          <h4 className='mb-3 ml-4'>בבקשה התחבר בכדי לנהל את הירקות</h4>
+          null
         )}
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>הוספת ירק</ModalHeader>
+          <ModalHeader toggle={this.toggle}>עדכון נתוני ירק</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
@@ -88,6 +103,7 @@ class ItemModal extends Component {
                     placeholder=''
                     className='mb-3'
                     onChange={this.onChange}
+                    value={this.state.name}
                     required
                   />
                 </div>
@@ -100,6 +116,7 @@ class ItemModal extends Component {
                     placeholder=''
                     className='mb-3'
                     onChange={this.onChange}
+                    value={this.state.price}
                     required
                   />
                 </div>
@@ -112,6 +129,7 @@ class ItemModal extends Component {
                     placeholder=''
                     className='mb-3'
                     onChange={this.onChange}
+                    value={this.state.averagecrop}
                     required
                   />
                 </div>
@@ -124,6 +142,7 @@ class ItemModal extends Component {
                     placeholder=''
                     className='mb-3'
                     onChange={this.onChange}
+                    value={this.state.amount}
                     required
                   />
                 </div>
@@ -136,6 +155,7 @@ class ItemModal extends Component {
                     placeholder=''
                     className='mb-3'
                     onChange={this.onChange}
+                    value={this.state.numberofveginrow}
                     required
                   />
                 </div>
@@ -148,11 +168,12 @@ class ItemModal extends Component {
                     placeholder=''
                     className='mb-3'
                     onChange={this.onChange}
+                    value={this.state.moreinfolink}
                     required
                   />
                 </div>
                 <Button color='success' style={{ marginTop: '2rem' }} block>
-                  הוסף
+                  עדכן
                 </Button>
               </FormGroup>
             </Form>
@@ -170,5 +191,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addVegetable }
-)(ItemModal);
+  { updateVegetable }
+)(UpdateItemModal);

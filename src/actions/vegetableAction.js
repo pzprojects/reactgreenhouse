@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_VEGTABLES, ADD_VEGTABLES, DELETE_VEGTABLES, VEGTABLES_LOADING } from './types';
+import { GET_VEGTABLES, ADD_VEGTABLES, DELETE_VEGTABLES, VEGTABLES_LOADING,UPDATE_VEGTABLES } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 import { API_URL } from '../config/keys';
@@ -25,6 +25,20 @@ export const addVegetable = vegetable => (dispatch, getState) => {
     .then(res =>
       dispatch({
         type: ADD_VEGTABLES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateVegetable = (id,vegetable) => (dispatch, getState) => {
+  axios
+    .post(API_URL + `/api/updateveg/${id}`, vegetable, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: UPDATE_VEGTABLES,
         payload: res.data
       })
     )
