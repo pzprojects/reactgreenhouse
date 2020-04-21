@@ -6,21 +6,14 @@ import {
   Label,
   Input,
   Container,
-  Alert,
-  FormFeedback,
-  UncontrolledCollapse,
-  CardBody,
-  Card,
-  ListGroup,
-  ListGroupItem
+  Alert
 } from 'reactstrap';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../actions/authActions';
 import { clearErrors } from '../actions/errorActions';
-import { getVegetables, deleteVegetable } from '../actions/vegetableAction';
-import { FiEdit } from "react-icons/fi";
+import { getSystemData, updateSystemData } from '../actions/systemAction';
+import Loader from '../components/Loader';
 
 class SystemSettings extends Component {
   state = {
@@ -28,7 +21,9 @@ class SystemSettings extends Component {
     msg: null,
     ActivateLoader: false,
     redirect: null,
-    UserActive: false
+    UserActive: false,
+    hamamadefaultsize: '',
+    ActivateSuccessMessage: false
   };
 
   static propTypes = {
@@ -36,17 +31,17 @@ class SystemSettings extends Component {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired,
-    getVegetables: PropTypes.func.isRequired,
-    deleteVegetable: PropTypes.func.isRequired,
-    vegetable: PropTypes.object.isRequired
+    getSystemData: PropTypes.func.isRequired,
+    updateSystemData: PropTypes.func.isRequired,
+    system: PropTypes.object.isRequired
   };
 
   componentDidMount() {
-    this.props.getVegetables();
+    this.props.getSystemData();
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
+    const { system, error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {
@@ -55,21 +50,52 @@ class SystemSettings extends Component {
         this.setState({ msg: null });
       }
     }
-  }
 
- 
+    if (system !== prevProps.system) {
+        this.setState({
+            ActivateLoader: false
+        });
+    }
+  }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onDeleteClick = id => {
-    this.props.deleteVegetable(id);
+  onSubmit = e => {
+    e.preventDefault();
+
+    const { hamamadefaultsize } = this.state;
+    const { SystemData } = this.props.system;
+
+    const newItem = {
+        hamamadefaultsize
+    };
+
+    this.props.updateSystemData(SystemData._id, newItem);
+
+    this.setState({
+      ActivateLoader: !this.state.ActivateLoader,
+      ActivateSuccessMessage: true
+    });
+    
+    setTimeout(
+      function() {
+        this.setState({ActivateSuccessMessage: false});
+      }
+    .bind(this),
+    3000
+    );
+
   };
 
   render() {
-    const { vegetables } = this.props.vegetable;
     const { isAuthenticated, user } = this.props.auth;
+    try{
+        const { SystemData } = this.props.system;
+        var hamamadefaultsizeNum = SystemData.hamamadefaultsize;
+    }
+    catch{}
 
     return (
       <div>
@@ -81,28 +107,34 @@ class SystemSettings extends Component {
           <Container>
           <Form onSubmit={this.onSubmit}>
               <FormGroup>
-              <div className='PersonalDetails'>
+              <div className='SystemDetailsHeader'>הגדרות מערכת</div>
+              <div className='SystemDetails'>
                 <div className="form-group">
-                  <Label for='name'>שם פרטי</Label>
+                  <Label for='hamamadefaultsize'>גודל חממה</Label>
                   <Input
                     type='text'
-                    name='name'
-                    id='name'
-                    placeholder=''
+                    name='hamamadefaultsize'
+                    id='hamamadefaultsize'
+                    placeholder={hamamadefaultsizeNum}
                     className='mb-3'
                     onChange={this.onChange}
-                    value={this.state.name}
-                    invalid= {!this.state.nameValidation}
                     required
                   />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
                 </div>
               </div>
               </FormGroup>
-              <Button className='RegisterButton' >
-                הירשם
-              </Button>
+              <div className='SystemUpdateButtonHolder'>
+                <Button color='success' className='SystemUpdateButton' >
+                  עדכן
+                </Button>
+              </div>
+              <div className='SystemSuccessMsg'>
+                {this.state.ActivateSuccessMessage ? (
+                  <Alert color='success'>הנתונים עודכנו בהצלחה</Alert>
+                ) : null}
+              </div>
             </Form>
+            { this.state.ActivateLoader ? <Loader /> : null }
           </Container>
           : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >משתמש זה אינו מנהל מערכת</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>
         : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >הירשם כמנהל מערכת</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>}
@@ -115,10 +147,10 @@ const mapStateToProps = state => ({
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
-  vegetable: state.vegetable
+  system: state.system
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getVegetables, deleteVegetable }
+  { register, clearErrors, getSystemData, updateSystemData }
 )(SystemSettings);

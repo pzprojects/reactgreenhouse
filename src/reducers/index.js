@@ -11,6 +11,7 @@ import growerVegChoiceReducer from './growerVegChoiceReducer';
 import growerReducer from './growerReducer';
 import updateUserReducer from './updateUserReducer';
 import updateFarmerActiveFarmsReducers from './updateFarmerActiveFarmsReducers';
+import systemReducer from './systemReducer';
 
 export default combineReducers({
   item: itemReducer,
@@ -23,5 +24,6 @@ export default combineReducers({
   growervegbuyingbag: growerVegChoiceReducer,
   grower: growerReducer,
   updateduser: updateUserReducer,
-  FarmerActiveFarms: updateFarmerActiveFarmsReducers
+  FarmerActiveFarms: updateFarmerActiveFarmsReducers,
+  system: systemReducer
 });

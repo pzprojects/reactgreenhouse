@@ -135,25 +135,25 @@ class ListOfGrowers extends Component {
                 <ListGroupItem className="GrowerListBodyListItem">
                   <div className='GrowerList'>
                     <div  className='GrowerListName'>
-                      <span>{name + " " + familyname}</span>
+                      <span>{name + " " + familyname}&nbsp;</span>
                     </div>
                     <div  className='GrowerListPhone'>
-                      <span>{phone}</span>
+                      <span>{phone}&nbsp;</span>
                     </div>
                     <div className='GrowerListEmail'>
-                      <span>{email}</span>
+                      <span>{email}&nbsp;</span>
                     </div>
                     <div className='GrowerListOfchoosenvegetables2'>
-                      <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}</span>
+                      <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}&nbsp;</span>
                     </div>
                     <div className='GrowerListIsActive'>
-                      <span>{isactive ? 'כן' : 'לא'}</span>
+                      <span>{isactive ? 'כן' : 'לא'}&nbsp;</span>
                     </div>
                     <div className='GrowerListPlanActivation'>
-                      <span>{this.GetDateAsString(register_date)}</span>
+                      <span>{this.GetDateAsString(register_date)}&nbsp;</span>
                     </div>
                     <div className='GrowerListplan'>
-                      <span>{plan.name}</span>
+                      <span>{plan.name}&nbsp;</span>
                     </div>
                   </div>
                 </ListGroupItem>
