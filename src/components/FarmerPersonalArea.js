@@ -100,8 +100,6 @@ class FarmerPersonalArea extends Component {
     this.props.getChoosenVegetables();
     this.props.getSystemData();
 
-    const { SystemData } = this.props.system;
-
     const { user } = this.props.auth;
 
     this.setState({
@@ -141,7 +139,6 @@ class FarmerPersonalArea extends Component {
     if (system !== prevProps.system) {
       try{
         const { SystemData } = this.props.system;
-        console.log(SystemData.hamamadefaultsize);
         this.setState({
           SystemDefaulNumberOfHamamot: SystemData.hamamadefaultsize,
           TotalNumberOfHamamot: (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString(),
