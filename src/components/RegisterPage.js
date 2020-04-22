@@ -23,6 +23,7 @@ import VegetablesPricing from '../components/VegetablesPricing';
 import { getChoosenVegetables } from '../actions/choosenVegetablesAction';
 import { addFarmer } from '../actions/farmerAction';
 import { API_URL } from '../config/keys';
+import { getSystemData } from '../actions/systemAction';
 
 
 class RegisterPage extends Component {
@@ -76,6 +77,8 @@ class RegisterPage extends Component {
     familynameValidation: true,
     phoneValidation: true,
     hamamasizeValidation: true,
+    addressValidation: true,
+    address: ''
   };
 
   static propTypes = {
@@ -86,11 +89,14 @@ class RegisterPage extends Component {
     getChoosenVegetables: PropTypes.func.isRequired,
     choosenvegetable: PropTypes.object.isRequired,
     addFarmer: PropTypes.func.isRequired,
-    farmer: PropTypes.object.isRequired
+    farmer: PropTypes.object.isRequired,
+    system: PropTypes.object.isRequired,
+    getSystemData: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getChoosenVegetables();
+    this.props.getSystemData();
   }
 
   componentDidUpdate(prevProps) {
@@ -141,12 +147,13 @@ class RegisterPage extends Component {
 
   ValidateForm = () => {
 
+    const { SystemData } = this.props.system;
     var Validated = true;
     var ScrollToLocation = "top";
     var lowerCaseLetters = /[a-z]/g;
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
-    let numberofactivefarms = (parseFloat(this.state.hamamasize)/36).toString();
+    let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString();
 
     // Regulations
     if(this.state.Regulations === false){
@@ -215,6 +222,14 @@ class RegisterPage extends Component {
       ScrollToLocation = "top";
     }
 
+    if(this.state.address === ''){
+      this.setState({
+        addressValidation: false
+      });
+      Validated = false;
+      ScrollToLocation = "top";
+    }
+
     if(!Validated){
       if(ScrollToLocation === "top"){
         window.scrollTo({
@@ -245,45 +260,43 @@ class RegisterPage extends Component {
         });
         break;
       case "Regulations":
-        // Regulations
         this.setState({
           RegulationsValidation: true
         });
         break;
       case "PasswordStrength":
-        // Regulations
         this.setState({
           PasswordStrengthValidation: true
         });
         break;
       case "name":
-        // Regulations
         this.setState({
           nameValidation: true
         });
         break;
       case "familyname":
-        // Regulations
         this.setState({
           familynameValidation: true
         });
         break;
       case "email":
-        // Regulations
         this.setState({
           emailValidation: true
         });
         break;
       case "phone":
-        // Regulations
         this.setState({
           phoneValidation: true
         });
         break;
       case "hamamasize":
-        // Regulations
         this.setState({
           hamamasizeValidation: true
+        });
+        break;
+      case "address":
+        this.setState({
+          addressValidation: true
         });
         break;
       default:
@@ -335,33 +348,33 @@ class RegisterPage extends Component {
         });
         break;
       case "name":
-        // password strength validation
         if(this.state.nameValidation === false){
           this.ResetValidation("name")
         }
         break;
       case "familyname":
-        // password strength validation
         if(this.state.familynameValidation === false){
           this.ResetValidation("familyname")
         }
         break;
       case "email":
-        // password strength validation
         if(this.state.emailValidation === false){
           this.ResetValidation("email")
         }
         break;
       case "phone":
-        // password strength validation
         if(this.state.phoneValidation === false){
           this.ResetValidation("phone")
         }
         break;
       case "hamamasize":
-        // password strength validation
         if(this.state.hamamasizeValidation === false){
           this.ResetValidation("hamamasize")
+        }
+        break;
+      case "address":
+        if(this.state.addressValidation === false){
+          this.ResetValidation("address")
         }
         break;
       default:
@@ -375,11 +388,11 @@ class RegisterPage extends Component {
 
     if(this.ValidateForm()){
 
+      const { SystemData } = this.props.system;
       const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
-      let address = '';
       let workingwith = [];
       let plans = [];
-      let numberofactivefarms = (parseFloat(this.state.hamamasize)/36).toString();
+      let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString();
       if(this.state.plan1) plans.push({name: "מגדל עצמאי", cost: this.state.cost1});
       if(this.state.plan2) plans.push({name: "ביניים", cost: this.state.cost2});
       if(this.state.plan3) plans.push({name: "ליווי שוטף", cost: this.state.cost3});
@@ -394,7 +407,7 @@ class RegisterPage extends Component {
       }
 
 
-      const { name, email, password, familyname, phone, sizearea, hamamasize, aboutme, imageurl, usertype } = this.state;
+      const { name, email, password, familyname, phone, sizearea, hamamasize, aboutme, imageurl, usertype, address } = this.state;
 
       // Create user object
       const newUser = {
@@ -426,7 +439,8 @@ class RegisterPage extends Component {
         aboutme,
         imageurl,
         choosenvegetables,
-        plans
+        plans,
+        address
       };
 
       // Attempt to register
@@ -521,7 +535,12 @@ class RegisterPage extends Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
     }
-
+    try{
+      const { SystemData } = this.props.system;
+      var HamamadefaultsizeContainer = SystemData.hamamadefaultsize;
+    }
+    catch{}
+    
     return (
       <div>
         <Container>
@@ -668,6 +687,21 @@ class RegisterPage extends Component {
                   </Input>
                 </div>
                 <div className="form-group">
+                  <Label for='address'>כתובת</Label>
+                  <Input
+                    type='text'
+                    name='address'
+                    id='address'
+                    placeholder=''
+                    className='mb-3'
+                    onChange={this.onChange}
+                    value={this.state.address}
+                    invalid= {!this.state.addressValidation}
+                    required
+                  />
+                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                </div>
+                <div className="form-group">
                   <Label for='hamamasize'>גודל שטח החממה</Label>
                   <Input
                     type='text'
@@ -680,7 +714,7 @@ class RegisterPage extends Component {
                     invalid= {!this.state.hamamasizeValidation}
                     required
                   />
-                  <FormText>* יש להזין את גודל השטח בכפולות של 36 מ"ר</FormText>
+                  <FormText>* יש להזין את גודל השטח בכפולות של {HamamadefaultsizeContainer} מ"ר</FormText>
                   <FormFeedback>שדה זה אינו יכול להישאר ריק או לא להיות בכפולות שצוינו</FormFeedback>
                 </div>
                 <div className="form-group">
@@ -744,7 +778,7 @@ class RegisterPage extends Component {
                       <span className="CardDetailsHeader">במסלול זה אין התערבות של החקלאי<br /> המסלול כולל:</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
+                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -797,7 +831,7 @@ class RegisterPage extends Component {
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
+                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -854,7 +888,7 @@ class RegisterPage extends Component {
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
+                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -1067,10 +1101,11 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
   choosenvegetable: state.choosenvegetable,
-  farmer: state.farmer
+  farmer: state.farmer,
+  system: state.system
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, addFarmer }
+  { register, clearErrors, getChoosenVegetables, addFarmer, getSystemData }
 )(RegisterPage);

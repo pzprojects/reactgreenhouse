@@ -60,6 +60,7 @@ class GrowerPersonalArea extends Component {
     FarmerFullNmae: '',
     FarmerEmail: '',
     FarmerPhone:'',
+    FarmerLocation:'',
     UserID: '',
     redirect: null,
     UserActive: false
@@ -120,8 +121,9 @@ class GrowerPersonalArea extends Component {
               var FarmerDetails = this.props.farmer.farmers[0];
               this.setState({
                 FarmerFullNmae: FarmerDetails.name + " " + FarmerDetails.familyname,
-                FarmerEmail: FarmerDetails.phone,
-                FarmerPhone: FarmerDetails.email
+                FarmerEmail: FarmerDetails.email,
+                FarmerPhone: FarmerDetails.phone,
+                FarmerLocation: FarmerDetails.address
               })
             }
         }catch(e){
@@ -605,7 +607,8 @@ class GrowerPersonalArea extends Component {
                   <div className="PersonalChoosenFarmer">
                     <span><img alt="" src={require('../Resources/Name.png')} size='sm' />{this.state.FarmerFullNmae}</span>
                     <span><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.state.FarmerPhone}</span>
-                    <span><img alt="" src={require('../Resources/mail.png')} size='sm' />{this.state.FarmerEmail}</span>
+                    <span><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.state.FarmerEmail}>{this.state.FarmerEmail}</a></span>
+                    <span><img alt="" src={require('../Resources/location.png')} size='sm' />{this.state.FarmerLocation}</span>
                   </div>
                 </div>
               </div>

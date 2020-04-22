@@ -8,9 +8,9 @@ import {
   Container,
   Alert,
   FormFeedback,
-  UncontrolledCollapse,
-  CardBody,
-  Card,
+  UncontrolledPopover,
+  PopoverHeader,
+  PopoverBody ,
   ListGroup,
   ListGroupItem
 } from 'reactstrap';
@@ -87,12 +87,12 @@ class VegManagment extends Component {
                 <CSSTransition timeout={500} classNames='fade'>
                   <ListGroupItem>
                     <span className='AdminVegetableItemHeaderText1'>שם</span>
-                    <span className='AdminVegetableItemHeaderText2'>מחיר</span>
-                    <span className='AdminVegetableItemHeaderText3'>ייבול ממוצע לשנה</span>
-                    <span className='AdminVegetableItemHeaderText4'>כמות שתילים</span>
+                    <span className='AdminVegetableItemHeaderText2'>מחיר בש"ח</span>
+                    <span className='AdminVegetableItemHeaderText3'>יבול ממוצע לשנה בק"ג</span>
+                    <span className='AdminVegetableItemHeaderText4'>כמות שתילים לטור גידול</span>
                     <span className='AdminVegetableItemHeaderText5'>מספר שורות לגידול</span>
-                    <span className='AdminVegetableItemHeaderText6'>לינק למוצר</span>
-                    <span className='AdminVegetableItemHeaderText7'></span>
+                    <span className='AdminVegetableItemHeaderText6'>קישור לדף מידע למוצר</span>
+                    <span className='AdminVegetableItemHeaderText7'>&nbsp;</span>
                   </ListGroupItem>
                 </CSSTransition>
             </TransitionGroup>
@@ -107,18 +107,20 @@ class VegManagment extends Component {
                     <span className='AdminVegetableItemAveragecrop'>{averagecrop}&nbsp;</span>
                     <span className='AdminVegetableItemAmount'>{amount}&nbsp;</span>
                     <span className='AdminVegetableItemRows'>{numberofveginrow}&nbsp;</span>
-                    <span className='AdminVegetableItemLink'><a href={moreinfolink} >לינק לפריט</a>&nbsp;</span>
+                    <span className='AdminVegetableItemLink'><a href={moreinfolink} target="_blank">לינק לפריט</a>&nbsp;</span>
                     <span className='AdminVegetableItemButtons'>
                       {this.props.isAuthenticated ? (
                         <span className='AdminVegetableItemButtonsHolder'>
-                        <Button
-                          className='AdminVegRemoveBtn'
-                          color='danger'
-                          size='sm'
-                          onClick={this.onDeleteClick.bind(this, _id)}
-                        >
-                          <TiDeleteOutline size={24} />
-                        </Button>
+                        <Button color="danger" id={"PopoverLegacy" + _id}  size='sm' className='AdminVegRemoveBtn' type="button" ><TiDeleteOutline size={24} /></Button>
+                        <UncontrolledPopover  trigger="legacy" placement="bottom" target={"PopoverLegacy" + _id}>
+                          <PopoverHeader style={{ textAlign: 'center' }}>הסרת ירק</PopoverHeader>
+                          <PopoverBody>
+                            <span className="AdminDeleteVegForGoodText">האם אתה בטוח שברצונך למחוק את הירק לצמיתות?</span>
+                            <span className="AdminDeleteVegForGoodButtons">
+                              <span><Button outline color="success" onClick={() => this.onDeleteClick(_id)} type="button" >אישור</Button></span>
+                            </span>
+                          </PopoverBody>
+                        </UncontrolledPopover >
                         <UpdateItemModal ItemId={_id} ItemName={name} ItemPrice={price} ItemAveragecrop={averagecrop} ItemAmont={amount} ItemNumberofveginrow={numberofveginrow} ItemLink={moreinfolink} />
                         </span>
                       ) : null}

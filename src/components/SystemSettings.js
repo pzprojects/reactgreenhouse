@@ -78,7 +78,7 @@ class SystemSettings extends Component {
       ActivateLoader: !this.state.ActivateLoader,
       ActivateSuccessMessage: true
     });
-    
+
     setTimeout(
       function() {
         this.setState({ActivateSuccessMessage: false});
@@ -110,7 +110,7 @@ class SystemSettings extends Component {
               <div className='SystemDetailsHeader'>הגדרות מערכת</div>
               <div className='SystemDetails'>
                 <div className="form-group">
-                  <Label for='hamamadefaultsize'>גודל חממה</Label>
+                  <Label for='hamamadefaultsize'>גודל חלקה סטנדרטי במ"ר</Label>
                   <Input
                     type='text'
                     name='hamamadefaultsize'

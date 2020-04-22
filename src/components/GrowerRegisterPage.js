@@ -256,49 +256,41 @@ class GrowerRegisterPage extends Component {
 
     switch(FieldToReset) {
       case "password":
-        // password
         this.setState({
           PasswordValidation: true
         });
         break;
       case "Regulations":
-        // Regulations
         this.setState({
           RegulationsValidation: true
         });
         break;
       case "PasswordStrength":
-        // Regulations
         this.setState({
           PasswordStrengthValidation: true
         });
         break;
       case "name":
-        // Regulations
         this.setState({
           nameValidation: true
         });
         break;
       case "familyname":
-        // Regulations
         this.setState({
           familynameValidation: true
         });
         break;
       case "email":
-        // Regulations
         this.setState({
           emailValidation: true
         });
         break;
       case "phone":
-        // Regulations
         this.setState({
           phoneValidation: true
         });
         break;
       case "address":
-        // Regulations
         this.setState({
           addressValidation: true
         });
@@ -410,6 +402,7 @@ class GrowerRegisterPage extends Component {
       let totalpayment = this.props.growervegbuyingbag.Total;
       let isactive = true;
       let numberofactivefarms = (parseFloat(GrowerChoosenFarmer.numberofactivefarms) -1).toString();
+      const chossenfarmerfullname = GrowerChoosenFarmer.name + " " + GrowerChoosenFarmer.familyname;
       plans.push(this.props.growervegbuyingbag.Plan);
       plan = this.props.growervegbuyingbag.Plan;
     
@@ -454,6 +447,7 @@ class GrowerRegisterPage extends Component {
         choosenvegetables,
         plan,
         chossenfarmer,
+        chossenfarmerfullname,
         totalpayment,
         isactive
       };

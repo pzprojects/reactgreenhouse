@@ -92,7 +92,7 @@ class ItemModal extends Component {
                   />
                 </div>
                 <div className="Admin-veg-form-group">
-                  <Label for='price'>מחיר</Label>
+                  <Label for='price'>מחיר בש"ח</Label>
                   <Input
                     type='text'
                     name='price'
@@ -104,7 +104,7 @@ class ItemModal extends Component {
                   />
                 </div>
                 <div className="Admin-veg-form-group">
-                  <Label for='averagecrop'>ייבול ממוצע לשנה</Label>
+                  <Label for='averagecrop'>יבול ממוצע לשנה בק"ג</Label>
                   <Input
                     type='text'
                     name='averagecrop'
@@ -116,7 +116,7 @@ class ItemModal extends Component {
                   />
                 </div>
                 <div className="Admin-veg-form-group">
-                  <Label for='amount'>כמות שתילים</Label>
+                  <Label for='amount'>כמות שתילים לטור גידול</Label>
                   <Input
                     type='text'
                     name='amount'
@@ -140,7 +140,7 @@ class ItemModal extends Component {
                   />
                 </div>
                 <div className="Admin-veg-form-group">
-                  <Label for='moreinfolink'>לינק למוצר</Label>
+                  <Label for='moreinfolink'>קישור לדף מידע למוצר</Label>
                   <Input
                     type='text'
                     name='moreinfolink'

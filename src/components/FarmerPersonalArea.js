@@ -26,6 +26,7 @@ import { addFarmer } from '../actions/farmerAction';
 import ListOfGrowers from '../components/ListOfGrowers';
 import { Redirect } from "react-router-dom";
 import { API_URL } from '../config/keys';
+import { getSystemData } from '../actions/systemAction';
 
 
 class FarmerPersonalArea extends Component {
@@ -73,7 +74,8 @@ class FarmerPersonalArea extends Component {
     TotalNumberOfHamamot: '0',
     DefaultNumberOfHamamot: '0',
     CurrentActiveFarms: '',
-    redirect: null
+    redirect: null,
+    SystemDefaulNumberOfHamamot: '16'
   };
 
   static propTypes = {
@@ -90,10 +92,15 @@ class FarmerPersonalArea extends Component {
     updatefarmerprofile : PropTypes.func.isRequired,
     updateduser: PropTypes.object.isRequired,
     updatefarmerbyemail: PropTypes.func.isRequired,
+    getSystemData: PropTypes.func.isRequired,
+    system: PropTypes.object.isRequired
   };
 
   componentDidMount() {
     this.props.getChoosenVegetables();
+    this.props.getSystemData();
+
+    const { SystemData } = this.props.system;
 
     const { user } = this.props.auth;
 
@@ -107,8 +114,8 @@ class FarmerPersonalArea extends Component {
         UserID: user._id,
         hamamasize: user.hamamasize,
         aboutme: user.aboutme,
-        TotalNumberOfHamamot: (parseFloat(user.hamamasize)/36).toString(),
-        DefaultNumberOfHamamot: (parseFloat(user.hamamasize)/36).toString(),
+        TotalNumberOfHamamot: (parseFloat(user.hamamasize)/16).toString(),
+        DefaultNumberOfHamamot: (parseFloat(user.hamamasize)/16).toString(),
         CurrentActiveFarms: user.numberofactivefarms
     })
 
@@ -118,7 +125,7 @@ class FarmerPersonalArea extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
+    const { system, error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       this.setState({
         ActivateLoader: false
@@ -129,6 +136,19 @@ class FarmerPersonalArea extends Component {
       } else {
         this.setState({ msg: null });
       }
+    }
+    
+    if (system !== prevProps.system) {
+      try{
+        const { SystemData } = this.props.system;
+        console.log(SystemData.hamamadefaultsize);
+        this.setState({
+          SystemDefaulNumberOfHamamot: SystemData.hamamadefaultsize,
+          TotalNumberOfHamamot: (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString(),
+          DefaultNumberOfHamamot: (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString()
+        });
+      }
+      catch{}
     }
 
     // If authenticated, close modal
@@ -160,7 +180,7 @@ class FarmerPersonalArea extends Component {
 
     var Validated = true;
     var ScrollToLocation = "top";
-    let numberofactivefarms = (parseFloat(this.state.hamamasize)/36).toString();
+    let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(this.state.SystemDefaulNumberOfHamamot)).toString();
 
     // Empty fields
     if(this.state.name === ''){
@@ -289,7 +309,7 @@ class FarmerPersonalArea extends Component {
           this.ResetValidation("hamamasize")
         }
         this.setState({
-          TotalNumberOfHamamot: (parseFloat(e.target.value)/36).toString()
+          TotalNumberOfHamamot: (parseFloat(e.target.value)/parseFloat(this.state.SystemDefaulNumberOfHamamot)).toString()
         })
         break;
       default:
@@ -552,7 +572,7 @@ class FarmerPersonalArea extends Component {
                     invalid= {!this.state.hamamasizeValidation}
                     required
                   />
-                  <FormText>* יש להזין את גודל השטח בכפולות של 36 מ"ר</FormText>
+                  <FormText>* יש להזין את גודל השטח בכפולות של {this.state.SystemDefaulNumberOfHamamot} מ"ר</FormText>
                   <FormFeedback>שדה זה אינו יכול להישאר ריק או לא להיות בכפולות שצוינו</FormFeedback>
                 </div>
                 <div className="form-group">
@@ -762,10 +782,11 @@ const mapStateToProps = state => ({
   error: state.error,
   choosenvegetable: state.choosenvegetable,
   farmer: state.farmer,
-  updateduser: state.updateduser
+  updateduser: state.updateduser,
+  system: state.system
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, addChoosenVegetable, addFarmer, updatefarmerprofile, updatefarmerbyemail}
+  { register, clearErrors, getChoosenVegetables, addChoosenVegetable, addFarmer, updatefarmerprofile, updatefarmerbyemail, getSystemData}
 )(FarmerPersonalArea);

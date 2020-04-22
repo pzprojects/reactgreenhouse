@@ -141,7 +141,7 @@ class ListOfGrowers extends Component {
                       <span>{phone}&nbsp;</span>
                     </div>
                     <div className='GrowerListEmail'>
-                      <span>{email}&nbsp;</span>
+                      <span><a href={"mailto:" + email}>{email}</a>&nbsp;</span>
                     </div>
                     <div className='GrowerListOfchoosenvegetables2'>
                       <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}&nbsp;</span>

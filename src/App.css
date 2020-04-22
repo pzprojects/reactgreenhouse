@@ -1046,6 +1046,9 @@
     display: block;
     float: right;
     padding-right: 40px;
+    font-weight: bold;
+    margin-bottom: 0.5vw;
+    text-align: right;
   }
 
   .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection {
@@ -1060,7 +1063,9 @@
     background-color: #CCEEC0;
     padding: 0;
     width: 100%;
-    height: 2vw;
+    position: relative;
+    display: block;
+    float: right;
   }
 
   .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection > li:nth-child(odd) {
@@ -1138,6 +1143,10 @@
     display: block;
     float: right;
     text-align: center;
+  }
+
+  .DuplicatesAlertContent {
+    border-color: red;
   }
 
   /* Grower Personal area */
@@ -1804,7 +1813,7 @@
   }
 
   div.SystemDetails .form-group label {
-    width: 15%;
+    width: 20%;
     float: right;
     text-align: right;
     position: relative;
@@ -1852,6 +1861,7 @@
     position: relative;
     display: block;
     float: right;
+    margin-bottom: 4vw;
   }
 
   .AdminGrowersList ul li.GrowerListTitleListItem {
@@ -1866,7 +1876,7 @@
   }
 
   .AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle {
-    font-size: 0.70vw;
+    font-size: 0.66vw;
   }
 
   .AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText1 {
@@ -1924,6 +1934,11 @@
     display: block;
     float: right;
   }
+
+  .AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div span.IsActiveArrow {
+    margin-right: 0.2vw;
+  }
+
 
   .AdminGrowersList ul > li.GrowerListBodyListItem {
     background-color: #CCEEC0;
@@ -2014,6 +2029,13 @@
     padding-right: 0.5vw;
   }
 
+  .AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListChossenfarmer span {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
   .AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList > div > span {
     overflow-wrap: break-word;
   }
@@ -2023,6 +2045,7 @@
     position: relative;
     display: block;
     float: right;
+    margin-bottom: 4vw;
   }
 
   .AdminFarmersList ul li.FarmerListTitleListItem {
@@ -2118,6 +2141,10 @@
     display: block;
     float: right;
     text-align: center;
+  }
+
+  .AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div span.IsActiveArrow {
+    margin-right: 0.2vw;
   }
 
   .AdminFarmersList ul > li.FarmerListBodyListItem {
@@ -2269,6 +2296,49 @@
     position: relative;
     display: block;
     float: right;
+  }
+
+  .AdminTotalUsers {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: #329258;
+    text-align: center;
+    margin-bottom: 4vw;
+  }
+
+  .AdminTotalUsers span {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    width: 50%;
+  }
+
+  .AdminDeleteVegForGoodText {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 1vw;
+    text-align: center;
+    direction: rtl;
+  }
+
+  .AdminDeleteVegForGoodButtons {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .AdminDeleteVegForGoodButtons button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 1vw;
   }
   
 }

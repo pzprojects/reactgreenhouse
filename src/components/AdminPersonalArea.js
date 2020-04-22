@@ -22,6 +22,7 @@ import { register } from '../actions/authActions';
 import { clearErrors } from '../actions/errorActions';
 import { getgrowers } from '../actions/growerAction';
 import { getfarmers } from '../actions/farmerAction';
+import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 
 class AdminPersonalArea extends Component {
   state = {
@@ -31,7 +32,14 @@ class AdminPersonalArea extends Component {
     redirect: null,
     UserActive: false,
     FarmerNameToSearch: '',
-    DataToSearch: ''
+    DataToSearch: '',
+    IsActiveOrder: true,
+    ActiveSort: 'IsActiveOrder',
+    NameOrder: true,
+    DateOrder: true,
+    FarmerIsActiveOrder: true,
+    FarmerActiveSort: 'FarmerNameOrder',
+    FarmerNameOrder: true
   };
 
   static propTypes = {
@@ -110,17 +118,81 @@ class AdminPersonalArea extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const { growers } = this.props.grower;
+    
     const { farmers } = this.props.farmer;
+
+    try{
+      switch(this.state.FarmerActiveSort){
+        case "FarmerNameOrder":
+          if(this.state.FarmerNameOrder){
+            const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
+            var farmersSorted = farmers.slice().sort(sortByKey('name'));
+          }
+          else{
+            const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
+            var farmersSorted = farmers.slice().sort(sortByKey('name'));
+          }
+          break;
+        default:
+          var farmersSorted = farmers;
+          break;
+      }
+      
+  }
+  catch{
+    var farmersSorted = farmers;
+  }
+    
+    const { growers } = this.props.grower;
     try{
       if(this.state.DataToSearch === ''){
         var GrowersToSearch = growers;
       }
       else{
-        var GrowersToSearch = growers.filter(grower => grower.chossenfarmer === this.state.FarmerNameToSearch);
+        var GrowersToSearch = growers.filter(grower => grower.chossenfarmerfullname.includes(this.state.FarmerNameToSearch));
       }
     }
     catch{}
+
+    try{
+      switch(this.state.ActiveSort){
+        case "IsActiveOrder":
+          if(this.state.IsActiveOrder){
+            const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
+            GrowersToSearch = GrowersToSearch.slice().sort(sortByKey('isactive'));
+          }
+          else{
+            const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
+            GrowersToSearch = GrowersToSearch.slice().sort(sortByKey('isactive'));
+          }
+          break;
+        case "NameOrder":
+          if(this.state.NameOrder){
+            const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
+            GrowersToSearch = GrowersToSearch.slice().sort(sortByKey('name'));
+          }
+          else{
+            const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
+            GrowersToSearch = GrowersToSearch.slice().sort(sortByKey('name'));
+          }
+          break;
+        case "DateOrder":
+          if(this.state.DateOrder){
+            const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
+            GrowersToSearch = GrowersToSearch.slice().sort(sortByKey('name'));
+          }
+          else{
+            const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
+            GrowersToSearch = GrowersToSearch.slice().sort(sortByKey('name'));
+          }
+          break;
+        default:
+      }
+      
+  }
+  catch{
+    GrowersToSearch = growers.filter(grower => grower.chossenfarmerfullname.includes(this.state.FarmerNameToSearch));
+  }
 
     return (
       <div>
@@ -158,6 +230,7 @@ class AdminPersonalArea extends Component {
                   <div className='FarmerListTitle'>
                     <div className='FarmerListTitleText1'>
                       <span>שם מלא</span>
+                      <span className='IsActiveArrow' onClick={() => this.setState({ FarmerNameOrder: !this.state.FarmerNameOrder, FarmerActiveSort: "FarmerNameOrder" })} >{this.state.FarmerNameOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
                     <div className='FarmerListTitleText2'>
                       <span>טלפון</span>
@@ -190,7 +263,7 @@ class AdminPersonalArea extends Component {
               </ListGroupItem>
               </ListGroup>
               <ListGroup>
-                {farmers.map(({ _id, name, familyname, phone, email, sizearea, hamamasize, numberofactivefarms, choosenvegetables, plans, register_date}) => (
+                {farmersSorted.map(({ _id, name, familyname, phone, email, sizearea, hamamasize, numberofactivefarms, choosenvegetables, plans, address, register_date}) => (
                   <CSSTransition key={_id} timeout={500} classNames='fade'>
                     <ListGroupItem className="FarmerListBodyListItem">
                       <div className='FarmerList'>
@@ -201,10 +274,10 @@ class AdminPersonalArea extends Component {
                         <span>{phone}&nbsp;</span>
                       </div>
                       <div  className='FarmerListAddress'>
-                        <span>אין כתובת</span>
+                        <span>{address}&nbsp;</span>
                       </div>
                       <div className='FarmerListEmail'>
-                        <span>{email}&nbsp;</span>
+                        <span><a href={"mailto:" + email}>{email}</a>&nbsp;</span>
                       </div>
                       <div className='FarmerListOfchoosenvegetables2'>
                         <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}&nbsp;</span>
@@ -244,7 +317,7 @@ class AdminPersonalArea extends Component {
                         type='text'
                         name='FarmerNameToSearch'
                         id='FarmerNameToSearch'
-                        placeholder='חיפוש לפי שם חקלאי'
+                        placeholder='חיפוש מגדל לפי שם חקלאי'
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -263,6 +336,7 @@ class AdminPersonalArea extends Component {
                   <div className='GrowerListTitle'>
                     <div className='GrowerListTitleText1'>
                       <span>שם מלא</span>
+                      <span className='IsActiveArrow' onClick={() => this.setState({ NameOrder: !this.state.NameOrder, ActiveSort: "NameOrder" })} >{this.state.NameOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
                     <div className='GrowerListTitleText2'>
                       <span>טלפון</span>
@@ -275,9 +349,11 @@ class AdminPersonalArea extends Component {
                     </div>
                     <div className='GrowerListTitleText5'>
                       <span>לקוח פעיל</span>
+                      <span className='IsActiveArrow' onClick={() => this.setState({ IsActiveOrder: !this.state.IsActiveOrder, ActiveSort: "IsActiveOrder" })} >{this.state.IsActiveOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
                     <div className='GrowerListTitleText6'>
                       <span>תחילת מסלול</span>
+                      <span className='IsActiveArrow' onClick={() => this.setState({ DateOrder: !this.state.DateOrder, ActiveSort: "DateOrder" })} >{this.state.DateOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
                     <div className='GrowerListTitleText7'>
                       <span>מסלול</span>
@@ -289,7 +365,7 @@ class AdminPersonalArea extends Component {
               </ListGroupItem>
               </ListGroup>
               <ListGroup>
-                {GrowersToSearch.map(({ _id, name, familyname, phone, email, sizearea, choosenvegetables, plan, chossenfarmer, isactive, register_date}) => (
+                {GrowersToSearch.map(({ _id, name, familyname, phone, email, sizearea, choosenvegetables, plan, chossenfarmerfullname, chossenfarmer, isactive, register_date}) => (
                   <CSSTransition key={_id} timeout={500} classNames='fade'>
                     <ListGroupItem className="GrowerListBodyListItem">
                       <div className='GrowerList'>
@@ -300,7 +376,7 @@ class AdminPersonalArea extends Component {
                         <span>{phone}&nbsp;</span>
                       </div>
                       <div className='GrowerListEmail'>
-                        <span>{email}&nbsp;</span>
+                        <span><a href={"mailto:" + email}>{email}</a>&nbsp;</span>
                       </div>
                       <div className='GrowerListOfchoosenvegetables2'>
                         <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}&nbsp;</span>
@@ -315,6 +391,7 @@ class AdminPersonalArea extends Component {
                         <span>{plan.name}&nbsp;</span>
                       </div>
                       <div className='GrowerListChossenfarmer'>
+                        <span>{chossenfarmerfullname}&nbsp;</span>
                         <span>{chossenfarmer}&nbsp;</span>
                       </div>
                     </div>
@@ -325,6 +402,7 @@ class AdminPersonalArea extends Component {
             </div>
           </div>
           : null}
+          {this.state.ScreenNumber === "1" ? <div className="AdminTotalUsers"><span>נמצאו סה"כ {farmersSorted.length} חקלאים</span></div> : <div className="AdminTotalUsers"><span>נמצאו סה"כ {GrowersToSearch.length} מגדלים</span></div>}
           </Container>
           : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >משתמש זה אינו מנהל מערכת</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>
         : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >הירשם כמנהל מערכת</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput, Badge, Alert } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput, Badge, Alert, Button } from 'reactstrap';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getfarmersbyarea } from '../actions/farmerAction';
@@ -200,6 +200,53 @@ class ChooseFarmer extends Component {
     }
 
     return Amount;
+  };
+
+  GetVegLink = (ItemId) => {
+    var Link = '';
+    try{ 
+    if(this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined){
+      var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
+        switch(ItemId) {
+          case "1":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg1){
+                  Link = ChoosenVegArray[i].moreinfolink;
+                }
+            }
+            break;
+          case "2":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg2){
+                  Link = ChoosenVegArray[i].moreinfolink;
+                }
+            }
+            break;
+          case "3":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg3){
+                  Link = ChoosenVegArray[i].moreinfolink;
+                }
+            }
+            break;
+          case "4":
+            for( var i=0;  i < ChoosenVegArray.length; i++ ){
+                if(ChoosenVegArray[i].name === this.state.GrowerVeg4){
+                  Link = ChoosenVegArray[i].moreinfolink;
+                }
+            }
+            break;
+          default:
+          Link = "";
+        }
+      }
+      else Link = "";
+
+    }catch(e){
+      return Link;       
+    }
+
+    return Link;
   };
 
   GetPlanData = (DataType) => {
@@ -695,7 +742,7 @@ class ChooseFarmer extends Component {
             <ListGroup>
               <ListGroupItem>
                 <div className="GrowerMainPickingTitle">
-                צפי ייבול ממוצע לשנה
+                 צפי יבול ממוצע לשנה לפי טור גידול
                 </div>
               </ListGroupItem>
             </ListGroup>
@@ -718,7 +765,7 @@ class ChooseFarmer extends Component {
                 </div>
                 <div className="GrowerChoosenVegMoreInfo">
                   <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                  <span className="GrowerChoosenVegMoreInfoText">מידע נוסף</span>
+                  <span className="GrowerChoosenVegMoreInfoText"><a href= {this.GetVegLink("1")} target="_blank">מידע נוסף</a></span>
                 </div>
               </ListGroupItem>
               <ListGroupItem>
@@ -739,7 +786,7 @@ class ChooseFarmer extends Component {
                 </div>
                 <div className="GrowerChoosenVegMoreInfo">
                   <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                  <span className="GrowerChoosenVegMoreInfoText">מידע נוסף</span>
+                  <span className="GrowerChoosenVegMoreInfoText"><a href= {this.GetVegLink("2")} target="_blank">מידע נוסף</a></span>
                 </div>
               </ListGroupItem>
               <ListGroupItem>
@@ -760,7 +807,7 @@ class ChooseFarmer extends Component {
                 </div>
                 <div className="GrowerChoosenVegMoreInfo">
                   <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                  <span className="GrowerChoosenVegMoreInfoText">מידע נוסף</span>
+                  <span className="GrowerChoosenVegMoreInfoText"><a href= {this.GetVegLink("3")} target="_blank">מידע נוסף</a></span>
                 </div>
               </ListGroupItem>
               <ListGroupItem>
@@ -781,13 +828,13 @@ class ChooseFarmer extends Component {
                 </div>
                 <div className="GrowerChoosenVegMoreInfo">
                   <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                  <span className="GrowerChoosenVegMoreInfoText">מידע נוסף</span>
+                  <span className="GrowerChoosenVegMoreInfoText"><a href= {this.GetVegLink("4")} target="_blank">מידע נוסף</a></span>
                 </div>
               </ListGroupItem>
            </ListGroup>
           </div>
           <div className="GrowerFieldsGroupsContainer" >
-            <div className="GrowerFieldsGroupsContainerExample" >הרכב החלקה</div>
+            <div className="GrowerFieldsGroupsContainerExample" >הרכב החלקה (לפי טור גידול)</div>
             <div className="GrowerFieldsGroupsSection" >
               <div className="GrowerHelka1" >
                 <span className="GrowerHelkaName" >{this.state.GrowerVeg1}</span>
@@ -815,7 +862,7 @@ class ChooseFarmer extends Component {
               </div>
             </div>
           </div>
-          {!this.state.DuplicaesValidationActive ? <div className="DuplicatesAlert" ><Alert color="danger">לגידול הירקות הבאים: {this.state.DuplicatesVegInBag}, יש צורך בשתי חלקות</Alert></div> : null}
+          {!this.state.DuplicaesValidationActive ? <div className="DuplicatesAlert" ><Alert className='DuplicatesAlertContent' color="danger">לגידול הירקות הבאים: {this.state.DuplicatesVegInBag}, יש צורך בשני טורי גידול</Alert></div> : null}
           <div className="GrowerFinalBilling" >
             <div className="GrowerFinalBillingContainer" >
             <div className="GrowerFinalBillingExample" >פירוט חשבון</div>
