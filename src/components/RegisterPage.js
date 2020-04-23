@@ -78,7 +78,8 @@ class RegisterPage extends Component {
     phoneValidation: true,
     hamamasizeValidation: true,
     addressValidation: true,
-    address: ''
+    address: '',
+    SuccessFileUpload: false
   };
 
   static propTypes = {
@@ -115,7 +116,7 @@ class RegisterPage extends Component {
 
     // If authenticated, close modal
     if (this.state.modal) {
-        if (isAuthenticated) {
+        if (isAuthenticated && this.state.SuccessFileUpload) {
           this.toggle();
         }
     }
@@ -405,9 +406,15 @@ class RegisterPage extends Component {
       if(this.state.imagename!==''){
         this.uploadFile();
       }
+      else{
+        this.setState({
+          SuccessFileUpload: true
+        });
+      }
 
 
-      const { name, email, password, familyname, phone, sizearea, hamamasize, aboutme, imageurl, usertype, address } = this.state;
+      const { name, password, familyname, phone, sizearea, hamamasize, aboutme, imageurl, usertype, address } = this.state;
+      const email = this.state.email.toLowerCase();
 
       // Create user object
       const newUser = {
@@ -460,7 +467,9 @@ class RegisterPage extends Component {
     if (Allfiles && Allfiles.length > 0) {
       const tempFile = Allfiles[0];
       this.setState({ file: tempFile });
-      const improvedname = uuidv4() + tempFile.name;
+      var improvedname = uuidv4() + tempFile.name;
+      improvedname = improvedname.replace(/[/\\?%_*:|"<>]/g, '-').trim().toLowerCase();
+      improvedname = improvedname.replace(/\s/g,'');
       const GenerateUrl = "https://profileimages12.s3.eu-west-1.amazonaws.com/" + improvedname;
       this.setState({imageurl: GenerateUrl, imagename: improvedname});
     }
@@ -505,6 +514,9 @@ class RegisterPage extends Component {
       axios
         .put(putURL, file, options)
         .then(res => {
+          this.setState({
+            SuccessFileUpload: true
+          });
         })
         .catch(err => {
           console.log('err', err);

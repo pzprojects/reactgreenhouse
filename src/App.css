@@ -658,6 +658,16 @@
     margin-top: 2vw;
   }
 
+  .GrowerRegisterPlanAlert {
+    display: block;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-bottom: 2vw;
+    margin-top: 2vw;
+    text-align: center;
+  }
+
   .Growersizearea div.form-group {
     margin-left: auto;
     margin-right: auto;
@@ -2339,6 +2349,27 @@
     margin-right: auto;
     display: block;
     margin-bottom: 1vw;
+  }
+
+  /* Login page */
+
+  .LoginPageContainer{
+    width: 35%;
+    position: relative;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2vw;
+  }
+
+  .LoginPageHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-top: 4vw;
+    text-align: center;
+    font-size: 2.2vw;
+    font-weight: bold;
   }
   
 }

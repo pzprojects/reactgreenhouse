@@ -24,6 +24,7 @@ import { getGrowerVegBag } from '../actions/growerVegChoiceAction';
 import { addgrower } from '../actions/growerAction';
 import { updatefarmeractivefarms, updateuseractivefarms } from '../actions/updateFarmerActiveFarmsAction.js';
 import { API_URL } from '../config/keys';
+import { getSystemData } from '../actions/systemAction';
 
 
 class GrowerRegisterPage extends Component {
@@ -79,7 +80,11 @@ class GrowerRegisterPage extends Component {
     hamamasizeValidation: true,
     addressValidation: true,
     address: '',
-    ActivePlan: ''
+    ActivePlan: '',
+    SuccessFileUpload: false,
+    PlanValidation: false,
+    ChooseFarmerValidation: false,
+    UpdateActiveFarms: true
   };
 
   static propTypes = {
@@ -95,17 +100,20 @@ class GrowerRegisterPage extends Component {
     getGrowerVegBag: PropTypes.func.isRequired,
     grower: PropTypes.object.isRequired,
     addgrower: PropTypes.func.isRequired,
-    FarmerActiveFarms: PropTypes.object.isRequired
+    FarmerActiveFarms: PropTypes.object.isRequired,
+    system: PropTypes.object.isRequired,
+    getSystemData: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getchoosenfarmer();
     this.props.getGrowerVegBag();
+    this.props.getSystemData();
 
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
+    const { FarmersNumLoaded, UsersNumLoaded, error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       this.setState({
         ActivateLoader: false
@@ -120,12 +128,17 @@ class GrowerRegisterPage extends Component {
 
     // If authenticated, close modal
     if (this.state.modal) {
-        if (isAuthenticated) {
-          this.toggle();
+        if (isAuthenticated && this.state.SuccessFileUpload) {
+          if(this.state.UpdateActiveFarms){
+            this.UpdateFarmersActiveFarms();
+          }
+          if(FarmersNumLoaded && UsersNumLoaded){
+            this.toggle();
+          }
         }
     }
 
-    // If modal closed and authenticated, go to homepage
+    // If modal open and authenticated, go to homepage
     if (!this.state.modal) {
       if (isAuthenticated) {
         this.props.history.push('/');
@@ -136,11 +149,10 @@ class GrowerRegisterPage extends Component {
   toggle = () => {
     // Clear errors
     this.props.clearErrors();
+    
     this.setState({
-        modal: !this.state.modal
-    });
-    this.setState({
-      ActivateLoader: !this.state.ActivateLoader
+        modal: !this.state.modal,
+        ActivateLoader: !this.state.ActivateLoader
     });
     this.props.history.push('/GrowersubmissionMSG');
   };
@@ -158,6 +170,7 @@ class GrowerRegisterPage extends Component {
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
     const { IsValidated } = this.props.growervegbuyingbag;
+    const { ChoosenFarmerById } = this.props.choosenfarmer;
 
     // Regulations
     if(this.state.Regulations === false){
@@ -224,6 +237,27 @@ class GrowerRegisterPage extends Component {
         });
         Validated = false;
         ScrollToLocation = "top";
+    }
+
+    if(this.state.ActivePlan === ''){
+      this.setState({
+        PlanValidation: true
+      });
+      Validated = false;
+      ScrollToLocation = "bottom";
+    }
+
+    if(ChoosenFarmerById.length !== 1){
+      this.setState({
+        ChooseFarmerValidation: true
+      });
+      Validated = false;
+      ScrollToLocation = "bottom";
+    }
+    else{
+      this.setState({
+        ChooseFarmerValidation: false
+      });
     }
 
     // VegBag
@@ -307,6 +341,7 @@ class GrowerRegisterPage extends Component {
           plan1: e.target.checked,
           plan2: !e.target.checked,
           plan3: !e.target.checked,
+          PlanValidation: false,
           ActivePlan: 'מגדל עצמאי'
         });
         break;
@@ -315,6 +350,7 @@ class GrowerRegisterPage extends Component {
           plan1: !e.target.checked,
           plan2: e.target.checked,
           plan3: !e.target.checked,
+          PlanValidation: false,
           ActivePlan: 'ביניים'
         });
         break;
@@ -323,6 +359,7 @@ class GrowerRegisterPage extends Component {
           plan1: !e.target.checked,
           plan2: !e.target.checked,
           plan3: e.target.checked,
+          PlanValidation: false,
           ActivePlan: 'ליווי שוטף'
         });
         break;
@@ -388,6 +425,25 @@ class GrowerRegisterPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  UpdateFarmersActiveFarms = () => {
+    const GrowerChoosenFarmer =  this.props.choosenfarmer.ChoosenFarmerById[0];
+
+    let chossenfarmer = GrowerChoosenFarmer.email;
+    let numberofactivefarms = (parseFloat(GrowerChoosenFarmer.numberofactivefarms) -1).toString();
+
+    const newnumberofactivefarms = {
+      numberofactivefarms
+    };
+
+    // update Farmer Active farms
+    this.props.updatefarmeractivefarms(chossenfarmer, newnumberofactivefarms);
+    this.props.updateuseractivefarms(chossenfarmer, newnumberofactivefarms);
+
+    this.setState({
+      UpdateActiveFarms: false
+    });
+  };
+
   onSubmit = e => {
     e.preventDefault();
 
@@ -401,7 +457,6 @@ class GrowerRegisterPage extends Component {
       let chossenfarmer = GrowerChoosenFarmer.email;
       let totalpayment = this.props.growervegbuyingbag.Total;
       let isactive = true;
-      let numberofactivefarms = (parseFloat(GrowerChoosenFarmer.numberofactivefarms) -1).toString();
       const chossenfarmerfullname = GrowerChoosenFarmer.name + " " + GrowerChoosenFarmer.familyname;
       plans.push(this.props.growervegbuyingbag.Plan);
       plan = this.props.growervegbuyingbag.Plan;
@@ -414,9 +469,15 @@ class GrowerRegisterPage extends Component {
       if(this.state.imagename!==''){
         this.uploadFile();
       }
+      else{
+        this.setState({
+          SuccessFileUpload: true
+        });
+      }
 
 
-      const { name, email, password, familyname, phone, sizearea, hamamasize, aboutme, imageurl, usertype, address } = this.state;
+      const { name, password, familyname, phone, sizearea, hamamasize, aboutme, imageurl, usertype, address } = this.state;
+      const email = this.state.email.toLowerCase();
 
       // Create user object
       const newUser = {
@@ -452,17 +513,9 @@ class GrowerRegisterPage extends Component {
         isactive
       };
 
-      const newnumberofactivefarms = {
-        numberofactivefarms
-      };
-
       // Attempt to register
       this.props.addgrower(newGrower);
       this.props.register(newUser);
-
-      // update Farmer Active farms
-      this.props.updatefarmeractivefarms(chossenfarmer, newnumberofactivefarms);
-      this.props.updateuseractivefarms(chossenfarmer, newnumberofactivefarms);
 
     }
   };
@@ -477,7 +530,10 @@ class GrowerRegisterPage extends Component {
     if (Allfiles && Allfiles.length > 0) {
       const tempFile = Allfiles[0];
       this.setState({ file: tempFile });
-      const improvedname = uuidv4() + tempFile.name;
+      var improvedname = uuidv4() + tempFile.name;
+      improvedname = improvedname.replace(/[/\\?%_*:|"<>]/g, '-').trim().toLowerCase();
+      improvedname = improvedname.replace(/\s/g,'');
+      console.log(improvedname);
       const GenerateUrl = "https://profileimages12.s3.eu-west-1.amazonaws.com/" + improvedname;
       this.setState({imageurl: GenerateUrl, imagename: improvedname});
     }
@@ -522,6 +578,9 @@ class GrowerRegisterPage extends Component {
       axios
         .put(putURL, file, options)
         .then(res => {
+          this.setState({
+            SuccessFileUpload: true
+          });
         })
         .catch(err => {
           console.log('err', err);
@@ -535,6 +594,12 @@ class GrowerRegisterPage extends Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
     }
+
+    try{
+      const { SystemData } = this.props.system;
+      var HamamadefaultsizeContainer = SystemData.hamamadefaultsize;
+    }
+    catch{}
 
     return (
       <div>
@@ -714,7 +779,7 @@ class GrowerRegisterPage extends Component {
                       <span className="GrowerCardDetailsHeader">במסלול זה אין התערבות של החקלאי<br /> המסלול כולל:</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
+                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -753,7 +818,7 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
+                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -796,7 +861,7 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של 36 מ"ר</span>
+                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -814,6 +879,7 @@ class GrowerRegisterPage extends Component {
                   </div>
                 </div>
               </div>
+              {this.state.PlanValidation ? <div className='GrowerRegisterPlanAlert'><Alert color='danger'>יש לבחור מסלול</Alert></div> : null}
               <div className="Growersizearea">
                 <div className="form-group">
                   <Label for='sizearea'>אזור השטח לגידול</Label>
@@ -824,6 +890,7 @@ class GrowerRegisterPage extends Component {
                   </Input>
                 </div>
               </div>
+              {this.state.ChooseFarmerValidation ? <div className='GrowerRegisterPlanAlert'><Alert color='danger'>יש לבחור חקלאי</Alert></div> : null}
               { this.state.ActivePlan !== '' ? <div className='FarmerListContent'><ChooseFarmer SizeAreaParam={this.state.sizearea} PlanParam={this.state.ActivePlan}/></div> : null}
               <div className='ApproveRegulations'>
                 <div  className='RegulationsCheckBox'>
@@ -953,10 +1020,13 @@ const mapStateToProps = state => ({
   choosenfarmer: state.choosenfarmer,
   growervegbuyingbag: state.growervegbuyingbag,
   grower: state.grower,
-  FarmerActiveFarms: state.FarmerActiveFarms
+  FarmerActiveFarms: state.FarmerActiveFarms,
+  FarmersNumLoaded: state.FarmerActiveFarms.FarmersNumLoaded,
+  UsersNumLoaded: state.FarmerActiveFarms.UsersNumLoaded,
+  system: state.system
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, addFarmer, getchoosenfarmer, getGrowerVegBag, addgrower, updatefarmeractivefarms, updateuseractivefarms }
+  { register, clearErrors, addFarmer, getchoosenfarmer, getGrowerVegBag, addgrower, updatefarmeractivefarms, updateuseractivefarms, getSystemData }
 )(GrowerRegisterPage);

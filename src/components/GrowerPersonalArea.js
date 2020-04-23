@@ -63,7 +63,8 @@ class GrowerPersonalArea extends Component {
     FarmerLocation:'',
     UserID: '',
     redirect: null,
-    UserActive: false
+    UserActive: false,
+    SuccessFileUpload: false
   };
 
   static propTypes = {
@@ -133,7 +134,7 @@ class GrowerPersonalArea extends Component {
 
     // If authenticated, close modal
     if (this.state.modal) {
-      if (isAuthenticated) {
+      if (isAuthenticated && this.state.SuccessFileUpload) {
         this.toggle();
       }
     }
@@ -200,7 +201,7 @@ class GrowerPersonalArea extends Component {
         });
         Validated = false;
         ScrollToLocation = "top";
-      }
+    }
 
     if(!Validated){
       if(ScrollToLocation === "top"){
@@ -311,6 +312,11 @@ class GrowerPersonalArea extends Component {
       if(this.state.imagename!==''){
         this.uploadFile();
       }
+      else{
+        this.setState({
+          SuccessFileUpload: true
+        });
+      }
 
 
       const { name, familyname, phone, address, imageurl } = this.state;
@@ -384,7 +390,9 @@ class GrowerPersonalArea extends Component {
     if (Allfiles && Allfiles.length > 0) {
       const tempFile = Allfiles[0];
       this.setState({ file: tempFile });
-      const improvedname = uuidv4() + tempFile.name;
+      var improvedname = uuidv4() + tempFile.name;
+      improvedname = improvedname.replace(/[/\\?%_*:|"<>]/g, '-').trim().toLowerCase();
+      improvedname = improvedname.replace(/\s/g,'');
       const GenerateUrl = "https://profileimages12.s3.eu-west-1.amazonaws.com/" + improvedname;
       this.setState({imageurl: GenerateUrl, imagename: improvedname});
     }
@@ -429,6 +437,9 @@ class GrowerPersonalArea extends Component {
       axios
         .put(putURL, file, options)
         .then(res => {
+          this.setState({
+            SuccessFileUpload: true
+          });
         })
         .catch(err => {
           console.log('err', err);
@@ -438,7 +449,10 @@ class GrowerPersonalArea extends Component {
 
   render() {
     let {imagePreviewUrl} = this.state;
-    let $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
+    let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
+    if (imagePreviewUrl) {
+      $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
+    }
     const { user } = this.props.auth;
     try{
         var RegisterDate = new Date(user.workingwith[0].activation_date);

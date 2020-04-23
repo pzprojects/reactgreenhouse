@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { UPDATE_FARMER_ACTIVE_FARMS,  UPDATE_USER_ACTIVE_FARMS} from './types';
+import { UPDATE_FARMER_ACTIVE_FARMS,  UPDATE_USER_ACTIVE_FARMS, ACTIVE_FARMS_FARMERS_LOADING, ACTIVE_FARMS_USERS_LOADING} from './types';
 import { returnErrors } from './errorActions';
 import { API_URL } from '../config/keys';
 
 export const updatefarmeractivefarms = (email,farmer) => (dispatch, getState) => {
+    dispatch(setupdateuseractivefarmersLoading());
     axios
       .post(API_URL + '/api/updatefarmeractivefarms/' + email, farmer)
       .then(res =>
@@ -18,6 +19,7 @@ export const updatefarmeractivefarms = (email,farmer) => (dispatch, getState) =>
   };
 
   export const updateuseractivefarms = (email,user) => (dispatch, getState) => {
+    dispatch(setupdateuseractiveusersLoading());
     axios
       .post(API_URL + '/api/updateruseractivefarms/' + email, user)
       .then(res =>
@@ -29,4 +31,16 @@ export const updatefarmeractivefarms = (email,farmer) => (dispatch, getState) =>
       .catch(err =>
         dispatch(returnErrors(err.response.data, err.response.status))
       );
+  };
+
+  export const setupdateuseractivefarmersLoading = () => {
+    return {
+      type: ACTIVE_FARMS_FARMERS_LOADING
+    };
+  };
+
+  export const setupdateuseractiveusersLoading = () => {
+    return {
+      type: ACTIVE_FARMS_USERS_LOADING
+    };
   };

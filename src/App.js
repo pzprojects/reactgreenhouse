@@ -12,6 +12,7 @@ import GrowersubmissionMSG from './components/GrowersubmissionMSG';
 import DeatilsUpdatedMSG from './components/DeatilsUpdatedMSG';
 import VegManagment from './components/VegManagment';
 import SystemSettings from './components/SystemSettings';
+import LoginPage from './components/auth/LoginPage';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -44,6 +45,7 @@ class App extends Component {
               <Route path="/DeatilsUpdatedMSG" component={DeatilsUpdatedMSG} />
               <Route path="/VegManagment" component={VegManagment} />
               <Route path="/SystemSettings" component={SystemSettings} />
+              <Route path="/LoginPage" component={LoginPage} />
             </Container>
           </div>
         </Router>

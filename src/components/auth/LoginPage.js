@@ -18,7 +18,6 @@ import { clearErrors } from '../../actions/errorActions';
 
 class LoginModal extends Component {
   state = {
-    modal: false,
     email: '',
     password: '',
     msg: null
@@ -43,19 +42,15 @@ class LoginModal extends Component {
     }
 
     // If authenticated, close modal
-    if (this.state.modal) {
-      if (isAuthenticated) {
-        this.toggle();
-      }
+    if (isAuthenticated) {
+      this.toggle();
     }
   }
 
   toggle = () => {
     // Clear errors
     this.props.clearErrors();
-    this.setState({
-      modal: !this.state.modal
-    });
+    this.props.history.push('/');
   };
 
   onChange = e => {
@@ -80,14 +75,9 @@ class LoginModal extends Component {
   render() {
     return (
       <div>
-        <NavLink onClick={this.toggle} href='#'>
-          Log In
-        </NavLink>
-
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>כניסה למערכת</ModalHeader>
-          <ModalBody>
-            {this.state.msg ? (
+        <div className='LoginPageHeader' >כניסה למערכת</div>
+        <div className='LoginPageContainer' >
+          {this.state.msg ? (
               <Alert color='danger'>{this.state.msg}</Alert>
             ) : null}
             <Form onSubmit={this.onSubmit}>
@@ -114,13 +104,12 @@ class LoginModal extends Component {
                     onChange={this.onChange}
                 />
                 </div>
-                <Button color='success' style={{ marginTop: '2rem' }} block>
+                <Button color='success' style={{ marginTop: '2vw' }} block>
                   התחבר
                 </Button>
               </FormGroup>
             </Form>
-          </ModalBody>
-        </Modal>
+          </div>
       </div>
     );
   }

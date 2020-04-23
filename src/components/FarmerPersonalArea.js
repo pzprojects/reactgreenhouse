@@ -75,7 +75,8 @@ class FarmerPersonalArea extends Component {
     DefaultNumberOfHamamot: '0',
     CurrentActiveFarms: '',
     redirect: null,
-    SystemDefaulNumberOfHamamot: '16'
+    SystemDefaulNumberOfHamamot: '16',
+    SuccessFileUpload: false
   };
 
   static propTypes = {
@@ -150,7 +151,7 @@ class FarmerPersonalArea extends Component {
 
     // If authenticated, close modal
     if (this.state.modal) {
-        if (isAuthenticated) {
+        if (isAuthenticated && this.state.SuccessFileUpload) {
           this.toggle();
         }
     }
@@ -332,6 +333,11 @@ class FarmerPersonalArea extends Component {
       if(this.state.imagename!==''){
         this.uploadFile();
       }
+      else{
+        this.setState({
+          SuccessFileUpload: true
+        });
+      }
 
 
       const { name, familyname, phone, hamamasize, aboutme, imageurl } = this.state;
@@ -376,7 +382,9 @@ class FarmerPersonalArea extends Component {
     if (Allfiles && Allfiles.length > 0) {
       const tempFile = Allfiles[0];
       this.setState({ file: tempFile });
-      const improvedname = uuidv4() + tempFile.name;
+      var improvedname = uuidv4() + tempFile.name;
+      improvedname = improvedname.replace(/[/\\?%_*:|"<>]/g, '-').trim().toLowerCase();
+      improvedname = improvedname.replace(/\s/g,'');
       const GenerateUrl = "https://profileimages12.s3.eu-west-1.amazonaws.com/" + improvedname;
       this.setState({imageurl: GenerateUrl, imagename: improvedname});
     }
@@ -421,6 +429,9 @@ class FarmerPersonalArea extends Component {
       axios
         .put(putURL, file, options)
         .then(res => {
+          this.setState({
+            SuccessFileUpload: true
+          });
         })
         .catch(err => {
           console.log('err', err);
