@@ -78,6 +78,9 @@ class RegisterPage extends Component {
     phoneValidation: true,
     hamamasizeValidation: true,
     addressValidation: true,
+    VegPricingValidation: false,
+    FarmerPlanValidation: false,
+    FarmerPlanCostValidation: false,
     address: '',
     SuccessFileUpload: false
   };
@@ -155,6 +158,8 @@ class RegisterPage extends Component {
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
     let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString();
+    const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
+    let FoundEmpty = false;
 
     // Regulations
     if(this.state.Regulations === false){
@@ -229,6 +234,71 @@ class RegisterPage extends Component {
       });
       Validated = false;
       ScrollToLocation = "top";
+    }
+
+    // Validate veg pricing
+    for(var i = 0; i < choosenvegetables.length; i++){
+      if(choosenvegetables[i].price === ''){
+        FoundEmpty = true;
+      }
+    }
+    if(FoundEmpty){
+      Validated = false;
+      ScrollToLocation = "bottom";
+      this.setState({
+        VegPricingValidation : true
+      })
+    }
+    else{
+      this.setState({
+        VegPricingValidation : false
+      })
+    }
+
+    // Plans validation
+    if(this.state.plan1 || this.state.plan2 || this.state.plan3){
+      this.setState({
+        FarmerPlanValidation : false
+      })
+    }
+    else{
+      Validated = false;
+      ScrollToLocation = "bottom";
+      this.setState({
+        FarmerPlanValidation : true
+      })
+    }
+
+    // Plans cost validation
+    if(this.state.cost1 === '' || this.state.cost2 === '' || this.state.cost3 === ''){
+      if(this.state.cost1 === '' && this.state.plan1){
+        Validated = false;
+        ScrollToLocation = "bottom";
+        this.setState({
+          FarmerPlanCostValidation : true
+        })
+      }
+
+      if(this.state.cost2 === '' && this.state.plan2){
+        Validated = false;
+        ScrollToLocation = "bottom";
+        this.setState({
+          FarmerPlanCostValidation : true
+        })
+      }
+
+      if(this.state.cost3 === '' && this.state.plan3){
+        Validated = false;
+        ScrollToLocation = "bottom";
+        this.setState({
+          FarmerPlanCostValidation : true
+        })
+      }
+    }
+    else{
+      this.setState({
+        FarmerPlanCostValidation : false
+      })
     }
 
     if(!Validated){
@@ -309,17 +379,20 @@ class RegisterPage extends Component {
     switch(e.target.name) {
       case "Checkplan1":
         this.setState({
-          plan1: e.target.checked
+          plan1: e.target.checked,
+          FarmerPlanValidation: false
         });
         break;
       case "Checkplan2":
         this.setState({
-          plan2: e.target.checked
+          plan2: e.target.checked,
+          FarmerPlanValidation: false
         });
         break;
       case "Checkplan3":
         this.setState({
-          plan3: e.target.checked
+          plan3: e.target.checked,
+          FarmerPlanValidation: false
         });
         break;
       default:
@@ -377,6 +450,21 @@ class RegisterPage extends Component {
         if(this.state.addressValidation === false){
           this.ResetValidation("address")
         }
+        break;
+      case "cost1":
+        this.setState({
+          FarmerPlanCostValidation : false
+        })
+        break;
+      case "cost2":
+        this.setState({
+          FarmerPlanCostValidation : false
+        })
+        break;
+      case "cost3":
+        this.setState({
+          FarmerPlanCostValidation : false
+        })
         break;
       default:
     }
@@ -606,7 +694,7 @@ class RegisterPage extends Component {
                     type='text'
                     name='name'
                     id='name'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.name}
@@ -621,7 +709,7 @@ class RegisterPage extends Component {
                     type='text'
                     name='familyname'
                     id='familyname'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.familyname}
@@ -636,7 +724,7 @@ class RegisterPage extends Component {
                     type='text'
                     name='phone'
                     id='phone'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.phone}
@@ -651,7 +739,7 @@ class RegisterPage extends Component {
                     type='email'
                     name='email'
                     id='email'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.email}
@@ -666,7 +754,7 @@ class RegisterPage extends Component {
                     type='password'
                     name='password'
                     id='password'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     invalid= {!this.state.PasswordStrengthValidation}
@@ -682,11 +770,12 @@ class RegisterPage extends Component {
                     type='password'
                     name='passwordconfirmation'
                     id='passwordconfirmation'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.passwordconfirmation}
                     invalid= {!this.state.PasswordValidation}
+                    required
                   />
                   <FormFeedback>הסיסמאות לא זהות!</FormFeedback>
                 </div>
@@ -704,7 +793,7 @@ class RegisterPage extends Component {
                     type='text'
                     name='address'
                     id='address'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.address}
@@ -719,7 +808,7 @@ class RegisterPage extends Component {
                     type='text'
                     name='hamamasize'
                     id='hamamasize'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.hamamasize}
@@ -749,6 +838,7 @@ class RegisterPage extends Component {
                 <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
                 <VegetablesPricing />
               </div>
+              {this.state.VegPricingValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לוודא שלכל ירק מעודכן מחיר</Alert></div> : null}
               <div className="Plans">
                 <div className="PlanCard">
                   <div className="PlanCardHeader">
@@ -918,6 +1008,8 @@ class RegisterPage extends Component {
                   </div>
                 </div>
               </div>
+              {this.state.FarmerPlanValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לבחור תכנית אחת לפחות</Alert></div> : null}
+              {this.state.FarmerPlanCostValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>לכל תוכנית נבחרת יש לעדכן מחיר</Alert></div> : null}
               <div className='ApproveRegulations'>
                 <div  className='RegulationsCheckBox'>
                   <Label check for='CheckRegulations'>

@@ -70,6 +70,7 @@ class FarmerPersonalArea extends Component {
     familynameValidation: true,
     phoneValidation: true,
     hamamasizeValidation: true,
+    VegPricingValidation: false,
     UserID: '',
     TotalNumberOfHamamot: '0',
     DefaultNumberOfHamamot: '0',
@@ -179,6 +180,8 @@ class FarmerPersonalArea extends Component {
     var Validated = true;
     var ScrollToLocation = "top";
     let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(this.state.SystemDefaulNumberOfHamamot)).toString();
+    const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
+    let FoundEmpty = false;
 
     // Empty fields
     if(this.state.name === ''){
@@ -219,6 +222,25 @@ class FarmerPersonalArea extends Component {
       });
       Validated = false;
       ScrollToLocation = "top";
+    }
+
+    // Validate veg pricing
+    for(var i = 0; i < choosenvegetables.length; i++){
+      if(choosenvegetables[i].price === ''){
+        FoundEmpty = true;
+      }
+    }
+    if(FoundEmpty){
+      Validated = false;
+      ScrollToLocation = "bottom";
+      this.setState({
+        VegPricingValidation : true
+      })
+    }
+    else{
+      this.setState({
+        VegPricingValidation : false
+      })
     }
 
     if(!Validated){
@@ -512,7 +534,7 @@ class FarmerPersonalArea extends Component {
                     type='text'
                     name='name'
                     id='name'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.name}
@@ -527,7 +549,7 @@ class FarmerPersonalArea extends Component {
                     type='text'
                     name='familyname'
                     id='familyname'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.familyname}
@@ -542,7 +564,7 @@ class FarmerPersonalArea extends Component {
                     type='text'
                     name='phone'
                     id='phone'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.phone}
@@ -557,7 +579,7 @@ class FarmerPersonalArea extends Component {
                     type='email'
                     name='email'
                     id='email'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.email}
@@ -573,7 +595,7 @@ class FarmerPersonalArea extends Component {
                     type='text'
                     name='hamamasize'
                     id='hamamasize'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.hamamasize}
@@ -616,6 +638,7 @@ class FarmerPersonalArea extends Component {
                 <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
                 <VegetablesPricing />
               </div>
+              {this.state.VegPricingValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לוודא שלכל ירק מעודכן מחיר</Alert></div> : null}
               <div className="farmer-personal-form-group">
                 <div className="PersonalFarmerPlansContainer">
                   <div className="PersonalFarmerPlansHeader">מחירי מסלולים</div>

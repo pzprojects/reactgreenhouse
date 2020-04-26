@@ -511,7 +511,7 @@ class GrowerPersonalArea extends Component {
                     type='text'
                     name='name'
                     id='name'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.name}
@@ -526,7 +526,7 @@ class GrowerPersonalArea extends Component {
                     type='text'
                     name='familyname'
                     id='familyname'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.familyname}
@@ -541,7 +541,7 @@ class GrowerPersonalArea extends Component {
                     type='text'
                     name='phone'
                     id='phone'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.phone}
@@ -556,7 +556,7 @@ class GrowerPersonalArea extends Component {
                     type='email'
                     name='email'
                     id='email'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.email}
@@ -572,7 +572,7 @@ class GrowerPersonalArea extends Component {
                     type='text'
                     name='address'
                     id='address'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.address}

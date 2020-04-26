@@ -647,7 +647,7 @@ class GrowerRegisterPage extends Component {
                     type='text'
                     name='name'
                     id='name'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.name}
@@ -662,7 +662,7 @@ class GrowerRegisterPage extends Component {
                     type='text'
                     name='familyname'
                     id='familyname'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.familyname}
@@ -677,7 +677,7 @@ class GrowerRegisterPage extends Component {
                     type='text'
                     name='phone'
                     id='phone'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.phone}
@@ -692,7 +692,7 @@ class GrowerRegisterPage extends Component {
                     type='email'
                     name='email'
                     id='email'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.email}
@@ -707,7 +707,7 @@ class GrowerRegisterPage extends Component {
                     type='password'
                     name='password'
                     id='password'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     invalid= {!this.state.PasswordStrengthValidation}
@@ -723,11 +723,12 @@ class GrowerRegisterPage extends Component {
                     type='password'
                     name='passwordconfirmation'
                     id='passwordconfirmation'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.passwordconfirmation}
                     invalid= {!this.state.PasswordValidation}
+                    required
                   />
                   <FormFeedback>הסיסמאות לא זהות!</FormFeedback>
                 </div>
@@ -737,7 +738,7 @@ class GrowerRegisterPage extends Component {
                     type='text'
                     name='address'
                     id='address'
-                    placeholder=''
+                    placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
                     value={this.state.address}

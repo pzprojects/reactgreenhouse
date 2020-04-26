@@ -23,6 +23,7 @@ import { clearErrors } from '../actions/errorActions';
 import { getgrowers } from '../actions/growerAction';
 import { getfarmers } from '../actions/farmerAction';
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
+import { ExportCSV }  from './ExportCSV';
 
 class AdminPersonalArea extends Component {
   state = {
@@ -99,6 +100,17 @@ class AdminPersonalArea extends Component {
     return VegAsString;
   };
 
+  ReturnChoosingVegtabilesAsStringForExcel = (Mychoosenvegetables) => {
+    var VegAsString = '';
+    for(var i=0; i<Mychoosenvegetables.length ;i++){
+      if(Mychoosenvegetables.length === (i+1)){
+        VegAsString += Mychoosenvegetables[i].name + ": " + Mychoosenvegetables[i].price;
+      }
+      else VegAsString += Mychoosenvegetables[i].name + ": " + Mychoosenvegetables[i].price + ", ";   
+    }
+    return VegAsString;
+  };
+
   ReturnPlansAsString = (MychoosenPlans) => {
     var PlansAsString = '';
     for(var i=0; i<MychoosenPlans.length ;i++){
@@ -110,10 +122,59 @@ class AdminPersonalArea extends Component {
     return PlansAsString;
   };
 
+  ReturnPlansAsStringForExcel = (MychoosenPlans) => {
+    var PlansAsString = '';
+    for(var i=0; i<MychoosenPlans.length ;i++){
+      if(MychoosenPlans.length === (i+1)){
+        PlansAsString += MychoosenPlans[i].name + ": " + MychoosenPlans[i].cost;
+      }
+      else PlansAsString += MychoosenPlans[i].name + ": " + MychoosenPlans[i].cost + ", ";   
+    }
+    return PlansAsString;
+  };
+
   GetDateAsString = (DateToConvert) => {
     var RegisterDate = new Date(DateToConvert);
     var RegisterDateToStringFormat = RegisterDate.getDate() + "/"+ parseInt(RegisterDate.getMonth()+1) +"/"+RegisterDate.getFullYear();
     return RegisterDateToStringFormat;
+  };
+
+  GetFarmersForExcel = (farmers) => {
+    const FarmersToExcel = farmers.map( farmer => ({
+      'מזהה': farmer._id,
+      'שם פרטי': farmer.name, 
+      'שם משפחה': farmer.familyname, 
+      'טלפון': farmer.phone, 
+      'אימייל': farmer.email, 
+      'אזור השטח לגידול': farmer.sizearea, 
+      'גודל שטח החממה': farmer.hamamasize, 
+      'מספר חלקות פנויות': farmer.numberofactivefarms, 
+      'ירקות נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(farmer.choosenvegetables), 
+      'תוכניות': this.ReturnPlansAsStringForExcel(farmer.plans), 
+      'כתובת': farmer.address, 
+      'תאריך רישום': farmer.register_date
+    }));
+
+    return FarmersToExcel;
+  };
+
+  GetGrowersForExcel = (growers) => {
+    const GrowersToExcel = growers.map( grower => ({
+      'מזהה': grower._id,
+      'שם פרטי': grower.name, 
+      'שם משפחה': grower.familyname, 
+      'טלפון': grower.phone, 
+      'אימייל': grower.email, 
+      'אזור השטח לגידול': grower.sizearea,
+      'ירקות נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(grower.choosenvegetables), 
+      'תוכניות': grower.plan.name + ": " + grower.plan.cost, 
+      'חקלאי נבחר': grower.chossenfarmerfullname + ": " + grower.chossenfarmer,
+      'האם פעיל':  grower.isactive,
+      'כתובת': grower.address, 
+      'תאריך רישום': grower.register_date
+    }));
+
+    return GrowersToExcel;
   };
 
   render() {
@@ -403,6 +464,7 @@ class AdminPersonalArea extends Component {
           </div>
           : null}
           {this.state.ScreenNumber === "1" ? <div className="AdminTotalUsers"><span>נמצאו סה"כ {farmersSorted.length} חקלאים</span></div> : <div className="AdminTotalUsers"><span>נמצאו סה"כ {GrowersToSearch.length} מגדלים</span></div>}
+          {this.state.ScreenNumber === "1" ? <ExportCSV csvData={this.GetFarmersForExcel(farmers)} fileName='חקלאים' /> : <ExportCSV csvData={this.GetGrowersForExcel(growers)} fileName='מגדלים' /> }
           </Container>
           : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >משתמש זה אינו מנהל מערכת</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>
         : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >הירשם כמנהל מערכת</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>}
