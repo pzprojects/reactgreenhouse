@@ -15,8 +15,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+import { Link } from "react-router-dom"
 
-class LoginModal extends Component {
+class LoginPage extends Component {
   state = {
     email: '',
     password: '',
@@ -104,6 +105,11 @@ class LoginModal extends Component {
                     onChange={this.onChange}
                 />
                 </div>
+                <div className="ForgotPasswordLink">
+                  <Link onClick={this.toggle} href='#' to="/RecoverPassword" className="ghost-btn">
+                    שכחתי סיסמה
+                  </Link>
+                </div>
                 <Button color='success' style={{ marginTop: '2vw' }} block>
                   התחבר
                 </Button>
@@ -123,4 +129,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { login, clearErrors }
-)(LoginModal);
+)(LoginPage);

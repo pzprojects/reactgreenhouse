@@ -7,7 +7,8 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container
+  Container,
+  UncontrolledTooltip
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -42,8 +43,11 @@ class AppNavbar extends Component {
     const authLinks = (
       <Fragment>
         <NavItem>
-          <span className='navbar-text mr-3'>
-            <strong>{user ? `${user.name}` : ''}</strong>
+          <span className='navbarWelcome navbar-text'>
+            <strong id="navbarWelcomeTooltip">שלום {user ? `${user.name}` : ''}</strong>
+            <UncontrolledTooltip placement="bottom" target="navbarWelcomeTooltip">
+              שלום {user ? `${user.name}` : ''}
+            </UncontrolledTooltip>
           </span>
         </NavItem>
         <NavItem>

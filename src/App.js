@@ -13,6 +13,8 @@ import DeatilsUpdatedMSG from './components/DeatilsUpdatedMSG';
 import VegManagment from './components/VegManagment';
 import SystemSettings from './components/SystemSettings';
 import LoginPage from './components/auth/LoginPage';
+import RecoverPassword from './components/RecoverPassword';
+import UpdatePassword from './components/UpdatePassword';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -46,6 +48,8 @@ class App extends Component {
               <Route path="/VegManagment" component={VegManagment} />
               <Route path="/SystemSettings" component={SystemSettings} />
               <Route path="/LoginPage" component={LoginPage} />
+              <Route path="/RecoverPassword" component={RecoverPassword} />
+              <Route path="/UpdatePassword/:userId/:token" render={({ match }) => (<UpdatePassword userId={match.params.userId} token={match.params.token} /> )} />
             </Container>
           </div>
         </Router>

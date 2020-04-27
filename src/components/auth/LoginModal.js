@@ -9,8 +9,9 @@ import {
   Label,
   Input,
   NavLink,
-  Alert
+  Alert,
 } from 'reactstrap';
+import { Link } from "react-router-dom"
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
@@ -113,6 +114,11 @@ class LoginModal extends Component {
                     className='mb-3'
                     onChange={this.onChange}
                 />
+                </div>
+                <div className="ForgotPasswordLink">
+                  <Link onClick={this.toggle} href='#' to="/RecoverPassword" className="ghost-btn">
+                    שכחתי סיסמה
+                  </Link>
                 </div>
                 <Button color='success' style={{ marginTop: '2rem' }} block>
                   התחבר

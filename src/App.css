@@ -39,6 +39,7 @@
   nav {
     height: 6vw;
     z-index: 10;
+    font-size: 0.83vw;
   }
   
   .COHeader {
@@ -49,6 +50,13 @@
     top: 0vw;
     left: 22vw;
     text-align: center;
+  }
+
+  .navbarWelcome {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
   }
   
   .COHeader a {
@@ -64,8 +72,9 @@
     position: relative;
     display: block;
     float: right;
-    margin-left: 5vw;
+    margin-left: 4vw;
     text-align: center;
+    width: 7vw;
   }
 
   .ConnectionLinks li.RegisterLink {
@@ -2404,6 +2413,148 @@
     text-align: center;
     font-size: 2.2vw;
     font-weight: bold;
+  }
+
+  /* Reset password */
+  
+  .SendResetPasswordEmailContainer {
+    width: 50%;
+    position: relative;
+    display: block;
+    margin-top: 4vw;
+    margin-right: auto;
+    margin-left: auto;
+
+  }
+
+  .SendResetPasswordEmailContainer div.SendResetPasswordEmailHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    font-size: 2.2vw;
+    font-weight: bold;
+  }
+
+  .SendResetPasswordEmailContainer div.reset-password-form-wrapper {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 2vw;
+  }
+
+  .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.form-group label {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: right;
+  }
+
+  .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.form-group input {
+    width: 100%;
+    float: right;
+    text-align: right;
+    position: relative;
+    display: block;
+    border-color: #329258;
+    text-align: right;
+  }
+
+  .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder {
+    width: 100%;
+    float: right;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-top: 2vw;
+  }
+
+  .SendResetPasswordEmailContainer div.SendResetPasswordEmailMessage {
+    width: 100%;
+    float: right;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-top: 2vw;
+    text-align: center
+  }
+
+  .ResetPasswordContainer {
+    width: 50%;
+    position: relative;
+    display: block;
+    margin-top: 4vw;
+    margin-right: auto;
+    margin-left: auto;
+
+  }
+
+  .ResetPasswordContainer div.ResetPasswordHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    font-size: 2.2vw;
+    font-weight: bold;
+  }
+
+  .ResetPasswordContainer div.reset-password-form-sent-wrapper {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: 2vw;
+  }
+
+  .ResetPasswordContainer div.reset-password-form-sent-wrapper div.form-group label {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: right;
+  }
+
+  .ResetPasswordContainer div.reset-password-form-sent-wrapper div.form-group input {
+    width: 100%;
+    float: right;
+    text-align: right;
+    position: relative;
+    display: block;
+    border-color: #329258;
+    text-align: right;
+  }
+
+  .ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder {
+    width: 100%;
+    float: right;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-top: 2vw;
+  }
+
+  .ResetPasswordContainer div.ResetPasswordMessage {
+    width: 100%;
+    float: right;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-top: 2vw;
+    text-align: center
+  }
+
+  .ForgotPasswordLink {
+    width: 100%;
+    float: right;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
   }
   
 }
