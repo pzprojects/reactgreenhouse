@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom"
 import {
   Button,
   Form,
@@ -23,6 +24,7 @@ import { getfarmerbyemail } from '../actions/farmerAction';
 import { updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan } from '../actions/updateUserAction';
 import { Redirect } from "react-router-dom";
 import { API_URL } from '../config/keys';
+import { FiEdit } from "react-icons/fi";
 
 class GrowerPersonalArea extends Component {
   state = {
@@ -565,6 +567,7 @@ class GrowerPersonalArea extends Component {
                     disabled
                   />
                   <FormFeedback>כתובת האימייל שגויה</FormFeedback>
+                  <div className="UpdateMyuserName"><Link to="/UpdateGrowerEmail" className="ghost-btn"><FiEdit /></Link></div>
                 </div>
                 <div className="personal-form-group">
                   <Label for='address'>כתובת:</Label>

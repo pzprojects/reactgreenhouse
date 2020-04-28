@@ -24,6 +24,7 @@ import { getChoosenVegetables } from '../actions/choosenVegetablesAction';
 import { addFarmer } from '../actions/farmerAction';
 import { API_URL } from '../config/keys';
 import { getSystemData } from '../actions/systemAction';
+import { Link } from "react-router-dom"
 
 
 class RegisterPage extends Component {
@@ -1195,6 +1196,7 @@ class RegisterPage extends Component {
             ) : null}
             </Form>
             { this.state.ActivateLoader ? <Loader /> : null }
+            <div className="HelpBtn"><a href="https://www.co-greenhouse.com/faq" target="_blank"><img alt="" src={require('../Resources/help.png')} size='lg' /></a></div>
         </Container>
       </div>
     );

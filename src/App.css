@@ -72,7 +72,7 @@
     position: relative;
     display: block;
     float: right;
-    margin-left: 4vw;
+    margin-left: 2vw;
     text-align: center;
     width: 7vw;
   }
@@ -114,6 +114,17 @@
   }
   
   /*Register Page*/
+
+  .HelpBtn {
+    position: fixed;
+    right: 0vw;
+    top: 25vw;
+  }
+
+  .HelpBtn a img {
+    width: 11vw;
+    height: 2.9vw;
+  }
   
   /*Personal Details*/
   
@@ -710,6 +721,12 @@
     margin-left: 1vw;
   }
 
+  .UpdateMyuserName {
+    position: absolute;
+    display: block;
+    left: 1vw;
+  }
+
   .Growersizearea div.form-group select {
     display: block;
     position: relative;
@@ -787,6 +804,7 @@
     display: block;
     float: right;
     padding-left: 0.2vw;
+    overflow-wrap: break-word;
   }
 
   .FarmerListContent div.container li div.FarmerList div.FarmerListName span {
@@ -799,6 +817,7 @@
     display: block;
     float: right;
     padding-left: 0.2vw;
+    overflow-wrap: break-word;
   }
 
   .FarmerListContent div.container li div.FarmerList div.FarmerListchoosenvegetables {
@@ -807,6 +826,7 @@
     display: block;
     float: right;
     padding-left: 0.2vw;
+    overflow-wrap: break-word;
   }
 
   .FarmerListContent div.container li div.FarmerList div.FarmerListplans {
@@ -815,6 +835,7 @@
     display: block;
     float: right;
     padding-left: 0.2vw;
+    overflow-wrap: break-word;
   }
 
   .FarmerListContent div.container li div.FarmerList div.FarmerListplans {
@@ -981,6 +1002,7 @@
     display: block;
     float: right;
     background-color: #E38788;
+    height: 11vw;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka2 {
@@ -989,6 +1011,7 @@
     display: block;
     float: right;
     background-color: #A8E5E8;
+    height: 11vw;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka3 {
@@ -997,6 +1020,7 @@
     display: block;
     float: right;
     background-color: #F3E990;
+    height: 11vw;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka4 {
@@ -1005,6 +1029,7 @@
     display: block;
     float: right;
     background-color: #98D085;
+    height: 11vw;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaName {
@@ -1013,7 +1038,9 @@
     display: block;
     float: right;
     font-weight: bold;
-    margin-top: 2vw;
+    margin-top: 1vw;
+    overflow-wrap: break-word;
+    height: 2vw;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaAmount {
@@ -1021,7 +1048,9 @@
     position: relative;
     display: block;
     float: right;
-    margin-top: 2vw;
+    margin-top: 1vw;
+    overflow-wrap: break-word;
+    height: 2vw;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotal {
@@ -1029,7 +1058,9 @@
     position: relative;
     display: block;
     float: right;
-    margin-top: 2vw;
+    margin-top: 1vw;
+    overflow-wrap: break-word;
+    height: 1vw;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotalPrice {
@@ -1037,7 +1068,9 @@
     position: relative;
     display: block;
     float: right;
-    margin-bottom: 2vw;
+    margin-bottom: 1vw;
+    overflow-wrap: break-word;
+    height: 2vw;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsContainerExample {
@@ -1126,6 +1159,7 @@
     float: right;
     padding-right: 0.5vw;
     padding-top: 0.3vw;
+    overflow-wrap: break-word;
   }
 
   .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemPrice {
@@ -1135,6 +1169,7 @@
     float: right;
     padding-right: 0.5vw;
     padding-top: 0.3vw;
+    overflow-wrap: break-word;
   }
 
   .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemAmount {
@@ -1144,6 +1179,7 @@
     float: right;
     padding-right: 0.5vw;
     padding-top: 0.3vw;
+    overflow-wrap: break-word;
   }
 
   .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemTotal {
@@ -1153,6 +1189,7 @@
     float: right;
     padding-right: 0.5vw;
     padding-top: 0.3vw;
+    overflow-wrap: break-word;
   }
 
   .GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemBullingType {
@@ -1162,6 +1199,7 @@
     float: right;
     padding-right: 0.5vw;
     padding-top: 0.3vw;
+    overflow-wrap: break-word;
   }
 
   .PlansAlert {
@@ -1568,6 +1606,7 @@
     float: right;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
+    overflow-wrap: break-word;
   }
 
   .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListPhone {
@@ -1577,6 +1616,7 @@
     float: right;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
+    overflow-wrap: break-word;
   }
 
   .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListEmail {
@@ -1586,6 +1626,7 @@
     float: right;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
+    overflow-wrap: break-word;
   }
 
   .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListOfchoosenvegetables2 {
@@ -1595,6 +1636,7 @@
     float: right;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
+    overflow-wrap: break-word;
   }
 
   .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListIsActive {
@@ -1604,6 +1646,7 @@
     float: right;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
+    overflow-wrap: break-word;
   }
 
   .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListPlanActivation {
@@ -1613,6 +1656,7 @@
     float: right;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
+    overflow-wrap: break-word;
   }
 
   .ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListplan {
@@ -1622,6 +1666,7 @@
     float: right;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
+    overflow-wrap: break-word;
   }
 
   /* Login Modal */
@@ -2555,6 +2600,17 @@
     display: block;
     margin-top: 2vw;
     margin-bottom: 2vw;
+  }
+
+  /* Read More */
+
+  .ReadMoreItem {
+    direction: rtl;
+    text-align: right;
+  }
+  
+  .ReadMoreItem span img {
+    margin-left: 2vw;
   }
   
 }

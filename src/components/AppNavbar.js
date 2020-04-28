@@ -71,33 +71,33 @@ class AppNavbar extends Component {
 
     const navitems = (
       <Fragment>
-        <NavItem className={this.GetActiveLink('/')}>
-          <NavLink href='/'>
+        <NavItem className={this.GetActiveLink('/HomePage')}>
+          <NavLink href='https://www.co-greenhouse.com/' target="_blank">
            דף הבית
           </NavLink>
         </NavItem>
-        <NavItem className={this.GetActiveLink('/AboutUs')}>
+        <NavItem className={this.GetActiveLink('/')}>
           <NavLink href='/'>
-           מי אנחנו
+           אזור אישי
           </NavLink>
         </NavItem>
-        <NavItem className={this.GetActiveLink('/OurVision')}>
-          <NavLink href='/'>
-            החזון
+        <NavItem className={this.GetActiveLink('/Shop')}>
+          <NavLink href='https://www.co-greenhouse.com/shop' target="_blank">
+          לחנות שלנו
           </NavLink>
         </NavItem>
         <NavItem className={this.GetActiveLink('/CommunityServices')}>
-          <NavLink href='/'>
-            שירותי הקהילה 
+          <NavLink href='https://www.co-greenhouse.com/communityfarmers' target="_blank">
+          לחקלאי הקהילה שלנו 
           </NavLink>
         </NavItem>
-        <NavItem className={this.GetActiveLink('/Plans')}>
-          <NavLink href='/'>
-            מסלולים
+        <NavItem className={this.GetActiveLink('/FAQ')}>
+          <NavLink href='https://www.co-greenhouse.com/faq' target="_blank">
+          שאלות ותשובות
           </NavLink>
         </NavItem>
         <NavItem className={this.GetActiveLink('/ContactUs')}>
-          <NavLink href='/'>
+          <NavLink href='https://www.co-greenhouse.com/contact' target="_blank">
             צור קשר
           </NavLink>
         </NavItem>

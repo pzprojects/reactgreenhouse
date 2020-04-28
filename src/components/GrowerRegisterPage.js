@@ -1008,6 +1008,7 @@ class GrowerRegisterPage extends Component {
             ) : null}
             </Form>
             { this.state.ActivateLoader ? <Loader /> : null }
+            <div className="HelpBtn"><a href="https://www.co-greenhouse.com/faq" target="_blank"><img alt="" src={require('../Resources/help.png')} size='lg' /></a></div>
         </Container>
       </div>
     );

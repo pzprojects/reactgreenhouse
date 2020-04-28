@@ -6,6 +6,7 @@ import { getfarmersbyarea } from '../actions/farmerAction';
 import { updatechoosenfarmer, getchoosenfarmer } from '../actions/choosenFarmerAction';
 import { addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag, SetIsValidatedVegBag } from '../actions/growerVegChoiceAction';
 import PropTypes from 'prop-types';
+import ReadMoreModal from './ReadMoreModal';
 
 class ChooseFarmer extends Component {
   state = {
@@ -682,7 +683,7 @@ class ChooseFarmer extends Component {
             </ListGroupItem>
         </ListGroup>
         <ListGroup>
-            {farmers.map(({ _id, name, familyname, phone, email, sizearea, hamamasize, numberofactivefarms, aboutme, imageurl, choosenvegetables, plans}) => (
+            {farmers.map(({ _id, name, familyname, phone, email, address, sizearea, hamamasize, numberofactivefarms, aboutme, imageurl, choosenvegetables, plans}) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
                   <div className='FarmerList'>
@@ -727,7 +728,7 @@ class ChooseFarmer extends Component {
                      })}
                     </div>
                     <div  className='FarmerListReadMore'>
-                      <span>קרא עוד</span>
+                      <span><ReadMoreModal FarmerFullNmae={name + " " + familyname} FarmerPhone={phone} FarmerEmail={email} FarmerLocation={address} /></span>
                     </div>
                   </div>
                 </ListGroupItem>
