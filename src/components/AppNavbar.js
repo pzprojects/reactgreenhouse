@@ -116,6 +116,11 @@ class AppNavbar extends Component {
            ניהול ירקות
           </NavLink>
         </NavItem>
+        <NavItem className={this.GetActiveLink('/FieldCropManagment')}>
+          <NavLink href='/FieldCropManagment'>
+           ניהול גידולי שדה
+          </NavLink>
+        </NavItem>
         <NavItem className={this.GetActiveLink('/SystemSettings')}>
           <NavLink href='/SystemSettings'>
            ניהול נתוני מערכת

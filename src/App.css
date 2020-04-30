@@ -1884,6 +1884,14 @@
     display: block;
   }
 
+  div.SystemDetails .form-group {
+    width: 100%;
+    float: right;
+    text-align: right;
+    position: relative;
+    display: block;
+  }
+
   .SystemDetailsHeader {
     width: 100%;
     float: right;

@@ -19,9 +19,9 @@ export const getSystemData = () => dispatch => {
     );
 };
 
-export const updateSystemData = (id,vegetable) => (dispatch, getState) => {
+export const updateSystemData = (id,system) => (dispatch, getState) => {
   axios
-    .post(API_URL + `/api/systemconfig/${id}`, vegetable, tokenConfig(getState))
+    .post(API_URL + `/api/systemconfig/${id}`, system, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: UPDATE_SYSTEMDATA,

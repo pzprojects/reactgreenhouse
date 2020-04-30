@@ -23,7 +23,16 @@ class SystemSettings extends Component {
     redirect: null,
     UserActive: false,
     hamamadefaultsize: '',
-    ActivateSuccessMessage: false
+    ActivateSuccessMessage: false,
+    plan1name: '',
+    plan1cost: '',
+    plan2name: '',
+    plan2cost: '',
+    plan3name: '',
+    plan3cost: '',
+    fieldcropplanname: '',
+    fieldcropplancost: '',
+    FirstTimeIn: true
   };
 
   static propTypes = {
@@ -41,7 +50,7 @@ class SystemSettings extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { system, error, isAuthenticated } = this.props;
+    const { system, SystemData, error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {
@@ -52,10 +61,28 @@ class SystemSettings extends Component {
     }
 
     if (system !== prevProps.system) {
-        this.setState({
-            ActivateLoader: false
-        });
+      this.setState({
+          ActivateLoader: false
+      });
     }
+
+    try{
+      if (SystemData !== prevProps.SystemData && this.state.FirstTimeIn) {
+        this.setState({
+            hamamadefaultsize: SystemData.hamamadefaultsize,
+            plan1name: SystemData.plan1name,
+            plan1cost: SystemData.plan1cost,
+            plan2name: SystemData.plan2name,
+            plan2cost: SystemData.plan2cost,
+            plan3name: SystemData.plan3name,
+            plan3cost: SystemData.plan3cost,
+            fieldcropplanname: SystemData.fieldcropplanname,
+            fieldcropplancost: SystemData.fieldcropplancost,
+            FirstTimeIn: false
+        });
+      }
+    }
+    catch{}
   }
 
   onChange = e => {
@@ -65,11 +92,19 @@ class SystemSettings extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const { hamamadefaultsize } = this.state;
+    const { hamamadefaultsize, plan1name, plan1cost, plan2name, plan2cost, plan3name, plan3cost, fieldcropplanname, fieldcropplancost } = this.state;
     const { SystemData } = this.props.system;
 
     const newItem = {
-        hamamadefaultsize
+        hamamadefaultsize,
+        plan1name,
+        plan1cost,
+        plan2name,
+        plan2cost,
+        plan3name,
+        plan3cost,
+        fieldcropplanname,
+        fieldcropplancost
     };
 
     this.props.updateSystemData(SystemData._id, newItem);
@@ -91,11 +126,6 @@ class SystemSettings extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    try{
-        const { SystemData } = this.props.system;
-        var hamamadefaultsizeNum = SystemData.hamamadefaultsize;
-    }
-    catch{}
 
     return (
       <div>
@@ -115,7 +145,103 @@ class SystemSettings extends Component {
                     type='text'
                     name='hamamadefaultsize'
                     id='hamamadefaultsize'
-                    placeholder={hamamadefaultsizeNum}
+                    value={this.state.hamamadefaultsize}
+                    className='mb-3'
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <Label for='plan1name'>שם מסלול גידולי ירקות 1</Label>
+                  <Input
+                    type='text'
+                    name='plan1name'
+                    id='plan1name'
+                    value={this.state.plan1name}
+                    className='mb-3'
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <Label for='plan1cost'>מחיר מסלול גידולי ירקות 1</Label>
+                  <Input
+                    type='text'
+                    name='plan1cost'
+                    id='plan1cost'
+                    value={this.state.plan1cost}
+                    className='mb-3'
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <Label for='plan2name'>שם מסלול גידולי ירקות 2</Label>
+                  <Input
+                    type='text'
+                    name='plan2name'
+                    id='plan2name'
+                    value={this.state.plan2name}
+                    className='mb-3'
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <Label for='plan2cost'>מחיר מסלול גידולי ירקות 2</Label>
+                  <Input
+                    type='text'
+                    name='plan2cost'
+                    id='plan2cost'
+                    value={this.state.plan2cost}
+                    className='mb-3'
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <Label for='plan3name'>שם מסלול גידולי ירקות 3</Label>
+                  <Input
+                    type='text'
+                    name='plan3name'
+                    id='plan3name'
+                    value={this.state.plan3name}
+                    className='mb-3'
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <Label for='plan3cost'>מחיר מסלול גידולי ירקות 3</Label>
+                  <Input
+                    type='text'
+                    name='plan3cost'
+                    id='plan3cost'
+                    value={this.state.plan3cost}
+                    className='mb-3'
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <Label for='fieldcropplanname'>שם מסלול גידולי שדה</Label>
+                  <Input
+                    type='text'
+                    name='fieldcropplanname'
+                    id='fieldcropplanname'
+                    value={this.state.fieldcropplanname}
+                    className='mb-3'
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <Label for='fieldcropplancost'>מחיר מסלול גידולי שדה</Label>
+                  <Input
+                    type='text'
+                    name='fieldcropplancost'
+                    id='fieldcropplancost'
+                    value={this.state.fieldcropplancost}
                     className='mb-3'
                     onChange={this.onChange}
                     required
@@ -147,7 +273,8 @@ const mapStateToProps = state => ({
   auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
-  system: state.system
+  system: state.system,
+  SystemData: state.system.SystemData
 });
 
 export default connect(

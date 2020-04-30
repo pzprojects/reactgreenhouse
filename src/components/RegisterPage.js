@@ -49,13 +49,13 @@ class RegisterPage extends Component {
     ActivateLoader: false,
     VegtButtonOn: true,
     AddBackgroundClassToVeg: 'vegetables',
-    cost1 : '200',
+    cost1 : '',
     plan1 : false,
     Checkplan1: '',
-    cost2 : '300',
+    cost2 : '',
     plan2 : false,
     Checkplan2: '',
-    cost3 : '400',
+    cost3 : '',
     plan3 : false,
     Checkplan3: '',
     PasswordValidation: true,
@@ -83,7 +83,8 @@ class RegisterPage extends Component {
     FarmerPlanValidation: false,
     FarmerPlanCostValidation: false,
     address: '',
-    SuccessFileUpload: false
+    SuccessFileUpload: false,
+    fieldcropplancost: ''
   };
 
   static propTypes = {
@@ -105,7 +106,7 @@ class RegisterPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
+    const { SystemData, error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       this.setState({
         ActivateLoader: false
@@ -117,6 +118,19 @@ class RegisterPage extends Component {
         this.setState({ msg: null });
       }
     }
+
+    // retrive system data
+    try{
+      if (SystemData !== prevProps.SystemData) {
+        this.setState({
+            cost1: SystemData.plan1cost,
+            cost2: SystemData.plan2cost,
+            cost3: SystemData.plan3cost,
+            fieldcropplancost: SystemData.fieldcropplancost
+        });
+      }
+    }
+    catch{}
 
     // If authenticated, close modal
     if (this.state.modal) {
@@ -1208,7 +1222,8 @@ const mapStateToProps = state => ({
   error: state.error,
   choosenvegetable: state.choosenvegetable,
   farmer: state.farmer,
-  system: state.system
+  system: state.system,
+  SystemData: state.system.SystemData
 });
 
 export default connect(

@@ -13,6 +13,7 @@ import updateUserReducer from './updateUserReducer';
 import updateFarmerActiveFarmsReducers from './updateFarmerActiveFarmsReducers';
 import systemReducer from './systemReducer';
 import resetUserNameReducer from './resetUserNameReducer';
+import fieldcropReducer from './fieldcropReducer';
 
 export default combineReducers({
   item: itemReducer,
@@ -27,5 +28,6 @@ export default combineReducers({
   updateduser: updateUserReducer,
   FarmerActiveFarms: updateFarmerActiveFarmsReducers,
   system: systemReducer,
-  resetusername: resetUserNameReducer
+  resetusername: resetUserNameReducer,
+  fieldcrop: fieldcropReducer
 });
