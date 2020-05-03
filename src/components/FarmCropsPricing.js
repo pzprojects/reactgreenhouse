@@ -2,47 +2,47 @@ import React, { Component } from 'react';
 import { Input, Container, ListGroup, ListGroupItem } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { getChoosenVegetables, addChoosenVegetable, deleteChoosenVegetable } from '../actions/choosenVegetablesAction';
+import { getChoosenfieldCrops, addChoosenfieldCrop, deleteChoosenfieldCrop } from '../actions/choosenFieldCropsAction';
 import PropTypes from 'prop-types';
 
-class VegetablesPricing extends Component {
+class FarmCropsPricing extends Component {
   state = {
   };
 
   static propTypes = {
-    getChoosenVegetables: PropTypes.func.isRequired,
-    addChoosenVegetable: PropTypes.func.isRequired,
-    deleteChoosenVegetable: PropTypes.func.isRequired,
-    choosenvegetable: PropTypes.object.isRequired
+    getChoosenfieldCrops: PropTypes.func.isRequired,
+    addChoosenfieldCrop: PropTypes.func.isRequired,
+    deleteChoosenfieldCrop: PropTypes.func.isRequired,
+    choosenfieldcrop: PropTypes.object.isRequired
   };
 
   componentDidMount() {
-    this.props.getChoosenVegetables();
+    this.props.getChoosenfieldCrops();
   }
 
   onVegtClick = (id, name, price, averagecrop, amount, numberofveginrow, moreinfolink) => {
-    this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount, numberofveginrow: numberofveginrow, moreinfolink: moreinfolink});
+    this.props.addChoosenfieldCrop({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount, numberofveginrow: numberofveginrow, moreinfolink: moreinfolink});
   
     };
   
   RemoveVegtClick = name => {
-    this.props.deleteChoosenVegetable(name);
+    this.props.deleteChoosenfieldCrop(name);
   };
 
   UpdateChoosenVegetable = (id, name, price, averagecrop, amount, numberofveginrow, moreinfolink) => {
-      this.props.deleteChoosenVegetable(name);
-      this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount, numberofveginrow, moreinfolink: moreinfolink});
+      this.props.deleteChoosenfieldCrop(name);
+      this.props.addChoosenfieldCrop({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount, numberofveginrow, moreinfolink: moreinfolink});
   };
 
   render() {
-    const { ChoosenVegetables } = this.props.choosenvegetable;
+    const { ChoosenFieldCrops } = this.props.choosenfieldcrop;
 
     return (
       <Container>
-        <div className="ChoosenVegetablesPricingHeader">מחירי ירקות</div>
+        <div className="ChoosenVegetablesPricingHeader">מחירי גידולי שדה</div>
         <ListGroup>
           <TransitionGroup className='ChoosenVegetablesList'>
-            {ChoosenVegetables.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink}) => (
+            {ChoosenFieldCrops.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink}) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
                   <span><img
@@ -73,10 +73,10 @@ class VegetablesPricing extends Component {
 }
 
 const mapStateToProps = state => ({
-    choosenvegetable: state.choosenvegetable
+    choosenfieldcrop: state.choosenfieldcrop
 });
 
 export default connect(
   mapStateToProps,
-  { getChoosenVegetables, addChoosenVegetable, deleteChoosenVegetable }
-)(VegetablesPricing);
+  { getChoosenfieldCrops, addChoosenfieldCrop, deleteChoosenfieldCrop }
+)(FarmCropsPricing);

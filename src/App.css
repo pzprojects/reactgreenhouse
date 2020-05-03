@@ -263,6 +263,10 @@
     margin-top: 4vw;
     margin-bottom: 4vw;
   }
+
+  .vegetables button {
+    margin-left: 1vw;
+  }
   
   .vegetablesOpen {
     width: 100%;
@@ -317,6 +321,18 @@
   }
   
   /* List Of Veg Cost */
+
+  .ChoosenVegetablesPricingHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: center;
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+  }
   
   .ListOfVegCost {
     width: 100%;
@@ -376,6 +392,80 @@
   
   .ChoosenVegetablesList span.ChoosenVegetabletext {
     margin-left: 0.5vw;
+  }
+
+  /* Field Crop plan */
+
+  .AddFieldCropsPlan{
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 2vw;
+    margin-top: 2vw;
+  }
+
+  .AddFieldCropsPlan div.AddFieldCropsPlanCheckBox {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 1vw;
+    text-align: center;
+  }
+
+  .AddFieldCropsPlan div.AddFieldCropsPlanLogic {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 1vw;
+    text-align: center;
+  }
+
+  .AddFieldCropsPlan div.AddFieldCropsPlanLogic input {
+    border-color: #329258;
+  }
+
+  .AddFieldCropsPlan div.AddFieldCropsPlanLogic label {
+    width: 5%;
+  }
+
+  .GrowerChoosenFieldCrops{
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 2vw;
+    margin-top: 2vw;
+  }
+
+  .GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBox {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    margin-bottom: 1vw;
+    text-align: right;
+    padding-right: 40px;
+  }
+
+  .GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBoxLogic {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: right;
+  }
+
+  .GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBoxLogic div.PlanPriceHeader {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+    text-align: right;
+    padding-right: 40px;
+    font-weight: bold;
   }
   
   /* Plan cards */
@@ -948,6 +1038,7 @@
     float: left;
     margin-bottom: 2vw;
     text-align: center;
+    font-size: 0.83vw;
   }
 
   div.GrowerMainPickingTitle {
@@ -2653,14 +2744,6 @@
   
   nav {
     z-index: 10;
-  }
-  
-  .COHeader {
-    
-  }
-  
-  .COHeader a {
-    
   }
   
   /*Register Page*/

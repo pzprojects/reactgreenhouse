@@ -5,7 +5,7 @@ import {
   ModalHeader,
   ModalBody,
   ListGroup,
-  ListGroupItem
+  ListGroupItem,
 } from 'reactstrap';
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux';
@@ -32,7 +32,7 @@ class ReadMoreModal extends Component {
   render() {
     return (
       <div>
-        <Link onClick={this.toggle} href='#'>
+        <Link to="#" onClick={this.toggle} href='#'>
           קרא עוד
         </Link>
 
@@ -45,7 +45,13 @@ class ReadMoreModal extends Component {
                 <ListGroupItem className="ReadMoreItem"><span><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.props.FarmerPhone}</span></ListGroupItem>
                 <ListGroupItem className="ReadMoreItem"><span><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.props.FarmerEmail}>{this.props.FarmerEmail}</a></span></ListGroupItem>
                 <ListGroupItem className="ReadMoreItem"><span><img alt="" src={require('../Resources/location.png')} size='sm' />{this.props.FarmerLocation}</span></ListGroupItem>
-              </ListGroup>
+                {this.props.FarmerFieldCropPlan.avaliabile ?
+                <ListGroupItem className="ReadMoreItem"><span><img alt="" src={require('../Resources/FieldCropMoney.png')} size='sm' />עלות תכנית גידולי שדה: {this.props.FarmerFieldCropPlan.cost} ש"ח</span></ListGroupItem>
+                : null}
+                {this.props.FarmerFieldCropPlan.avaliabile ?
+                <ListGroupItem className="ReadMoreItem"><span><img alt="" src={require('../Resources/FieldCrop.png')} size='sm' />גידולי שדה אפשריים: {this.props.FarmerFieldCrops}</span></ListGroupItem>
+                : null}
+                </ListGroup>
             </div>
           </ModalBody>
         </Modal>

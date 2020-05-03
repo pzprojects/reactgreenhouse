@@ -20,7 +20,10 @@ import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
 import Vegetables from '../components/Vegetables';
 import VegetablesPricing from '../components/VegetablesPricing';
+import FieldCrops from '../components/FieldCrops';
+import FarmCropsPricing from '../components/FarmCropsPricing';
 import { getChoosenVegetables,addChoosenVegetable } from '../actions/choosenVegetablesAction';
+import { getChoosenfieldCrops, addChoosenfieldCrop } from '../actions/choosenFieldCropsAction';
 import { updatefarmerprofile, updatefarmerbyemail } from '../actions/updateUserAction';
 import { addFarmer } from '../actions/farmerAction';
 import ListOfGrowers from '../components/ListOfGrowers';
@@ -47,6 +50,7 @@ class FarmerPersonalArea extends Component {
     imagename: '',
     usertype: 'חקלאי',
     ActivateLoader: false,
+    FieldCropsButtonOn: true,
     VegtButtonOn: true,
     AddBackgroundClassToVeg: 'vegetables',
     cost1 : '200',
@@ -77,7 +81,9 @@ class FarmerPersonalArea extends Component {
     CurrentActiveFarms: '',
     redirect: null,
     SystemDefaulNumberOfHamamot: '16',
-    SuccessFileUpload: false
+    SuccessFileUpload: false,
+    CropFieldPlanActive: false,
+    CropFieldPlanCost: ''
   };
 
   static propTypes = {
@@ -89,6 +95,9 @@ class FarmerPersonalArea extends Component {
     getChoosenVegetables: PropTypes.func.isRequired,
     addChoosenVegetable: PropTypes.func.isRequired,
     choosenvegetable: PropTypes.object.isRequired,
+    getChoosenfieldCrops: PropTypes.func.isRequired,
+    addChoosenfieldCrop: PropTypes.func.isRequired,
+    choosenfieldcrop: PropTypes.object.isRequired,
     addFarmer: PropTypes.func.isRequired,
     farmer: PropTypes.object.isRequired,
     updatefarmerprofile : PropTypes.func.isRequired,
@@ -100,6 +109,7 @@ class FarmerPersonalArea extends Component {
 
   componentDidMount() {
     this.props.getChoosenVegetables();
+    this.props.getChoosenfieldCrops();
     this.props.getSystemData();
 
     const { user } = this.props.auth;
@@ -116,11 +126,16 @@ class FarmerPersonalArea extends Component {
         aboutme: user.aboutme,
         TotalNumberOfHamamot: (parseFloat(user.hamamasize)/16).toString(),
         DefaultNumberOfHamamot: (parseFloat(user.hamamasize)/16).toString(),
-        CurrentActiveFarms: user.numberofactivefarms
+        CurrentActiveFarms: user.numberofactivefarms,
+        CropFieldPlanActive: user.fieldcropplan.avaliabile,
+        CropFieldPlanCost: user.fieldcropplan.cost
     })
 
     for(var i=0; i < user.choosenvegetables.length; i++){
       this.props.addChoosenVegetable(user.choosenvegetables[i]);
+    }
+    for(var i=0; i < user.choosenfieldcrops.length; i++){
+      this.props.addChoosenfieldCrop(user.choosenfieldcrops[i]);
     }
   }
 
@@ -181,6 +196,7 @@ class FarmerPersonalArea extends Component {
     var ScrollToLocation = "top";
     let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(this.state.SystemDefaulNumberOfHamamot)).toString();
     const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
+    const { ChoosenFieldCrops } = this.props.choosenfieldcrop;
     let FoundEmpty = false;
 
     // Empty fields
@@ -227,6 +243,11 @@ class FarmerPersonalArea extends Component {
     // Validate veg pricing
     for(var i = 0; i < choosenvegetables.length; i++){
       if(choosenvegetables[i].price === ''){
+        FoundEmpty = true;
+      }
+    }
+    for(var i = 0; i < ChoosenFieldCrops.length; i++){
+      if(ChoosenFieldCrops[i].price === ''){
         FoundEmpty = true;
       }
     }
@@ -344,6 +365,7 @@ class FarmerPersonalArea extends Component {
     if(this.ValidateForm()){
 
       const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
+      const choosenfieldcrops = this.props.choosenfieldcrop.ChoosenFieldCrops;
       let HelkotToAdd = parseFloat(this.state.TotalNumberOfHamamot) - parseFloat(this.state.DefaultNumberOfHamamot);
       let numberofactivefarms = (parseFloat(this.state.CurrentActiveFarms) + HelkotToAdd).toString();
     
@@ -373,7 +395,8 @@ class FarmerPersonalArea extends Component {
         numberofactivefarms,
         aboutme,
         imageurl,
-        choosenvegetables
+        choosenvegetables,
+        choosenfieldcrops
       };
 
       const newFarmer = {
@@ -384,7 +407,8 @@ class FarmerPersonalArea extends Component {
         numberofactivefarms,
         aboutme,
         imageurl,
-        choosenvegetables
+        choosenvegetables,
+        choosenfieldcrops
       };
 
       // Attempt to save data
@@ -478,7 +502,25 @@ class FarmerPersonalArea extends Component {
 
   }
 
+  OpenListOfFieldsCrops = e => {
+    e.preventDefault();
+    
+    let ChoosenClass = this.state.AddBackgroundClassToVeg;
+
+    if(ChoosenClass === 'vegetablesOpen'){
+      ChoosenClass = 'vegetables';
+    }
+    else ChoosenClass = 'vegetablesOpen';
+
+    this.setState({
+      FieldCropsButtonOn: !this.state.FieldCropsButtonOn,
+      AddBackgroundClassToVeg: ChoosenClass
+    });
+  }
+
   render() {
+    let ShowVegPricing = false;
+    let ShowFieldCropPricing = false;
     let {imagePreviewUrl} = this.state;
     let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
     if (imagePreviewUrl) {
@@ -487,6 +529,14 @@ class FarmerPersonalArea extends Component {
     const { user } = this.props.auth;
     try{
       var PersonalUserPlans = user.plans;
+      const { ChoosenVegetables } = this.props.choosenvegetable;
+      if(ChoosenVegetables.length !== 0){
+        ShowVegPricing = true;
+      }
+      const { ChoosenFieldCrops } = this.props.choosenfieldcrop;
+      if(ChoosenFieldCrops.length !== 0){
+        ShowFieldCropPricing = true;
+      }
     }catch(e){
       PersonalUserPlans = [];
     }
@@ -630,13 +680,17 @@ class FarmerPersonalArea extends Component {
               {this.state.email !== '' ? <div className='MyGrowersList'><ListOfGrowers FarmerEmail={this.state.email} /></div> : null}
               <div className={this.state.AddBackgroundClassToVeg}>
                 <h3>יש לי את התנאים והניסיון לגדל:</h3>
-                { this.state.VegtButtonOn ? 
+                { this.state.VegtButtonOn && this.state.FieldCropsButtonOn ? 
                 <Button color="success" onClick={this.OpenListOfvegetables}>רשימת ירקות לגידול</Button> : null }
                 { this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} /> }
+                { this.state.FieldCropsButtonOn && this.state.VegtButtonOn ? 
+                <Button color="success" onClick={this.OpenListOfFieldsCrops}>רשימת גידולי שדה</Button> : null }
+                { this.state.FieldCropsButtonOn ? null : <FieldCrops OpenListOffieldcrops={this.OpenListOfFieldsCrops} /> }
               </div>
               <div className="ListOfVegCost">
                 <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
-                <VegetablesPricing />
+                { ShowVegPricing ? <VegetablesPricing /> : null}
+                { ShowFieldCropPricing ? <FarmCropsPricing /> : null}
               </div>
               {this.state.VegPricingValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לוודא שלכל ירק מעודכן מחיר</Alert></div> : null}
               <div className="farmer-personal-form-group">
@@ -658,6 +712,23 @@ class FarmerPersonalArea extends Component {
                   </div>
                 </div>
               </div>
+              {this.state.CropFieldPlanActive ? 
+              <div className="farmer-personal-form-group">
+                <div className="PersonalFarmerPlansContainer">
+                  <div className="PersonalFarmerPlansHeader">מחיר מסלול גידולי שדה</div>
+                  <div className="PersonalFarmerPlans">
+                    <div className='PersonalChoosenPlanItem'>
+                      <div className='PersonalChoosenPlanItemName'>
+                        <span className='PersonalChoosenPlanItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className='PersonalChoosenPlanItemTitle'>גידולי שדה</span>
+                        <span className='PersonalChoosenPlanItemCost'> ₪ {this.state.CropFieldPlanCost}</span>
+                        <span className='PersonalChoosenPlanItemText1'>לחודש</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            : null}
             </FormGroup>
             ) : null}
 
@@ -814,10 +885,12 @@ const mapStateToProps = state => ({
   choosenvegetable: state.choosenvegetable,
   farmer: state.farmer,
   updateduser: state.updateduser,
-  system: state.system
+  system: state.system,
+  choosenfieldcrop: state.choosenfieldcrop,
+  ChoosenFieldCrops: state.choosenfieldcrop.ChoosenFieldCrops
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, addChoosenVegetable, addFarmer, updatefarmerprofile, updatefarmerbyemail, getSystemData}
+  { register, clearErrors, getChoosenVegetables, addChoosenVegetable, addFarmer, updatefarmerprofile, updatefarmerbyemail, getSystemData, getChoosenfieldCrops, addChoosenfieldCrop}
 )(FarmerPersonalArea);

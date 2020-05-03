@@ -14,6 +14,8 @@ import updateFarmerActiveFarmsReducers from './updateFarmerActiveFarmsReducers';
 import systemReducer from './systemReducer';
 import resetUserNameReducer from './resetUserNameReducer';
 import fieldcropReducer from './fieldcropReducer';
+import choosenFieldCropsReducer from './choosenFieldCropsReducer';
+import growerFieldCropsChoiceReducer from './growerFieldCropsChoiceReducer';
 
 export default combineReducers({
   item: itemReducer,
@@ -24,10 +26,12 @@ export default combineReducers({
   farmer: farmerReducer,
   choosenfarmer: choosenFarmerReducer,
   growervegbuyingbag: growerVegChoiceReducer,
+  growerfieldcropsbuyingbag: growerFieldCropsChoiceReducer,
   grower: growerReducer,
   updateduser: updateUserReducer,
   FarmerActiveFarms: updateFarmerActiveFarmsReducers,
   system: systemReducer,
   resetusername: resetUserNameReducer,
-  fieldcrop: fieldcropReducer
+  fieldcrop: fieldcropReducer,
+  choosenfieldcrop: choosenFieldCropsReducer
 });

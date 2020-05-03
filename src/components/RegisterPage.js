@@ -19,8 +19,11 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
 import Vegetables from '../components/Vegetables';
+import FieldCrops from '../components/FieldCrops';
 import VegetablesPricing from '../components/VegetablesPricing';
+import FarmCropsPricing from '../components/FarmCropsPricing';
 import { getChoosenVegetables } from '../actions/choosenVegetablesAction';
+import { getChoosenfieldCrops } from '../actions/choosenFieldCropsAction';
 import { addFarmer } from '../actions/farmerAction';
 import { API_URL } from '../config/keys';
 import { getSystemData } from '../actions/systemAction';
@@ -48,6 +51,7 @@ class RegisterPage extends Component {
     usertype: 'חקלאי',
     ActivateLoader: false,
     VegtButtonOn: true,
+    FieldCropsButtonOn: true,
     AddBackgroundClassToVeg: 'vegetables',
     cost1 : '',
     plan1 : false,
@@ -84,7 +88,10 @@ class RegisterPage extends Component {
     FarmerPlanCostValidation: false,
     address: '',
     SuccessFileUpload: false,
-    fieldcropplancost: ''
+    fieldcropplancost: '',
+    CheckFieldCropsPlan: '',
+    FieldCropStatus: false,
+    fieldcropplancostValidation: false
   };
 
   static propTypes = {
@@ -94,6 +101,8 @@ class RegisterPage extends Component {
     clearErrors: PropTypes.func.isRequired,
     getChoosenVegetables: PropTypes.func.isRequired,
     choosenvegetable: PropTypes.object.isRequired,
+    getChoosenfieldCrops: PropTypes.func.isRequired,
+    choosenfieldcrop: PropTypes.object.isRequired,
     addFarmer: PropTypes.func.isRequired,
     farmer: PropTypes.object.isRequired,
     system: PropTypes.object.isRequired,
@@ -102,6 +111,7 @@ class RegisterPage extends Component {
 
   componentDidMount() {
     this.props.getChoosenVegetables();
+    this.props.getChoosenfieldCrops();
     this.props.getSystemData();
   }
 
@@ -167,6 +177,7 @@ class RegisterPage extends Component {
   ValidateForm = () => {
 
     const { SystemData } = this.props.system;
+    const { ChoosenFieldCrops } = this.props.choosenfieldcrop;
     var Validated = true;
     var ScrollToLocation = "top";
     var lowerCaseLetters = /[a-z]/g;
@@ -257,6 +268,11 @@ class RegisterPage extends Component {
         FoundEmpty = true;
       }
     }
+    for(var i = 0; i < ChoosenFieldCrops.length; i++){
+      if(ChoosenFieldCrops[i].price === ''){
+        FoundEmpty = true;
+      }
+    }
     if(FoundEmpty){
       Validated = false;
       ScrollToLocation = "bottom";
@@ -313,6 +329,14 @@ class RegisterPage extends Component {
     else{
       this.setState({
         FarmerPlanCostValidation : false
+      })
+    }
+
+    if(this.state.FieldCropStatus && this.state.fieldcropplancost === ''){
+      Validated = false;
+      ScrollToLocation = "bottom";
+      this.setState({
+        fieldcropplancostValidation : true
       })
     }
 
@@ -410,6 +434,12 @@ class RegisterPage extends Component {
           FarmerPlanValidation: false
         });
         break;
+      case "CheckFieldCropsPlan":
+        this.setState({
+          FieldCropStatus: e.target.checked,
+          fieldcropplancostValidation: false
+        });
+        break;
       default:
     }
     
@@ -494,12 +524,14 @@ class RegisterPage extends Component {
 
       const { SystemData } = this.props.system;
       const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
+      const choosenfieldcrops = this.props.choosenfieldcrop.ChoosenFieldCrops;
       let workingwith = [];
       let plans = [];
       let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString();
       if(this.state.plan1) plans.push({name: "מגדל עצמאי", cost: this.state.cost1});
       if(this.state.plan2) plans.push({name: "ביניים", cost: this.state.cost2});
       if(this.state.plan3) plans.push({name: "ליווי שוטף", cost: this.state.cost3});
+      const fieldcropplan = { avaliabile: this.state.FieldCropStatus, cost: this.state.fieldcropplancost }
     
       this.setState({
         ActivateLoader: !this.state.ActivateLoader,
@@ -532,10 +564,12 @@ class RegisterPage extends Component {
         aboutme,
         imageurl,
         choosenvegetables,
+        choosenfieldcrops,
         plans,
         usertype,
         workingwith,
-        address
+        address,
+        fieldcropplan
       };
 
       const newFarmer = {
@@ -549,8 +583,10 @@ class RegisterPage extends Component {
         aboutme,
         imageurl,
         choosenvegetables,
+        choosenfieldcrops,
         plans,
-        address
+        address,
+        fieldcropplan
       };
 
       // Attempt to register
@@ -644,7 +680,25 @@ class RegisterPage extends Component {
 
   }
 
+  OpenListOfFieldsCrops = e => {
+    e.preventDefault();
+    
+    let ChoosenClass = this.state.AddBackgroundClassToVeg;
+
+    if(ChoosenClass === 'vegetablesOpen'){
+      ChoosenClass = 'vegetables';
+    }
+    else ChoosenClass = 'vegetablesOpen';
+
+    this.setState({
+      FieldCropsButtonOn: !this.state.FieldCropsButtonOn,
+      AddBackgroundClassToVeg: ChoosenClass
+    });
+  }
+
   render() {
+    let ShowVegPricing = false;
+    let ShowFieldCropPricing = false;
     let {imagePreviewUrl} = this.state;
     let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
     if (imagePreviewUrl) {
@@ -653,6 +707,14 @@ class RegisterPage extends Component {
     try{
       const { SystemData } = this.props.system;
       var HamamadefaultsizeContainer = SystemData.hamamadefaultsize;
+      const { ChoosenVegetables } = this.props.choosenvegetable;
+      if(ChoosenVegetables.length !== 0){
+        ShowVegPricing = true;
+      }
+      const { ChoosenFieldCrops } = this.props.choosenfieldcrop;
+      if(ChoosenFieldCrops.length !== 0){
+        ShowFieldCropPricing = true;
+      }
     }
     catch{}
     
@@ -845,15 +907,50 @@ class RegisterPage extends Component {
               </div>
               <div className={this.state.AddBackgroundClassToVeg}>
                 <h3>יש לי את התנאים והניסיון לגדל:</h3>
-                { this.state.VegtButtonOn ? 
+                { this.state.VegtButtonOn && this.state.FieldCropsButtonOn ? 
                 <Button color="success" onClick={this.OpenListOfvegetables}>רשימת ירקות לגידול</Button> : null }
                 { this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} /> }
+                { this.state.FieldCropsButtonOn && this.state.VegtButtonOn ? 
+                <Button color="success" onClick={this.OpenListOfFieldsCrops}>רשימת גידולי שדה</Button> : null }
+                { this.state.FieldCropsButtonOn ? null : <FieldCrops OpenListOffieldcrops={this.OpenListOfFieldsCrops} /> }
               </div>
               <div className="ListOfVegCost">
                 <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
-                <VegetablesPricing />
-              </div>
+                { ShowVegPricing ? <VegetablesPricing /> : null}
+                { ShowFieldCropPricing ? <FarmCropsPricing /> : null}
+              </div> 
               {this.state.VegPricingValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לוודא שלכל ירק מעודכן מחיר</Alert></div> : null}
+              <div  className='AddFieldCropsPlan'>
+                <div  className='AddFieldCropsPlanCheckBox'>
+                  <span>אני מעוניין לאפשר רכישת גידולי שדה</span>
+                  <Label check for='CheckFieldCropsPlan'>
+                  <CustomInput 
+                    type="checkbox"
+                    name='CheckFieldCropsPlan'
+                    id='CheckFieldCropsPlan'
+                    className='mb-3'
+                    onChange={this.onChange}
+                    defaultChecked={this.state.CheckFieldCropsPlan}
+                    />
+                  </Label> 
+                </div>
+                {this.state.FieldCropStatus ? 
+                <div  className='AddFieldCropsPlanLogic'>
+                  <span>עלות מסלול גידולי שדה תהיה </span>
+                  <Label check for='fieldcropplancost'>
+                  <Input 
+                      type="text"
+                      name='fieldcropplancost'
+                      id='fieldcropplancost'
+                      value={this.state.fieldcropplancost}
+                      className='mb-3'
+                      onChange={this.onChange} />
+                  </Label> 
+                  <span> ש"ח</span>
+                </div>
+                : null}
+              </div>
+              {this.state.fieldcropplancostValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לעדכן מחיר לתכנית גידולי שדה</Alert></div> : null}
               <div className="Plans">
                 <div className="PlanCard">
                   <div className="PlanCardHeader">
@@ -1038,7 +1135,7 @@ class RegisterPage extends Component {
                     invalid= {!this.state.RegulationsValidation} />
                   </Label> 
                 </div>
-                  <div  className='RegulationsLink'>
+                <div  className='RegulationsLink'>
                     <span>קראתי את </span>
                     <a href="/" target="_blank" >התקנון</a>
                     <span> ואני מסכים לכל תנאיו</span>
@@ -1221,6 +1318,9 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
   choosenvegetable: state.choosenvegetable,
+  choosenvegetables: state.choosenvegetable.ChoosenVegetables,
+  choosenfieldcrop: state.choosenfieldcrop,
+  ChoosenFieldCrops: state.choosenfieldcrop.ChoosenFieldCrops,
   farmer: state.farmer,
   system: state.system,
   SystemData: state.system.SystemData
@@ -1228,5 +1328,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, addFarmer, getSystemData }
+  { register, clearErrors, getChoosenVegetables, getChoosenfieldCrops, addFarmer, getSystemData }
 )(RegisterPage);
