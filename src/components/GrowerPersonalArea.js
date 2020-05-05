@@ -66,7 +66,8 @@ class GrowerPersonalArea extends Component {
     UserID: '',
     redirect: null,
     UserActive: false,
-    SuccessFileUpload: false
+    SuccessFileUpload: false,
+    FieldCropPlanActive: false
   };
 
   static propTypes = {
@@ -99,7 +100,8 @@ class GrowerPersonalArea extends Component {
         imageurl: user.imageurl,
         imagePreviewUrl: user.imageurl,
         UserID: user._id,
-        UserActive: user.workingwith[0].active
+        UserActive: user.workingwith[0].active,
+        FieldCropPlanActive: user.fieldcropplan.avaliabile
     })
   }
 
@@ -460,14 +462,16 @@ class GrowerPersonalArea extends Component {
         var RegisterDate = new Date(user.workingwith[0].activation_date);
         var RegisterDateToStringFormat = RegisterDate.getDate() + "/"+ parseInt(RegisterDate.getMonth()+1) +"/"+RegisterDate.getFullYear();
         var ChoosenPersonalUserVeg = user.choosenvegetables;
+        var ChoosenPersonalUserFieldCrops = user.choosenfieldcrops;
         if(user.workingwith[0].active){
           var PlanName = user.plans[0].name;
         }
         else PlanName = 'ללקוח זה לא משוייך מסלול';
     }catch(e){
-        var RegisterDateToStringFormat = '';
-        var ChoosenPersonalUserVeg = user.choosenvegetables;
-        var PlanName = '';
+        RegisterDateToStringFormat = '';
+        ChoosenPersonalUserVeg = user.choosenvegetables;
+        ChoosenPersonalUserFieldCrops = user.choosenfieldcrops;
+        PlanName = '';
     }
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
@@ -594,8 +598,8 @@ class GrowerPersonalArea extends Component {
                         <CardBody>
                           <span className="CancelSubscriptionAlertText">האם אתה בטוח שברצונך לבטל את המנוי?</span>
                           <span className="CancelSubscriptionAlertButtons">
-                            <span><Button outline color="success" onClick={() => this.DeactivateAcount()} type="button" >אישור</Button></span>
-                            <span><Button outline color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" >ביטול</Button></span>
+                            <span><Button outline color="success" onClick={() => this.DeactivateAcount()} type="button" >כן</Button></span>
+                            <span><Button outline color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" >לא</Button></span>
                           </span>
                         </CardBody>
                       </Card>
@@ -604,7 +608,7 @@ class GrowerPersonalArea extends Component {
                 </div>
                 <div className="personal-form-group">
                   <Label>מסלול שנבחר:</Label>
-                  <div className="CurrentPlan">{PlanName}</div>
+                  <div className="CurrentPlan">{PlanName}{this.state.FieldCropPlanActive ? " + גידולי שדה" : null}</div>
                 </div>
                 <div className="personal-form-group">
                   <Label>גידולים שנבחרו:</Label>
@@ -619,6 +623,21 @@ class GrowerPersonalArea extends Component {
                     })}
                   </div>
                 </div>
+                {this.state.FieldCropPlanActive ?
+                <div className="personal-form-group">
+                  <Label>גידולי שדה שנבחרו:</Label>
+                  <div className="PersonalChoosenVeg">
+                    {ChoosenPersonalUserFieldCrops.map(function(item, key) {
+                      return (
+                        <div className='PersonalChoosenVegItem'  key={key}>
+                          <span className='PersonalChoosenVegItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className='PersonalChoosenVegItemName'>{item.name}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+                : null}
                 <div className="personal-form-group">
                   <Label>החקלאי שנבחר:</Label>
                   <div className="PersonalChoosenFarmer">

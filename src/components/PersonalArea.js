@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Container } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getItems, deleteItem } from '../actions/itemActions';
-import LoginModal from './auth/LoginModal';
 import GrowerPersonalArea from '../components/GrowerPersonalArea';
 import FarmerPersonalArea from '../components/FarmerPersonalArea';
 import AdminPersonalArea from '../components/AdminPersonalArea';

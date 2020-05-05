@@ -83,7 +83,7 @@ class RecoverPassword extends Component {
     e.preventDefault();
 
     if(this.ValidateForm()){
-      const { email } = this.state
+      const email = this.state.email.toLowerCase();
       axios.post(`${API_URL}/api/sendresetpasswordmail/${email}`)
       this.setState({ email: "", submitted: true })
     }

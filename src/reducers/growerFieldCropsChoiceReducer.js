@@ -10,7 +10,7 @@ import {
   
   const initialState = {
     FieldCropsToBuy: [],
-    FieldCropsTotal: '',
+    FieldCropsTotal: '0',
     FieldCropsPlan: {},
     FieldCropsIsValidated: true
   };
@@ -25,7 +25,7 @@ import {
         return {
           ...state,
           FieldCropsToBuy: [],
-          FieldCropsTotal: '',
+          FieldCropsTotal: '0',
           FieldCropsPlan: {},
           FieldCropsIsValidated: true
         };

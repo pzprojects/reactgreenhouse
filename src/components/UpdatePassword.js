@@ -65,16 +65,13 @@ class UpdatePassword extends Component {
   handleChange = e => {
     switch(e.target.name) {
         case "password":
-          if(this.state.PasswordValidation === false){
-            this.setState({
-                PasswordValidation: true
-            });
-          }
+          // password strength validation
+          this.ValidatePassword(e.target.value);
           break;
         case "confirmPassword":
-          if(this.state.PasswordStrengthValidation === false){
+          if(this.state.PasswordValidation === false){
             this.setState({
-                PasswordStrengthValidation: true
+              PasswordValidation: true
             });
           }
           break;
@@ -83,6 +80,35 @@ class UpdatePassword extends Component {
 
     this.setState({ [e.target.name]: e.target.value });
   }
+
+  ValidatePassword = (password) => {
+    var lowerCaseLetters = /[a-z]/g;
+    var upperCaseLetters = /[A-Z]/g;
+    var numbers = /[0-9]/g;
+    if(password.length < 8 || !password.match(numbers) || !password.match(upperCaseLetters ) || !password.match(lowerCaseLetters )){
+      if(password.length !== 0){
+        if(this.state.PasswordStrengthValidation){
+          this.setState({
+            PasswordStrengthValidation: false
+          });
+        }
+      }
+      else{
+        if(!this.state.PasswordStrengthValidation){
+          this.setState({
+            PasswordStrengthValidation: true
+          });
+        }
+      }
+    }
+    else{
+      if(!this.state.PasswordStrengthValidation){
+        this.setState({
+          PasswordStrengthValidation: true
+        });
+      }
+    }
+  };
 
   updatePassword = e => {
     e.preventDefault()

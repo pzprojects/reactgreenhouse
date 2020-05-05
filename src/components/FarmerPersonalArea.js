@@ -30,6 +30,7 @@ import ListOfGrowers from '../components/ListOfGrowers';
 import { Redirect } from "react-router-dom";
 import { API_URL } from '../config/keys';
 import { getSystemData } from '../actions/systemAction';
+import { addVegLog, ResetVegLog, SetVegLogDone } from '../actions/veglogAction';
 
 
 class FarmerPersonalArea extends Component {
@@ -83,7 +84,8 @@ class FarmerPersonalArea extends Component {
     SystemDefaulNumberOfHamamot: '16',
     SuccessFileUpload: false,
     CropFieldPlanActive: false,
-    CropFieldPlanCost: ''
+    CropFieldPlanCost: '',
+    IgnoreVegLog: false
   };
 
   static propTypes = {
@@ -104,7 +106,11 @@ class FarmerPersonalArea extends Component {
     updateduser: PropTypes.object.isRequired,
     updatefarmerbyemail: PropTypes.func.isRequired,
     getSystemData: PropTypes.func.isRequired,
-    system: PropTypes.object.isRequired
+    system: PropTypes.object.isRequired,
+    veglog: PropTypes.object.isRequired,
+    addVegLog: PropTypes.func.isRequired,
+    ResetVegLog: PropTypes.func.isRequired,
+    SetVegLogDone: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -140,7 +146,7 @@ class FarmerPersonalArea extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { system, error, isAuthenticated } = this.props;
+    const { VegLogUpdated, system, error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       this.setState({
         ActivateLoader: false
@@ -167,7 +173,14 @@ class FarmerPersonalArea extends Component {
 
     // If authenticated, close modal
     if (this.state.modal) {
-        if (isAuthenticated && this.state.SuccessFileUpload) {
+        let VegLogUpdatedSuccess = false;
+        if(!this.state.IgnoreVegLog){
+          VegLogUpdatedSuccess = VegLogUpdated;
+        }
+        else{
+          VegLogUpdatedSuccess = true;
+        }
+        if (isAuthenticated && this.state.SuccessFileUpload && VegLogUpdatedSuccess) {
           this.toggle();
         }
     }
@@ -176,6 +189,7 @@ class FarmerPersonalArea extends Component {
   toggle = () => {
     // Clear errors
     this.props.clearErrors();
+    this.props.ResetVegLog();
     this.setState({
         modal: !this.state.modal
     });
@@ -359,13 +373,34 @@ class FarmerPersonalArea extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  mergeArrayObjects = (arr1,arr2) => {
+    let merge = [];
+  
+    for(var i =0; i < arr1.length; i++){
+      for(var j =0; j < arr2.length;j++){
+        if(arr1[i].name === arr2[j].name  && arr1[i].price !== arr2[j].price){
+            //pushing the merged objects into array
+            merge.push({_id:arr1[i]._id ,name:arr1[i].name ,pricebefore: arr1[i].price,priceafter: arr2[j].price})
+        }
+      }
+    }
+    return merge;
+  }
+
   onSubmit = e => {
     e.preventDefault();
 
     if(this.ValidateForm()){
-
+      const { user } = this.props.auth;
       const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
       const choosenfieldcrops = this.props.choosenfieldcrop.ChoosenFieldCrops;
+
+      let MergeOldNewVeg = this.mergeArrayObjects(user.choosenvegetables, choosenvegetables);
+      let MergeOldNewFieldCrop = this.mergeArrayObjects(user.choosenfieldcrops, choosenfieldcrops);
+      let vegetablesafterchange = MergeOldNewVeg.concat(MergeOldNewFieldCrop);
+      const farmername = this.state.name + " " + this.state.familyname;
+      const farmeremail = this.state.email;
+
       let HelkotToAdd = parseFloat(this.state.TotalNumberOfHamamot) - parseFloat(this.state.DefaultNumberOfHamamot);
       let numberofactivefarms = (parseFloat(this.state.CurrentActiveFarms) + HelkotToAdd).toString();
     
@@ -411,7 +446,21 @@ class FarmerPersonalArea extends Component {
         choosenfieldcrops
       };
 
+      const newLog = {
+        farmername,
+        farmeremail,
+        vegetablesafterchange
+      };
+
       // Attempt to save data
+      if(vegetablesafterchange.length > 0){
+        this.props.addVegLog(newLog);
+      }
+      else{
+        this.setState({
+          IgnoreVegLog: true
+        });
+      }
       this.props.updatefarmerbyemail(this.state.email, newFarmer);
       this.props.updatefarmerprofile(this.state.UserID, newUser);
 
@@ -683,12 +732,12 @@ class FarmerPersonalArea extends Component {
                 { this.state.VegtButtonOn && this.state.FieldCropsButtonOn ? 
                 <Button color="success" onClick={this.OpenListOfvegetables}>רשימת ירקות לגידול</Button> : null }
                 { this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} /> }
-                { this.state.FieldCropsButtonOn && this.state.VegtButtonOn ? 
+                { this.state.FieldCropsButtonOn && this.state.VegtButtonOn && this.state.CropFieldPlanActive ? 
                 <Button color="success" onClick={this.OpenListOfFieldsCrops}>רשימת גידולי שדה</Button> : null }
                 { this.state.FieldCropsButtonOn ? null : <FieldCrops OpenListOffieldcrops={this.OpenListOfFieldsCrops} /> }
               </div>
               <div className="ListOfVegCost">
-                <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
+                <p>מחירי הירקות וגידולי השדה הינם המחירים המומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
                 { ShowVegPricing ? <VegetablesPricing /> : null}
                 { ShowFieldCropPricing ? <FarmCropsPricing /> : null}
               </div>
@@ -887,10 +936,13 @@ const mapStateToProps = state => ({
   updateduser: state.updateduser,
   system: state.system,
   choosenfieldcrop: state.choosenfieldcrop,
-  ChoosenFieldCrops: state.choosenfieldcrop.ChoosenFieldCrops
+  ChoosenFieldCrops: state.choosenfieldcrop.ChoosenFieldCrops,
+  veglog: state.veglog,
+  VegLogUpdated: state.veglog.VegLogUpdated
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, addChoosenVegetable, addFarmer, updatefarmerprofile, updatefarmerbyemail, getSystemData, getChoosenfieldCrops, addChoosenfieldCrop}
+  { register, clearErrors, getChoosenVegetables, addChoosenVegetable, addFarmer, updatefarmerprofile, updatefarmerbyemail, getSystemData, getChoosenfieldCrops, 
+    addChoosenfieldCrop, addVegLog, ResetVegLog, SetVegLogDone }
 )(FarmerPersonalArea);

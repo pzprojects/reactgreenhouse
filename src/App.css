@@ -2711,6 +2711,38 @@
   .ReadMoreItem span img {
     margin-left: 2vw;
   }
+
+  /* System Logs */
+
+  .SysLogsHolder {
+    width: 100%;
+    float: right;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+  }
+
+  .SysLogsHolder div.SysLogsHeader {
+    width: 100%;
+    float: right;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-bottom: 4vw;
+    font-weight: bold;
+    font-size: 1.2vw;
+  }
+
+  .SysLogsHolder div.SysLogsBody {
+    width: 100%;
+    float: right;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-bottom: 2vw;
+  }
   
 }
 

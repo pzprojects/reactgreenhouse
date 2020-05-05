@@ -16,6 +16,7 @@ import resetUserNameReducer from './resetUserNameReducer';
 import fieldcropReducer from './fieldcropReducer';
 import choosenFieldCropsReducer from './choosenFieldCropsReducer';
 import growerFieldCropsChoiceReducer from './growerFieldCropsChoiceReducer';
+import veglogReducer from './veglogReducer';
 
 export default combineReducers({
   item: itemReducer,
@@ -33,5 +34,6 @@ export default combineReducers({
   system: systemReducer,
   resetusername: resetUserNameReducer,
   fieldcrop: fieldcropReducer,
-  choosenfieldcrop: choosenFieldCropsReducer
+  choosenfieldcrop: choosenFieldCropsReducer,
+  veglog: veglogReducer
 });

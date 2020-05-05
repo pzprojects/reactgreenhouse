@@ -12,6 +12,7 @@ import GrowersubmissionMSG from './components/GrowersubmissionMSG';
 import DeatilsUpdatedMSG from './components/DeatilsUpdatedMSG';
 import VegManagment from './components/VegManagment';
 import SystemSettings from './components/SystemSettings';
+import SystemLogs from './components/SystemLogs';
 import LoginPage from './components/auth/LoginPage';
 import RecoverPassword from './components/RecoverPassword';
 import UpdatePassword from './components/UpdatePassword';
@@ -49,6 +50,7 @@ class App extends Component {
               <Route path="/DeatilsUpdatedMSG" component={DeatilsUpdatedMSG} />
               <Route path="/VegManagment" component={VegManagment} />
               <Route path="/SystemSettings" component={SystemSettings} />
+              <Route path="/SystemLogs" component={SystemLogs} />
               <Route path="/LoginPage" component={LoginPage} />
               <Route path="/RecoverPassword" component={RecoverPassword} />
               <Route path="/UpdateGrowerEmail" component={UpdateGrowerEmail} />

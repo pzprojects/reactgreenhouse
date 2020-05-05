@@ -133,6 +133,18 @@ class AdminPersonalArea extends Component {
     return PlansAsString;
   };
 
+  ReturnChoosingFieldCropPlanAsStringForExcel = (fieldcropplan) => {
+    var PlansAsString = '';
+    if(fieldcropplan.avaliabile){
+      PlansAsString = "מסלול גידולי שדה פעיל בעלות: " + fieldcropplan.cost;
+    }
+    else{
+      PlansAsString = "מסלול גידולי שדה אינו פעיל";
+    }
+    
+    return PlansAsString;
+  };
+
   GetDateAsString = (DateToConvert) => {
     var RegisterDate = new Date(DateToConvert);
     var RegisterDateToStringFormat = RegisterDate.getDate() + "/"+ parseInt(RegisterDate.getMonth()+1) +"/"+RegisterDate.getFullYear();
@@ -149,7 +161,9 @@ class AdminPersonalArea extends Component {
       'אזור השטח לגידול': farmer.sizearea, 
       'גודל שטח החממה': farmer.hamamasize, 
       'מספר חלקות פנויות': farmer.numberofactivefarms, 
-      'ירקות נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(farmer.choosenvegetables), 
+      'ירקות נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(farmer.choosenvegetables),
+      'גידולי שדה נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(farmer.choosenfieldcrops),
+      'מסלול גידולי שדה': this.ReturnChoosingFieldCropPlanAsStringForExcel(farmer.fieldcropplan), 
       'תוכניות': this.ReturnPlansAsStringForExcel(farmer.plans), 
       'כתובת': farmer.address, 
       'תאריך רישום': farmer.register_date
@@ -166,7 +180,9 @@ class AdminPersonalArea extends Component {
       'טלפון': grower.phone, 
       'אימייל': grower.email, 
       'אזור השטח לגידול': grower.sizearea,
-      'ירקות נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(grower.choosenvegetables), 
+      'ירקות נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(grower.choosenvegetables),
+      'גידולי שדה נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(grower.choosenfieldcrops),
+      'מסלול גידולי שדה': this.ReturnChoosingFieldCropPlanAsStringForExcel(grower.fieldcropplan), 
       'תוכניות': grower.plan.name + ": " + grower.plan.cost, 
       'חקלאי נבחר': grower.chossenfarmerfullname + ": " + grower.chossenfarmer,
       'האם פעיל':  grower.isactive,
@@ -378,7 +394,7 @@ class AdminPersonalArea extends Component {
                         type='text'
                         name='FarmerNameToSearch'
                         id='FarmerNameToSearch'
-                        placeholder='חיפוש מגדל לפי שם חקלאי'
+                        placeholder='חיפוש חקלאי'
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -467,7 +483,7 @@ class AdminPersonalArea extends Component {
           {this.state.ScreenNumber === "1" ? <ExportCSV csvData={this.GetFarmersForExcel(farmers)} fileName='חקלאים' /> : <ExportCSV csvData={this.GetGrowersForExcel(growers)} fileName='מגדלים' /> }
           </Container>
           : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >משתמש זה אינו מנהל מערכת</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>
-        : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >הירשם כמנהל מערכת</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>}
+        : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >ממשק מנהל מערכת</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>}
       </div>
     );
   }

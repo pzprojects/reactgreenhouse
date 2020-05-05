@@ -27,7 +27,6 @@ import { getChoosenfieldCrops } from '../actions/choosenFieldCropsAction';
 import { addFarmer } from '../actions/farmerAction';
 import { API_URL } from '../config/keys';
 import { getSystemData } from '../actions/systemAction';
-import { Link } from "react-router-dom"
 
 
 class RegisterPage extends Component {
@@ -268,8 +267,8 @@ class RegisterPage extends Component {
         FoundEmpty = true;
       }
     }
-    for(var i = 0; i < ChoosenFieldCrops.length; i++){
-      if(ChoosenFieldCrops[i].price === ''){
+    for(var j = 0; j < ChoosenFieldCrops.length; j++){
+      if(ChoosenFieldCrops[j].price === ''){
         FoundEmpty = true;
       }
     }
@@ -357,6 +356,35 @@ class RegisterPage extends Component {
       this.setState({
         ScreenNumber: ScreenNum
       });
+    }
+  };
+
+  ValidatePassword = (password) => {
+    var lowerCaseLetters = /[a-z]/g;
+    var upperCaseLetters = /[A-Z]/g;
+    var numbers = /[0-9]/g;
+    if(password.length < 8 || !password.match(numbers) || !password.match(upperCaseLetters ) || !password.match(lowerCaseLetters )){
+      if(password.length !== 0){
+        if(this.state.PasswordStrengthValidation){
+          this.setState({
+            PasswordStrengthValidation: false
+          });
+        }
+      }
+      else{
+        if(!this.state.PasswordStrengthValidation){
+          this.setState({
+            PasswordStrengthValidation: true
+          });
+        }
+      }
+    }
+    else{
+      if(!this.state.PasswordStrengthValidation){
+        this.setState({
+          PasswordStrengthValidation: true
+        });
+      }
     }
   };
 
@@ -453,9 +481,7 @@ class RegisterPage extends Component {
         break;
       case "password":
         // password strength validation
-        if(this.state.PasswordStrengthValidation === false){
-          this.ResetValidation("PasswordStrength")
-        }
+        this.ValidatePassword(e.target.value);
       break;
       case "CheckRegulations":
         // Regulations validation
@@ -831,6 +857,7 @@ class RegisterPage extends Component {
                     type='password'
                     name='password'
                     id='password'
+                    autoComplete="off"
                     placeholder='*'
                     className='mb-3'
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -847,6 +874,7 @@ class RegisterPage extends Component {
                     type='password'
                     name='passwordconfirmation'
                     id='passwordconfirmation'
+                    autoComplete="off"
                     placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
@@ -915,7 +943,7 @@ class RegisterPage extends Component {
                 { this.state.FieldCropsButtonOn ? null : <FieldCrops OpenListOffieldcrops={this.OpenListOfFieldsCrops} /> }
               </div>
               <div className="ListOfVegCost">
-                <p>המחירים הינם מומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
+                <p>מחירי הירקות וגידולי השדה הינם המחירים המומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
                 { ShowVegPricing ? <VegetablesPricing /> : null}
                 { ShowFieldCropPricing ? <FarmCropsPricing /> : null}
               </div> 
@@ -1137,7 +1165,7 @@ class RegisterPage extends Component {
                 </div>
                 <div  className='RegulationsLink'>
                     <span>קראתי את </span>
-                    <a href="/" target="_blank" >התקנון</a>
+                    <a href="/" target="_blank" rel="noopener noreferrer" >התקנון</a>
                     <span> ואני מסכים לכל תנאיו</span>
                 </div>
               </div>
@@ -1307,7 +1335,7 @@ class RegisterPage extends Component {
             ) : null}
             </Form>
             { this.state.ActivateLoader ? <Loader /> : null }
-            <div className="HelpBtn"><a href="https://www.co-greenhouse.com/faq" target="_blank"><img alt="" src={require('../Resources/help.png')} size='lg' /></a></div>
+            <div className="HelpBtn"><a href="https://www.co-greenhouse.com/faq" target="_blank" rel="noopener noreferrer"><img alt="" src={require('../Resources/help.png')} size='lg' /></a></div>
         </Container>
       </div>
     );

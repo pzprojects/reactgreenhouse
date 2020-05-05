@@ -21,6 +21,7 @@ import ChooseFarmer from '../components/ChooseFarmer';
 import { addFarmer } from '../actions/farmerAction';
 import { getchoosenfarmer } from '../actions/choosenFarmerAction';
 import { getGrowerVegBag } from '../actions/growerVegChoiceAction';
+import { getGrowerFieldCropBag } from '../actions/growerFieldCropsChoiceAction';
 import { addgrower } from '../actions/growerAction';
 import { updatefarmeractivefarms, updateuseractivefarms } from '../actions/updateFarmerActiveFarmsAction.js';
 import { API_URL } from '../config/keys';
@@ -102,12 +103,15 @@ class GrowerRegisterPage extends Component {
     addgrower: PropTypes.func.isRequired,
     FarmerActiveFarms: PropTypes.object.isRequired,
     system: PropTypes.object.isRequired,
-    getSystemData: PropTypes.func.isRequired
+    getSystemData: PropTypes.func.isRequired,
+    growerfieldcropsbuyingbag: PropTypes.object.isRequired,
+    getGrowerFieldCropBag: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getchoosenfarmer();
     this.props.getGrowerVegBag();
+    this.props.getGrowerFieldCropBag();
     this.props.getSystemData();
 
   }
@@ -170,6 +174,7 @@ class GrowerRegisterPage extends Component {
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
     const { IsValidated } = this.props.growervegbuyingbag;
+    const { FieldCropsIsValidated } = this.props.growerfieldcropsbuyingbag;
     const { ChoosenFarmerById } = this.props.choosenfarmer;
 
     // Regulations
@@ -266,6 +271,12 @@ class GrowerRegisterPage extends Component {
       ScrollToLocation = "bottom";
     }
 
+    // FildCropBag
+    if(!FieldCropsIsValidated){
+      Validated = false;
+      ScrollToLocation = "bottom";
+    }
+
     if(!Validated){
       if(ScrollToLocation === "top"){
         window.scrollTo({
@@ -283,6 +294,35 @@ class GrowerRegisterPage extends Component {
       this.setState({
         ScreenNumber: ScreenNum
       });
+    }
+  };
+
+  ValidatePassword = (password) => {
+    var lowerCaseLetters = /[a-z]/g;
+    var upperCaseLetters = /[A-Z]/g;
+    var numbers = /[0-9]/g;
+    if(password.length < 8 || !password.match(numbers) || !password.match(upperCaseLetters ) || !password.match(lowerCaseLetters )){
+      if(password.length !== 0){
+        if(this.state.PasswordStrengthValidation){
+          this.setState({
+            PasswordStrengthValidation: false
+          });
+        }
+      }
+      else{
+        if(!this.state.PasswordStrengthValidation){
+          this.setState({
+            PasswordStrengthValidation: true
+          });
+        }
+      }
+    }
+    else{
+      if(!this.state.PasswordStrengthValidation){
+        this.setState({
+          PasswordStrengthValidation: true
+        });
+      }
     }
   };
 
@@ -376,9 +416,7 @@ class GrowerRegisterPage extends Component {
         break;
       case "password":
         // password strength validation
-        if(this.state.PasswordStrengthValidation === false){
-          this.ResetValidation("PasswordStrength")
-        }
+        this.ValidatePassword(e.target.value);
       break;
       case "CheckRegulations":
         // Regulations validation
@@ -450,16 +488,24 @@ class GrowerRegisterPage extends Component {
     if(this.ValidateForm()){
 
       const choosenvegetables = this.props.growervegbuyingbag.VegToBuy;
+      const choosenfieldcrops = this.props.growerfieldcropsbuyingbag.FieldCropsToBuy;
       const GrowerChoosenFarmer =  this.props.choosenfarmer.ChoosenFarmerById[0];
       let workingwith = [{email: GrowerChoosenFarmer.email, usertype: 'חקלאי' ,active: true, totalpayed: this.props.growervegbuyingbag.Total}];
       let plans = [];
       let plan = {};
+      let fieldcropplan = {};
       let chossenfarmer = GrowerChoosenFarmer.email;
-      let totalpayment = this.props.growervegbuyingbag.Total;
+      let totalpayment = (parseFloat(this.props.growervegbuyingbag.Total) + parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal)).toString();
       let isactive = true;
       const chossenfarmerfullname = GrowerChoosenFarmer.name + " " + GrowerChoosenFarmer.familyname;
       plans.push(this.props.growervegbuyingbag.Plan);
       plan = this.props.growervegbuyingbag.Plan;
+      if(this.props.growerfieldcropsbuyingbag.FieldCropsTotal !== "0"){
+        fieldcropplan = { avaliabile: true, cost: GrowerChoosenFarmer.fieldcropplan.cost }
+      }
+      else{
+        fieldcropplan = { avaliabile: false, cost: '0' }
+      }
     
       this.setState({
         ActivateLoader: !this.state.ActivateLoader,
@@ -491,10 +537,12 @@ class GrowerRegisterPage extends Component {
         aboutme,
         imageurl,
         choosenvegetables,
+        choosenfieldcrops,
         plans,
         usertype,
         workingwith,
-        address
+        address,
+        fieldcropplan
       };
 
       const newGrower = {
@@ -506,11 +554,13 @@ class GrowerRegisterPage extends Component {
         address,
         imageurl,
         choosenvegetables,
+        choosenfieldcrops,
         plan,
         chossenfarmer,
         chossenfarmerfullname,
         totalpayment,
-        isactive
+        isactive,
+        fieldcropplan
       };
 
       // Attempt to register
@@ -533,7 +583,6 @@ class GrowerRegisterPage extends Component {
       var improvedname = uuidv4() + tempFile.name;
       improvedname = improvedname.replace(/[/\\?%_*:|"<>]/g, '-').trim().toLowerCase();
       improvedname = improvedname.replace(/\s/g,'');
-      console.log(improvedname);
       const GenerateUrl = "https://profileimages12.s3.eu-west-1.amazonaws.com/" + improvedname;
       this.setState({imageurl: GenerateUrl, imagename: improvedname});
     }
@@ -707,6 +756,7 @@ class GrowerRegisterPage extends Component {
                     type='password'
                     name='password'
                     id='password'
+                    autoComplete="off"
                     placeholder='*'
                     className='mb-3'
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -723,6 +773,7 @@ class GrowerRegisterPage extends Component {
                     type='password'
                     name='passwordconfirmation'
                     id='passwordconfirmation'
+                    autoComplete="off"
                     placeholder='*'
                     className='mb-3'
                     onChange={this.onChange}
@@ -908,7 +959,7 @@ class GrowerRegisterPage extends Component {
                 </div>
                   <div  className='RegulationsLink'>
                     <span>קראתי את </span>
-                    <a href="/" target="_blank" >התקנון</a>
+                    <a href="/" target="_blank" rel="noopener noreferrer" >התקנון</a>
                     <span> ואני מסכים לכל תנאיו</span>
                 </div>
               </div>
@@ -1008,7 +1059,7 @@ class GrowerRegisterPage extends Component {
             ) : null}
             </Form>
             { this.state.ActivateLoader ? <Loader /> : null }
-            <div className="HelpBtn"><a href="https://www.co-greenhouse.com/faq" target="_blank"><img alt="" src={require('../Resources/help.png')} size='lg' /></a></div>
+            <div className="HelpBtn"><a href="https://www.co-greenhouse.com/faq" target="_blank" rel="noopener noreferrer"><img alt="" src={require('../Resources/help.png')} size='lg' /></a></div>
         </Container>
       </div>
     );
@@ -1025,10 +1076,12 @@ const mapStateToProps = state => ({
   FarmerActiveFarms: state.FarmerActiveFarms,
   FarmersNumLoaded: state.FarmerActiveFarms.FarmersNumLoaded,
   UsersNumLoaded: state.FarmerActiveFarms.UsersNumLoaded,
-  system: state.system
+  system: state.system,
+  growerfieldcropsbuyingbag: state.growerfieldcropsbuyingbag,
+  FieldCropsToBuy: state.growerfieldcropsbuyingbag.FieldCropsToBuy
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, addFarmer, getchoosenfarmer, getGrowerVegBag, addgrower, updatefarmeractivefarms, updateuseractivefarms, getSystemData }
+  { register, clearErrors, addFarmer, getchoosenfarmer, getGrowerVegBag, addgrower, updatefarmeractivefarms, updateuseractivefarms, getSystemData, getGrowerFieldCropBag }
 )(GrowerRegisterPage);
