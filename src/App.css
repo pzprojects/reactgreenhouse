@@ -1433,16 +1433,22 @@
   }
 
   .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons {
-    width: 70%;
+    width: 80%;
     position: relative;
     display: block;
     margin-right: auto;
     margin-left: auto;
+    text-align: center;
   }
 
-  .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons button{
-    margin-left: 3vw;
-    width: 40%;
+  .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons button {
+    margin-left: 3%;
+    width: 30%;
+  }
+
+  .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons a {
+    margin-left: 3%;
+    width: 30%;
   }
 
   .RegisterButtonContainer Button.UpdateDetails {

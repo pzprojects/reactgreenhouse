@@ -1,20 +1,7 @@
 import React, { Component } from 'react';
 import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Container,
-  Alert,
-  FormFeedback,
-  UncontrolledCollapse,
-  CardBody,
-  Card,
-  ListGroup,
-  ListGroupItem
+  Container
 } from 'reactstrap';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../actions/authActions';
@@ -44,7 +31,7 @@ class SystemLogs extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
+    const { error } = this.props;
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {

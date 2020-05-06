@@ -489,6 +489,9 @@ class GrowerPersonalArea extends Component {
                     <Button color="success" type="button" disabled>
                     פרטים אישיים
                     </Button>
+                    <Button href='/GrowerPersonalShop' outline color="success" type="button" >
+                    רכישת שתילים מחקלאי
+                    </Button>
                     <Button outline color="success" onClick={() => this.ChangeScreen("2")} type="button" >
                     שינוי פרטים לתשלום חודשי
                     </Button>
@@ -500,6 +503,9 @@ class GrowerPersonalArea extends Component {
                   <div className='GrowerPersonalAreaTabsButtons'>
                     <Button outline color="success" onClick={() => this.ChangeScreen("1")} type="button" >
                     פרטים אישיים
+                    </Button>
+                    <Button href='/GrowerPersonalShop' outline color="success" type="button" >
+                    רכישת שתילים מחקלאי
                     </Button>
                     <Button color="success" type="button" disabled>
                     שינוי פרטים לתשלום חודשי
