@@ -13,20 +13,19 @@ import {
     FormFeedback,
     UncontrolledCollapse,
     CardBody,
-    Card
+    Card,
+    CardHeader
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../actions/authActions';
 import { clearErrors } from '../actions/errorActions';
-import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
 import { getfarmerbyemail } from '../actions/farmerAction';
-import { getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList, ResetGrowerShoopinList } from '../actions/growerShoppingListAction';
+import { getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList, ResetGrowerShoopinList, UpdateGrowerShoopinList } from '../actions/growerShoppingListAction';
+import { addpersonalShoopingItems } from '../actions/personalShoopingListAction';
 import { Redirect } from "react-router-dom";
-import { API_URL } from '../config/keys';
-import { FiEdit } from "react-icons/fi";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class GrowerPersonalShop extends Component {
     state = {
@@ -45,11 +44,11 @@ class GrowerPersonalShop extends Component {
         UserID: '',
         redirect: null,
         UserActive: false,
-        SuccessFileUpload: false,
         FieldCropPlanActive: false,
         ChoosenVegName: '',
-        ChoosenVegAmount: "0",
-        ChoosenVegPrice: ''
+        ChoosenVegAmount: "1",
+        ChoosenVegPrice: '',
+        ListEmptyValidation: true
     };
 
     static propTypes = {
@@ -63,7 +62,10 @@ class GrowerPersonalShop extends Component {
         getGrowerShoopinList: PropTypes.func.isRequired,
         addToGrowerShoopinList: PropTypes.func.isRequired,
         deleteFromShoopinList: PropTypes.func.isRequired,
-        ResetGrowerShoopinList: PropTypes.func.isRequired
+        ResetGrowerShoopinList: PropTypes.func.isRequired,
+        UpdateGrowerShoopinList: PropTypes.func.isRequired,
+        personalshop: PropTypes.object.isRequired,
+        addpersonalShoopingItems: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -71,7 +73,7 @@ class GrowerPersonalShop extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { farmers, error, isAuthenticated } = this.props;
+        const { transactionDone, farmers, error, isAuthenticated } = this.props;
         const { user } = this.props.auth;
         if (error !== prevProps.error) {
             this.setState({
@@ -87,22 +89,22 @@ class GrowerPersonalShop extends Component {
 
         if (isAuthenticated !== prevProps.isAuthenticated && isAuthenticated) {
 
-            try{
+            try {
                 if (user.usertype !== 'מגדל') {
                     this.setState({
                         redirect: '/'
                     });
                 }
-    
+
                 if (user.workingwith[0].active) {
                     this.props.getfarmerbyemail(user.workingwith[0].email);
                 }
-                else{
+                else {
                     this.setState({
                         redirect: '/'
                     });
                 }
-    
+
                 this.setState({
                     name: user.name,
                     email: user.email,
@@ -143,7 +145,7 @@ class GrowerPersonalShop extends Component {
 
         // If authenticated, close modal
         if (this.state.modal) {
-            if (isAuthenticated && this.state.SuccessFileUpload) {
+            if (isAuthenticated && transactionDone) {
                 this.toggle();
             }
         }
@@ -158,12 +160,13 @@ class GrowerPersonalShop extends Component {
     toggle = () => {
         // Clear errors
         this.props.clearErrors();
+        this.props.ResetGrowerShoopinList();
         this.setState({
             modal: !this.state.modal
         });
         this.setState({
             ActivateLoader: !this.state.ActivateLoader,
-            redirect: '/DeatilsUpdatedMSG'
+            redirect: '/PurchaseCompleted'
         });
     };
 
@@ -171,46 +174,25 @@ class GrowerPersonalShop extends Component {
 
         var Validated = true;
         var ScrollToLocation = "top";
+        const { GrowerShoopingList } = this.props;
 
         // Empty fields
-        if (this.state.name === '') {
+        if (GrowerShoopingList.length < 1) {
             this.setState({
-                nameValidation: false
+                ListEmptyValidation: false
             });
+            setTimeout(() => {
+                this.setState({
+                    ListEmptyValidation: true
+                });
+            }, 3000);
             Validated = false;
             ScrollToLocation = "top";
         }
 
-        if (this.state.email === '' || !this.ValidateEmail(this.state.email)) {
-            this.setState({
-                emailValidation: false
-            });
+        if (this.GetTotalPayment() === '0') {
             Validated = false;
-            ScrollToLocation = "top";
-        }
-
-        if (this.state.familyname === '') {
-            this.setState({
-                familynameValidation: false
-            });
-            Validated = false;
-            ScrollToLocation = "top";
-        }
-
-        if (this.state.phone === '') {
-            this.setState({
-                phoneValidation: false
-            });
-            Validated = false;
-            ScrollToLocation = "top";
-        }
-
-        if (this.state.address === '') {
-            this.setState({
-                addressValidation: false
-            });
-            Validated = false;
-            ScrollToLocation = "top";
+            ScrollToLocation = "bottom";
         }
 
         if (!Validated) {
@@ -249,7 +231,7 @@ class GrowerPersonalShop extends Component {
         switch (e.target.name) {
             case "ChoosenVegName":
                 this.setState({
-                    ChoosenVegAmount: "0",
+                    ChoosenVegAmount: "1",
                     ChoosenVegPrice: this.GetVegPrice(e.target.value)
                 });
                 break;
@@ -261,52 +243,43 @@ class GrowerPersonalShop extends Component {
         e.preventDefault();
 
         if (this.ValidateForm()) {
+            const { GrowerShoopingList } = this.props;
+
+            const growername = this.state.name + " " + this.state.familyname;
+            const groweremail = this.state.email;
+            const farmername = this.state.FarmerFullNmae;
+            const farmeremail = this.state.FarmerEmail;
+            const totalpayed = this.GetTotalPayment();
+            const growershoopinglist = GrowerShoopingList;
+                
 
             this.setState({
                 ActivateLoader: !this.state.ActivateLoader,
                 modal: !this.state.modal
             });
 
-            if (this.state.imagename !== '') {
-                this.uploadFile();
-            }
-            else {
-                this.setState({
-                    SuccessFileUpload: true
-                });
-            }
-
-
-            const { name, familyname, phone, address, imageurl } = this.state;
-
-            // Create user object
-            const newUser = {
-                name,
-                familyname,
-                phone,
-                address,
-                imageurl
+            // Create ShopList object
+            const newShopList = {
+                growername,
+                groweremail,
+                farmername,
+                farmeremail,
+                totalpayed,
+                growershoopinglist
             };
 
-            const newGrower = {
-                name,
-                familyname,
-                phone,
-                address,
-                imageurl
-            };
-
-            // Attempt to register
-            this.props.updategrowerbyemail(this.state.email, newGrower);
-            this.props.updategrowerprofile(this.state.UserID, newUser);
+            // Attempt to add shop list item
+            this.props.addpersonalShoopingItems(newShopList);
 
         }
     };
 
     DecreseAmount = () => {
-        this.setState({
-            ChoosenVegAmount: (parseFloat(this.state.ChoosenVegAmount) - 1).toString()
-        });
+        if ((parseFloat(this.state.ChoosenVegAmount) - 1) > 0) {
+            this.setState({
+                ChoosenVegAmount: (parseFloat(this.state.ChoosenVegAmount) - 1).toString()
+            });
+        }
     }
 
     IncreseAmount = () => {
@@ -316,17 +289,39 @@ class GrowerPersonalShop extends Component {
     }
 
     AddToBucket = () => {
+        const { GrowerShoopingList } = this.props;
         const { ChoosenVegName, ChoosenVegAmount, ChoosenVegPrice } = this.state;
         const Item = {
             ChoosenVegName,
             ChoosenVegAmount,
             ChoosenVegPrice
         };
-        this.props.addToGrowerShoopinList(Item)
+        if (GrowerShoopingList.some(item => ChoosenVegName === item.ChoosenVegName)) {
+            this.props.UpdateGrowerShoopinList(ChoosenVegName, ChoosenVegAmount);
+        }
+        else {
+            this.props.addToGrowerShoopinList(Item);
+        }
+    }
+
+    GetTotalPayment = () => {
+        const { GrowerShoopingList } = this.props;
+        var TotalPayment = 0;
+        for (var i = 0; i < GrowerShoopingList.length; i++) {
+            TotalPayment += parseFloat(GrowerShoopingList[i].ChoosenVegAmount) * parseFloat(GrowerShoopingList[i].ChoosenVegPrice);
+        }
+
+        TotalPayment = TotalPayment.toString();
+        return TotalPayment;
+    }
+
+    RemoveFromBucket = (name) => {
+        this.props.deleteFromShoopinList(name);
     }
 
     render() {
         const { farmers } = this.props.farmer;
+        const { GrowerShoopingList } = this.props;
         try {
             var vegetablesforshop = farmers[0].choosenvegetables.concat(farmers[0].choosenfieldcrops);
         }
@@ -347,49 +342,145 @@ class GrowerPersonalShop extends Component {
                     <Form onSubmit={this.onSubmit}>
                         <FormGroup>
                             <div className='GrowerPersonalShop'>
+                                <div className='GrowerPersonalShopHeader'> רכישת שתילים מהחקלאי שלי </div>
                                 <div className="GrowerPersonalShop-form-group">
-                                    <Label>החקלאי שנבחר:</Label>
-                                    <div className="GrowerPersonalShopChoosingFarmer">
-                                        <span><img alt="" src={require('../Resources/Name.png')} size='sm' />{this.state.FarmerFullNmae}</span>
-                                        <span><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.state.FarmerPhone}</span>
-                                        <span><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.state.FarmerEmail}>{this.state.FarmerEmail}</a></span>
-                                        <span><img alt="" src={require('../Resources/location.png')} size='sm' />{this.state.FarmerLocation}</span>
+                                    <div className="GrowerPersonalShopItemsToBuy">
+                                        {vegetablesforshop.length > 0 ?
+                                            <ListGroup>
+                                                <ListGroupItem>
+                                                    <div className="GrowerPersonalShopVeg">
+                                                        <Label for='ChoosenVegName'></Label>
+                                                        <Input type="select" name="ChoosenVegName" id="ChoosenVegName" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.ChoosenVeg}>
+                                                            {vegetablesforshop.map(function (item, thirdkey) {
+                                                                return (
+                                                                    <option className='GrowerVegItem' key={thirdkey}>
+                                                                        {item.name}
+                                                                    </option>
+                                                                )
+                                                            })}
+                                                        </Input>
+                                                    </div>
+                                                    <div className="GrowerPersonalShopVegPrice">
+                                                        <span>{this.state.ChoosenVegPrice} ₪</span>
+                                                    </div>
+                                                    <div className="GrowerPersonalShopVegAmount">
+                                                        <div className="GrowerPersonalShopVegAmountContainer">
+                                                            <span><Button outline color="success" onClick={() => this.DecreseAmount()} type="button" >-</Button></span>
+                                                            <Label for='ChoosenVegAmount'></Label>
+                                                            <Input type="text" name="ChoosenVegAmount" id="ChoosenVegAmount" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.ChoosenVegAmount} disabled />
+                                                            <span><Button outline color="success" onClick={() => this.IncreseAmount()} type="button" >+</Button></span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="GrowerPersonalShopVegAddToBucket">
+                                                        <span><Button outline color="success" onClick={() => this.AddToBucket()} type="button" >הוסף לסל</Button></span>
+                                                    </div>
+                                                </ListGroupItem>
+                                            </ListGroup>
+                                            :
+                                            <ListGroup>
+                                                <ListGroupItem>
+                                                    לחקלאי זה אין שתילים למכירה
+                                            </ListGroupItem>
+                                            </ListGroup>
+                                        }
                                     </div>
                                 </div>
                                 <div className="GrowerPersonalShop-form-group">
-                                    <div className="GrowerPersonalShopItemsToBuy">
-                                        <ListGroup>
-                                            <ListGroupItem>
-                                                <div className="GrowerPersonalShopVeg">
-                                                    <Label for='ChoosenVegName'></Label>
-                                                    <Input type="select" name="ChoosenVegName" id="ChoosenVegName" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.ChoosenVeg}>
-                                                        {vegetablesforshop.map(function (item, thirdkey) {
-                                                            return (
-                                                                <option className='GrowerVegItem' key={thirdkey}>
-                                                                    {item.name}
-                                                                </option>
-                                                            )
-                                                        })}
-                                                    </Input>
-                                                </div>
-                                                <div className="GrowerPersonalShopVegPrice">
-                                                    <span>{this.state.ChoosenVegPrice}</span>
-                                                </div>
-                                                <div className="GrowerPersonalShopVegAmount">
-                                                    <span><Button outline color="success" onClick={() => this.DecreseAmount()} type="button" >-</Button></span>
-                                                    <Label for='ChoosenVegAmount'></Label>
-                                                    <Input type="text" name="ChoosenVegAmount" id="ChoosenVegAmount" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.ChoosenVegAmount} />
-                                                    <span><Button outline color="success" onClick={() => this.IncreseAmount()} type="button" >+</Button></span>
-                                                </div>
-                                                <div className="GrowerPersonalShopVegAddToBucket">
-                                                    <span><Button outline color="success" onClick={() => this.AddToBucket()} type="button" >הוסף לסל</Button></span>
-                                                </div>
-                                            </ListGroupItem>
-                                        </ListGroup>
+                                    <div className="GrowerPersonalShopBilling">
+                                        <div className="GrowerPersonalShopBucket">
+                                            <ListGroup>
+                                                <CSSTransition timeout={500} classNames='fade'>
+                                                    <ListGroupItem className="GrowerPersonalShopBucketItemHeader">
+                                                        <div className='GrowerPersonalShopBucketItemHeaderContainer'>
+                                                            <div className='GrowerPersonalShopBucketItemHeaderText1'>
+                                                                <span>שם המוצר</span>
+                                                            </div>
+                                                            <div className='GrowerPersonalShopBucketItemHeaderText2'>
+                                                                <span>כמות</span>
+                                                            </div>
+                                                            <div className='GrowerPersonalShopBucketItemHeaderText3'>
+                                                                <span>מחיר</span>
+                                                            </div>
+                                                            <div className='GrowerPersonalShopBucketItemHeaderText4'>
+                                                                <span>&nbsp;</span>
+                                                            </div>
+                                                        </div>
+                                                    </ListGroupItem>
+                                                </CSSTransition>
+                                            </ListGroup>
+                                            {GrowerShoopingList.length > 0 ?
+                                                <ListGroup>
+                                                    {GrowerShoopingList.map(({ ChoosenVegName, ChoosenVegAmount, ChoosenVegPrice }) => (
+                                                        <CSSTransition key={ChoosenVegName} timeout={500} classNames='fade'>
+                                                            <ListGroupItem className="GrowerPersonalShopBucketItem">
+                                                                <div className='GrowerPersonalShopBucketItemContainer'>
+                                                                    <div className='GrowerPersonalShopBucketItemName'>
+                                                                        <span>{ChoosenVegName}&nbsp;</span>
+                                                                    </div>
+                                                                    <div className='GrowerPersonalShopBucketItemAmount'>
+                                                                        <span>{ChoosenVegAmount}&nbsp;</span>
+                                                                    </div>
+                                                                    <div className='GrowerPersonalShopBucketItemPrice'>
+                                                                        <span>{(parseFloat(ChoosenVegAmount) * parseFloat(ChoosenVegPrice)).toString()}&nbsp;</span>
+                                                                    </div>
+                                                                    <div className='GrowerPersonalShopBucketItemRemoveBtn'>
+                                                                        <span><span className='Deletebutton' onClick={() => this.RemoveFromBucket(ChoosenVegName)} >x</span></span>
+                                                                    </div>
+                                                                </div>
+                                                            </ListGroupItem>
+                                                        </CSSTransition>
+                                                    ))}
+                                                </ListGroup>
+                                                :
+                                                <ListGroup>
+                                                    <CSSTransition timeout={500} classNames='fade'>
+                                                        <ListGroupItem className="GrowerPersonalShopBucketItem">
+                                                            <div className='GrowerPersonalShopBucketItemContainer'>
+                                                                סל הקניות ריק
+                                                            </div>
+                                                        </ListGroupItem>
+                                                    </CSSTransition>
+                                                </ListGroup>
+                                            }
+                                            {GrowerShoopingList.length > 0 ?
+                                                <ListGroup>
+                                                    <CSSTransition timeout={500} classNames='fade'>
+                                                        <ListGroupItem className="GrowerPersonalShopBucketItemHeader">
+                                                            <div className='GrowerPersonalShopBucketItemHeaderContainer'>
+                                                                <div className='GrowerPersonalShopBucketItemHeaderText1'>
+                                                                    <span>סה"כ לתשלום</span>
+                                                                </div>
+                                                                <div className='GrowerPersonalShopBucketItemHeaderText2'>
+                                                                    <span>&nbsp;</span>
+                                                                </div>
+                                                                <div className='GrowerPersonalShopBucketItemHeaderText3'>
+                                                                    <span>{this.GetTotalPayment()} ש"ח</span>
+                                                                </div>
+                                                                <div className='GrowerPersonalShopBucketItemHeaderText4'>
+                                                                    <span>&nbsp;</span>
+                                                                </div>
+                                                            </div>
+                                                        </ListGroupItem>
+                                                    </CSSTransition>
+                                                </ListGroup>
+                                                : null}
+                                        </div>
+                                        <div className="GrowerPersonalShopChoosingFarmer">
+                                            <Card>
+                                                <CardHeader>פרטי החקלאי שלי</CardHeader>
+                                                <CardBody>
+                                                    <span><img alt="" src={require('../Resources/Name.png')} size='sm' />{this.state.FarmerFullNmae}</span>
+                                                    <span><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.state.FarmerPhone}</span>
+                                                    <span><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.state.FarmerEmail}>{this.state.FarmerEmail}</a></span>
+                                                    <span><img alt="" src={require('../Resources/location.png')} size='sm' />{this.state.FarmerLocation}</span>
+                                                </CardBody>
+                                            </Card>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </FormGroup>
+                        {!this.state.ListEmptyValidation ? (<div className="DuplicatesAlert" ><Alert className='DuplicatesAlertContent' color="danger">יש לרכוש לפחות מוצר אחד</Alert></div>) : null}
                         <div className='GrowerPersonalShopBuyButtonHolder'>
                             <Button color="success" className='GrowerPersonalShopBuyButton' >
                                 לסיום ורכישה
@@ -409,10 +500,13 @@ const mapStateToProps = state => ({
     error: state.error,
     farmer: state.farmer,
     farmers: state.farmer.farmers,
-    growershop: state.growershop
+    growershop: state.growershop,
+    GrowerShoopingList: state.growershop.GrowerShoopingList,
+    personalshop: state.personalshop,
+    transactionDone: state.personalshop.transactionDone
 });
 
 export default connect(
     mapStateToProps,
-    { register, clearErrors, getfarmerbyemail, getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList, ResetGrowerShoopinList }
+    { register, clearErrors, getfarmerbyemail, getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList, ResetGrowerShoopinList, UpdateGrowerShoopinList, addpersonalShoopingItems }
 )(GrowerPersonalShop);

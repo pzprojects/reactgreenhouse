@@ -2,7 +2,8 @@ import {
     GET_ITEMS_TO_SHOOPING_LIST,
     DELETE_ITEMS_FROM_SHOOPING_LIST,
     ADD_ITEMS_TO_SHOOPING_LIST,
-    RESET_SHOOPING_LIST
+    RESET_SHOOPING_LIST,
+    UPDATE_ITEMS_TO_SHOOPING_LIST
   } from '../actions/types';
   
   const initialState = {
@@ -21,7 +22,7 @@ import {
           GrowerShoopingList: []
         };
       case DELETE_ITEMS_FROM_SHOOPING_LIST:
-        var ItemIndex = state.GrowerShoopingList.findIndex(choosenvegetable => choosenvegetable.name === action.payload)
+        var ItemIndex = state.GrowerShoopingList.findIndex(choosenvegetable => choosenvegetable.ChoosenVegName === action.payload);
         return {
           ...state,
           GrowerShoopingList: [...state.GrowerShoopingList.slice(0, ItemIndex), ...state.GrowerShoopingList.slice(ItemIndex+1)]
@@ -29,7 +30,15 @@ import {
       case ADD_ITEMS_TO_SHOOPING_LIST:
         return {
           ...state,
-          GrowerShoopingList: [action.payload, ...state.GrowerShoopingList]
+          GrowerShoopingList: [...state.GrowerShoopingList, action.payload]
+        };
+      case UPDATE_ITEMS_TO_SHOOPING_LIST:
+        var NewGrowerShoopingList = [...state.GrowerShoopingList];
+        var ItemIndex = state.GrowerShoopingList.findIndex(choosenvegetable => choosenvegetable.ChoosenVegName === action.nametofind);
+        NewGrowerShoopingList[ItemIndex].ChoosenVegAmount = (parseFloat(action.payload) + parseFloat(NewGrowerShoopingList[ItemIndex].ChoosenVegAmount)).toString();
+        return {
+          ...state,
+          GrowerShoopingList: NewGrowerShoopingList
         };
       default:
         return state;

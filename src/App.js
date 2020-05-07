@@ -19,6 +19,7 @@ import UpdatePassword from './components/UpdatePassword';
 import UpdateGrowerEmail from './components/UpdateGrowerEmail';
 import FieldCropManagment from './components/FieldCropManagment';
 import GrowerPersonalShop from './components/GrowerPersonalShop';
+import PurchaseCompleted from './components/PurchaseCompleted';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -56,6 +57,7 @@ class App extends Component {
               <Route path="/LoginPage" component={LoginPage} />
               <Route path="/RecoverPassword" component={RecoverPassword} />
               <Route path="/UpdateGrowerEmail" component={UpdateGrowerEmail} />
+              <Route path="/PurchaseCompleted" component={PurchaseCompleted} />
               <Route path="/FieldCropManagment" component={FieldCropManagment} />
               <Route path="/UpdatePassword/:userId/:token" render={({ match }) => (<UpdatePassword userId={match.params.userId} token={match.params.token} /> )} />
             </Container>

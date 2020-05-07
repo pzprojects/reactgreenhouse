@@ -1,4 +1,4 @@
-import { GET_ITEMS_TO_SHOOPING_LIST, DELETE_ITEMS_FROM_SHOOPING_LIST, ADD_ITEMS_TO_SHOOPING_LIST, RESET_SHOOPING_LIST } from './types'
+import { GET_ITEMS_TO_SHOOPING_LIST, DELETE_ITEMS_FROM_SHOOPING_LIST, ADD_ITEMS_TO_SHOOPING_LIST, RESET_SHOOPING_LIST, UPDATE_ITEMS_TO_SHOOPING_LIST } from './types'
 
 export const getGrowerShoopinList = () => {
   return {
@@ -12,6 +12,14 @@ export const addToGrowerShoopinList = (data) => {
       payload: data
   };
 };
+
+export const UpdateGrowerShoopinList = (name, datatoupdate) => {
+    return{
+        type: UPDATE_ITEMS_TO_SHOOPING_LIST,
+        payload: datatoupdate,
+        nametofind: name
+    };
+  };
 
 export const deleteFromShoopinList = name => {
   return{
