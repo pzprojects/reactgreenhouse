@@ -21,7 +21,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
 import { getfarmerbyemail } from '../actions/farmerAction';
-import { updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan } from '../actions/updateUserAction';
+import { updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan, growerDeactivationSuccess, userDeactivationSuccess, resetUpdateUser } from '../actions/updateUserAction';
 import { Redirect } from "react-router-dom";
 import { API_URL } from '../config/keys';
 import { FiEdit } from "react-icons/fi";
@@ -67,7 +67,8 @@ class GrowerPersonalArea extends Component {
     redirect: null,
     UserActive: false,
     SuccessFileUpload: false,
-    FieldCropPlanActive: false
+    FieldCropPlanActive: false,
+    DeactivateRequest: false
   };
 
   static propTypes = {
@@ -81,7 +82,10 @@ class GrowerPersonalArea extends Component {
     updateduser: PropTypes.object.isRequired,
     updategrowerbyemail: PropTypes.func.isRequired,
     deactivategrowerplan: PropTypes.func.isRequired,
-    deactivateuserplan: PropTypes.func.isRequired
+    deactivateuserplan: PropTypes.func.isRequired,
+    growerDeactivationSuccess: PropTypes.func.isRequired,
+    userDeactivationSuccess: PropTypes.func.isRequired,
+    resetUpdateUser: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -106,13 +110,17 @@ class GrowerPersonalArea extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
+    const { error, isAuthenticated, growerdeactivate, userdeactivate } = this.props;
     if (error !== prevProps.error) {
       this.setState({
         ActivateLoader: false
       });
-      // Check for register error
-      if (error.id === 'REGISTER_FAIL') {
+      // Check for update error
+      if (error.id === 'UPDATE_FAIL') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
         this.setState({ msg: error.msg.msg });
       } else {
         this.setState({ msg: null });
@@ -142,15 +150,22 @@ class GrowerPersonalArea extends Component {
         this.toggle();
       }
     }
+
+    // If Deactivated, close modal
+    if (this.state.modal && this.state.DeactivateRequest) {
+      if (isAuthenticated && growerdeactivate && userdeactivate) {
+        this.toggle();
+      }
+    }
   }
 
   toggle = () => {
     // Clear errors
     this.props.clearErrors();
+    this.props.resetUpdateUser();
     this.setState({
-        modal: !this.state.modal
-    });
-    this.setState({
+      modal: !this.state.modal,
+      DeactivateRequest: !this.state.DeactivateRequest,
       ActivateLoader: !this.state.ActivateLoader,
       redirect: '/DeatilsUpdatedMSG'
     });
@@ -355,12 +370,15 @@ class GrowerPersonalArea extends Component {
     try{
         this.setState({
             ActivateLoader: !this.state.ActivateLoader,
-            modal: !this.state.modal
+            modal: !this.state.modal,
+            DeactivateRequest: !this.state.DeactivateRequest
           });
       
           const chossenfarmer = user.workingwith[0].email;
       
-          let workingwith = [{email: user.workingwith[0].email, usertype: user.workingwith[0].usertype ,active: false, totalpayed: user.workingwith[0].totalpayed}];
+          //let workingwith = [{email: user.workingwith[0].email, usertype: user.workingwith[0].usertype ,active: false, totalpayed: user.workingwith[0].totalpayed}];
+          let workingwith = user.workingwith;
+          workingwith[0].active = false;
       
       
             // Create user object
@@ -379,7 +397,8 @@ class GrowerPersonalArea extends Component {
     }catch(e){
         this.setState({
           ActivateLoader: false,
-          modal: false
+          modal: false,
+          DeactivateRequest: false
         });
     }
   };
@@ -750,10 +769,13 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
   farmer: state.farmer,
-  updateduser: state.updateduser
+  updateduser: state.updateduser,
+  growerdeactivate: state.updateduser.growerdeactivate,
+  userdeactivate: state.updateduser.userdeactivate
 });
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getfarmerbyemail, updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan }
+  { register, clearErrors, getfarmerbyemail, updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan,
+    growerDeactivationSuccess, userDeactivationSuccess, resetUpdateUser }
 )(GrowerPersonalArea);

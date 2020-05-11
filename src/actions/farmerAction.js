@@ -60,7 +60,7 @@ export const addFarmer = farmer => (dispatch, getState) => {
       })
     )
     .catch(err =>
-      dispatch(returnErrors(err.response.data, err.response.status))
+      dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'))
     );
 };
 

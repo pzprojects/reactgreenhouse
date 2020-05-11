@@ -124,6 +124,10 @@ class GrowerRegisterPage extends Component {
       });
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
         this.setState({ msg: error.msg.msg });
       } else {
         this.setState({ msg: null });
@@ -490,7 +494,7 @@ class GrowerRegisterPage extends Component {
       const choosenvegetables = this.props.growervegbuyingbag.VegToBuy;
       const choosenfieldcrops = this.props.growerfieldcropsbuyingbag.FieldCropsToBuy;
       const GrowerChoosenFarmer =  this.props.choosenfarmer.ChoosenFarmerById[0];
-      let workingwith = [{email: GrowerChoosenFarmer.email, usertype: 'חקלאי' ,active: true, totalpayed: this.props.growervegbuyingbag.Total}];
+      let workingwith = [{_id: uuidv4(), email: GrowerChoosenFarmer.email, usertype: 'חקלאי' ,active: true, totalpayed: this.props.growervegbuyingbag.Total}];
       let plans = [];
       let plan = {};
       let fieldcropplan = {};

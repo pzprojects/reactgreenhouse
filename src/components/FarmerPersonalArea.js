@@ -151,8 +151,13 @@ class FarmerPersonalArea extends Component {
       this.setState({
         ActivateLoader: false
       });
-      // Check for register error
-      if (error.id === 'REGISTER_FAIL') {
+
+      // Check for update error
+      if (error.id === 'UPDATE_FAIL') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
         this.setState({ msg: error.msg.msg });
       } else {
         this.setState({ msg: null });
