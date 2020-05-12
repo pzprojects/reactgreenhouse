@@ -1,6 +1,6 @@
 /* Desktop View*/
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 580px) {
 
   /* General */
 
@@ -154,12 +154,17 @@
     text-align: right;
     margin-bottom: 1.5vw;
   }
+
+  .ProfileName h1 {
+    font-size: 2.1vw;
+  }
   
   .PersonalDetails {
     width: 50%;
     position: relative;
     display: block;
     float: right;
+    font-size: 0.83vw;
   }
 
   div.PersonalDetails .form-group label {
@@ -177,17 +182,20 @@
     position: relative;
     display: block;
     border-color: #329258;
+    font-size: 0.83vw;
   }
   
   .SizeArea {
     width: 70%;
     border-color: #329258;
     background-color: white;
+    font-size: 0.83vw;
   }
   
   .AboutMe {
     width: 70%;
     border-color: #329258;
+    font-size: 0.83vw;
   }
   
   /*Upload Image*/
@@ -244,6 +252,7 @@
   .UserTypesHolder .UserTypesButton {
     text-align: center;
     margin: 5vw;
+    font-size: 1.2vw;
   }
   
   .UserTypesHolder .UserTypesHeader {
@@ -278,10 +287,20 @@
     margin-bottom: 4vw;
     background-color: #E4FBDC;
     border-radius: 4vw;
+    font-size: 0.83vw;
+  }
+
+  .vegetablesOpen h3 {
+    font-size: 1.45vw;
   }
   
   .vegetables h3 {
     margin-bottom: 2vw;
+    font-size: 1.45vw;
+  }
+
+  .vegetables button {
+    font-size: 0.83vw;
   }
   
   .vegetablesList {
@@ -309,6 +328,7 @@
   
   .vegetablesApproveButton {
     margin-bottom: 1vw;
+    font-size: 0.83vw;
   }
 
   .FarmerChoosePlanAlert {
@@ -373,6 +393,7 @@
     display: block;
     float: right;
     text-align: center;
+    font-size: 0.83vw;
   }
   
   .ChoosenVegetablesList span img.ChoosenVegetableImage {
@@ -382,6 +403,12 @@
   .ChoosenVegetablesList span.ChoosenVegetablePrice {
     width: 6vw;
     margin-left: 0.5vw;
+  }
+
+  .ChoosenVegetablesList span.ChoosenVegetablePrice input {
+    font-size: 0.83vw;
+    text-align: center;
+    margin-top: -0.5vw;
   }
   
   .ChoosenVegetablesList span.ChoosenVegetableName {
@@ -425,6 +452,8 @@
 
   .AddFieldCropsPlan div.AddFieldCropsPlanLogic input {
     border-color: #329258;
+    font-size: 0.83vw;
+    text-align: center;
   }
 
   .AddFieldCropsPlan div.AddFieldCropsPlanLogic label {
@@ -466,6 +495,7 @@
     text-align: right;
     padding-right: 40px;
     font-weight: bold;
+    font-size: 0.93vw;
   }
   
   /* Plan cards */
@@ -548,7 +578,7 @@
   }
   
   .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel {
-    width: 32%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -558,10 +588,16 @@
   }
   
   .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel .form-check-label {
-    width: 3vw;
+    width: 65%;
     position: relative;
     display: block;
     float: right;
+    font-size: 0.83vw;
+  }
+
+  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel .form-check-label input {
+    font-size: 0.83vw;
+    text-align: center;
   }
   
   .Plans div.PlanCard div.PlanCardBody div.CardDetails {
@@ -708,11 +744,18 @@
   
   .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group {
     line-height: 0vw;
-    height: 3vw;
     width: 100%;
     display: block;
     position: relative;
     float: right;
+  }
+
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group input {
+    font-size: 0.83vw;
+  }
+
+  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group select {
+    font-size: 0.83vw;
   }
   
   .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.bankDetails {
@@ -786,6 +829,11 @@
     width: 100%;
     margin-bottom: 2vw;
     margin-top: 2vw;
+    font-size: 0.83vw;
+  }
+
+  .Growersizearea div.form-group select {
+    font-size: 0.83vw;
   }
 
   .GrowerRegisterPlanAlert {
@@ -862,6 +910,7 @@
   .FarmerListContent div.container li div.FarmerList {
     width: 100%;
     text-align: right;
+    font-size: 0.83vw;
   }
 
   .FarmerListContent div.container li div.FarmerList div.FarmerListRadioBtn {
@@ -982,6 +1031,11 @@
     display: block;
     float: right;
     padding-left: 0.3vw;
+    font-size: 0.83vw;
+  }
+
+  .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerVegHolder select {
+    font-size: 0.83vw;
   }
 
   .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegAVGPrice {
@@ -993,6 +1047,7 @@
     padding-right: 0.3vw;
     margin-top: 1.5vw;
     text-align: center;
+    font-size: 0.83vw;
   }
 
   .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo {
@@ -1002,6 +1057,7 @@
     float: right;
     padding-left: 0.3vw;
     margin-top: 1.5vw;
+    font-size: 0.83vw;
   }
 
   .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo span.GrowerChoosenVegMoreInfoIMG {
@@ -1046,6 +1102,7 @@
     height: 3vw;
     padding-top: 0.75vw;
     background-color: #98D084;
+    font-size: 0.83vw;
   }
 
   div.FarmerListTitle {
@@ -1053,6 +1110,7 @@
     height: 2vw;
     padding-top: 0.5vw;
     font-weight: bold;
+    font-size: 0.83vw;
   }
 
   .FarmerListContent .container div.ListOfFarmersByArea ul > li.FarmerListTitleListItem{
@@ -1172,6 +1230,7 @@
     text-align: right;
     font-weight: bold;
     margin-bottom: 0.5vw;
+    font-size: 0.83vw;
   }
 
   .GrowerVegContainer2 div.GrowerVegContainer2Example {
@@ -1183,6 +1242,7 @@
     font-weight: bold;
     margin-bottom: 0.5vw;
     padding-right: 40px;
+    font-size: 0.83vw;
   }
 
   /* Total Billing */
@@ -1194,6 +1254,7 @@
     float: right;
     margin-top: 3vw;
     text-align: right;
+    font-size: 0.83vw;
   }
 
   .GrowerFinalBilling div.GrowerFinalBillingContainer {
@@ -1315,6 +1376,7 @@
 
   .DuplicatesAlertContent {
     border-color: red;
+    font-size: 0.93vw;
   }
 
   /* Grower Personal area */
@@ -1343,6 +1405,7 @@
     position: relative;
     display: block;
     border-color: #329258;
+    font-size: 0.83vw;
   }
 
   .RegisterDate {
@@ -1360,6 +1423,10 @@
     display: block;
     float: right;
     margin-bottom: 1.5vw;
+  }
+
+  .CancelSubscription button {
+    font-size: 0.83vw;
   }
 
   .CurrentPlan {
@@ -1444,11 +1511,13 @@
   .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons button {
     margin-left: 3%;
     width: 30%;
+    font-size: 0.83vw;
   }
 
   .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons a {
     margin-left: 3%;
     width: 30%;
+    font-size: 0.83vw;
   }
 
   .RegisterButtonContainer Button.UpdateDetails {
@@ -1527,6 +1596,7 @@
     position: relative;
     display: block;
     float: right;
+    font-size: 0.83vw;
   }
 
   .farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem {
@@ -2712,10 +2782,15 @@
   .ReadMoreItem {
     direction: rtl;
     text-align: right;
+    font-size: 0.83vw;
   }
   
   .ReadMoreItem span img {
     margin-left: 2vw;
+  }
+
+  .modal-header h5 {
+    font-size: 1.2vw;
   }
 
   /* System Logs */
@@ -2807,6 +2882,7 @@
     position: relative;
     display: block;
     border-color: #329258;
+    font-size: 0.83vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegPrice {
@@ -2845,6 +2921,7 @@
     margin-left: 5%;
     margin-right: 5%;
     text-align: center;
+    font-size: 0.83vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount div.GrowerPersonalShopVegAmountContainer span {
@@ -2857,11 +2934,19 @@
     text-align: center;
   }
 
+  .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount div.GrowerPersonalShopVegAmountContainer span button {
+    font-size: 0.83vw;
+  }
+
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAddToBucket {
     width: 15%;
     position: relative;
     display: block;
     float: right;
+  }
+
+  .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAddToBucket span button {
+    font-size: 0.83vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling {
@@ -3050,7 +3135,7 @@
   }
 }
 
-
+/********************************************************************************************************************************************************************/
 /* Mobile and tablet View */ 
 
 @media screen and (max-width: 580px) {
@@ -3082,539 +3167,3052 @@
     z-index: 10;
   }
   
-  /*Register Page*/
-  
-  /*Personal Details*/
-  
-  .ProfileName {
-    position: relative;
-    display: block;
-    float: right;
-    width: 100%;
-    text-align: right;
-    margin-bottom: 1.5vw;
-  }
-  
-  .PersonalDetails {
-    width: 50%;
-    position: relative;
-    display: block;
-    float: right;
-  }
-  
-  div.PersonalDetails .form-group label {
-    width: 30%;
-    float: right;
-    text-align: right;
-    position: relative;
-    display: block;
-  }
-  
-  div.PersonalDetails .form-group input {
-    width: 70%;
-    float: right;
-    text-align: right;
-    position: relative;
-    display: block;
-    border-color: #329258;
-  }
-  
-  .SizeArea {
-    width: 70%;
-    border-color: #329258;
-    background-color: white;
-  }
-  
-  .AboutMe {
-    width: 70%;
-    border-color: #329258;
-  }
-  
-  /*Upload Image*/
-  
-  .UploadImage {
-    width: 50%;
-    position: relative;
-    display: block;
-    float: right;
-  }
-  
-  .UploadImage #profileimg {
-    display:none;
-  }
-  
-  .ProfileImage {
-    width: 22vw;
-    height: 22vw;
-  }
-  
-  /*Spinner Loader*/
-  
-  .SpinnerHolder {
-    text-align: center;
-  }
-  
-  .SpinnerHolder .Spinner1 {
-    width: 3vw;
-    height: 3vw;
-    animation-delay: 0.5s;
-  }
-  
-  .SpinnerHolder .Spinner2 {
-    width: 3vw;
-    height: 3vw;
-    animation-delay: 1s;
-  }
-  
-  .SpinnerHolder .Spinner3 {
-    width: 3vw;
-    height: 3vw;
-    animation-delay: 1.5s;
-  }
-  
-  /*User register choice*/
-  
-  .UserTypesHolder {
-    text-align: center;
-    position: relative;
-    display: block;
-    position: relative;
-  }
-  
-  .UserTypesHolder .UserTypesButton {
-    text-align: center;
-    margin: 5vw;
-  }
-  
-  .UserTypesHolder .UserTypesHeader {
-    text-align: center;
-    margin-top: 15vw;
-    font-size: 1.93vw;
-  }
-  
-  /*vegetables*/
-  
-  .vegetables {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-    text-align: center;
-    margin-top: 4vw;
-    margin-bottom: 4vw;
-  }
-  
-  .vegetablesOpen {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-    text-align: center;
-    margin-top: 4vw;
-    margin-bottom: 4vw;
-    background-color: #E4FBDC;
-    border-radius: 4vw;
-  }
-  
-  .vegetables h3 {
-    margin-bottom: 2vw;
-  }
-  
-  .vegetablesList {
-    width: 100%;
-    margin-bottom: 1vw;
-  }
-  
-  .vegetablesList li {
-    position: relative;
-    display: block;
-    float: right;
-    border: none;
-    background-color: #E4FBDC;
-  }
-  
-  .vegetablesList li span {
-    position: relative;
-    display: block;
-    float: right;
-  }
-  
-  .vegetablesList li span.vegetablesItemName {
-    margin-right: 0.5vw;
-  }
-  
-  .vegetablesApproveButton {
-    margin-bottom: 1vw;
-  }
-  
-  /* List Of Veg Cost */
-  
-  .ListOfVegCost {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-    text-align: center;
-    margin-top: 1vw;
-    margin-bottom: 1vw;
-  }
-  
-  .ListOfVegCost p {
-    margin-right: auto;
-    margin-left: auto;
-  }
-  
-  .ChoosenVegetablesList {
-    position: relative;
-    display: block;
-    float: right;
-    text-align: center;
-    width: 50%;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  
-  .ChoosenVegetablesList li {
-    position: relative;
-    display: block;
-    float: right;
-    text-align: center;
-    width: 100%;
-    border: none;
-  }
-  
-  .ChoosenVegetablesList span {
-    position: relative;
-    display: block;
-    float: right;
-    text-align: center;
-  }
-  
-  .ChoosenVegetablesList span img.ChoosenVegetableImage {
-    margin-left: 0.5vw;
-  }
-  
-  .ChoosenVegetablesList span.ChoosenVegetablePrice {
-    width: 6vw;
-    margin-left: 0.5vw;
-  }
-  
-  .ChoosenVegetablesList span.ChoosenVegetableName {
-    margin-left: 1vw;
-    width: 8vw;
-    text-align: right;
-  }
-  
-  .ChoosenVegetablesList span.ChoosenVegetabletext {
-    margin-left: 0.5vw;
-  }
-  
-  /* Plan cards */
-  
-  .Plans {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-    margin-bottom: 2vw;
-  }
-  
-  .Plans div.PlanCard {
-    width: 29.3%;
-    position: relative;
-    display: block;
-    float: right;
-    margin-left: 2%;
-    margin-right: 2%;
-  }
-  
-  .Plans div.PlanCard div.PlanCardHeader {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-  }
-  
-  .Plans div.PlanCard div.PlanCardHeader div.Card1Image {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-  }
-  
-  .Plans div.PlanCard div.PlanCardHeader div img.PlanHeaderVegetableImage {
-    width: 100%;
-    height: 25vw;
-  }
-  
-  .Plans div.PlanCard div.PlanCardHeader div .form-check-label {
-    position: absolute;
-    display: block;
-    top: 1vw;
-    right: 1vw;
-  }
-  
-  .Plans div.PlanCard div.PlanCardHeader div span.PlanTitle {
-    text-align: center;
-    position: absolute;
-    display: block;
-    right: 27.5%;
-    bottom: -2%;
-    width: 45%;
-    background-color: #7ECCC5;
-    color: white;
-    font-size: 1.20vw;
-    z-index: 10;
-  }
-  
-  .Plans div.PlanCard div.PlanCardBody {
-    width: 100%;
-    height: 15vw;
-    position: relative;
-    display: block;
-    float: right;
-    margin-top: 5vw;
-    background-color: #D5F3F0;
-    text-align: center;
-    font-size: 0.83vw;
-    border-radius: 2vw;
-  }
-  
-  .Plans div.PlanCard div.PlanCardBody div.CardCost {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-    margin-top: 1vw;
-  }
-  
-  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel {
-    width: 32%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel span {
-    vertical-align: -webkit-baseline-middle;
-  }
-  
-  .Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel .form-check-label {
-    width: 3vw;
-    position: relative;
-    display: block;
-    float: right;
-  }
-  
-  .Plans div.PlanCard div.PlanCardBody div.CardDetails {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-  }
-  
-  .Plans div.PlanCard div.PlanCardBody div.CardDetails span.CardDetailsHeader {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-    margin-bottom: 0.5vw;
-  }
-  
-  .Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: right;
-    text-align: right;
-  }
-  
-  .Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection span.PlanVegetableImage {
-    margin-right: 5vw;
-    margin-left: 1vw;
-  }
-  
-  /* Approve Regulations */
-  
-  .ApproveRegulations {
-    display: block;
-    position: relative;
-    float: right;
-    width: 100%;
-  }
-  
-  .ApproveRegulations div.RegulationsCheckBox {
-    display: block;
-    position: relative;
-    float: right;
-    margin-right: 1vw;
-    margin-left: 1vw;
-  }
-  
-  .ApproveRegulations div.RegulationsLink {
-    display: block;
-    position: relative;
-    float: right;
-  }
-  
-  /* Screen buttons */
-  
-  .MoveToPaymentScreenButton {
-    display: block;
-    position: relative;
-    float: right;
-    width: 100%;
-    margin-bottom: 2vw;
-    margin-top: 1vw;
-  }
-  
-  .MoveToPaymentScreenButton button {
-    color: white;
-    background-color: #7ECCC5;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  
-  .MoveToSecondPaymentScreenButton {
-    display: block;
-    position: relative;
-    float: right;
-    width: 100%;
-    margin-top: 1vw;
-  }
-  
-  .MoveToSecondPaymentScreenButton button {
-    color: white;
-    background-color: #7ECCC5;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  
-  .RegisterButtonContainer button.RegisterButton {
-    color: white;
-    background-color: #7ECCC5;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-  }
-  
-  .RegisterButtonContainer {
-    display: block;
-    position: relative;
-    float: right;
-    width: 100%;
-    margin-top: 3vw;
-    margin-bottom: 9vw;
-  }
-  
-  
-  /* Recive Payment */
-  
-  .BankCollectPaymentContainer {
-    display: block;
-    position: relative;
-    float: right;
-    width: 100%;
-    margin-bottom: 2vw;
-    margin-top: 5vw;
-  }
-  
-  .BankCollectPaymentContainer div.BankCollectPayment {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    width: 40%;
-    background-color: #DDF4D5;
-    padding-left: 4vw;
-    padding-right: 4vw;
-    padding-top: 2vw;
-    padding-bottom: 2vw;
-    border-radius: 4vw;
-    overflow: hidden;
-  }
-  
-  .BankCollectPaymentContainer div.BankCollectPayment span.RecivePaymentHeader {
-    display: block;
-    width: 100%;
-    position: relative;
-    float: right;
-    padding-bottom: 1vw;
-    text-align: center;
-    font-size: 1.2vw;
-    font-weight: bold;
-    color: #329258;
-  }
-  
-  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group {
-    line-height: 0vw;
-    height: 3vw;
-    width: 100%;
-    display: block;
-    position: relative;
-    float: right;
-  }
-  
-  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.bankDetails {
-    width: 100%;
-    display: block;
-    position: relative;
-    float: right;
-  }
-  
-  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.bankname {
-    width: 48%;
-    display: block;
-    position: relative;
-    float: right;
-    margin-left: 2%;
-  }
-  
-  .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.banknumber {
-    width: 48%;
-    display: block;
-    position: relative;
-    float: right;
-    margin-right: 2%;
-  }
-  
-  /* Farmer Submission MSG page */
-  
-  .FarmerSubmissionMSGHolder {
-    width: 100%;
-    display: block;
-    position: relative;
-    float: right;
-    margin-top: 5vw;
-    text-align: center;
-  }
-  
-  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGHeader {
-    width: 100%;
-    display: block;
-    position: relative;
-    float: right;
-    margin-bottom: 1vw;
-    font-size: 1.8vw;
-    font-weight: bold;
-    color: black;
-  }
-  
-  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder {
-    display: block;
-    position: relative;
-    float: right;
-    width: 100%;
-  }
-  
-  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder a.FarmerSubmissionMSGButton {
-    color: white;
-    background-color: #7ECCC5;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    width: 25%;
-    margin-top: 1vw;
-  }
+/* General */
+
+.remove-btn {
+  margin-right: 0.5rem;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+
+div.alert {
+  text-align: center;
+}
+
+/*Register Page*/
+
+.HelpBtn {
+  position: fixed;
+  right: 0vw;
+  top: 25vw;
+}
+
+.HelpBtn a img {
+  width: 11vw;
+  height: 2.9vw;
+}
+
+/*Personal Details*/
+
+.RegisterStatus {
+  position: relative;
+  display: block;
+  float: right;
+  width: 100%;
+  margin-bottom: 2vw;
+  margin-top: 2vw;
+}
+
+.RegisterStatus img {
+  width: 38vw;
+  height: 2.5vw;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  display: block;
+}
+
+.ProfileName {
+  position: relative;
+  display: block;
+  float: right;
+  width: 100%;
+  text-align: right;
+  margin-bottom: 1.5vw;
+}
+
+.ProfileName h1 {
+  font-size: 2.1vw;
+}
+
+.PersonalDetails {
+  width: 50%;
+  position: relative;
+  display: block;
+  float: right;
+  font-size: 0.83vw;
+}
+
+div.PersonalDetails .form-group label {
+  width: 30%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+}
+
+div.PersonalDetails .form-group input {
+  width: 70%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+  font-size: 0.83vw;
+}
+
+.SizeArea {
+  width: 70%;
+  border-color: #329258;
+  background-color: white;
+  font-size: 0.83vw;
+}
+
+.AboutMe {
+  width: 70%;
+  border-color: #329258;
+  font-size: 0.83vw;
+}
+
+/*Upload Image*/
+
+.UploadImage {
+  width: 50%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.UploadImage #profileimg {
+  display:none;
+}
+
+.ProfileImage {
+  width: 22vw;
+  height: 22vw;
+}
+
+/*Spinner Loader*/
+
+.SpinnerHolder {
+  text-align: center;
+}
+
+.SpinnerHolder .Spinner1 {
+  width: 3vw;
+  height: 3vw;
+  animation-delay: 0.5s;
+}
+
+.SpinnerHolder .Spinner2 {
+  width: 3vw;
+  height: 3vw;
+  animation-delay: 1s;
+}
+
+.SpinnerHolder .Spinner3 {
+  width: 3vw;
+  height: 3vw;
+  animation-delay: 1.5s;
+}
+
+/*User register choice*/
+
+.UserTypesHolder {
+  text-align: center;
+  position: relative;
+  display: block;
+  position: relative;
+}
+
+.UserTypesHolder .UserTypesButton {
+  text-align: center;
+  margin: 5vw;
+  font-size: 1.2vw;
+}
+
+.UserTypesHolder .UserTypesHeader {
+  text-align: center;
+  margin-top: 15vw;
+  font-size: 1.93vw;
+}
+
+/*vegetables*/
+
+.vegetables {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-top: 4vw;
+  margin-bottom: 4vw;
+}
+
+.vegetables button {
+  margin-left: 1vw;
+}
+
+.vegetablesOpen {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-top: 4vw;
+  margin-bottom: 4vw;
+  background-color: #E4FBDC;
+  border-radius: 4vw;
+  font-size: 0.83vw;
+}
+
+.vegetablesOpen h3 {
+  font-size: 1.45vw;
+}
+
+.vegetables h3 {
+  margin-bottom: 2vw;
+  font-size: 1.45vw;
+}
+
+.vegetables button {
+  font-size: 0.83vw;
+}
+
+.vegetablesList {
+  width: 100%;
+  margin-bottom: 1vw;
+}
+
+.vegetablesList li {
+  position: relative;
+  display: block;
+  float: right;
+  border: none;
+  background-color: #E4FBDC;
+}
+
+.vegetablesList li span {
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.vegetablesList li span.vegetablesItemName {
+  margin-right: 0.5vw;
+}
+
+.vegetablesApproveButton {
+  margin-bottom: 1vw;
+  font-size: 0.83vw;
+}
+
+.FarmerChoosePlanAlert {
+  position: relative;
+  display: block;
+  float: right;
+  width: 100%;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+
+/* List Of Veg Cost */
+
+.ChoosenVegetablesPricingHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-size: 1.2vw;
+  font-weight: bold;
+  margin-bottom: 1vw;
+  margin-top: 1vw;
+}
+
+.ListOfVegCost {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+.ListOfVegCost p {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ChoosenVegetablesList {
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ChoosenVegetablesList li {
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  width: 100%;
+  border: none;
+}
+
+.ChoosenVegetablesList span {
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-size: 0.83vw;
+}
+
+.ChoosenVegetablesList span img.ChoosenVegetableImage {
+  margin-left: 0.5vw;
+}
+
+.ChoosenVegetablesList span.ChoosenVegetablePrice {
+  width: 6vw;
+  margin-left: 0.5vw;
+}
+
+.ChoosenVegetablesList span.ChoosenVegetablePrice input {
+  font-size: 0.83vw;
+  text-align: center;
+  margin-top: -0.5vw;
+}
+
+.ChoosenVegetablesList span.ChoosenVegetableName {
+  margin-left: 1vw;
+  width: 8vw;
+  text-align: right;
+}
+
+.ChoosenVegetablesList span.ChoosenVegetabletext {
+  margin-left: 0.5vw;
+}
+
+/* Field Crop plan */
+
+.AddFieldCropsPlan{
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 2vw;
+  margin-top: 2vw;
+}
+
+.AddFieldCropsPlan div.AddFieldCropsPlanCheckBox {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1vw;
+  text-align: center;
+}
+
+.AddFieldCropsPlan div.AddFieldCropsPlanLogic {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1vw;
+  text-align: center;
+}
+
+.AddFieldCropsPlan div.AddFieldCropsPlanLogic input {
+  border-color: #329258;
+  font-size: 0.83vw;
+  text-align: center;
+}
+
+.AddFieldCropsPlan div.AddFieldCropsPlanLogic label {
+  width: 5%;
+}
+
+.GrowerChoosenFieldCrops{
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 2vw;
+  margin-top: 2vw;
+}
+
+.GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBox {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1vw;
+  text-align: right;
+  padding-right: 40px;
+}
+
+.GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBoxLogic {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: right;
+}
+
+.GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBoxLogic div.PlanPriceHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: right;
+  padding-right: 40px;
+  font-weight: bold;
+  font-size: 0.93vw;
+}
+
+/* Plan cards */
+
+.Plans {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 2vw;
+}
+
+.Plans div.PlanCard {
+  width: 29.3%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.Plans div.PlanCard div.PlanCardHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.Plans div.PlanCard div.PlanCardHeader div.Card1Image {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.Plans div.PlanCard div.PlanCardHeader div img.PlanHeaderVegetableImage {
+  width: 100%;
+  height: 25vw;
+}
+
+.Plans div.PlanCard div.PlanCardHeader div .form-check-label {
+  position: absolute;
+  display: block;
+  top: 1vw;
+  right: 1vw;
+}
+
+.Plans div.PlanCard div.PlanCardHeader div span.PlanTitle {
+  text-align: center;
+  position: absolute;
+  display: block;
+  right: 27.5%;
+  bottom: -2%;
+  width: 45%;
+  background-color: #7ECCC5;
+  color: white;
+  font-size: 1.20vw;
+  z-index: 10;
+}
+
+.Plans div.PlanCard div.PlanCardBody {
+  width: 100%;
+  height: 15vw;
+  position: relative;
+  display: block;
+  float: right;
+  margin-top: 5vw;
+  background-color: #D5F3F0;
+  text-align: center;
+  font-size: 0.83vw;
+  border-radius: 2vw;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardCost {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-top: 1vw;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel span {
+  vertical-align: -webkit-baseline-middle;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel .form-check-label {
+  width: 65%;
+  position: relative;
+  display: block;
+  float: right;
+  font-size: 0.83vw;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardCost div.CardCostLabel .form-check-label input {
+  font-size: 0.83vw;
+  text-align: center;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardDetails {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardDetails span.CardDetailsHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 0.5vw;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: right;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection span.PlanVegetableImage {
+  margin-right: 5vw;
+  margin-left: 1vw;
+}
+
+/* Approve Regulations */
+
+.ApproveRegulations {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+}
+
+.ApproveRegulations div.RegulationsCheckBox {
+  display: block;
+  position: relative;
+  float: right;
+  margin-right: 1vw;
+  margin-left: 1vw;
+}
+
+.ApproveRegulations div.RegulationsLink {
+  display: block;
+  position: relative;
+  float: right;
+}
+
+/* Screen buttons */
+
+.MoveToPaymentScreenButton {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+  margin-bottom: 2vw;
+  margin-top: 1vw;
+}
+
+.MoveToPaymentScreenButton button {
+  color: white;
+  background-color: #7ECCC5;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.MoveToSecondPaymentScreenButton {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+  margin-top: 1vw;
+}
+
+.MoveToSecondPaymentScreenButton button {
+  color: white;
+  background-color: #7ECCC5;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.RegisterButtonContainer button.RegisterButton {
+  color: white;
+  background-color: #7ECCC5;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+
+.RegisterButtonContainer {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+  margin-top: 3vw;
+  margin-bottom: 9vw;
+}
+
+
+/* Recive Payment */
+
+.BankCollectPaymentContainer {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+  margin-bottom: 2vw;
+  margin-top: 5vw;
+}
+
+.BankCollectPaymentContainer div.BankCollectPayment {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 40%;
+  background-color: #DDF4D5;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+  border-radius: 4vw;
+  overflow: hidden;
+}
+
+.BankCollectPaymentContainer div.BankCollectPayment span.RecivePaymentHeader {
+  display: block;
+  width: 100%;
+  position: relative;
+  float: right;
+  padding-bottom: 1vw;
+  text-align: center;
+  font-size: 1.2vw;
+  font-weight: bold;
+  color: #329258;
+}
+
+.BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group {
+  line-height: 0vw;
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+}
+
+.BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group input {
+  font-size: 0.83vw;
+}
+
+.BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group select {
+  font-size: 0.83vw;
+}
+
+.BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.bankDetails {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+}
+
+.BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.bankname {
+  width: 48%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-left: 2%;
+}
+
+.BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group div.banknumber {
+  width: 48%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-right: 2%;
+}
+
+/* Farmer Submission MSG page */
+
+.FarmerSubmissionMSGHolder {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-top: 5vw;
+  text-align: center;
+}
+
+.FarmerSubmissionMSGHolder div.FarmerSubmissionMSGHeader {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 1vw;
+  font-size: 1.8vw;
+  font-weight: bold;
+  color: black;
+}
+
+.FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+}
+
+.FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder a.FarmerSubmissionMSGButton {
+  color: white;
+  background-color: #7ECCC5;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 25%;
+  margin-top: 1vw;
+}
+
+/* Grower register page*/ 
+
+.Growersizearea {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+  margin-bottom: 2vw;
+  margin-top: 2vw;
+  font-size: 0.83vw;
+}
+
+.Growersizearea div.form-group select {
+  font-size: 0.83vw;
+}
+
+.GrowerRegisterPlanAlert {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+  margin-bottom: 2vw;
+  margin-top: 2vw;
+  text-align: center;
+}
+
+.Growersizearea div.form-group {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.Growersizearea div.form-group label {
+  display: block;
+  position: relative;
+  float: right;
+  margin-left: 1vw;
+}
+
+.UpdateMyuserName {
+  position: absolute;
+  display: block;
+  left: 1vw;
+}
+
+.Growersizearea div.form-group select {
+  display: block;
+  position: relative;
+  float: right;
+}
+
+.Plans div.PlanCard div.PlanCardBody div.CardDetails span.GrowerCardDetailsHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 0.5vw;
+  margin-top: 1.5vw;
+}
+
+.FarmerListContent {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.FarmerListContent .container {
+  width: 100%;
+}
+
+.FarmerListContent .container div.ListOfFarmersByArea {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 2vw;
+}
+
+.FarmerListContent div.container > li {
+  background-color: #CCEEC0;
+}
+
+.FarmerListContent div.container > li:nth-child(odd) {
+  background-color: E4FBDC;
+}
+
+.FarmerListContent div.container li div.FarmerList {
+  width: 100%;
+  text-align: right;
+  font-size: 0.83vw;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListRadioBtn {
+  width: 4%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.2vw;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListImage {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.2vw;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListImage img.FarmerThemeImage {
+  width: 10%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 3.5vw;
+  height: 3.5vw;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListName {
+  width: 14%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.2vw;
+  overflow-wrap: break-word;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListName span {
+  margin-left: 0.3vw;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListAboutme {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.2vw;
+  overflow-wrap: break-word;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListchoosenvegetables {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.2vw;
+  overflow-wrap: break-word;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListplans {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.2vw;
+  overflow-wrap: break-word;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListplans {
+  width: 25%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.2vw;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListReadMore {
+  width: 7%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.2vw;
+}
+
+.FarmerListContent .container div.GrowerMainPicking {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 2vw;
+  margin-top: 2vw;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 {
+  width: 50%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 2vw;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul {
+  width: 80%;
+  text-align: right;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul > li {
+  background-color: #CCEEC0;
+  padding: 0;
+  width: 100%;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul > li:nth-child(odd) {
+  background-color: #E4FBDC;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerVegHolder {
+  width: 33.3%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.3vw;
+  font-size: 0.83vw;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerVegHolder select {
+  font-size: 0.83vw;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegAVGPrice {
+  width: 33.3%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.3vw;
+  padding-right: 0.3vw;
+  margin-top: 1.5vw;
+  text-align: center;
+  font-size: 0.83vw;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo {
+  width: 33.3%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.3vw;
+  margin-top: 1.5vw;
+  font-size: 0.83vw;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo span.GrowerChoosenVegMoreInfoIMG {
+  width: 30%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo span.GrowerChoosenVegMoreInfoIMG img {
+  width: 1.2vw;
+  height: 1.2vw;
+}
+
+.FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo span.GrowerChoosenVegMoreInfoText {
+  width: 70%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.FarmerListContent .container div.GrowerFieldsGroupsContainer {
+  width: 50%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 2vw;
+}
+
+.FarmerListContent .container div.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection {
+  width: 80%;
+  position: relative;
+  display: block;
+  float: left;
+  margin-bottom: 2vw;
+  text-align: center;
+  font-size: 0.83vw;
+}
+
+div.GrowerMainPickingTitle {
+  text-align: center;
+  height: 3vw;
+  padding-top: 0.75vw;
+  background-color: #98D084;
+  font-size: 0.83vw;
+}
+
+div.FarmerListTitle {
+  text-align: right;
+  height: 2vw;
+  padding-top: 0.5vw;
+  font-weight: bold;
+  font-size: 0.83vw;
+}
+
+.FarmerListContent .container div.ListOfFarmersByArea ul > li.FarmerListTitleListItem{
+  background-color: #98D084;
+}
+
+div.FarmerListTitle div.FarmerListTitleText1 {
+  width: 28%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+div.FarmerListTitle div.FarmerListTitleText2 {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+div.FarmerListTitle div.FarmerListTitleText3 {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+div.FarmerListTitle div.FarmerListTitleText4 {
+  width: 32%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka1 {
+  width: 25%;
+  position: relative;
+  display: block;
+  float: right;
+  background-color: #E38788;
+  height: 11vw;
+}
+
+.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka2 {
+  width: 25%;
+  position: relative;
+  display: block;
+  float: right;
+  background-color: #A8E5E8;
+  height: 11vw;
+}
+
+.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka3 {
+  width: 25%;
+  position: relative;
+  display: block;
+  float: right;
+  background-color: #F3E990;
+  height: 11vw;
+}
+
+.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div.GrowerHelka4 {
+  width: 25%;
+  position: relative;
+  display: block;
+  float: right;
+  background-color: #98D085;
+  height: 11vw;
+}
+
+.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaName {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  font-weight: bold;
+  margin-top: 1vw;
+  overflow-wrap: break-word;
+  height: 2vw;
+}
+
+.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaAmount {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-top: 1vw;
+  overflow-wrap: break-word;
+  height: 2vw;
+}
+
+.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotal {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-top: 1vw;
+  overflow-wrap: break-word;
+  height: 1vw;
+}
+
+.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotalPrice {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1vw;
+  overflow-wrap: break-word;
+  height: 2vw;
+}
+
+.GrowerFieldsGroupsContainer div.GrowerFieldsGroupsContainerExample {
+  width: 80%;
+  position: relative;
+  display: block;
+  float: left;
+  text-align: right;
+  font-weight: bold;
+  margin-bottom: 0.5vw;
+  font-size: 0.83vw;
+}
+
+.GrowerVegContainer2 div.GrowerVegContainer2Example {
+  width: 80%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: right;
+  font-weight: bold;
+  margin-bottom: 0.5vw;
+  padding-right: 40px;
+  font-size: 0.83vw;
+}
+
+/* Total Billing */
+
+.GrowerFinalBilling {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-top: 3vw;
+  text-align: right;
+  font-size: 0.83vw;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer {
+  width: 70%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer div.GrowerFinalBillingExample {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-right: 40px;
+  font-weight: bold;
+  margin-bottom: 0.5vw;
+  text-align: right;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  list-style: none;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection > li {
+  background-color: #CCEEC0;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection > li:nth-child(odd) {
+  background-color: #E4FBDC;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection > li.GrowerFinalBillingMainHeader1 {
+  background-color: #98D084;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection > li.GrowerFinalBillingMainHeader2 {
+  background-color: #98D084;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemName {
+  width: 40%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-right: 0.5vw;
+  padding-top: 0.3vw;
+  overflow-wrap: break-word;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemPrice {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-right: 0.5vw;
+  padding-top: 0.3vw;
+  overflow-wrap: break-word;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemAmount {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-right: 0.5vw;
+  padding-top: 0.3vw;
+  overflow-wrap: break-word;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemTotal {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-right: 0.5vw;
+  padding-top: 0.3vw;
+  overflow-wrap: break-word;
+}
+
+.GrowerFinalBilling div.GrowerFinalBillingContainer ul.GrowerFinalBillingSection li span.GrowerFinalBillingItemBullingType {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-right: 0.5vw;
+  padding-top: 0.3vw;
+  overflow-wrap: break-word;
+}
+
+.PlansAlert {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.4vw;
+}
+
+.DuplicatesAlert {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.DuplicatesAlertContent {
+  border-color: red;
+  font-size: 0.93vw;
+}
+
+/* Grower Personal area */
+
+
+div.PersonalDetails .personal-form-group {
+  width: 100%;
+  float: right;
+  margin-bottom: 0vw;
+  position: relative;
+  display: block;
+}
+
+div.PersonalDetails .personal-form-group label {
+  width: 30%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+}
+
+div.PersonalDetails .personal-form-group input {
+  width: 70%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+  font-size: 0.83vw;
+}
+
+.RegisterDate {
+  text-align: right;
+  width: 30%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1.5vw;
+}
+
+.CancelSubscription {
+  width: 40%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1.5vw;
+}
+
+.CancelSubscription button {
+  font-size: 0.83vw;
+}
+
+.CurrentPlan {
+  text-align: right;
+  width: 70%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1.5vw;
+}
+
+.PersonalChoosenVeg {
+  text-align: right;
+  width: 70%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1.5vw;
+}
+
+.PersonalChoosenVeg div.PersonalChoosenVegItem {
+  text-align: right;
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.PersonalChoosenVeg div.PersonalChoosenVegItem span.PersonalChoosenVegItemImage {
+  width: 5%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.PersonalChoosenVeg div.PersonalChoosenVegItem span.PersonalChoosenVegItemName {
+  width: 95%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.PersonalChoosenFarmer {
+  text-align: right;
+  width: 70%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1.5vw;
+}
+
+.PersonalChoosenFarmer span {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 0.5vw;
+}
+
+.PersonalChoosenFarmer span img {
+  margin-left: 0.5vw;
+}
+
+.GrowerPersonalAreaTabs {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 5vw;
+  margin-top: 2vw;
+}
+
+.GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons {
+  width: 80%;
+  position: relative;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons button {
+  margin-left: 3%;
+  width: 30%;
+  font-size: 0.83vw;
+}
+
+.GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons a {
+  margin-left: 3%;
+  width: 30%;
+  font-size: 0.83vw;
+}
+
+.RegisterButtonContainer Button.UpdateDetails {
+  width: 20%;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  display: block;
+}
+
+.CancelSubscriptionAlertText {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.CancelSubscriptionAlertButtons {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-top: 1vw;
+}
+
+.CancelSubscriptionAlertButtons span {
+  width: 50%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+/* Farmer personal area */
+
+.farmer-personal-form-group {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  text-align: center;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer {
+  width: 40%;
+  position: relative;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlansHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 0.5vw;
+  font-size: 1.4vw;
+  font-weight: bold;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer {
+  width: 30%;
+  position: relative;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  font-size: 0.83vw;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 0.5vw;
+  margin-top: 0.5vw;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName span.PersonalChoosenPlanItemImage {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: left;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName span.PersonalChoosenPlanItemTitle {
+  width: 40%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName span.PersonalChoosenPlanItemCost {
+  width: 25%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.farmer-personal-form-group div.PersonalFarmerPlansContainer div.PersonalFarmerPlans div.PersonalChoosenPlanItem div.PersonalChoosenPlanItemName span.PersonalChoosenPlanItemText1 {
+  width: 25%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+/* List of growers */
+
+.MyGrowersList {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+
+.ListOfGrowersByFarmer {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.ListOfGrowersByFarmer {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem {
+  background-color: #98D084;
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1vw;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListMainTitleListItem {
+  background-color: #28a745;
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle {
+  font-size: 0.80vw;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText1 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText2 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText3 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText4 {
+  width: 30%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText5 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText5 span.IsActiveArrow {
+  margin-right: 0.2vw;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText6 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.ListOfGrowersByFarmer ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText7 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem {
+  background-color: #CCEEC0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75vw;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem:nth-child(odd) {
+  background-color: #E4FBDC;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListName {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  overflow-wrap: break-word;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListPhone {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  overflow-wrap: break-word;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListEmail {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  overflow-wrap: break-word;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListOfchoosenvegetables2 {
+  width: 30%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  overflow-wrap: break-word;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListIsActive {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  overflow-wrap: break-word;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListPlanActivation {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  overflow-wrap: break-word;
+}
+
+.ListOfGrowersByFarmer ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListplan {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  overflow-wrap: break-word;
+}
+
+/* Login Modal */
+
+.login-form-group {
+  text-align: right;
+}
+
+/* Personal area main page */
+
+.PersonalAreaWelcomeContainer {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-top: 7vw;
+  font-size: 5vw;
+  font-weight: bold;
+  color: #CCEEC0;
+}
+
+.PersonalAreaWelcomeContainer span.PersonalAreaWelcomeText1 {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.PersonalAreaWelcomeContainer span.PersonalAreaWelcomeText2 {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-top: 2vw;
+}
+
+/* Managment screen */
+
+.AdminVegListHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminVegListHeader li {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  background-color: #CCEEC0;
+  font-size: 0.83vw;
+  font-weight: bold;
+} 
+
+.AdminVegListHeader li span.AdminVegetableItemHeaderText1 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListHeader li span.AdminVegetableItemHeaderText2 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListHeader li span.AdminVegetableItemHeaderText3 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListHeader li span.AdminVegetableItemHeaderText4 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListHeader li span.AdminVegetableItemHeaderText5 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListHeader li span.AdminVegetableItemHeaderText6 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListHeader li span.AdminVegetableItemHeaderText7 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListBody {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminVegListBody li {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  font-size: 0.83vw;
+} 
+
+.AdminVegListBody li span.AdminVegetableItemName {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListBody li span.AdminVegetableItemPrice {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListBody li span.AdminVegetableItemAveragecrop {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListBody li span.AdminVegetableItemAmount {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListBody li span.AdminVegetableItemRows {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListBody li span.AdminVegetableItemLink {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListBody li span.AdminVegetableItemButtons {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListBody li span.AdminVegetableItemButtons span.AdminVegetableItemButtonsHolder {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+} 
+
+.AdminVegListBody li span.AdminVegetableItemButtons span.AdminVegetableItemButtonsHolder .AdminVegRemoveBtn {
+  margin-left: 1vw;
+  float: right;
+  position: relative;
+  display: block;
+}
+
+.Admin-veg-form-group label {
+  width: 100%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+}
+
+.Admin-veg-form-group input {
+  width: 100%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+}
+
+.AdminVegUpdateButtonHolder {
+  float: right;
+  position: relative;
+  display: block;
+}
+
+.SystemDetails {
+  width: 100%;
+  float: right;
+  position: relative;
+  display: block;
+}
+
+div.SystemDetails .form-group {
+  width: 100%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+}
+
+.SystemDetailsHeader {
+  width: 100%;
+  float: right;
+  position: relative;
+  display: block;
+  text-align: right;
+  margin-top: 2vw;
+  margin-bottom: 4vw;
+  font-size: 1.8vw;
+  font-weight: bold
+}
+
+div.SystemDetails .form-group label {
+  width: 20%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+}
+
+div.SystemDetails .form-group input {
+  width: 35%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+}
+
+.SystemUpdateButtonHolder {
+  float: right;
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-top: 4vw;
+}
+
+.SystemUpdateButtonHolder button.SystemUpdateButton {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: block;
+  width: 15%;
+}
+
+.SystemSuccessMsg {
+  width: 100%;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: block;
+  margin-top: 4vw;
+}
+
+/* Admin Active users */
+
+.AdminGrowersList {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 4vw;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem {
+  background-color: #98D084;
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1vw;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle {
+  font-size: 0.66vw;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText1 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText2 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText3 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText4 {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText5 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText6 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText7 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div.GrowerListTitleText8 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersList ul li.GrowerListTitleListItem div.GrowerListTitle div span.IsActiveArrow {
+  margin-right: 0.2vw;
+}
+
+
+.AdminGrowersList ul > li.GrowerListBodyListItem {
+  background-color: #CCEEC0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.65vw;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem:nth-child(odd) {
+  background-color: #E4FBDC;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListName {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListPhone {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListEmail {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListOfchoosenvegetables2 {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListIsActive {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListPlanActivation {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListplan {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListChossenfarmer {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList div.GrowerListChossenfarmer span {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersList ul > li.GrowerListBodyListItem div.GrowerList > div > span {
+  overflow-wrap: break-word;
+}
+
+.AdminFarmersList {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 4vw;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem {
+  background-color: #98D084;
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1vw;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle {
+  font-size: 0.70vw;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText1 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText2 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText3 {
+  width: 7.5%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText4 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText5 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText6 {
+  width: 7.5%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText7 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText8 {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText9 {
+  width: 7.5%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText10 {
+  width: 12.5%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div span.IsActiveArrow {
+  margin-right: 0.2vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem {
+  background-color: #CCEEC0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.65vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem:nth-child(odd) {
+  background-color: #E4FBDC;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListName {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListPhone {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListAddress {
+  width: 7.5%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListEmail {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListOfchoosenvegetables2 {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListSizearea {
+  width: 7.5%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListHamamasize {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListNumberofactivefarms {
+  width: 10%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListPlanActivation {
+  width: 7.5%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList div.FarmerListplan {
+  width: 12.5%;
+  position: relative;
+  display: block;
+  float: right;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+}
+
+.AdminFarmersList ul > li.FarmerListBodyListItem div.FarmerList > div > span {
+  overflow-wrap: break-word;
+}
+
+.AdminGrowersSearchInList {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 2vw;
+}
+
+.AdminGrowersSearchInList div.AdminGrowersSearchInListBody {
+  width: 35%;
+  position: relative;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.AdminGrowersSearchInList div.AdminGrowersSearchInListBody div.AdminGrowersSearch-form-group label {
+  width: 0%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminGrowersSearchInList div.AdminGrowersSearchInListBody div.AdminGrowersSearch-form-group input {
+  width: 83%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+  margin-left: 2%;
+}
+
+.AdminGrowersSearchInList div.AdminGrowersSearchInListBody div.AdminGrowersSearch-form-group button {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminTotalUsers {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  font-size: 1.2vw;
+  font-weight: bold;
+  color: #329258;
+  text-align: center;
+  margin-bottom: 4vw;
+}
+
+.AdminTotalUsers span {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  width: 50%;
+}
+
+.AdminDeleteVegForGoodText {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 1vw;
+  text-align: center;
+  direction: rtl;
+}
+
+.AdminDeleteVegForGoodButtons {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.AdminDeleteVegForGoodButtons button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 1vw;
+}
+
+.AdminExportExcel {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 4vw;
+}
+
+.AdminExportExcel button {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+
+/* Login page */
+
+.LoginPageContainer{
+  width: 35%;
+  position: relative;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2vw;
+}
+
+.LoginPageHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  margin-top: 4vw;
+  text-align: center;
+  font-size: 2.2vw;
+  font-weight: bold;
+}
+
+/* Reset password */
+
+.SendResetPasswordEmailContainer {
+  width: 50%;
+  position: relative;
+  display: block;
+  margin-top: 4vw;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+.SendResetPasswordEmailContainer div.SendResetPasswordEmailHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-size: 2.2vw;
+  font-weight: bold;
+}
+
+.SendResetPasswordEmailContainer div.reset-password-form-wrapper {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-top: 2vw;
+}
+
+.SendResetPasswordEmailContainer div.reset-password-form-wrapper div.form-group label {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: right;
+}
+
+.SendResetPasswordEmailContainer div.reset-password-form-wrapper div.form-group input {
+  width: 100%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+  text-align: right;
+}
+
+.SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder {
+  width: 100%;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: block;
+  margin-top: 2vw;
+}
+
+.SendResetPasswordEmailContainer div.SendResetPasswordEmailMessage {
+  width: 100%;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: block;
+  margin-top: 2vw;
+  text-align: center
+}
+
+.ResetPasswordContainer {
+  width: 50%;
+  position: relative;
+  display: block;
+  margin-top: 4vw;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+.ResetPasswordContainer div.ResetPasswordHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-size: 2.2vw;
+  font-weight: bold;
+}
+
+.ResetPasswordContainer div.reset-password-form-sent-wrapper {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-top: 2vw;
+}
+
+.ResetPasswordContainer div.reset-password-form-sent-wrapper div.form-group label {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: right;
+}
+
+.ResetPasswordContainer div.reset-password-form-sent-wrapper div.form-group input {
+  width: 100%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+  text-align: right;
+}
+
+.ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder {
+  width: 100%;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: block;
+  margin-top: 2vw;
+}
+
+.ResetPasswordContainer div.ResetPasswordMessage {
+  width: 100%;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: block;
+  margin-top: 2vw;
+  text-align: center
+}
+
+.ForgotPasswordLink {
+  width: 100%;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: block;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+
+/* Read More */
+
+.ReadMoreItem {
+  direction: rtl;
+  text-align: right;
+  font-size: 0.83vw;
+}
+
+.ReadMoreItem span img {
+  margin-left: 2vw;
+}
+
+.modal-header h5 {
+  font-size: 1.2vw;
+}
+
+/* System Logs */
+
+.SysLogsHolder {
+  width: 100%;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: block;
+  margin-top: 4vw;
+  margin-bottom: 2vw;
+}
+
+.SysLogsHolder div.SysLogsHeader {
+  width: 100%;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: block;
+  margin-bottom: 4vw;
+  font-weight: bold;
+  font-size: 1.2vw;
+}
+
+.SysLogsHolder div.SysLogsBody {
+  width: 100%;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: block;
+  margin-bottom: 2vw;
+}
+
+/* Grower shooping list */
+
+.GrowerPersonalShop {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShopHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.6vw;
+  margin-bottom: 3vw;
+  margin-top: 2vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  margin-bottom: 2vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy ul li {
+  background-color: #E4FBDC;
+  border-radius: 0.8vw;
+  box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVeg {
+  width: 25%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVeg select {
+  width: 80%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+  font-size: 0.83vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegPrice {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+  font-weight: bold;
+  font-size: 0.93vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount {
+  width: 45%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount div.GrowerPersonalShopVegAmountContainer {
+  width: 50%;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount div.GrowerPersonalShopVegAmountContainer input {
+  width: 50%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  font-size: 0.83vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount div.GrowerPersonalShopVegAmountContainer span {
+  width: 20%;
+  float: right;
+  text-align: right;
+  position: relative;
+  display: block;
+  border-color: #329258;
+  text-align: center;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount div.GrowerPersonalShopVegAmountContainer span button {
+  font-size: 0.83vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAddToBucket {
+  width: 15%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAddToBucket span button {
+  font-size: 0.83vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-bottom: 4vw;
+  margin-top: 2vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer {
+  width: 30%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer div.card div.card-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.93vw;
+  background-color:#E4FBDC;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer div.card div.card-body {
+  font-size: 0.83vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer div.card div.card-body span {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: right;
+  margin-bottom: 0.8vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer div.card div.card-body img {
+  margin-left: 0.8vw;
+  width: 0.8vw;
+  height: 0.8vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket {
+  width: 65%;
+  position: relative;
+  display: block;
+  float: right;
+  margin-left: 5%;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItemHeader {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  background-color:#E4FBDC;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItemHeader div.GrowerPersonalShopBucketItemHeaderContainer {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.93vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItemHeader div.GrowerPersonalShopBucketItemHeaderContainer div.GrowerPersonalShopBucketItemHeaderText1 {
+  width: 40%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItemHeader div.GrowerPersonalShopBucketItemHeaderContainer div.GrowerPersonalShopBucketItemHeaderText2 {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItemHeader div.GrowerPersonalShopBucketItemHeaderContainer div.GrowerPersonalShopBucketItemHeaderText3 {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItemHeader div.GrowerPersonalShopBucketItemHeaderContainer div.GrowerPersonalShopBucketItemHeaderText4 {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem  div.GrowerPersonalShopBucketItemContainer {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+  font-size: 0.83vw;
+  margin-top: 0.2vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem  div.GrowerPersonalShopBucketItemContainer div.GrowerPersonalShopBucketItemName {
+  width: 40%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem  div.GrowerPersonalShopBucketItemContainer div.GrowerPersonalShopBucketItemAmount {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem  div.GrowerPersonalShopBucketItemContainer div.GrowerPersonalShopBucketItemPrice {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem  div.GrowerPersonalShopBucketItemContainer div.GrowerPersonalShopBucketItemRemoveBtn {
+  width: 20%;
+  position: relative;
+  display: block;
+  float: right;
+  text-align: center;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem  div.GrowerPersonalShopBucketItemContainer div.GrowerPersonalShopBucketItemRemoveBtn span {
+  width: 1.5vw;
+  height: 1.5vw;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.93vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem  div.GrowerPersonalShopBucketItemContainer div.GrowerPersonalShopBucketItemRemoveBtn span span.Deletebutton {
+  width: 1.5vw;
+  height: 1.5vw;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.3vw;
+}
+
+.GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem  div.GrowerPersonalShopBucketItemContainer div.GrowerPersonalShopBucketItemRemoveBtn span span.Deletebutton:hover {
+  width: 1.5vw;
+  height: 1.5vw;
+  background-color: rgb(204, 19, 19);
+  color: white;
+  cursor: pointer;
+  border-radius: 0.3vw;
+}
+
+.GrowerPersonalShopBuyButtonHolder {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.GrowerPersonalShopBuyButtonHolder button {
+  width: 20%;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 }

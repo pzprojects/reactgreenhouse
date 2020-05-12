@@ -56,7 +56,7 @@ class SystemLogs extends Component {
       if(Mychoosenvegetables.length === (i+1)){
         VegAsString += Mychoosenvegetables[i].name + ": עודכן ממחיר " + Mychoosenvegetables[i].pricebefore + " שקלים למחיר " + Mychoosenvegetables[i].priceafter + " שקלים ";
       }
-      else VegAsString += Mychoosenvegetables[i].name + ": עודכן ממחיר " + Mychoosenvegetables[i].pricebefore + " שקלים למחיר " + Mychoosenvegetables[i].priceafter + " שקלים" + ", ";   
+      else VegAsString += Mychoosenvegetables[i].name + ": עודכן ממחיר " + Mychoosenvegetables[i].pricebefore + " שקלים למחיר " + Mychoosenvegetables[i].priceafter + " שקלים, ";   
     }
     return VegAsString;
   };

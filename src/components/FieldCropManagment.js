@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import {
   Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
   Container,
   Alert,
-  FormFeedback,
   UncontrolledPopover,
   PopoverHeader,
   PopoverBody ,
@@ -48,7 +43,7 @@ class FieldCropManagment extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
+    const { error } = this.props;
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {
@@ -105,7 +100,7 @@ class FieldCropManagment extends Component {
                     <span className='AdminVegetableItemAveragecrop'>{averagecrop}&nbsp;</span>
                     <span className='AdminVegetableItemAmount'>{amount}&nbsp;</span>
                     <span className='AdminVegetableItemRows'>{numberofveginrow}&nbsp;</span>
-                    <span className='AdminVegetableItemLink'><a href={moreinfolink} target="_blank">לינק לפריט</a>&nbsp;</span>
+                    <span className='AdminVegetableItemLink'><a href={moreinfolink} target="_blank" rel="noopener noreferrer" >לינק לפריט</a>&nbsp;</span>
                     <span className='AdminVegetableItemButtons'>
                       {this.props.isAuthenticated ? (
                         <span className='AdminVegetableItemButtonsHolder'>

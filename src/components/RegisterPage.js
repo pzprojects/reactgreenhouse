@@ -22,8 +22,8 @@ import Vegetables from '../components/Vegetables';
 import FieldCrops from '../components/FieldCrops';
 import VegetablesPricing from '../components/VegetablesPricing';
 import FarmCropsPricing from '../components/FarmCropsPricing';
-import { getChoosenVegetables } from '../actions/choosenVegetablesAction';
-import { getChoosenfieldCrops } from '../actions/choosenFieldCropsAction';
+import { getChoosenVegetables, resetChoosenVegetables } from '../actions/choosenVegetablesAction';
+import { getChoosenfieldCrops, resetChoosenfieldCrop } from '../actions/choosenFieldCropsAction';
 import { addFarmer } from '../actions/farmerAction';
 import { API_URL } from '../config/keys';
 import { getSystemData } from '../actions/systemAction';
@@ -90,7 +90,8 @@ class RegisterPage extends Component {
     fieldcropplancost: '',
     CheckFieldCropsPlan: '',
     FieldCropStatus: false,
-    fieldcropplancostValidation: false
+    fieldcropplancostValidation: false,
+    fieldcropplanShouldBeActive: false
   };
 
   static propTypes = {
@@ -105,7 +106,9 @@ class RegisterPage extends Component {
     addFarmer: PropTypes.func.isRequired,
     farmer: PropTypes.object.isRequired,
     system: PropTypes.object.isRequired,
-    getSystemData: PropTypes.func.isRequired
+    getSystemData: PropTypes.func.isRequired,
+    resetChoosenVegetables: PropTypes.func.isRequired,
+    resetChoosenfieldCrop: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -162,6 +165,8 @@ class RegisterPage extends Component {
 
   toggle = () => {
     // Clear errors
+    this.props.resetChoosenVegetables();
+    this.props.resetChoosenfieldCrop();
     this.props.clearErrors();
     this.setState({
         modal: !this.state.modal
@@ -335,11 +340,21 @@ class RegisterPage extends Component {
       })
     }
 
+    // Fields crops validation
+
     if(this.state.FieldCropStatus && this.state.fieldcropplancost === ''){
       Validated = false;
       ScrollToLocation = "bottom";
       this.setState({
         fieldcropplancostValidation : true
+      })
+    }
+
+    if((ChoosenFieldCrops.length > 0) && !this.state.FieldCropStatus ){
+      Validated = false;
+      ScrollToLocation = "bottom";
+      this.setState({
+        fieldcropplanShouldBeActive : true
       })
     }
 
@@ -469,7 +484,8 @@ class RegisterPage extends Component {
       case "CheckFieldCropsPlan":
         this.setState({
           FieldCropStatus: e.target.checked,
-          fieldcropplancostValidation: false
+          fieldcropplancostValidation: false,
+          fieldcropplanShouldBeActive: false
         });
         break;
       default:
@@ -983,6 +999,7 @@ class RegisterPage extends Component {
                 : null}
               </div>
               {this.state.fieldcropplancostValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לעדכן מחיר לתכנית גידולי שדה</Alert></div> : null}
+              {this.state.fieldcropplanShouldBeActive ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לבחור תכנית לגידולי שדה או להסיר גידולי שדה נבחרים</Alert></div> : null}
               <div className="Plans">
                 <div className="PlanCard">
                   <div className="PlanCardHeader">
@@ -1360,5 +1377,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, getChoosenfieldCrops, addFarmer, getSystemData }
+  { register, clearErrors, getChoosenVegetables, resetChoosenVegetables, getChoosenfieldCrops, resetChoosenfieldCrop, addFarmer, getSystemData }
 )(RegisterPage);

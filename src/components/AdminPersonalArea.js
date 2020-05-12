@@ -6,15 +6,10 @@ import {
   Label,
   Input,
   Container,
-  Alert,
-  FormFeedback,
-  UncontrolledCollapse,
-  CardBody,
-  Card,
   ListGroup,
   ListGroupItem
 } from 'reactstrap';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import { IoIosSearch } from "react-icons/io";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -60,7 +55,7 @@ class AdminPersonalArea extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
+    const { error } = this.props;
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {
@@ -195,7 +190,7 @@ class AdminPersonalArea extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    
+    var farmersSorted = [];
     const { farmers } = this.props.farmer;
 
     try{
@@ -203,30 +198,31 @@ class AdminPersonalArea extends Component {
         case "FarmerNameOrder":
           if(this.state.FarmerNameOrder){
             const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
-            var farmersSorted = farmers.slice().sort(sortByKey('name'));
+            farmersSorted = farmers.slice().sort(sortByKey('name'));
           }
           else{
             const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
-            var farmersSorted = farmers.slice().sort(sortByKey('name'));
+            farmersSorted = farmers.slice().sort(sortByKey('name'));
           }
           break;
         default:
-          var farmersSorted = farmers;
+          farmersSorted = farmers;
           break;
       }
       
   }
   catch{
-    var farmersSorted = farmers;
+    farmersSorted = farmers;
   }
     
     const { growers } = this.props.grower;
     try{
+      var GrowersToSearch = [];
       if(this.state.DataToSearch === ''){
-        var GrowersToSearch = growers;
+        GrowersToSearch = growers;
       }
       else{
-        var GrowersToSearch = growers.filter(grower => grower.chossenfarmerfullname.includes(this.state.FarmerNameToSearch));
+        GrowersToSearch = growers.filter(grower => grower.chossenfarmerfullname.includes(this.state.FarmerNameToSearch));
       }
     }
     catch{}

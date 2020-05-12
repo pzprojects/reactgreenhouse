@@ -29,7 +29,7 @@ import { FiEdit } from "react-icons/fi";
 class GrowerPersonalArea extends Component {
   state = {
     modal: false,
-    name:'',
+    name: '',
     email: '',
     familyname: '',
     phone: '',
@@ -61,8 +61,8 @@ class GrowerPersonalArea extends Component {
     RegisterDate: '',
     FarmerFullNmae: '',
     FarmerEmail: '',
-    FarmerPhone:'',
-    FarmerLocation:'',
+    FarmerPhone: '',
+    FarmerLocation: '',
     UserID: '',
     redirect: null,
     UserActive: false,
@@ -78,7 +78,7 @@ class GrowerPersonalArea extends Component {
     clearErrors: PropTypes.func.isRequired,
     getfarmerbyemail: PropTypes.func.isRequired,
     farmer: PropTypes.object.isRequired,
-    updategrowerprofile : PropTypes.func.isRequired,
+    updategrowerprofile: PropTypes.func.isRequired,
     updateduser: PropTypes.object.isRequired,
     updategrowerbyemail: PropTypes.func.isRequired,
     deactivategrowerplan: PropTypes.func.isRequired,
@@ -91,26 +91,26 @@ class GrowerPersonalArea extends Component {
   componentDidMount() {
     const { user } = this.props.auth;
 
-    if(user.workingwith[0].active){
+    if (user.workingwith[0].active) {
       this.props.getfarmerbyemail(user.workingwith[0].email);
     }
 
     this.setState({
-        name: user.name,
-        email: user.email,
-        familyname: user.familyname,
-        phone: user.phone,
-        address: user.address,
-        imageurl: user.imageurl,
-        imagePreviewUrl: user.imageurl,
-        UserID: user._id,
-        UserActive: user.workingwith[0].active,
-        FieldCropPlanActive: user.fieldcropplan.avaliabile
+      name: user.name,
+      email: user.email,
+      familyname: user.familyname,
+      phone: user.phone,
+      address: user.address,
+      imageurl: user.imageurl,
+      imagePreviewUrl: user.imageurl,
+      UserID: user._id,
+      UserActive: user.workingwith[0].active,
+      FieldCropPlanActive: user.fieldcropplan.avaliabile
     })
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated, growerdeactivate, userdeactivate } = this.props;
+    const { farmers, error, isAuthenticated, growerdeactivate, userdeactivate } = this.props;
     if (error !== prevProps.error) {
       this.setState({
         ActivateLoader: false
@@ -127,21 +127,23 @@ class GrowerPersonalArea extends Component {
       }
     }
 
-    // Update the farmer details
-    if(typeof(this.props.farmer.farmers[0]) !== "undefined"){
-        try{
-            if(this.state.UserActive){
-              var FarmerDetails = this.props.farmer.farmers[0];
-              this.setState({
-                FarmerFullNmae: FarmerDetails.name + " " + FarmerDetails.familyname,
-                FarmerEmail: FarmerDetails.email,
-                FarmerPhone: FarmerDetails.phone,
-                FarmerLocation: FarmerDetails.address
-              })
-            }
-        }catch(e){
+    if (farmers !== prevProps.farmers) {
+      // Update the farmer details
+      if (typeof (this.props.farmer.farmers[0]) !== "undefined") {
+        try {
+          if (this.state.UserActive) {
+            var FarmerDetails = this.props.farmer.farmers[0];
+            this.setState({
+              FarmerFullNmae: FarmerDetails.name + " " + FarmerDetails.familyname,
+              FarmerEmail: FarmerDetails.email,
+              FarmerPhone: FarmerDetails.phone,
+              FarmerLocation: FarmerDetails.address
+            })
+          }
+        } catch (e) {
 
-        } 
+        }
+      }
     }
 
     // If authenticated, close modal
@@ -182,7 +184,7 @@ class GrowerPersonalArea extends Component {
     var ScrollToLocation = "top";
 
     // Empty fields
-    if(this.state.name === ''){
+    if (this.state.name === '') {
       this.setState({
         nameValidation: false
       });
@@ -190,7 +192,7 @@ class GrowerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.email === '' || !this.ValidateEmail(this.state.email)){
+    if (this.state.email === '' || !this.ValidateEmail(this.state.email)) {
       this.setState({
         emailValidation: false
       });
@@ -198,7 +200,7 @@ class GrowerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.familyname === ''){
+    if (this.state.familyname === '') {
       this.setState({
         familynameValidation: false
       });
@@ -206,7 +208,7 @@ class GrowerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.phone === ''){
+    if (this.state.phone === '') {
       this.setState({
         phoneValidation: false
       });
@@ -214,16 +216,16 @@ class GrowerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.address === ''){
-        this.setState({
-          addressValidation: false
-        });
-        Validated = false;
-        ScrollToLocation = "top";
+    if (this.state.address === '') {
+      this.setState({
+        addressValidation: false
+      });
+      Validated = false;
+      ScrollToLocation = "top";
     }
 
-    if(!Validated){
-      if(ScrollToLocation === "top"){
+    if (!Validated) {
+      if (ScrollToLocation === "top") {
         window.scrollTo({
           top: 0,
           behavior: 'smooth',
@@ -235,7 +237,7 @@ class GrowerPersonalArea extends Component {
   };
 
   ChangeScreen = (ScreenNum) => {
-    if(this.ValidateForm()){
+    if (this.ValidateForm()) {
       this.setState({
         ScreenNumber: ScreenNum
       });
@@ -244,7 +246,7 @@ class GrowerPersonalArea extends Component {
 
   ResetValidation = (FieldToReset) => {
 
-    switch(FieldToReset) {
+    switch (FieldToReset) {
       case "name":
         // Regulations
         this.setState({
@@ -281,36 +283,36 @@ class GrowerPersonalArea extends Component {
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    
+
     // validations
-    switch(e.target.name) {
+    switch (e.target.name) {
       case "name":
         // password strength validation
-        if(this.state.nameValidation === false){
+        if (this.state.nameValidation === false) {
           this.ResetValidation("name")
         }
         break;
       case "familyname":
         // password strength validation
-        if(this.state.familynameValidation === false){
+        if (this.state.familynameValidation === false) {
           this.ResetValidation("familyname")
         }
         break;
       case "email":
         // password strength validation
-        if(this.state.emailValidation === false){
+        if (this.state.emailValidation === false) {
           this.ResetValidation("email")
         }
         break;
       case "phone":
         // password strength validation
-        if(this.state.phoneValidation === false){
+        if (this.state.phoneValidation === false) {
           this.ResetValidation("phone")
         }
         break;
       case "address":
         // password strength validation
-        if(this.state.addressValidation === false){
+        if (this.state.addressValidation === false) {
           this.ResetValidation("address")
         }
         break;
@@ -321,17 +323,17 @@ class GrowerPersonalArea extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    if(this.ValidateForm()){
-    
+    if (this.ValidateForm()) {
+
       this.setState({
         ActivateLoader: !this.state.ActivateLoader,
         modal: !this.state.modal
       });
 
-      if(this.state.imagename!==''){
+      if (this.state.imagename !== '') {
         this.uploadFile();
       }
-      else{
+      else {
         this.setState({
           SuccessFileUpload: true
         });
@@ -367,39 +369,39 @@ class GrowerPersonalArea extends Component {
   DeactivateAcount = () => {
     const { user } = this.props.auth;
 
-    try{
-        this.setState({
-            ActivateLoader: !this.state.ActivateLoader,
-            modal: !this.state.modal,
-            DeactivateRequest: !this.state.DeactivateRequest
-          });
-      
-          const chossenfarmer = user.workingwith[0].email;
-      
-          //let workingwith = [{email: user.workingwith[0].email, usertype: user.workingwith[0].usertype ,active: false, totalpayed: user.workingwith[0].totalpayed}];
-          let workingwith = user.workingwith;
-          workingwith[0].active = false;
-      
-      
-            // Create user object
-            const newUser = {
-              workingwith
-            };
-      
-            const newGrower = {
-              chossenfarmer
-            };
-      
-          // Attempt to deactivate
-          this.props.deactivategrowerplan(this.state.email, newGrower);
-          this.props.deactivateuserplan(this.state.UserID, newUser);
-        
-    }catch(e){
-        this.setState({
-          ActivateLoader: false,
-          modal: false,
-          DeactivateRequest: false
-        });
+    try {
+      this.setState({
+        ActivateLoader: !this.state.ActivateLoader,
+        modal: !this.state.modal,
+        DeactivateRequest: !this.state.DeactivateRequest
+      });
+
+      const chossenfarmer = user.workingwith[0].email;
+
+      //let workingwith = [{email: user.workingwith[0].email, usertype: user.workingwith[0].usertype ,active: false, totalpayed: user.workingwith[0].totalpayed}];
+      let workingwith = user.workingwith;
+      workingwith[0].active = false;
+
+
+      // Create user object
+      const newUser = {
+        workingwith
+      };
+
+      const newGrower = {
+        chossenfarmer
+      };
+
+      // Attempt to deactivate
+      this.props.deactivategrowerplan(this.state.email, newGrower);
+      this.props.deactivateuserplan(this.state.UserID, newUser);
+
+    } catch (e) {
+      this.setState({
+        ActivateLoader: false,
+        modal: false,
+        DeactivateRequest: false
+      });
     }
   };
 
@@ -408,16 +410,16 @@ class GrowerPersonalArea extends Component {
 
     let reader = new FileReader();
     let file = e.target.files[0];
-    
+
     const Allfiles = e.target.files;
     if (Allfiles && Allfiles.length > 0) {
       const tempFile = Allfiles[0];
       this.setState({ file: tempFile });
       var improvedname = uuidv4() + tempFile.name;
       improvedname = improvedname.replace(/[/\\?%_*:|"<>]/g, '-').trim().toLowerCase();
-      improvedname = improvedname.replace(/\s/g,'');
+      improvedname = improvedname.replace(/\s/g, '');
       const GenerateUrl = "https://profileimages12.s3.eu-west-1.amazonaws.com/" + improvedname;
-      this.setState({imageurl: GenerateUrl, imagename: improvedname});
+      this.setState({ imageurl: GenerateUrl, imagename: improvedname });
     }
 
     reader.onloadend = () => {
@@ -438,7 +440,7 @@ class GrowerPersonalArea extends Component {
   }
 
   uploadFile = e => {
-    
+
     const { file } = this.state;
     const contentType = file.type; // eg. image/jpeg or image/svg+xml
 
@@ -471,26 +473,26 @@ class GrowerPersonalArea extends Component {
   };
 
   render() {
-    let {imagePreviewUrl} = this.state;
-    let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
+    let { imagePreviewUrl } = this.state;
+    let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer} />);
     if (imagePreviewUrl) {
       $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
     }
     const { user } = this.props.auth;
-    try{
-        var RegisterDate = new Date(user.workingwith[0].activation_date);
-        var RegisterDateToStringFormat = RegisterDate.getDate() + "/"+ parseInt(RegisterDate.getMonth()+1) +"/"+RegisterDate.getFullYear();
-        var ChoosenPersonalUserVeg = user.choosenvegetables;
-        var ChoosenPersonalUserFieldCrops = user.choosenfieldcrops;
-        if(user.workingwith[0].active){
-          var PlanName = user.plans[0].name;
-        }
-        else PlanName = 'ללקוח זה לא משוייך מסלול';
-    }catch(e){
-        RegisterDateToStringFormat = '';
-        ChoosenPersonalUserVeg = user.choosenvegetables;
-        ChoosenPersonalUserFieldCrops = user.choosenfieldcrops;
-        PlanName = '';
+    try {
+      var RegisterDate = new Date(user.workingwith[0].activation_date);
+      var RegisterDateToStringFormat = RegisterDate.getDate() + "/" + parseInt(RegisterDate.getMonth() + 1) + "/" + RegisterDate.getFullYear();
+      var ChoosenPersonalUserVeg = user.choosenvegetables;
+      var ChoosenPersonalUserFieldCrops = user.choosenfieldcrops;
+      if (user.workingwith[0].active) {
+        var PlanName = user.plans[0].name;
+      }
+      else PlanName = 'ללקוח זה לא משוייך מסלול';
+    } catch (e) {
+      RegisterDateToStringFormat = '';
+      ChoosenPersonalUserVeg = user.choosenvegetables;
+      ChoosenPersonalUserFieldCrops = user.choosenfieldcrops;
+      PlanName = '';
     }
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
@@ -499,185 +501,185 @@ class GrowerPersonalArea extends Component {
     return (
       <div>
         <Container>
-            {this.state.msg ? (
-              <Alert color='danger'>{this.state.msg}</Alert>
-            ) : null}
-            {this.state.ScreenNumber === "1" ? (
-                <div className='GrowerPersonalAreaTabs'>
-                  <div className='GrowerPersonalAreaTabsButtons'>
-                    <Button color="success" type="button" disabled>
-                    פרטים אישיים
+          {this.state.msg ? (
+            <Alert color='danger'>{this.state.msg}</Alert>
+          ) : null}
+          {this.state.ScreenNumber === "1" ? (
+            <div className='GrowerPersonalAreaTabs'>
+              <div className='GrowerPersonalAreaTabsButtons'>
+                <Button color="success" type="button" disabled>
+                  פרטים אישיים
                     </Button>
-                    <Button href='/GrowerPersonalShop' outline color="success" type="button" >
-                    רכישת שתילים מחקלאי
+                <Button href='/GrowerPersonalShop' outline color="success" type="button" >
+                  רכישת שתילים מחקלאי
                     </Button>
-                    <Button outline color="success" onClick={() => this.ChangeScreen("2")} type="button" >
-                    שינוי פרטים לתשלום חודשי
+                <Button outline color="success" onClick={() => this.ChangeScreen("2")} type="button" >
+                  שינוי פרטים לתשלום חודשי
                     </Button>
-                  </div>
-                </div>
-            ) : null}
-            {this.state.ScreenNumber === "2" ? (
-                <div className='GrowerPersonalAreaTabs'>
-                  <div className='GrowerPersonalAreaTabsButtons'>
-                    <Button outline color="success" onClick={() => this.ChangeScreen("1")} type="button" >
-                    פרטים אישיים
+              </div>
+            </div>
+          ) : null}
+          {this.state.ScreenNumber === "2" ? (
+            <div className='GrowerPersonalAreaTabs'>
+              <div className='GrowerPersonalAreaTabsButtons'>
+                <Button outline color="success" onClick={() => this.ChangeScreen("1")} type="button" >
+                  פרטים אישיים
                     </Button>
-                    <Button href='/GrowerPersonalShop' outline color="success" type="button" >
-                    רכישת שתילים מחקלאי
+                <Button href='/GrowerPersonalShop' outline color="success" type="button" >
+                  רכישת שתילים מחקלאי
                     </Button>
-                    <Button color="success" type="button" disabled>
-                    שינוי פרטים לתשלום חודשי
+                <Button color="success" type="button" disabled>
+                  שינוי פרטים לתשלום חודשי
                     </Button>
-                  </div>
-                </div>
-            ) : null}
-            <Form onSubmit={this.onSubmit}>
+              </div>
+            </div>
+          ) : null}
+          <Form onSubmit={this.onSubmit}>
             {this.state.ScreenNumber === "1" ? (
               <FormGroup>
-              <div className='PersonalDetails'>
-                <div className="personal-form-group">
-                  <Label for='name'>שם פרטי:</Label>
-                  <Input
-                    type='text'
-                    name='name'
-                    id='name'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.name}
-                    invalid= {!this.state.nameValidation}
-                    required
-                  />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
-                </div>
-                <div className="personal-form-group">
-                  <Label for='familyname'>שם משפחה:</Label>
-                  <Input
-                    type='text'
-                    name='familyname'
-                    id='familyname'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.familyname}
-                    invalid= {!this.state.familynameValidation}
-                    required
-                  />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
-                </div>
-                <div className="personal-form-group">
-                  <Label for='phone'>טלפון:</Label>
-                  <Input
-                    type='text'
-                    name='phone'
-                    id='phone'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.phone}
-                    invalid= {!this.state.phoneValidation}
-                    required
-                  />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
-                </div>
-                <div className="personal-form-group">
-                  <Label for='email'>אימייל (שם משתמש):</Label>
-                  <Input
-                    type='email'
-                    name='email'
-                    id='email'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.email}
-                    invalid= {!this.state.emailValidation}
-                    required
-                    disabled
-                  />
-                  <FormFeedback>כתובת האימייל שגויה</FormFeedback>
-                  <div className="UpdateMyuserName"><Link to="/UpdateGrowerEmail" className="ghost-btn"><FiEdit /></Link></div>
-                </div>
-                <div className="personal-form-group">
-                  <Label for='address'>כתובת:</Label>
-                  <Input
-                    type='text'
-                    name='address'
-                    id='address'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.address}
-                    invalid= {!this.state.addressValidation}
-                    required
-                  />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
-                </div>
-                <div className="personal-form-group">
-                  <Label>תאריך תחילת מנוי:</Label>
-                  <div className="RegisterDate">{RegisterDateToStringFormat}</div>
-                  <div className="CancelSubscription">
-                    <Button color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" disabled={!this.state.UserActive} >ביטול מנוי</Button>
-                    <UncontrolledCollapse toggler="#toggler">
-                      <Card>
-                        <CardBody>
-                          <span className="CancelSubscriptionAlertText">האם אתה בטוח שברצונך לבטל את המנוי?</span>
-                          <span className="CancelSubscriptionAlertButtons">
-                            <span><Button outline color="success" onClick={() => this.DeactivateAcount()} type="button" >כן</Button></span>
-                            <span><Button outline color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" >לא</Button></span>
-                          </span>
-                        </CardBody>
-                      </Card>
-                    </UncontrolledCollapse>
+                <div className='PersonalDetails'>
+                  <div className="personal-form-group">
+                    <Label for='name'>שם פרטי:</Label>
+                    <Input
+                      type='text'
+                      name='name'
+                      id='name'
+                      placeholder='*'
+                      className='mb-3'
+                      onChange={this.onChange}
+                      value={this.state.name}
+                      invalid={!this.state.nameValidation}
+                      required
+                    />
+                    <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  </div>
+                  <div className="personal-form-group">
+                    <Label for='familyname'>שם משפחה:</Label>
+                    <Input
+                      type='text'
+                      name='familyname'
+                      id='familyname'
+                      placeholder='*'
+                      className='mb-3'
+                      onChange={this.onChange}
+                      value={this.state.familyname}
+                      invalid={!this.state.familynameValidation}
+                      required
+                    />
+                    <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  </div>
+                  <div className="personal-form-group">
+                    <Label for='phone'>טלפון:</Label>
+                    <Input
+                      type='text'
+                      name='phone'
+                      id='phone'
+                      placeholder='*'
+                      className='mb-3'
+                      onChange={this.onChange}
+                      value={this.state.phone}
+                      invalid={!this.state.phoneValidation}
+                      required
+                    />
+                    <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  </div>
+                  <div className="personal-form-group">
+                    <Label for='email'>אימייל (שם משתמש):</Label>
+                    <Input
+                      type='email'
+                      name='email'
+                      id='email'
+                      placeholder='*'
+                      className='mb-3'
+                      onChange={this.onChange}
+                      value={this.state.email}
+                      invalid={!this.state.emailValidation}
+                      required
+                      disabled
+                    />
+                    <FormFeedback>כתובת האימייל שגויה</FormFeedback>
+                    <div className="UpdateMyuserName"><Link to="/UpdateGrowerEmail" className="ghost-btn"><FiEdit /></Link></div>
+                  </div>
+                  <div className="personal-form-group">
+                    <Label for='address'>כתובת:</Label>
+                    <Input
+                      type='text'
+                      name='address'
+                      id='address'
+                      placeholder='*'
+                      className='mb-3'
+                      onChange={this.onChange}
+                      value={this.state.address}
+                      invalid={!this.state.addressValidation}
+                      required
+                    />
+                    <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  </div>
+                  <div className="personal-form-group">
+                    <Label>תאריך תחילת מנוי:</Label>
+                    <div className="RegisterDate">{RegisterDateToStringFormat}</div>
+                    <div className="CancelSubscription">
+                      <Button color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" disabled={!this.state.UserActive} >ביטול מנוי</Button>
+                      <UncontrolledCollapse toggler="#toggler">
+                        <Card>
+                          <CardBody>
+                            <span className="CancelSubscriptionAlertText">האם אתה בטוח שברצונך לבטל את המנוי?</span>
+                            <span className="CancelSubscriptionAlertButtons">
+                              <span><Button outline color="success" onClick={() => this.DeactivateAcount()} type="button" >כן</Button></span>
+                              <span><Button outline color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" >לא</Button></span>
+                            </span>
+                          </CardBody>
+                        </Card>
+                      </UncontrolledCollapse>
+                    </div>
+                  </div>
+                  <div className="personal-form-group">
+                    <Label>מסלול שנבחר:</Label>
+                    <div className="CurrentPlan">{PlanName}{this.state.FieldCropPlanActive ? " + גידולי שדה" : null}</div>
+                  </div>
+                  <div className="personal-form-group">
+                    <Label>גידולים שנבחרו:</Label>
+                    <div className="PersonalChoosenVeg">
+                      {ChoosenPersonalUserVeg.map(function (item, key) {
+                        return (
+                          <div className='PersonalChoosenVegItem' key={key}>
+                            <span className='PersonalChoosenVegItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                            <span className='PersonalChoosenVegItemName'>{item.name}</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                  {this.state.FieldCropPlanActive ?
+                    <div className="personal-form-group">
+                      <Label>גידולי שדה שנבחרו:</Label>
+                      <div className="PersonalChoosenVeg">
+                        {ChoosenPersonalUserFieldCrops.map(function (item, key) {
+                          return (
+                            <div className='PersonalChoosenVegItem' key={key}>
+                              <span className='PersonalChoosenVegItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                              <span className='PersonalChoosenVegItemName'>{item.name}</span>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                    : null}
+                  <div className="personal-form-group">
+                    <Label>החקלאי שנבחר:</Label>
+                    <div className="PersonalChoosenFarmer">
+                      <span><img alt="" src={require('../Resources/Name.png')} size='sm' />{this.state.FarmerFullNmae}</span>
+                      <span><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.state.FarmerPhone}</span>
+                      <span><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.state.FarmerEmail}>{this.state.FarmerEmail}</a></span>
+                      <span><img alt="" src={require('../Resources/location.png')} size='sm' />{this.state.FarmerLocation}</span>
+                    </div>
                   </div>
                 </div>
-                <div className="personal-form-group">
-                  <Label>מסלול שנבחר:</Label>
-                  <div className="CurrentPlan">{PlanName}{this.state.FieldCropPlanActive ? " + גידולי שדה" : null}</div>
+                <div className='UploadImage'>
+                  <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
+                  {$imagePreview}
                 </div>
-                <div className="personal-form-group">
-                  <Label>גידולים שנבחרו:</Label>
-                  <div className="PersonalChoosenVeg">
-                    {ChoosenPersonalUserVeg.map(function(item, key) {
-                      return (
-                        <div className='PersonalChoosenVegItem'  key={key}>
-                          <span className='PersonalChoosenVegItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                          <span className='PersonalChoosenVegItemName'>{item.name}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-                {this.state.FieldCropPlanActive ?
-                <div className="personal-form-group">
-                  <Label>גידולי שדה שנבחרו:</Label>
-                  <div className="PersonalChoosenVeg">
-                    {ChoosenPersonalUserFieldCrops.map(function(item, key) {
-                      return (
-                        <div className='PersonalChoosenVegItem'  key={key}>
-                          <span className='PersonalChoosenVegItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                          <span className='PersonalChoosenVegItemName'>{item.name}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-                : null}
-                <div className="personal-form-group">
-                  <Label>החקלאי שנבחר:</Label>
-                  <div className="PersonalChoosenFarmer">
-                    <span><img alt="" src={require('../Resources/Name.png')} size='sm' />{this.state.FarmerFullNmae}</span>
-                    <span><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.state.FarmerPhone}</span>
-                    <span><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.state.FarmerEmail}>{this.state.FarmerEmail}</a></span>
-                    <span><img alt="" src={require('../Resources/location.png')} size='sm' />{this.state.FarmerLocation}</span>
-                  </div>
-                </div>
-              </div>
-              <div className='UploadImage'>
-                <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
-                {$imagePreview}
-              </div>
-            </FormGroup>
+              </FormGroup>
             ) : null}
 
             {this.state.ScreenNumber === "2" ? (
@@ -711,15 +713,15 @@ class GrowerPersonalArea extends Component {
                       <div className="bankDetails">
                         <div className="bankname">
                           <Label for='CreditCardDate'></Label>
-                          <Input 
-                          type="text"
-                          maxLength="5"
-                          name="CreditCardDate"
-                          id="CreditCardDate"
-                          className='mb-3'
-                          placeholder='תוקף'
-                          onChange={this.onChange}>
-                        </Input>
+                          <Input
+                            type="text"
+                            maxLength="5"
+                            name="CreditCardDate"
+                            id="CreditCardDate"
+                            className='mb-3'
+                            placeholder='תוקף'
+                            onChange={this.onChange}>
+                          </Input>
                         </div>
                         <div className="banknumber">
                           <Label for='CreditCardCVV'></Label>
@@ -732,9 +734,9 @@ class GrowerPersonalArea extends Component {
                             onChange={this.onChange}
                           />
                         </div>
+                      </div>
                     </div>
-                   </div>
-                   <div className="payment-form-group">
+                    <div className="payment-form-group">
                       <Label for='CreditCardBusniessNumber'></Label>
                       <Input
                         type='text'
@@ -744,7 +746,7 @@ class GrowerPersonalArea extends Component {
                         className='mb-3'
                         onChange={this.onChange}
                       />
-                    </div> 
+                    </div>
                   </div>
                 </div>
               </FormGroup>
@@ -755,9 +757,9 @@ class GrowerPersonalArea extends Component {
                 עדכון
               </Button>
             </div>
-              
-            </Form>
-            { this.state.ActivateLoader ? <Loader /> : null }
+
+          </Form>
+          {this.state.ActivateLoader ? <Loader /> : null}
         </Container>
       </div>
     );
@@ -769,6 +771,7 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
   farmer: state.farmer,
+  farmers: state.farmer.farmers,
   updateduser: state.updateduser,
   growerdeactivate: state.updateduser.growerdeactivate,
   userdeactivate: state.updateduser.userdeactivate
@@ -776,6 +779,8 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getfarmerbyemail, updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan,
-    growerDeactivationSuccess, userDeactivationSuccess, resetUpdateUser }
+  {
+    register, clearErrors, getfarmerbyemail, updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan,
+    growerDeactivationSuccess, userDeactivationSuccess, resetUpdateUser
+  }
 )(GrowerPersonalArea);

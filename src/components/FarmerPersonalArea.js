@@ -6,7 +6,6 @@ import {
   Label,
   Input,
   Container,
-  CustomInput,
   Alert,
   FormFeedback,
   FormText
@@ -22,8 +21,8 @@ import Vegetables from '../components/Vegetables';
 import VegetablesPricing from '../components/VegetablesPricing';
 import FieldCrops from '../components/FieldCrops';
 import FarmCropsPricing from '../components/FarmCropsPricing';
-import { getChoosenVegetables,addChoosenVegetable } from '../actions/choosenVegetablesAction';
-import { getChoosenfieldCrops, addChoosenfieldCrop } from '../actions/choosenFieldCropsAction';
+import { getChoosenVegetables,addChoosenVegetable, resetChoosenVegetables } from '../actions/choosenVegetablesAction';
+import { getChoosenfieldCrops, addChoosenfieldCrop, resetChoosenfieldCrop } from '../actions/choosenFieldCropsAction';
 import { updatefarmerprofile, updatefarmerbyemail } from '../actions/updateUserAction';
 import { addFarmer } from '../actions/farmerAction';
 import ListOfGrowers from '../components/ListOfGrowers';
@@ -110,14 +109,18 @@ class FarmerPersonalArea extends Component {
     veglog: PropTypes.object.isRequired,
     addVegLog: PropTypes.func.isRequired,
     ResetVegLog: PropTypes.func.isRequired,
-    SetVegLogDone: PropTypes.func.isRequired
+    SetVegLogDone: PropTypes.func.isRequired,
+    resetChoosenVegetables: PropTypes.func.isRequired,
+    resetChoosenfieldCrop: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getChoosenVegetables();
     this.props.getChoosenfieldCrops();
+    this.props.resetChoosenVegetables();
+    this.props.resetChoosenfieldCrop();
     this.props.getSystemData();
-
+    var i=0;
     const { user } = this.props.auth;
 
     this.setState({
@@ -137,10 +140,10 @@ class FarmerPersonalArea extends Component {
         CropFieldPlanCost: user.fieldcropplan.cost
     })
 
-    for(var i=0; i < user.choosenvegetables.length; i++){
+    for(i=0; i < user.choosenvegetables.length; i++){
       this.props.addChoosenVegetable(user.choosenvegetables[i]);
     }
-    for(var i=0; i < user.choosenfieldcrops.length; i++){
+    for(i=0; i < user.choosenfieldcrops.length; i++){
       this.props.addChoosenfieldCrop(user.choosenfieldcrops[i]);
     }
   }
@@ -195,6 +198,8 @@ class FarmerPersonalArea extends Component {
     // Clear errors
     this.props.clearErrors();
     this.props.ResetVegLog();
+    this.props.resetChoosenVegetables();
+    this.props.resetChoosenfieldCrop();
     this.setState({
         modal: !this.state.modal
     });
@@ -260,12 +265,13 @@ class FarmerPersonalArea extends Component {
     }
 
     // Validate veg pricing
-    for(var i = 0; i < choosenvegetables.length; i++){
+    var i = 0;
+    for(i = 0; i < choosenvegetables.length; i++){
       if(choosenvegetables[i].price === ''){
         FoundEmpty = true;
       }
     }
-    for(var i = 0; i < ChoosenFieldCrops.length; i++){
+    for(i = 0; i < ChoosenFieldCrops.length; i++){
       if(ChoosenFieldCrops[i].price === ''){
         FoundEmpty = true;
       }
@@ -948,6 +954,6 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, addChoosenVegetable, addFarmer, updatefarmerprofile, updatefarmerbyemail, getSystemData, getChoosenfieldCrops, 
-    addChoosenfieldCrop, addVegLog, ResetVegLog, SetVegLogDone }
+  { register, clearErrors, getChoosenVegetables, addChoosenVegetable, resetChoosenVegetables, addFarmer, updatefarmerprofile, updatefarmerbyemail, getSystemData, getChoosenfieldCrops, 
+    addChoosenfieldCrop, resetChoosenfieldCrop, addVegLog, ResetVegLog, SetVegLogDone }
 )(FarmerPersonalArea);

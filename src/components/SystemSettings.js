@@ -50,7 +50,7 @@ class SystemSettings extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { system, SystemData, error, isAuthenticated } = this.props;
+    const { system, SystemData, error } = this.props;
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {

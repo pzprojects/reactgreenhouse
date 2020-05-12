@@ -1,4 +1,4 @@
-import { GET_CHOOSEN_FIELDCROPS,  ADD_CHOOSEN_FIELDCROPS, DELETE_CHOOSEN_FIELDCROPS } from './types';
+import { GET_CHOOSEN_FIELDCROPS,  ADD_CHOOSEN_FIELDCROPS, DELETE_CHOOSEN_FIELDCROPS, RESET_CHOOSEN_FIELDCROPS } from './types';
 
 export const getChoosenfieldCrops = () => {
     return{
@@ -17,5 +17,11 @@ export const deleteChoosenfieldCrop = name => {
     return{
         type: DELETE_CHOOSEN_FIELDCROPS,
         payload: name
+    };
+};
+
+export const resetChoosenfieldCrop = () => {
+    return{
+        type: RESET_CHOOSEN_FIELDCROPS
     };
 };

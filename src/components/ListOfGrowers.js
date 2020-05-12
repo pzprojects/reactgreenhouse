@@ -49,36 +49,37 @@ class ListOfGrowers extends Component {
   render() {
     try{
         const { growers } = this.props.grower;
+        var SortedGrowers = [];
 
         switch(this.state.ActiveSort){
           case "IsActiveOrder":
             if(this.state.IsActiveOrder){
               const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
-              var SortedGrowers = growers.slice().sort(sortByKey('isactive'));
+              SortedGrowers = growers.slice().sort(sortByKey('isactive'));
             }
             else{
               const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
-              var SortedGrowers = growers.slice().sort(sortByKey('isactive'));
+              SortedGrowers = growers.slice().sort(sortByKey('isactive'));
             }
             break;
           case "NameOrder":
             if(this.state.NameOrder){
               const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
-              var SortedGrowers = growers.slice().sort(sortByKey('name'));
+              SortedGrowers = growers.slice().sort(sortByKey('name'));
             }
             else{
               const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
-              var SortedGrowers = growers.slice().sort(sortByKey('name'));
+              SortedGrowers = growers.slice().sort(sortByKey('name'));
             }
             break;
           case "DateOrder":
             if(this.state.DateOrder){
               const sortByKey = key => (a, b) => a[key] < b[key] ? 1 : -1;
-              var SortedGrowers = growers.slice().sort(sortByKey('name'));
+              SortedGrowers = growers.slice().sort(sortByKey('name'));
             }
             else{
               const sortByKey = key => (a, b) => a[key] > b[key] ? 1 : -1;
-              var SortedGrowers = growers.slice().sort(sortByKey('name'));
+              SortedGrowers = growers.slice().sort(sortByKey('name'));
             }
             break;
           default:
@@ -86,7 +87,7 @@ class ListOfGrowers extends Component {
         
     }
     catch{
-        var SortedGrowers = [];
+        SortedGrowers = [];
     }
 
     return (

@@ -34,8 +34,8 @@ import {
         };
       case UPDATE_ITEMS_TO_SHOOPING_LIST:
         var NewGrowerShoopingList = [...state.GrowerShoopingList];
-        var ItemIndex = state.GrowerShoopingList.findIndex(choosenvegetable => choosenvegetable.ChoosenVegName === action.nametofind);
-        NewGrowerShoopingList[ItemIndex].ChoosenVegAmount = (parseFloat(action.payload) + parseFloat(NewGrowerShoopingList[ItemIndex].ChoosenVegAmount)).toString();
+        var ItemIndex2 = state.GrowerShoopingList.findIndex(choosenvegetable => choosenvegetable.ChoosenVegName === action.nametofind);
+        NewGrowerShoopingList[ItemIndex2].ChoosenVegAmount = (parseFloat(action.payload) + parseFloat(NewGrowerShoopingList[ItemIndex2].ChoosenVegAmount)).toString();
         return {
           ...state,
           GrowerShoopingList: NewGrowerShoopingList

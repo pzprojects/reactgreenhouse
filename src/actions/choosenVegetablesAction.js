@@ -1,4 +1,4 @@
-import { GET_CHOOSEN_VEGETABLES,  ADD_CHOOSEN_VEGETABLES, DELETE_CHOOSEN_VEGETABLES} from './types';
+import { GET_CHOOSEN_VEGETABLES,  ADD_CHOOSEN_VEGETABLES, DELETE_CHOOSEN_VEGETABLES, RESET_CHOOSEN_VEGETABLES} from './types';
 
 export const getChoosenVegetables = () => {
     return{
@@ -17,5 +17,11 @@ export const deleteChoosenVegetable = name => {
     return{
         type: DELETE_CHOOSEN_VEGETABLES,
         payload: name
+    };
+};
+
+export const resetChoosenVegetables = () => {
+    return{
+        type: RESET_CHOOSEN_VEGETABLES
     };
 };

@@ -1,7 +1,8 @@
 import {
     GET_CHOOSEN_FIELDCROPS,
     ADD_CHOOSEN_FIELDCROPS,
-    DELETE_CHOOSEN_FIELDCROPS
+    DELETE_CHOOSEN_FIELDCROPS,
+    RESET_CHOOSEN_FIELDCROPS
   } from '../actions/types';
   
   const initialState = {
@@ -23,6 +24,11 @@ import {
         return {
           ...state,
           ChoosenFieldCrops: [action.payload, ...state.ChoosenFieldCrops]
+        };
+      case RESET_CHOOSEN_FIELDCROPS:
+        return {
+          ...state,
+          ChoosenFieldCrops: []
         };
       default:
         return state;
