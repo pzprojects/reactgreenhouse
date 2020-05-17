@@ -3133,6 +3133,19 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* Languages */
+
+  .ChooseLang {
+    width: 10%;
+    position: absolute;
+    top: 0vw;
+    right: 0vw;
+    display: block;
+    z-index: 1000;
+    direction: ltr;
+  }
+
 }
 
 /********************************************************************************************************************************************************************/
