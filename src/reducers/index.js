@@ -19,6 +19,7 @@ import growerFieldCropsChoiceReducer from './growerFieldCropsChoiceReducer';
 import veglogReducer from './veglogReducer';
 import growerShoppingListReducer from './growerShoppingListReducer';
 import personalShoopingListReducer from './personalShoopingListReducer';
+import switchLanguageReducer from './switchLanguageReducer';
 
 export default combineReducers({
   item: itemReducer,
@@ -39,5 +40,6 @@ export default combineReducers({
   choosenfieldcrop: choosenFieldCropsReducer,
   veglog: veglogReducer,
   growershop: growerShoppingListReducer,
-  personalshop: personalShoopingListReducer
+  personalshop: personalShoopingListReducer,
+  language: switchLanguageReducer
 });

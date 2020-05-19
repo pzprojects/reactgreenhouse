@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput, Alert } from 'reactstrap';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { getfarmersbyarea } from '../actions/farmerAction';
-import { updatechoosenfarmer, getchoosenfarmer } from '../actions/choosenFarmerAction';
+import { getfarmersbyarea, resetFarmersList } from '../actions/farmerAction';
+import { updatechoosenfarmer, getchoosenfarmer, resetchoosenfarmer} from '../actions/choosenFarmerAction';
 import { addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag, SetIsValidatedVegBag } from '../actions/growerVegChoiceAction';
 import { getGrowerFieldCropBag, addToGrowerFieldCropBag, deleteFromGrowerFieldCropBag, ResetGrowerFieldCropBag, SetTotalGrowerFieldCropBag, SetPlanGrowerFieldCropBag, SetIsValidatedFieldCropBag } from '../actions/growerFieldCropsChoiceAction';
 import PropTypes from 'prop-types';
@@ -34,8 +34,10 @@ class ChooseFarmer extends Component {
   static propTypes = {
     getfarmersbyarea: PropTypes.func.isRequired,
     farmer: PropTypes.object.isRequired,
+    resetFarmersList: PropTypes.func.isRequired,
     updatechoosenfarmer: PropTypes.func.isRequired,
     getchoosenfarmer: PropTypes.func.isRequired,
+    resetchoosenfarmer: PropTypes.func.isRequired,
     choosenfarmer: PropTypes.object.isRequired,
     growervegbuyingbag: PropTypes.object.isRequired,
     deleteFromGrowerVegBag: PropTypes.func.isRequired,
@@ -1861,7 +1863,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    getfarmersbyarea, updatechoosenfarmer, getchoosenfarmer, addToGrowerVegBag,
+    getfarmersbyarea, resetFarmersList, updatechoosenfarmer, getchoosenfarmer, resetchoosenfarmer, addToGrowerVegBag,
     deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag, SetIsValidatedVegBag,
     getGrowerFieldCropBag, addToGrowerFieldCropBag, deleteFromGrowerFieldCropBag, ResetGrowerFieldCropBag, SetTotalGrowerFieldCropBag,
     SetPlanGrowerFieldCropBag, SetIsValidatedFieldCropBag

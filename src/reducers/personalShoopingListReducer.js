@@ -3,7 +3,8 @@ import {
     ADD_PERSONAL_SHOOPING_ITEM,
     DELETE_PERSONAL_SHOOPING_ITEM,
     PERSONAL_SHOOPING_ITEM_LOADING,
-    PERSONAL_SHOOPING_ITEM_DONE
+    PERSONAL_SHOOPING_ITEM_DONE,
+    RESET_PERSONAL_SHOOPING_ITEMS
   } from '../actions/types';
   
   const initialState = {
@@ -39,6 +40,13 @@ import {
         return {
           ...state,
           transactionDone: true
+        };
+      case RESET_PERSONAL_SHOOPING_ITEMS:
+        return {
+          ...state,
+          transactions: [],
+          transactionLoading: false,
+          transactionDone: false
         };
       default:
         return state;

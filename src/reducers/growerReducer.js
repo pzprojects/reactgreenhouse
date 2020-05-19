@@ -3,7 +3,8 @@ import {
     ADD_GROWER,
     DELETE_GROWER,
     GROWERS_LOADING,
-    GET_GROWERS_BY_FARMER
+    GET_GROWERS_BY_FARMER,
+    RESET_ALL_GROWERS
   } from '../actions/types';
   
   const initialState = {
@@ -39,6 +40,12 @@ import {
         return {
           ...state,
           GrowersLoading: true
+        };
+      case RESET_ALL_GROWERS:
+        return {
+          ...state,
+          growers: [],
+          GrowersLoading: false
         };
       default:
         return state;

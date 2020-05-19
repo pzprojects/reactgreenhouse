@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 class GrowersubmissionMSG extends Component {
   static propTypes = {
@@ -16,7 +17,7 @@ class GrowersubmissionMSG extends Component {
           <div className="FarmerSubmissionMSGHeader">פרטיך נקלטו בהצלחה ונבדקים כעת ע"י Co-GreenHouse</div>
           <div className="FarmerSubmissionMSGHeader">נציג ייצור איתך קשר בהקדם</div>
           <div className="FarmerSubmissionMSGButtonHolder">
-            <Button className="FarmerSubmissionMSGButton" type="button" size="lg" href="/">חזרה לדף הבית</Button>
+            <Button className="FarmerSubmissionMSGButton" type="button" size="lg" tag={Link} to="/">חזרה לדף הבית</Button>
          </div>
         </div>
       </Container>

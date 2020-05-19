@@ -4,7 +4,8 @@ import {
     DELETE_FARMER,
     FARMERS_LOADING,
     GET_FARMERS_BYAREA,
-    GET_FARMER_BY_EMAIL
+    GET_FARMER_BY_EMAIL,
+    RESET_ALL_FARMERS
   } from '../actions/types';
   
   const initialState = {
@@ -46,6 +47,12 @@ import {
         return {
           ...state,
           FarmersLoading: true
+        };
+      case RESET_ALL_FARMERS:
+        return {
+          ...state,
+          farmers: [],
+          FarmersLoading: false
         };
       default:
         return state;

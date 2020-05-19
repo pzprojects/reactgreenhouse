@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_PERSONAL_SHOOPING_ITEM, ADD_PERSONAL_SHOOPING_ITEM, DELETE_PERSONAL_SHOOPING_ITEM, PERSONAL_SHOOPING_ITEM_LOADING, PERSONAL_SHOOPING_ITEM_DONE } from './types';
+import { GET_PERSONAL_SHOOPING_ITEM, ADD_PERSONAL_SHOOPING_ITEM, DELETE_PERSONAL_SHOOPING_ITEM,
+     PERSONAL_SHOOPING_ITEM_LOADING, PERSONAL_SHOOPING_ITEM_DONE, RESET_PERSONAL_SHOOPING_ITEMS } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 import { API_URL } from '../config/keys';
@@ -57,6 +58,12 @@ export const personalShoopingItemsLoading = () => {
 export const additemdone = () => {
     return {
         type: PERSONAL_SHOOPING_ITEM_DONE
+    };
+};
+
+export const resetpersonalShoopingItems = () => {
+    return {
+        type: RESET_PERSONAL_SHOOPING_ITEMS
     };
 };
 

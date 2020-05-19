@@ -16,16 +16,45 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
+import { getLanguage, ResetLanguage, updateLanguage } from '../actions/switchLanguageAction';
+import {Link} from 'react-router-dom';
 
 class AppNavbar extends Component {
   state = {
     isOpen: false,
-    LanguagePicker: "עברית"
+    LanguagePicker: "",
+    LogoClass: "COHeaderRTL",
+    ConnectionLinksClass: "ConnectionLinksRTL"
+    
   };
 
   static propTypes = {
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    language: PropTypes.object.isRequired,
+    getLanguage: PropTypes.func.isRequired,
+    ResetLanguage: PropTypes.func.isRequired,
+    updateLanguage: PropTypes.func.isRequired
   };
+
+  componentDidMount() {
+    const { language, LanguageActive } = this.props;
+    if(!LanguageActive){
+      const setlanguage = {
+        LangName: "עברית",
+        Code: "he",
+        dir: "rtl"
+      };
+      this.props.updateLanguage(setlanguage);
+      this.setState({
+        LanguagePicker: "עברית"
+      });
+    }
+    else{
+      this.setState({
+        LanguagePicker: language.LanguageName
+      });
+    }
+  }
 
   GetActiveLink = (path) => {
     if (window.location.pathname === path) {
@@ -33,12 +62,34 @@ class AppNavbar extends Component {
     }
     else return ""
   };
+
+  sendData = (data) => {
+    this.props.Direction(data);
+  }
   
   ChangeLanguage = (ChoosenLang) => {
-    console.log(ChoosenLang);
+    var CoHeader = '';
+    var ConnectionLinks = '';
+    if(ChoosenLang.dir === 'rtl'){
+      CoHeader = 'COHeaderRTL';
+      ConnectionLinks = "ConnectionLinksRTL";
+    }
+    else{
+      CoHeader = 'COHeaderLTR';
+      ConnectionLinks = "ConnectionLinksLTR";
+    }
     this.setState({
-      LanguagePicker: ChoosenLang.LangName
+      LanguagePicker: ChoosenLang.LangName,
+      LogoClass: CoHeader,
+      ConnectionLinksClass: ConnectionLinks
     });
+    const setlanguage = {
+      LangName: ChoosenLang.LangName,
+      Code: ChoosenLang.Code,
+      dir: ChoosenLang.dir
+    };
+    this.props.updateLanguage(setlanguage);
+    this.sendData(ChoosenLang.dir);
   };
 
   toggle = () => {
@@ -49,6 +100,7 @@ class AppNavbar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { Language } = this.props;
     const LanguagesList = [{
       LangName: "עברית",
       Img: <img alt="" src={require('../Resources/Hebrew-8.png')} />,
@@ -66,9 +118,9 @@ class AppNavbar extends Component {
       <Fragment>
         <NavItem>
           <span className='navbarWelcome navbar-text'>
-            <strong id="navbarWelcomeTooltip">שלום {user ? `${user.name}` : ''}</strong>
+            <strong id="navbarWelcomeTooltip">{Language.NavBarHello} {user ? `${user.name}` : ''}</strong>
             <UncontrolledTooltip placement="bottom" target="navbarWelcomeTooltip">
-              שלום {user ? `${user.name}` : ''}
+            {Language.NavBarHello} {user ? `${user.name}` : ''}
             </UncontrolledTooltip>
           </span>
         </NavItem>
@@ -84,8 +136,8 @@ class AppNavbar extends Component {
           <LoginModal />
         </NavItem>
         <NavItem className='RegisterLink'>
-          <NavLink href='/RegisterUserType'>
-            הירשם עכשיו
+          <NavLink tag={Link} to='/RegisterUserType'>
+           {Language.NavBarSignIn}
           </NavLink>
         </NavItem>
       </Fragment>
@@ -95,32 +147,32 @@ class AppNavbar extends Component {
       <Fragment>
         <NavItem className={this.GetActiveLink('/HomePage')}>
           <NavLink href='https://www.co-greenhouse.com/' target="_blank">
-            דף הבית
+           {Language.NavBarHomePage}
           </NavLink>
         </NavItem>
         <NavItem className={this.GetActiveLink('/')}>
-          <NavLink href='/'>
-            אזור אישי
+          <NavLink tag={Link} to='/'>
+           {Language.NavBarPersonalArea}
           </NavLink>
         </NavItem>
         <NavItem className={this.GetActiveLink('/Shop')}>
           <NavLink href='https://www.co-greenhouse.com/shop' target="_blank">
-            לחנות שלנו
+           {Language.NavBarOurShop}
           </NavLink>
         </NavItem>
         <NavItem className={this.GetActiveLink('/CommunityServices')}>
           <NavLink href='https://www.co-greenhouse.com/communityfarmers' target="_blank">
-            לחקלאי הקהילה שלנו
+           {Language.NavBarComunityFarmers}
           </NavLink>
         </NavItem>
         <NavItem className={this.GetActiveLink('/FAQ')}>
           <NavLink href='https://www.co-greenhouse.com/faq' target="_blank">
-            שאלות ותשובות
+          {Language.NavBarFaq}
           </NavLink>
         </NavItem>
         <NavItem className={this.GetActiveLink('/ContactUs')}>
           <NavLink href='https://www.co-greenhouse.com/contact' target="_blank">
-            צור קשר
+          {Language.NavBarContactUs}
           </NavLink>
         </NavItem>
       </Fragment>
@@ -161,18 +213,17 @@ class AppNavbar extends Component {
         <div className='ChooseLang'>
           <Label for='LanguagePicker'></Label>
           <UncontrolledDropdown>
-            <DropdownToggle outline color="primary" caret>
-              {this.state.LanguagePicker}
+            <DropdownToggle outline className='LanguagePickerDropdown' color="primary" caret>
+              {this.state.LanguagePicker + " "}
             </DropdownToggle>
             <DropdownMenu right >
-              {LanguagesList.map(function (item, thirdkey) {
-                return (
-                  <DropdownItem className='LanguagePicker' type="button" key={thirdkey} onClick={() => this.ChangeLanguage(item)} >
+              {LanguagesList.map((item,index) =>
+                  <DropdownItem className='LanguagePicker' type="button" key={index} onClick={() => this.ChangeLanguage(item)} >
                     <span className="LanguagePickerItemImgContainer">{item.Img}</span>
                     <span className='LanguagePickerItemName'>{item.LangName}</span>
                   </DropdownItem>
-                )
-              })}
+
+              )}
             </DropdownMenu>
           </UncontrolledDropdown>
         </div>
@@ -181,14 +232,14 @@ class AppNavbar extends Component {
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='ml-auto' navbar>
-                <div className="ConnectionLinks">
+                <div className={this.state.ConnectionLinksClass}>
                   {isAuthenticated ? authLinks : guestLinks}
                 </div>
                 {isAuthenticated ? user.usertype === 'SysAdmin' && user.usertype !== "null" ? adminnavitems : navitems
                   : navitems}
               </Nav>
-              <div className='COHeader' >
-                <NavbarBrand href='/'>CO-Greenhouse</NavbarBrand>
+              <div className={this.state.LogoClass} >
+                <NavbarBrand tag={Link} to='/'><img alt="" src={require('../Resources/logo.png')} /></NavbarBrand>
               </div>
             </Collapse>
           </Container>
@@ -199,10 +250,12 @@ class AppNavbar extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  language: state.language,
+  Language: state.language.Language
 });
 
 export default connect(
   mapStateToProps,
-  null
+  { getLanguage, ResetLanguage, updateLanguage }
 )(AppNavbar);

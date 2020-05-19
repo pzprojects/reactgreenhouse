@@ -30,16 +30,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 class App extends Component {
+  
+  state = { dir: "rtl" }
+
   componentDidMount() {
     store.dispatch(loadUser());
+  }
+
+  CallbackDirection = (NavDirection) => {
+    this.setState({dir: NavDirection})
   }
 
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <div className='App' dir="rtl">
-            <AppNavbar />
+          <div className='App' dir={this.state.dir}>
+            <AppNavbar Direction = {this.CallbackDirection} />
             <Container>
               <Route exact path="/" component={PersonalArea} />
               <Route path="/ItemModal" component={ItemModal} />

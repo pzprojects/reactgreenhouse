@@ -20,7 +20,7 @@ import { clearErrors } from '../actions/errorActions';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
-import { getfarmerbyemail } from '../actions/farmerAction';
+import { getfarmerbyemail, resetFarmersList } from '../actions/farmerAction';
 import { updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan, growerDeactivationSuccess, userDeactivationSuccess, resetUpdateUser } from '../actions/updateUserAction';
 import { Redirect } from "react-router-dom";
 import { API_URL } from '../config/keys';
@@ -77,6 +77,7 @@ class GrowerPersonalArea extends Component {
     error: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired,
     getfarmerbyemail: PropTypes.func.isRequired,
+    resetFarmersList: PropTypes.func.isRequired,
     farmer: PropTypes.object.isRequired,
     updategrowerprofile: PropTypes.func.isRequired,
     updateduser: PropTypes.object.isRequired,
@@ -159,6 +160,11 @@ class GrowerPersonalArea extends Component {
         this.toggle();
       }
     }
+  }
+
+  componentWillUnmount() {
+    this.props.resetUpdateUser();
+    this.props.resetFarmersList();
   }
 
   toggle = () => {
@@ -510,7 +516,7 @@ class GrowerPersonalArea extends Component {
                 <Button color="success" type="button" disabled>
                   פרטים אישיים
                     </Button>
-                <Button href='/GrowerPersonalShop' outline color="success" type="button" >
+                <Button tag={Link} to='/GrowerPersonalShop' outline color="success" type="button" >
                   רכישת שתילים מחקלאי
                     </Button>
                 <Button outline color="success" onClick={() => this.ChangeScreen("2")} type="button" >
@@ -525,7 +531,7 @@ class GrowerPersonalArea extends Component {
                 <Button outline color="success" onClick={() => this.ChangeScreen("1")} type="button" >
                   פרטים אישיים
                     </Button>
-                <Button href='/GrowerPersonalShop' outline color="success" type="button" >
+                <Button tag={Link} to='/GrowerPersonalShop' outline color="success" type="button" >
                   רכישת שתילים מחקלאי
                     </Button>
                 <Button color="success" type="button" disabled>
@@ -780,7 +786,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    register, clearErrors, getfarmerbyemail, updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan,
+    register, clearErrors, getfarmerbyemail, resetFarmersList, updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan,
     growerDeactivationSuccess, userDeactivationSuccess, resetUpdateUser
   }
 )(GrowerPersonalArea);

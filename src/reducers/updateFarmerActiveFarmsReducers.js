@@ -1,5 +1,5 @@
 import {
-    UPDATE_FARMER_ACTIVE_FARMS,  UPDATE_USER_ACTIVE_FARMS, ACTIVE_FARMS_FARMERS_LOADING, ACTIVE_FARMS_USERS_LOADING
+    UPDATE_FARMER_ACTIVE_FARMS,  UPDATE_USER_ACTIVE_FARMS, ACTIVE_FARMS_FARMERS_LOADING, ACTIVE_FARMS_USERS_LOADING, RESET_ACTIVE_FARMS_USERS
   } from '../actions/types';
   
   const initialState = {
@@ -29,6 +29,13 @@ import {
         return {
           ...state,
           FarmersNumLoaded: true
+        };
+      case RESET_ACTIVE_FARMS_USERS:
+        return {
+          ...state,
+          FarmerNumOfActiveFarms: {},
+          FarmersNumLoaded: false,
+          UsersNumLoaded: false
         };
       default:
         return state;

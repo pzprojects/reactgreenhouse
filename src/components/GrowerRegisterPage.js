@@ -18,12 +18,12 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
 import ChooseFarmer from '../components/ChooseFarmer';
-import { addFarmer } from '../actions/farmerAction';
-import { getchoosenfarmer } from '../actions/choosenFarmerAction';
-import { getGrowerVegBag } from '../actions/growerVegChoiceAction';
-import { getGrowerFieldCropBag } from '../actions/growerFieldCropsChoiceAction';
-import { addgrower } from '../actions/growerAction';
-import { updatefarmeractivefarms, updateuseractivefarms } from '../actions/updateFarmerActiveFarmsAction.js';
+import { addFarmer, resetFarmersList} from '../actions/farmerAction';
+import { getchoosenfarmer, resetchoosenfarmer } from '../actions/choosenFarmerAction';
+import { getGrowerVegBag, ResetGrowerVegBag } from '../actions/growerVegChoiceAction';
+import { getGrowerFieldCropBag, ResetGrowerFieldCropBag } from '../actions/growerFieldCropsChoiceAction';
+import { addgrower, resetgrowerlist } from '../actions/growerAction';
+import { updatefarmeractivefarms, updateuseractivefarms, resetactivefarms } from '../actions/updateFarmerActiveFarmsAction.js';
 import { API_URL } from '../config/keys';
 import { getSystemData } from '../actions/systemAction';
 
@@ -105,7 +105,13 @@ class GrowerRegisterPage extends Component {
     system: PropTypes.object.isRequired,
     getSystemData: PropTypes.func.isRequired,
     growerfieldcropsbuyingbag: PropTypes.object.isRequired,
-    getGrowerFieldCropBag: PropTypes.func.isRequired
+    getGrowerFieldCropBag: PropTypes.func.isRequired,
+    resetchoosenfarmer: PropTypes.func.isRequired,
+    ResetGrowerFieldCropBag: PropTypes.func.isRequired,
+    ResetGrowerVegBag: PropTypes.func.isRequired,
+    resetFarmersList: PropTypes.func.isRequired,
+    resetgrowerlist: PropTypes.func.isRequired,
+    resetactivefarms: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -114,6 +120,15 @@ class GrowerRegisterPage extends Component {
     this.props.getGrowerFieldCropBag();
     this.props.getSystemData();
 
+  }
+
+  componentWillUnmount() {
+    this.props.resetFarmersList();
+    this.props.resetchoosenfarmer();
+    this.props.ResetGrowerVegBag();
+    this.props.ResetGrowerFieldCropBag();
+    this.props.resetgrowerlist();
+    this.props.resetactivefarms();
   }
 
   componentDidUpdate(prevProps) {
@@ -1087,5 +1102,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, addFarmer, getchoosenfarmer, getGrowerVegBag, addgrower, updatefarmeractivefarms, updateuseractivefarms, getSystemData, getGrowerFieldCropBag }
+  { register, clearErrors, addFarmer, resetFarmersList, resetchoosenfarmer, getchoosenfarmer,
+    resetactivefarms, getGrowerVegBag, ResetGrowerVegBag, addgrower, resetgrowerlist, updatefarmeractivefarms,
+    updateuseractivefarms, getSystemData, getGrowerFieldCropBag, ResetGrowerFieldCropBag }
 )(GrowerRegisterPage);

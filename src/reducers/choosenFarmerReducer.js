@@ -1,6 +1,7 @@
 import {
     UPDATE_CHOOSEN_FARMER,
-    GET_CHOOSEN_FARMER
+    GET_CHOOSEN_FARMER,
+    RESET_CHOOSEN_FARMER
   } from '../actions/types';
   
   const initialState = {
@@ -17,6 +18,11 @@ import {
         return {
           ...state,
           ChoosenFarmerById: action.payload
+        };
+      case RESET_CHOOSEN_FARMER:
+        return {
+          ...state,
+          ChoosenFarmerById: {}
         };
       default:
         return state;

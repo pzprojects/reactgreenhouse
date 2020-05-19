@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 class PersonalArea extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    isAuthenticated: PropTypes.bool
+    isAuthenticated: PropTypes.bool,
+    language: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -22,12 +23,13 @@ class PersonalArea extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { Language } = this.props;
 
     return (
       <Container>
         {isAuthenticated ? 
          user.usertype === 'חקלאי' ? <FarmerPersonalArea/> : user.usertype === 'מגדל' ? <GrowerPersonalArea/> : user.usertype === 'SysAdmin' ? <AdminPersonalArea/> : null
-        : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >ברוכים הבאים ל</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>}
+        : <div className='PersonalAreaWelcomeContainer' ><span className='PersonalAreaWelcomeText1' >{Language.WelcomeToPage}</span><span className='PersonalAreaWelcomeText2'>CO-Greenhouse</span></div>}
       </Container>
     );
   }
@@ -35,7 +37,9 @@ class PersonalArea extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  language: state.language,
+  Language: state.language.Language
 });
 
 export default connect(

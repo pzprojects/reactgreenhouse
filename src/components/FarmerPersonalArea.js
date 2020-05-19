@@ -148,6 +148,12 @@ class FarmerPersonalArea extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.resetChoosenVegetables();
+    this.props.resetChoosenfieldCrop();
+    this.props.ResetVegLog();
+  }
+
   componentDidUpdate(prevProps) {
     const { VegLogUpdated, system, error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {

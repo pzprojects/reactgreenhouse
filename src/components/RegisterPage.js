@@ -24,7 +24,7 @@ import VegetablesPricing from '../components/VegetablesPricing';
 import FarmCropsPricing from '../components/FarmCropsPricing';
 import { getChoosenVegetables, resetChoosenVegetables } from '../actions/choosenVegetablesAction';
 import { getChoosenfieldCrops, resetChoosenfieldCrop } from '../actions/choosenFieldCropsAction';
-import { addFarmer } from '../actions/farmerAction';
+import { addFarmer, resetFarmersList } from '../actions/farmerAction';
 import { API_URL } from '../config/keys';
 import { getSystemData } from '../actions/systemAction';
 
@@ -108,13 +108,20 @@ class RegisterPage extends Component {
     system: PropTypes.object.isRequired,
     getSystemData: PropTypes.func.isRequired,
     resetChoosenVegetables: PropTypes.func.isRequired,
-    resetChoosenfieldCrop: PropTypes.func.isRequired
+    resetChoosenfieldCrop: PropTypes.func.isRequired,
+    resetFarmersList: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getChoosenVegetables();
     this.props.getChoosenfieldCrops();
     this.props.getSystemData();
+  }
+
+  componentWillUnmount() {
+    this.props.resetFarmersList();
+    this.props.resetChoosenVegetables();
+    this.props.resetChoosenfieldCrop();
   }
 
   componentDidUpdate(prevProps) {
@@ -1377,5 +1384,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, resetChoosenVegetables, getChoosenfieldCrops, resetChoosenfieldCrop, addFarmer, getSystemData }
+  { register, clearErrors, getChoosenVegetables, resetChoosenVegetables, getChoosenfieldCrops, resetChoosenfieldCrop, addFarmer, resetFarmersList, getSystemData }
 )(RegisterPage);

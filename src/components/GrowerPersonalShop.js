@@ -18,9 +18,9 @@ import PropTypes from 'prop-types';
 import { register } from '../actions/authActions';
 import { clearErrors } from '../actions/errorActions';
 import Loader from '../components/Loader';
-import { getfarmerbyemail } from '../actions/farmerAction';
+import { getfarmerbyemail, resetFarmersList } from '../actions/farmerAction';
 import { getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList, ResetGrowerShoopinList, UpdateGrowerShoopinList } from '../actions/growerShoppingListAction';
-import { addpersonalShoopingItems } from '../actions/personalShoopingListAction';
+import { addpersonalShoopingItems, resetpersonalShoopingItems } from '../actions/personalShoopingListAction';
 import { Redirect } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 
@@ -62,16 +62,49 @@ class GrowerPersonalShop extends Component {
         ResetGrowerShoopinList: PropTypes.func.isRequired,
         UpdateGrowerShoopinList: PropTypes.func.isRequired,
         personalshop: PropTypes.object.isRequired,
-        addpersonalShoopingItems: PropTypes.func.isRequired
+        addpersonalShoopingItems: PropTypes.func.isRequired,
+        resetpersonalShoopingItems: PropTypes.func.isRequired,
+        resetFarmersList: PropTypes.func.isRequired
     };
 
     componentDidMount() {
+        const { user } = this.props.auth;
+        try {
+            if (user.usertype !== 'מגדל') {
+                this.setState({
+                    redirect: '/'
+                });
+            }
 
+            if (user.workingwith[0].active) {
+                this.props.getfarmerbyemail(user.workingwith[0].email);
+            }
+            else {
+                this.setState({
+                    redirect: '/'
+                });
+            }
+
+            this.setState({
+                name: user.name,
+                email: user.email,
+                familyname: user.familyname,
+                phone: user.phone,
+                address: user.address,
+                UserID: user._id,
+                UserActive: user.workingwith[0].active,
+                FieldCropPlanActive: user.fieldcropplan.avaliabile
+            })
+        }
+        catch{
+            this.setState({
+                redirect: '/'
+            });
+        }
     }
 
     componentDidUpdate(prevProps) {
         const { transactionDone, farmers, error, isAuthenticated } = this.props;
-        const { user } = this.props.auth;
         if (error !== prevProps.error) {
             this.setState({
                 ActivateLoader: false
@@ -81,42 +114,6 @@ class GrowerPersonalShop extends Component {
                 this.setState({ msg: error.msg.msg });
             } else {
                 this.setState({ msg: null });
-            }
-        }
-
-        if (isAuthenticated !== prevProps.isAuthenticated && isAuthenticated) {
-
-            try {
-                if (user.usertype !== 'מגדל') {
-                    this.setState({
-                        redirect: '/'
-                    });
-                }
-
-                if (user.workingwith[0].active) {
-                    this.props.getfarmerbyemail(user.workingwith[0].email);
-                }
-                else {
-                    this.setState({
-                        redirect: '/'
-                    });
-                }
-
-                this.setState({
-                    name: user.name,
-                    email: user.email,
-                    familyname: user.familyname,
-                    phone: user.phone,
-                    address: user.address,
-                    UserID: user._id,
-                    UserActive: user.workingwith[0].active,
-                    FieldCropPlanActive: user.fieldcropplan.avaliabile
-                })
-            }
-            catch{
-                this.setState({
-                    redirect: '/'
-                });
             }
         }
 
@@ -154,10 +151,17 @@ class GrowerPersonalShop extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.ResetGrowerShoopinList();
+        this.props.resetpersonalShoopingItems();
+        this.props.resetFarmersList();
+    }
+
     toggle = () => {
         // Clear errors
         this.props.clearErrors();
         this.props.ResetGrowerShoopinList();
+        this.props.resetpersonalShoopingItems();
         this.setState({
             modal: !this.state.modal
         });
@@ -505,5 +509,6 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { register, clearErrors, getfarmerbyemail, getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList, ResetGrowerShoopinList, UpdateGrowerShoopinList, addpersonalShoopingItems }
+    { register, clearErrors, getfarmerbyemail, resetFarmersList, getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList,
+         ResetGrowerShoopinList, resetpersonalShoopingItems, UpdateGrowerShoopinList, addpersonalShoopingItems }
 )(GrowerPersonalShop);

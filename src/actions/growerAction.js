@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_GROWERS, ADD_GROWER, DELETE_GROWER, GROWERS_LOADING, GET_GROWERS_BY_FARMER } from './types';
+import { GET_GROWERS, ADD_GROWER, DELETE_GROWER, GROWERS_LOADING, GET_GROWERS_BY_FARMER, RESET_ALL_GROWERS } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 import { API_URL } from '../config/keys';
@@ -65,5 +65,11 @@ export const deletegrower = email => (dispatch, getState) => {
 export const setgrowersLoading = () => {
   return {
     type: GROWERS_LOADING
+  };
+};
+
+export const resetgrowerlist = () => {
+  return {
+    type: RESET_ALL_GROWERS
   };
 };
