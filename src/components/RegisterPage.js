@@ -109,7 +109,8 @@ class RegisterPage extends Component {
     getSystemData: PropTypes.func.isRequired,
     resetChoosenVegetables: PropTypes.func.isRequired,
     resetChoosenfieldCrop: PropTypes.func.isRequired,
-    resetFarmersList: PropTypes.func.isRequired
+    resetFarmersList: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -751,9 +752,16 @@ class RegisterPage extends Component {
 
   render() {
     let ShowVegPricing = false;
+    const { Language, direction } = this.props;
     let ShowFieldCropPricing = false;
     let {imagePreviewUrl} = this.state;
-    let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
+    let $imagePreview;
+    if(direction === 'rtl'){
+     $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
+    }
+    else{
+     $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload-English.png')} onClick={this.OpenFileExplorer}/>);
+    }
     if (imagePreviewUrl) {
       $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
     }
@@ -777,30 +785,58 @@ class RegisterPage extends Component {
             {this.state.msg ? (
               <Alert color='danger'>{this.state.msg}</Alert>
             ) : null}
-            {this.state.ScreenNumber === "1" ? (
+            {this.state.ScreenNumber === "1" && direction === "rtl" ? (
                   <div className='RegisterStatus'>
                     <img alt="" src={require('../Resources/Step1-farmer.png')} />
                   </div>
                 ) : 
                   null
             }
-            {this.state.ScreenNumber === "2" ? (
+            {this.state.ScreenNumber === "2" && direction === "rtl" ? (
                   <div className='RegisterStatus'>
                     <img alt="" src={require('../Resources/Step2-farmer.png')} />
                   </div>
                 ) : 
                   null
             }
-            {this.state.ScreenNumber === "3" ? (
+            {this.state.ScreenNumber === "3" && direction === "rtl" ? (
                   <div className='RegisterStatus'>
                     <img alt="" src={require('../Resources/Step3-farmer.png')} />
                   </div>
                 ) : 
                   null
             }
-            {this.state.ScreenNumber === "4" ? (
+            {this.state.ScreenNumber === "4" && direction === "rtl" ? (
                   <div className='RegisterStatus'>
                     <img alt="" src={require('../Resources/Step4-farmer.png')} />
+                  </div>
+                ) : 
+                  null
+            }
+            {this.state.ScreenNumber === "1" && direction === "ltr" ? (
+                  <div className='RegisterStatus'>
+                    <img alt="" src={require('../Resources/Step1-farmer-english.png')} />
+                  </div>
+                ) : 
+                  null
+            }
+            {this.state.ScreenNumber === "2" && direction === "ltr" ? (
+                  <div className='RegisterStatus'>
+                    <img alt="" src={require('../Resources/Step2-farmer-english.png')} />
+                  </div>
+                ) : 
+                  null
+            }
+            {this.state.ScreenNumber === "3" && direction === "ltr" ? (
+                  <div className='RegisterStatus'>
+                    <img alt="" src={require('../Resources/Step3-farmer-english.png')} />
+                  </div>
+                ) : 
+                  null
+            }
+            {this.state.ScreenNumber === "4" && direction === "ltr" ? (
+                  <div className='RegisterStatus'>
+                    <img alt="" src={require('../Resources/Step4-farmer-english.png')} />
                   </div>
                 ) : 
                   null
@@ -810,7 +846,7 @@ class RegisterPage extends Component {
               <FormGroup>
                 {this.state.ScreenNumber === "1" ? (
                   <div className='ProfileName'>
-                    <h1>פרופיל חקלאי</h1>
+                    <h1>{Language.FarmerProfile}</h1>
                   </div>
                 ) : 
                   <div className='ProfileName'>
@@ -819,7 +855,7 @@ class RegisterPage extends Component {
                 }
               <div className='PersonalDetails'>
                 <div className="form-group">
-                  <Label for='name'>שם פרטי</Label>
+                  <Label for='name'>{Language.FirstName}</Label>
                   <Input
                     type='text'
                     name='name'
@@ -831,10 +867,10 @@ class RegisterPage extends Component {
                     invalid= {!this.state.nameValidation}
                     required
                   />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  <FormFeedback>{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='familyname'>שם משפחה</Label>
+                  <Label for='familyname'>{Language.LastName}</Label>
                   <Input
                     type='text'
                     name='familyname'
@@ -846,10 +882,10 @@ class RegisterPage extends Component {
                     invalid= {!this.state.familynameValidation}
                     required
                   />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  <FormFeedback>{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='phone'>טלפון</Label>
+                  <Label for='phone'>{Language.Phone}</Label>
                   <Input
                     type='text'
                     name='phone'
@@ -861,10 +897,10 @@ class RegisterPage extends Component {
                     invalid= {!this.state.phoneValidation}
                     required
                   />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  <FormFeedback>{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='email'>אימייל (שם משתמש)</Label>
+                  <Label for='email'>{Language.Email}</Label>
                   <Input
                     type='email'
                     name='email'
@@ -876,10 +912,10 @@ class RegisterPage extends Component {
                     invalid= {!this.state.emailValidation}
                     required
                   />
-                  <FormFeedback>כתובת האימייל שגויה</FormFeedback>
+                  <FormFeedback>{Language.EmailValidationError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='password'>סיסמה</Label>
+                  <Label for='password'>{Language.Password}</Label>
                   <Input
                     type='password'
                     name='password'
@@ -893,10 +929,10 @@ class RegisterPage extends Component {
                     value={this.state.password}
                     required
                   />
-                  <FormFeedback>הסיסמה חייבת להכיל 8 תווים, אות גדולה, אות קטנה ומספר</FormFeedback>
+                  <FormFeedback>{Language.PasswordError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='passwordconfirmation'>אימות סיסמה</Label>
+                  <Label for='passwordconfirmation'>{Language.PasswordConfirmation}</Label>
                   <Input
                     type='password'
                     name='passwordconfirmation'
@@ -909,18 +945,18 @@ class RegisterPage extends Component {
                     invalid= {!this.state.PasswordValidation}
                     required
                   />
-                  <FormFeedback>הסיסמאות לא זהות!</FormFeedback>
+                  <FormFeedback>{Language.PasswordConfirmError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='sizearea'>אזור השטח לגידול</Label>
+                  <Label for='sizearea'>{Language.FarmerLocation}</Label>
                   <Input type="select" name="sizearea" id="sizearea" className='SizeArea mb-3' onChange={this.onChange} value={this.state.sizearea}>
-                    <option>מרכז</option>
-                    <option>דרום</option>
-                    <option>צפון</option>
+                    <option value="מרכז">{Language.FarmerLocationOption1}</option>
+                    <option value="צפון">{Language.FarmerLocationOption2}</option>
+                    <option value="דרום">{Language.FarmerLocationOption3}</option>
                   </Input>
                 </div>
                 <div className="form-group">
-                  <Label for='address'>כתובת</Label>
+                  <Label for='address'>{Language.Address}</Label>
                   <Input
                     type='text'
                     name='address'
@@ -932,10 +968,10 @@ class RegisterPage extends Component {
                     invalid= {!this.state.addressValidation}
                     required
                   />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  <FormFeedback>{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='hamamasize'>גודל שטח החממה</Label>
+                  <Label for='hamamasize'>{Language.FarmerSizeArea}</Label>
                   <Input
                     type='text'
                     name='hamamasize'
@@ -947,13 +983,13 @@ class RegisterPage extends Component {
                     invalid= {!this.state.hamamasizeValidation}
                     required
                   />
-                  <FormText>* יש להזין את גודל השטח בכפולות של {HamamadefaultsizeContainer} מ"ר</FormText>
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק או לא להיות בכפולות שצוינו</FormFeedback>
+                  <FormText>* {Language.FarmerSizeAreaMsg1} {HamamadefaultsizeContainer} {Language.SquareMeter}</FormText>
+                  <FormFeedback>{Language.SizeAreaError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='aboutme'>על עצמי</Label>
+                  <Label for='aboutme'>{Language.FarmerAboutMe}</Label>
                   <Input type="textarea" name="aboutme" id="aboutme" className='AboutMe mb-3' onChange={this.onChange} value={this.state.aboutme}/>
-                  <FormText>* טקסט זה יופיע כאשר הלקוח יבחר חקלאי</FormText>
+                  <FormText>* {Language.FarmerAboutMeMsg}</FormText>
                 </div>
               </div>
               <div className='UploadImage'>
@@ -961,23 +997,23 @@ class RegisterPage extends Component {
                 {$imagePreview}
               </div>
               <div className={this.state.AddBackgroundClassToVeg}>
-                <h3>יש לי את התנאים והניסיון לגדל:</h3>
+                <h3>{Language.ExperienceToGrow}</h3>
                 { this.state.VegtButtonOn && this.state.FieldCropsButtonOn ? 
-                <Button color="success" onClick={this.OpenListOfvegetables}>רשימת ירקות לגידול</Button> : null }
+                <Button color="success" onClick={this.OpenListOfvegetables}>{Language.VegList}</Button> : null }
                 { this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} /> }
                 { this.state.FieldCropsButtonOn && this.state.VegtButtonOn ? 
-                <Button color="success" onClick={this.OpenListOfFieldsCrops}>רשימת גידולי שדה</Button> : null }
+                <Button color="success" onClick={this.OpenListOfFieldsCrops}>{Language.FieldCropList}</Button> : null }
                 { this.state.FieldCropsButtonOn ? null : <FieldCrops OpenListOffieldcrops={this.OpenListOfFieldsCrops} /> }
               </div>
               <div className="ListOfVegCost">
-                <p>מחירי הירקות וגידולי השדה הינם המחירים המומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
+                <p>{Language.PricingComment}</p>
                 { ShowVegPricing ? <VegetablesPricing /> : null}
                 { ShowFieldCropPricing ? <FarmCropsPricing /> : null}
               </div> 
-              {this.state.VegPricingValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לוודא שלכל ירק מעודכן מחיר</Alert></div> : null}
+              {this.state.VegPricingValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.VegPricingComment}</Alert></div> : null}
               <div  className='AddFieldCropsPlan'>
                 <div  className='AddFieldCropsPlanCheckBox'>
-                  <span>אני מעוניין לאפשר רכישת גידולי שדה</span>
+                  <span>{Language.IntrestingInFieldCrops}</span>
                   <Label check for='CheckFieldCropsPlan'>
                   <CustomInput 
                     type="checkbox"
@@ -991,7 +1027,7 @@ class RegisterPage extends Component {
                 </div>
                 {this.state.FieldCropStatus ? 
                 <div  className='AddFieldCropsPlanLogic'>
-                  <span>עלות מסלול גידולי שדה תהיה </span>
+                  <span>{Language.FieldCropPrice} </span>
                   <Label check for='fieldcropplancost'>
                   <Input 
                       type="text"
@@ -1001,12 +1037,12 @@ class RegisterPage extends Component {
                       className='mb-3'
                       onChange={this.onChange} />
                   </Label> 
-                  <span> ש"ח</span>
+                  <span> {Language.Shekals}</span>
                 </div>
                 : null}
               </div>
-              {this.state.fieldcropplancostValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לעדכן מחיר לתכנית גידולי שדה</Alert></div> : null}
-              {this.state.fieldcropplanShouldBeActive ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לבחור תכנית לגידולי שדה או להסיר גידולי שדה נבחרים</Alert></div> : null}
+              {this.state.fieldcropplancostValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerFieldCropsPriceError}</Alert></div> : null}
+              {this.state.fieldcropplanShouldBeActive ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerFieldCropsChoosePlanError}</Alert></div> : null}
               <div className="Plans">
                 <div className="PlanCard">
                   <div className="PlanCardHeader">
@@ -1025,7 +1061,7 @@ class RegisterPage extends Component {
                         defaultChecked={this.state.plan1}
                         onChange={this.onChange} />
                       </Label> 
-                      <span className='PlanTitle' >מגדל עצמאי</span>
+                      <span className='PlanTitle' >{Language.PlanName1}</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
@@ -1041,18 +1077,18 @@ class RegisterPage extends Component {
                           value={this.state.cost1}
                           onChange={this.onChange} />
                         </Label> 
-                      <span>ש"ח</span>
+                      <span>{Language.Shekals}</span>
                       </div>
                     </div>
                     <div className="CardDetails">
-                      <span className="CardDetailsHeader">במסלול זה אין התערבות של החקלאי<br /> המסלול כולל:</span>
+                      <span className="CardDetailsHeader">{Language.FarmerPlan1}<br /> {Language.FarmerPlanInclude}</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
+                        <span className='PlanVegetableImageText'>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>מים</span>
+                        <span className='PlanVegetableImageText'>{Language.FarmerPlanWater}</span>
                       </div>
                     </div>
                   </div>
@@ -1074,7 +1110,7 @@ class RegisterPage extends Component {
                         defaultChecked={this.state.plan2}
                         onChange={this.onChange} />
                       </Label> 
-                      <span className='PlanTitle' >ביניים</span>
+                      <span className='PlanTitle' >{Language.PlanName2}</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
@@ -1090,22 +1126,22 @@ class RegisterPage extends Component {
                           placeholder={this.state.cost2}
                           onChange={this.onChange} />
                         </Label> 
-                        <span>ש"ח</span>
+                        <span>{Language.Shekals}</span>
                       </div>
                     </div>
                     <div className="CardDetails">
-                      <span className="CardDetailsHeader">במסלול זה יש התערבות חלקית של החקלאי<br /> המסלול כולל:</span>
+                      <span className="CardDetailsHeader">{Language.FarmerPlan2}<br /> {Language.FarmerPlanInclude}</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>ייעוץ אישי</span>
+                        <span className='PlanVegetableImageText'>{Language.FarmerPlanSupport}</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
+                        <span className='PlanVegetableImageText'>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>מים</span>
+                        <span className='PlanVegetableImageText'>{Language.FarmerPlanWater}</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -1131,7 +1167,7 @@ class RegisterPage extends Component {
                         defaultChecked={this.state.plan3}
                         onChange={this.onChange} />
                       </Label> 
-                      <span className='PlanTitle' >ליווי שוטף</span>
+                      <span className='PlanTitle' >{Language.PlanName3}</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
@@ -1147,22 +1183,22 @@ class RegisterPage extends Component {
                           value={this.state.cost3}
                           onChange={this.onChange} />
                         </Label> 
-                        <span>ש"ח</span>
+                        <span>{Language.Shekals}</span>
                       </div>
                     </div>
                     <div className="CardDetails" >
-                      <span className="CardDetailsHeader">במסלול זה יש התערבות מלאה של החקלאי<br /> המסלול כולל:</span>
+                      <span className="CardDetailsHeader">{Language.FarmerPlan3}<br /> {Language.FarmerPlanInclude}</span>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>ייעוץ אישי</span>
+                        <span className='PlanVegetableImageText'>{Language.FarmerPlanSupport}</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
+                        <span className='PlanVegetableImageText'>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>מים</span>
+                        <span className='PlanVegetableImageText'>{Language.FarmerPlanWater}</span>
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -1170,14 +1206,14 @@ class RegisterPage extends Component {
                       </div>
                       <div className='PlanIncludeSection'>
                         <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>טיפול מלא בחלקה</span>
+                        <span className='PlanVegetableImageText'>{Language.FarmerPlanCare}</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              {this.state.FarmerPlanValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לבחור תכנית אחת לפחות</Alert></div> : null}
-              {this.state.FarmerPlanCostValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>לכל תוכנית נבחרת יש לעדכן מחיר</Alert></div> : null}
+              {this.state.FarmerPlanValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerVegPlansError}</Alert></div> : null}
+              {this.state.FarmerPlanCostValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerVegPlansPricingError}</Alert></div> : null}
               <div className='ApproveRegulations'>
                 <div  className='RegulationsCheckBox'>
                   <Label check for='CheckRegulations'>
@@ -1192,15 +1228,15 @@ class RegisterPage extends Component {
                   </Label> 
                 </div>
                 <div  className='RegulationsLink'>
-                    <span>קראתי את </span>
-                    <a href="/" target="_blank" rel="noopener noreferrer" >התקנון</a>
-                    <span> ואני מסכים לכל תנאיו</span>
+                    <span>{Language.Approval1} </span>
+                    <a href="/" target="_blank" rel="noopener noreferrer" >{Language.Approval2}</a>
+                    <span> {Language.Approval3}</span>
                 </div>
               </div>
               {this.state.ScreenNumber === "1" ? (
               <div className='MoveToPaymentScreenButton'>
                 <Button color="info" onClick={() => this.ChangeScreen("2")} type="button" >
-                  המשך להזנת אמצעי תשלום
+                  {Language.FormContinue}
                 </Button>
               </div>
               ) : null}
@@ -1379,7 +1415,10 @@ const mapStateToProps = state => ({
   ChoosenFieldCrops: state.choosenfieldcrop.ChoosenFieldCrops,
   farmer: state.farmer,
   system: state.system,
-  SystemData: state.system.SystemData
+  SystemData: state.system.SystemData,
+  language: state.language,
+  Language: state.language.Language,
+  direction: state.language.direction
 });
 
 export default connect(

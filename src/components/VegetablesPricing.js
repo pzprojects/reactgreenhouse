@@ -13,6 +13,7 @@ class VegetablesPricing extends Component {
     getChoosenVegetables: PropTypes.func.isRequired,
     addChoosenVegetable: PropTypes.func.isRequired,
     deleteChoosenVegetable: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired,
     choosenvegetable: PropTypes.object.isRequired
   };
 
@@ -36,10 +37,11 @@ class VegetablesPricing extends Component {
 
   render() {
     const { ChoosenVegetables } = this.props.choosenvegetable;
+    const { Language } = this.props;
 
     return (
       <Container>
-        <div className="ChoosenVegetablesPricingHeader">מחירי ירקות</div>
+        <div className="ChoosenVegetablesPricingHeader">{Language.VegPricingListItemTitle}</div>
         <ListGroup>
           <TransitionGroup className='ChoosenVegetablesList'>
             {ChoosenVegetables.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink}) => (
@@ -52,7 +54,7 @@ class VegetablesPricing extends Component {
                   size='sm'
                   /></span>
                   <span className='ChoosenVegetableName'>{name}</span>
-                  <span className='ChoosenVegetabletext'>מחיר לשתיל</span>
+                  <span className='ChoosenVegetabletext'>{Language.VegPricingListItemCost}</span>
                   <span className='ChoosenVegetablePrice'>
                     <Input
                       type='text'
@@ -61,7 +63,7 @@ class VegetablesPricing extends Component {
                       onBlur={event => this.UpdateChoosenVegetable(_id, name, event.target.value, averagecrop, amount, numberofveginrow, moreinfolink)}
                       />
                   </span>
-                  <span className='ChoosenVegetabletext2'>ש"ח</span>
+                  <span className='ChoosenVegetabletext2'>{Language.Shekals}</span>
                 </ListGroupItem>
               </CSSTransition>
             ))}
@@ -73,7 +75,9 @@ class VegetablesPricing extends Component {
 }
 
 const mapStateToProps = state => ({
-    choosenvegetable: state.choosenvegetable
+    choosenvegetable: state.choosenvegetable,
+    language: state.language,
+    Language: state.language.Language
 });
 
 export default connect(

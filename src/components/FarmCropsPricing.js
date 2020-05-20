@@ -13,6 +13,7 @@ class FarmCropsPricing extends Component {
     getChoosenfieldCrops: PropTypes.func.isRequired,
     addChoosenfieldCrop: PropTypes.func.isRequired,
     deleteChoosenfieldCrop: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired,
     choosenfieldcrop: PropTypes.object.isRequired
   };
 
@@ -36,10 +37,11 @@ class FarmCropsPricing extends Component {
 
   render() {
     const { ChoosenFieldCrops } = this.props.choosenfieldcrop;
+    const { Language } = this.props;
 
     return (
       <Container>
-        <div className="ChoosenVegetablesPricingHeader">מחירי גידולי שדה</div>
+        <div className="ChoosenVegetablesPricingHeader">{Language.FieldCropPricingListItemTitle}</div>
         <ListGroup>
           <TransitionGroup className='ChoosenVegetablesList'>
             {ChoosenFieldCrops.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink}) => (
@@ -52,7 +54,7 @@ class FarmCropsPricing extends Component {
                   size='sm'
                   /></span>
                   <span className='ChoosenVegetableName'>{name}</span>
-                  <span className='ChoosenVegetabletext'>מחיר לשתיל</span>
+                  <span className='ChoosenVegetabletext'>{Language.VegPricingListItemCost}</span>
                   <span className='ChoosenVegetablePrice'>
                     <Input
                       type='text'
@@ -61,7 +63,7 @@ class FarmCropsPricing extends Component {
                       onBlur={event => this.UpdateChoosenVegetable(_id, name, event.target.value, averagecrop, amount, numberofveginrow, moreinfolink)}
                       />
                   </span>
-                  <span className='ChoosenVegetabletext2'>ש"ח</span>
+                  <span className='ChoosenVegetabletext2'>{Language.Shekals}</span>
                 </ListGroupItem>
               </CSSTransition>
             ))}
@@ -73,7 +75,9 @@ class FarmCropsPricing extends Component {
 }
 
 const mapStateToProps = state => ({
-    choosenfieldcrop: state.choosenfieldcrop
+    choosenfieldcrop: state.choosenfieldcrop,
+    language: state.language,
+    Language: state.language.Language
 });
 
 export default connect(

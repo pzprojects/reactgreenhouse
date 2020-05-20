@@ -16,6 +16,7 @@ class Vegetables extends Component {
     getChoosenVegetables: PropTypes.func.isRequired,
     addChoosenVegetable: PropTypes.func.isRequired,
     deleteChoosenVegetable: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired,
     choosenvegetable: PropTypes.object.isRequired
   };
 
@@ -48,6 +49,7 @@ class Vegetables extends Component {
 
   render() {
     const { vegetables } = this.props.vegetable;
+    const { Language } = this.props;
 
     return (
       <Container>
@@ -82,7 +84,7 @@ class Vegetables extends Component {
             ))}
           </TransitionGroup>
         </ListGroup>
-        <Button className='vegetablesApproveButton' color="info" onClick={this.props.OpenListOfvegetables}>אישור</Button>
+        <Button className='vegetablesApproveButton' color="info" onClick={this.props.OpenListOfvegetables}>{Language.Approve}</Button>
       </Container>
     );
   }
@@ -90,7 +92,9 @@ class Vegetables extends Component {
 
 const mapStateToProps = state => ({
     vegetable: state.vegetable,
-    choosenvegetable: state.choosenvegetable
+    choosenvegetable: state.choosenvegetable,
+    language: state.language,
+    Language: state.language.Language
 });
 
 export default connect(

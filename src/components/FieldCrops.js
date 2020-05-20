@@ -16,6 +16,7 @@ class FieldCrops extends Component {
     getChoosenfieldCrops: PropTypes.func.isRequired,
     addChoosenfieldCrop: PropTypes.func.isRequired,
     deleteChoosenfieldCrop: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired,
     choosenfieldcrop: PropTypes.object.isRequired
   };
 
@@ -48,6 +49,7 @@ class FieldCrops extends Component {
 
   render() {
     const { fieldcrops } = this.props.fieldcrop;
+    const { Language } = this.props;
 
     return (
       <Container>
@@ -82,7 +84,7 @@ class FieldCrops extends Component {
             ))}
           </TransitionGroup>
         </ListGroup>
-        <Button className='vegetablesApproveButton' color="info" onClick={this.props.OpenListOffieldcrops}>אישור</Button>
+        <Button className='vegetablesApproveButton' color="info" onClick={this.props.OpenListOffieldcrops}>{Language.Approve}</Button>
       </Container>
     );
   }
@@ -90,7 +92,9 @@ class FieldCrops extends Component {
 
 const mapStateToProps = state => ({
     fieldcrop: state.fieldcrop,
-    choosenfieldcrop: state.choosenfieldcrop
+    choosenfieldcrop: state.choosenfieldcrop,
+    language: state.language,
+    Language: state.language.Language
 });
 
 export default connect(
