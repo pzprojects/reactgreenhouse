@@ -756,11 +756,23 @@ class RegisterPage extends Component {
     let ShowFieldCropPricing = false;
     let {imagePreviewUrl} = this.state;
     let $imagePreview;
+    let FloatClass = "Co-Align-Right";
+    let TextAlignClass = "Co-Text-Align-Right";
+    let ReverseTextAlignClass = "Co-Text-Align-Left";
+    let HelpBtnClass = "HelpBtnRtl";
     if(direction === 'rtl'){
      $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
+     FloatClass = "Co-Align-Right";
+     TextAlignClass = "Co-Text-Align-Right";
+     ReverseTextAlignClass = "Co-Text-Align-Left";
+     HelpBtnClass = "HelpBtnRtl";
     }
     else{
      $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload-English.png')} onClick={this.OpenFileExplorer}/>);
+     FloatClass = "Co-Align-Left";
+     TextAlignClass = "Co-Text-Align-Left";
+     ReverseTextAlignClass = "Co-Text-Align-Right";
+     HelpBtnClass = "HelpBtnLtr";
     }
     if (imagePreviewUrl) {
       $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
@@ -845,154 +857,154 @@ class RegisterPage extends Component {
             {this.state.ScreenNumber === "1" || this.state.ScreenNumber === "4" ? (
               <FormGroup>
                 {this.state.ScreenNumber === "1" ? (
-                  <div className='ProfileName'>
+                  <div className={'ProfileName ' + FloatClass + " " + TextAlignClass}>
                     <h1>{Language.FarmerProfile}</h1>
                   </div>
                 ) : 
-                  <div className='ProfileName'>
+                  <div className={'ProfileName ' + FloatClass + " " + TextAlignClass}>
                     <h1>שליחה לאישור סופי</h1>
                   </div>
                 }
-              <div className='PersonalDetails'>
+              <div className={'PersonalDetails ' + FloatClass}>
                 <div className="form-group">
-                  <Label for='name'>{Language.FirstName}</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='name'>{Language.FirstName}</Label>
                   <Input
                     type='text'
                     name='name'
                     id='name'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.name}
                     invalid= {!this.state.nameValidation}
                     required
                   />
-                  <FormFeedback>{Language.EmptyField}</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='familyname'>{Language.LastName}</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='familyname'>{Language.LastName}</Label>
                   <Input
                     type='text'
                     name='familyname'
                     id='familyname'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.familyname}
                     invalid= {!this.state.familynameValidation}
                     required
                   />
-                  <FormFeedback>{Language.EmptyField}</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='phone'>{Language.Phone}</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='phone'>{Language.Phone}</Label>
                   <Input
                     type='text'
                     name='phone'
                     id='phone'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.phone}
                     invalid= {!this.state.phoneValidation}
                     required
                   />
-                  <FormFeedback>{Language.EmptyField}</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='email'>{Language.Email}</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.Email}</Label>
                   <Input
                     type='email'
                     name='email'
                     id='email'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.email}
                     invalid= {!this.state.emailValidation}
                     required
                   />
-                  <FormFeedback>{Language.EmailValidationError}</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmailValidationError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='password'>{Language.Password}</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='password'>{Language.Password}</Label>
                   <Input
                     type='password'
                     name='password'
                     id='password'
                     autoComplete="off"
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     invalid= {!this.state.PasswordStrengthValidation}
                     onChange={this.onChange}
                     value={this.state.password}
                     required
                   />
-                  <FormFeedback>{Language.PasswordError}</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.PasswordError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='passwordconfirmation'>{Language.PasswordConfirmation}</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='passwordconfirmation'>{Language.PasswordConfirmation}</Label>
                   <Input
                     type='password'
                     name='passwordconfirmation'
                     id='passwordconfirmation'
                     autoComplete="off"
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.passwordconfirmation}
                     invalid= {!this.state.PasswordValidation}
                     required
                   />
-                  <FormFeedback>{Language.PasswordConfirmError}</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.PasswordConfirmError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='sizearea'>{Language.FarmerLocation}</Label>
-                  <Input type="select" name="sizearea" id="sizearea" className='SizeArea mb-3' onChange={this.onChange} value={this.state.sizearea}>
+                  <Label className={FloatClass + " " + TextAlignClass} for='sizearea'>{Language.FarmerLocation}</Label>
+                  <Input type="select" name="sizearea" id="sizearea" className={'SizeArea mb-3 ' + FloatClass + " " + TextAlignClass} onChange={this.onChange} value={this.state.sizearea}>
                     <option value="מרכז">{Language.FarmerLocationOption1}</option>
                     <option value="צפון">{Language.FarmerLocationOption2}</option>
                     <option value="דרום">{Language.FarmerLocationOption3}</option>
                   </Input>
                 </div>
                 <div className="form-group">
-                  <Label for='address'>{Language.Address}</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='address'>{Language.Address}</Label>
                   <Input
                     type='text'
                     name='address'
                     id='address'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.address}
                     invalid= {!this.state.addressValidation}
                     required
                   />
-                  <FormFeedback>{Language.EmptyField}</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='hamamasize'>{Language.FarmerSizeArea}</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='hamamasize'>{Language.FarmerSizeArea}</Label>
                   <Input
                     type='text'
                     name='hamamasize'
                     id='hamamasize'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.hamamasize}
                     invalid= {!this.state.hamamasizeValidation}
                     required
                   />
-                  <FormText>* {Language.FarmerSizeAreaMsg1} {HamamadefaultsizeContainer} {Language.SquareMeter}</FormText>
-                  <FormFeedback>{Language.SizeAreaError}</FormFeedback>
+                  <FormText className={ReverseTextAlignClass}>* {Language.FarmerSizeAreaMsg1} {HamamadefaultsizeContainer} {Language.SquareMeter}</FormText>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.SizeAreaError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='aboutme'>{Language.FarmerAboutMe}</Label>
-                  <Input type="textarea" name="aboutme" id="aboutme" className='AboutMe mb-3' onChange={this.onChange} value={this.state.aboutme}/>
-                  <FormText>* {Language.FarmerAboutMeMsg}</FormText>
+                  <Label className={FloatClass + " " + TextAlignClass} for='aboutme'>{Language.FarmerAboutMe}</Label>
+                  <Input type="textarea" name="aboutme" id="aboutme" className={'AboutMe mb-3 ' + FloatClass + " " + TextAlignClass} onChange={this.onChange} value={this.state.aboutme}/>
+                  <FormText className={ReverseTextAlignClass}>* {Language.FarmerAboutMeMsg}</FormText>
                 </div>
               </div>
-              <div className='UploadImage'>
+              <div className={'UploadImage ' + FloatClass}>
                 <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
                 {$imagePreview}
               </div>
@@ -1014,7 +1026,7 @@ class RegisterPage extends Component {
               <div  className='AddFieldCropsPlan'>
                 <div  className='AddFieldCropsPlanCheckBox'>
                   <span>{Language.IntrestingInFieldCrops}</span>
-                  <Label check for='CheckFieldCropsPlan'>
+                  <Label check for='CheckFieldCropsPlan' className='AddFieldCropsPlanCheckBoxApproval'>
                   <CustomInput 
                     type="checkbox"
                     name='CheckFieldCropsPlan'
@@ -1044,7 +1056,7 @@ class RegisterPage extends Component {
               {this.state.fieldcropplancostValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerFieldCropsPriceError}</Alert></div> : null}
               {this.state.fieldcropplanShouldBeActive ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerFieldCropsChoosePlanError}</Alert></div> : null}
               <div className="Plans">
-                <div className="PlanCard">
+                <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
                     <div className="Card1Image">
                        <img
@@ -1067,7 +1079,7 @@ class RegisterPage extends Component {
                   <div className="PlanCardBody">
                     <div className="CardCost">
                       <div className="CardCostLabel">
-                        <Label check for='cost1'>
+                        <Label check for='cost1' className={FloatClass}>
                           <Input 
                           type="text"
                           name='cost1'
@@ -1082,18 +1094,18 @@ class RegisterPage extends Component {
                     </div>
                     <div className="CardDetails">
                       <span className="CardDetailsHeader">{Language.FarmerPlan1}<br /> {Language.FarmerPlanInclude}</span>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>{Language.FarmerPlanWater}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanWater}</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="PlanCard">
+                <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
                     <div className="Card2Image">
                        <img
@@ -1116,7 +1128,7 @@ class RegisterPage extends Component {
                   <div className="PlanCardBody">
                     <div className="CardCost">
                       <div className="CardCostLabel">
-                        <Label check for='cost2'>
+                        <Label check for='cost2' className={FloatClass}>
                           <Input 
                           type="text"
                           name='cost2'
@@ -1131,26 +1143,26 @@ class RegisterPage extends Component {
                     </div>
                     <div className="CardDetails">
                       <span className="CardDetailsHeader">{Language.FarmerPlan2}<br /> {Language.FarmerPlanInclude}</span>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>{Language.FarmerPlanSupport}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>{Language.FarmerPlanWater}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanWater}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>דישון</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>דישון</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="PlanCard">
+                <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
                     <div className="Card3Image">
                        <img
@@ -1173,7 +1185,7 @@ class RegisterPage extends Component {
                   <div className="PlanCardBody">
                     <div className="CardCost">
                       <div className="CardCostLabel">
-                        <Label check for='cost3'>
+                        <Label check for='cost3' className={FloatClass}>
                           <Input 
                           type="text"
                           name='cost3'
@@ -1188,25 +1200,25 @@ class RegisterPage extends Component {
                     </div>
                     <div className="CardDetails" >
                       <span className="CardDetailsHeader">{Language.FarmerPlan3}<br /> {Language.FarmerPlanInclude}</span>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>{Language.FarmerPlanSupport}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>{Language.FarmerPlanWater}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanWater}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>דישון</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>דישון</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>{Language.FarmerPlanCare}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCare}</span>
                       </div>
                     </div>
                   </div>
@@ -1215,7 +1227,7 @@ class RegisterPage extends Component {
               {this.state.FarmerPlanValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerVegPlansError}</Alert></div> : null}
               {this.state.FarmerPlanCostValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerVegPlansPricingError}</Alert></div> : null}
               <div className='ApproveRegulations'>
-                <div  className='RegulationsCheckBox'>
+                <div className={'RegulationsCheckBox ' + FloatClass}>
                   <Label check for='CheckRegulations'>
                   <CustomInput 
                     type="checkbox"
@@ -1227,7 +1239,7 @@ class RegisterPage extends Component {
                     invalid= {!this.state.RegulationsValidation} />
                   </Label> 
                 </div>
-                <div  className='RegulationsLink'>
+                <div className={'RegulationsLink ' + FloatClass}>
                     <span>{Language.Approval1} </span>
                     <a href="/" target="_blank" rel="noopener noreferrer" >{Language.Approval2}</a>
                     <span> {Language.Approval3}</span>
@@ -1399,7 +1411,7 @@ class RegisterPage extends Component {
             ) : null}
             </Form>
             { this.state.ActivateLoader ? <Loader /> : null }
-            <div className="HelpBtn"><a href="https://www.co-greenhouse.com/faq" target="_blank" rel="noopener noreferrer"><img alt="" src={require('../Resources/help.png')} size='lg' /></a></div>
+            <div className={HelpBtnClass}><a href="https://www.co-greenhouse.com/faq" target="_blank" rel="noopener noreferrer">{direction === 'rtl' ? <img alt="" src={require('../Resources/help.png')} /> : <img alt="" src={require('../Resources/help-english.png')} />}</a></div>
         </Container>
       </div>
     );

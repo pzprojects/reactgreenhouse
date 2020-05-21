@@ -49,7 +49,15 @@ class Vegetables extends Component {
 
   render() {
     const { vegetables } = this.props.vegetable;
-    const { Language } = this.props;
+    const { Language, direction } = this.props;
+
+    let FloatClass = "Co-Align-Right";
+    if(direction === 'rtl'){
+      FloatClass = "Co-Align-Right";
+    }
+    else{
+      FloatClass = "Co-Align-Left";
+    }
 
     return (
       <Container>
@@ -57,9 +65,9 @@ class Vegetables extends Component {
           <TransitionGroup className='vegetablesList'>
             {vegetables.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink }) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
-                <ListGroupItem>
+                <ListGroupItem className={FloatClass}>
                   { this.ImgToPresent(name) ? 
-                  <span><img
+                  <span className={FloatClass}><img
                   alt=""
                   src={require('../Resources/EmptyLeaf.png')}
                   className='vegetableImage'
@@ -69,7 +77,7 @@ class Vegetables extends Component {
                   onClick={this.onVegtClick.bind(this, _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink)}
                   /></span>
                    :
-                   <span><img
+                   <span className={FloatClass}><img
                   alt=""
                   src={require('../Resources/Leaf.png')}
                   className='vegetableImage'
@@ -78,7 +86,7 @@ class Vegetables extends Component {
                   id={_id}
                   onClick={this.RemoveVegtClick.bind(this, name)}
                   /></span> }
-                  <span className='vegetablesItemName'>{name}</span>
+                  <span className={'vegetablesItemName ' + FloatClass}>{name}</span>
                 </ListGroupItem>
               </CSSTransition>
             ))}
@@ -94,7 +102,8 @@ const mapStateToProps = state => ({
     vegetable: state.vegetable,
     choosenvegetable: state.choosenvegetable,
     language: state.language,
-    Language: state.language.Language
+    Language: state.language.Language,
+    direction: state.language.direction
 });
 
 export default connect(

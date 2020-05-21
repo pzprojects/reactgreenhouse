@@ -111,7 +111,8 @@ class GrowerRegisterPage extends Component {
     ResetGrowerVegBag: PropTypes.func.isRequired,
     resetFarmersList: PropTypes.func.isRequired,
     resetgrowerlist: PropTypes.func.isRequired,
-    resetactivefarms: PropTypes.func.isRequired
+    resetactivefarms: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -657,8 +658,27 @@ class GrowerRegisterPage extends Component {
   };
 
   render() {
+    const { Language, direction } = this.props;
     let {imagePreviewUrl} = this.state;
-    let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
+    let $imagePreview;
+    let FloatClass = "Co-Align-Right";
+    let TextAlignClass = "Co-Text-Align-Right";
+    let ReverseTextAlignClass = "Co-Text-Align-Left";
+    let HelpBtnClass = "HelpBtnRtl";
+    if(direction === 'rtl'){
+     $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
+     FloatClass = "Co-Align-Right";
+     TextAlignClass = "Co-Text-Align-Right";
+     ReverseTextAlignClass = "Co-Text-Align-Left";
+     HelpBtnClass = "HelpBtnRtl";
+    }
+    else{
+     $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload-English.png')} onClick={this.OpenFileExplorer}/>);
+     FloatClass = "Co-Align-Left";
+     TextAlignClass = "Co-Text-Align-Left";
+     ReverseTextAlignClass = "Co-Text-Align-Right";
+     HelpBtnClass = "HelpBtnLtr";
+    }
     if (imagePreviewUrl) {
       $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
     }
@@ -955,9 +975,9 @@ class GrowerRegisterPage extends Component {
                 <div className="form-group">
                   <Label for='sizearea'>אזור השטח לגידול</Label>
                   <Input type="select" name="sizearea" id="sizearea" className='SizeArea mb-3' onChange={this.onChange} value={this.state.sizearea}>
-                    <option>מרכז</option>
-                    <option>דרום</option>
-                    <option>צפון</option>
+                    <option value="מרכז">{Language.FarmerLocationOption1}</option>
+                    <option value="צפון">{Language.FarmerLocationOption2}</option>
+                    <option value="דרום">{Language.FarmerLocationOption3}</option>
                   </Input>
                 </div>
               </div>
@@ -1078,7 +1098,7 @@ class GrowerRegisterPage extends Component {
             ) : null}
             </Form>
             { this.state.ActivateLoader ? <Loader /> : null }
-            <div className="HelpBtn"><a href="https://www.co-greenhouse.com/faq" target="_blank" rel="noopener noreferrer"><img alt="" src={require('../Resources/help.png')} size='lg' /></a></div>
+            <div className={HelpBtnClass}><a href="https://www.co-greenhouse.com/faq" target="_blank" rel="noopener noreferrer">{direction === 'rtl' ? <img alt="" src={require('../Resources/help.png')} /> : <img alt="" src={require('../Resources/help-english.png')} />}</a></div>
         </Container>
       </div>
     );
@@ -1097,7 +1117,10 @@ const mapStateToProps = state => ({
   UsersNumLoaded: state.FarmerActiveFarms.UsersNumLoaded,
   system: state.system,
   growerfieldcropsbuyingbag: state.growerfieldcropsbuyingbag,
-  FieldCropsToBuy: state.growerfieldcropsbuyingbag.FieldCropsToBuy
+  FieldCropsToBuy: state.growerfieldcropsbuyingbag.FieldCropsToBuy,
+  language: state.language,
+  Language: state.language.Language,
+  direction: state.language.direction
 });
 
 export default connect(

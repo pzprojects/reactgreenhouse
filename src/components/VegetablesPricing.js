@@ -37,7 +37,18 @@ class VegetablesPricing extends Component {
 
   render() {
     const { ChoosenVegetables } = this.props.choosenvegetable;
-    const { Language } = this.props;
+    const { Language, direction } = this.props;
+
+    let FloatClass = "Co-Align-Right";
+    let TextAlignClass = "Co-Text-Align-Right";
+    if(direction === 'rtl'){
+      FloatClass = "Co-Align-Right";
+      TextAlignClass = "Co-Text-Align-Right";
+    }
+    else{
+      FloatClass = "Co-Align-Left";
+      TextAlignClass = "Co-Text-Align-Left";
+    }
 
     return (
       <Container>
@@ -47,15 +58,15 @@ class VegetablesPricing extends Component {
             {ChoosenVegetables.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink}) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
-                  <span><img
+                  <span className={FloatClass}><img
                   alt=""
                   src={require('../Resources/Leaf.png')}
                   className='ChoosenVegetableImage'
                   size='sm'
                   /></span>
-                  <span className='ChoosenVegetableName'>{name}</span>
-                  <span className='ChoosenVegetabletext'>{Language.VegPricingListItemCost}</span>
-                  <span className='ChoosenVegetablePrice'>
+                  <span className={'ChoosenVegetableName ' + FloatClass + " " + TextAlignClass} >{name}</span>
+                  <span className={'ChoosenVegetabletext ' + FloatClass}>{Language.VegPricingListItemCost}</span>
+                  <span className={'ChoosenVegetablePrice ' + FloatClass}>
                     <Input
                       type='text'
                       placeholder={price}
@@ -63,7 +74,7 @@ class VegetablesPricing extends Component {
                       onBlur={event => this.UpdateChoosenVegetable(_id, name, event.target.value, averagecrop, amount, numberofveginrow, moreinfolink)}
                       />
                   </span>
-                  <span className='ChoosenVegetabletext2'>{Language.Shekals}</span>
+                  <span className={'ChoosenVegetabletext2 ' + FloatClass}>{Language.Shekals}</span>
                 </ListGroupItem>
               </CSSTransition>
             ))}
@@ -77,7 +88,8 @@ class VegetablesPricing extends Component {
 const mapStateToProps = state => ({
     choosenvegetable: state.choosenvegetable,
     language: state.language,
-    Language: state.language.Language
+    Language: state.language.Language,
+    direction: state.language.direction
 });
 
 export default connect(
