@@ -3,7 +3,7 @@ import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput, Alert }
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getfarmersbyarea, resetFarmersList } from '../actions/farmerAction';
-import { updatechoosenfarmer, getchoosenfarmer, resetchoosenfarmer} from '../actions/choosenFarmerAction';
+import { updatechoosenfarmer, getchoosenfarmer, resetchoosenfarmer } from '../actions/choosenFarmerAction';
 import { addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag, SetIsValidatedVegBag } from '../actions/growerVegChoiceAction';
 import { getGrowerFieldCropBag, addToGrowerFieldCropBag, deleteFromGrowerFieldCropBag, ResetGrowerFieldCropBag, SetTotalGrowerFieldCropBag, SetPlanGrowerFieldCropBag, SetIsValidatedFieldCropBag } from '../actions/growerFieldCropsChoiceAction';
 import PropTypes from 'prop-types';
@@ -54,7 +54,8 @@ class ChooseFarmer extends Component {
     ResetGrowerFieldCropBag: PropTypes.func.isRequired,
     SetTotalGrowerFieldCropBag: PropTypes.func.isRequired,
     SetPlanGrowerFieldCropBag: PropTypes.func.isRequired,
-    SetIsValidatedFieldCropBag: PropTypes.func.isRequired
+    SetIsValidatedFieldCropBag: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -265,6 +266,25 @@ class ChooseFarmer extends Component {
       else VegAsString += Mychoosenvegetables[i].name + ", ";
     }
     return VegAsString;
+  };
+
+  // Return plan name in the choosen language
+  ReturnPlanInChoosenLanguage = (PlanName) => {
+    var NameToReturn = '';
+    const { Language } = this.props;
+    switch (PlanName) {
+      case "מגדל עצמאי":
+        NameToReturn = Language.PlanName1;
+        break;
+      case "ביניים":
+        NameToReturn = Language.PlanName2;
+        break;
+      case "ליווי שוטף":
+        NameToReturn = Language.PlanName3;
+        break;
+    }
+
+    return NameToReturn;
   };
 
   // Get veg amount by index
@@ -647,28 +667,28 @@ class ChooseFarmer extends Component {
               break;
             }
           }
-  
+
           for (i = 0; i < ChoosenVegArray.length; i++) {
             if (ChoosenVegArray[i].name === this.state.GrowerVeg2) {
               DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
               break;
             }
           }
-  
+
           for (i = 0; i < ChoosenVegArray.length; i++) {
             if (ChoosenVegArray[i].name === this.state.GrowerVeg3) {
               DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
               break;
             }
           }
-  
+
           for (i = 0; i < ChoosenVegArray.length; i++) {
             if (ChoosenVegArray[i].name === this.state.GrowerVeg4) {
               DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
               break;
             }
           }
-  
+
           if (this.props.PlanParam !== '' && this.props.PlanParam !== null && this.props.PlanParam !== undefined) {
             const planprice = this.props.choosenfarmer.ChoosenFarmerById[0].plans.find(item => item.name === this.props.PlanParam);
             if (planprice !== undefined) {
@@ -676,7 +696,7 @@ class ChooseFarmer extends Component {
             }
           }
         }
-        else{
+        else {
           if (DataType === "1") {
             for (var i = 0; i < ChoosenVegArray.length; i++) {
               if (ChoosenVegArray[i].name === this.state.GrowerVeg1) {
@@ -684,21 +704,21 @@ class ChooseFarmer extends Component {
                 break;
               }
             }
-    
+
             for (i = 0; i < ChoosenVegArray.length; i++) {
               if (ChoosenVegArray[i].name === this.state.GrowerVeg2) {
                 DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
                 break;
               }
             }
-    
+
             for (i = 0; i < ChoosenVegArray.length; i++) {
               if (ChoosenVegArray[i].name === this.state.GrowerVeg3) {
                 DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
                 break;
               }
             }
-    
+
             for (i = 0; i < ChoosenVegArray.length; i++) {
               if (ChoosenVegArray[i].name === this.state.GrowerVeg4) {
                 DataToRetrive += parseFloat(ChoosenVegArray[i].amount) * parseFloat(ChoosenVegArray[i].price);
@@ -706,7 +726,7 @@ class ChooseFarmer extends Component {
               }
             }
           }
-          else{
+          else {
             if (DataType === "2") {
               if (this.props.PlanParam !== '' && this.props.PlanParam !== null && this.props.PlanParam !== undefined) {
                 const planprice = this.props.choosenfarmer.ChoosenFarmerById[0].plans.find(item => item.name === this.props.PlanParam);
@@ -1365,6 +1385,20 @@ class ChooseFarmer extends Component {
 
   render() {
     const { farmers } = this.props.farmer;
+    const { Language, direction } = this.props;
+    let FloatClass = "Co-Align-Right";
+    let TextAlignClass = "Co-Text-Align-Right";
+    let ReverseTextAlignClass = "Co-Text-Align-Left";
+    if (direction === 'rtl') {
+      FloatClass = "Co-Align-Right";
+      TextAlignClass = "Co-Text-Align-Right";
+      ReverseTextAlignClass = "Co-Text-Align-Left";
+    }
+    else {
+      FloatClass = "Co-Align-Left";
+      TextAlignClass = "Co-Text-Align-Left";
+      ReverseTextAlignClass = "Co-Text-Align-Right";
+    }
     if (this.state.ChoosenFarmerId !== '') {
       var ExtractFarmer = this.props.farmer.farmers.filter(farmer => farmer._id === this.state.ChoosenFarmerId);
       var ChoosenFarmerContainer = ExtractFarmer[0].choosenvegetables;
@@ -1381,17 +1415,17 @@ class ChooseFarmer extends Component {
           <ListGroup>
             <ListGroupItem className="FarmerListTitleListItem" >
               <div className='FarmerListTitle'>
-                <div className='FarmerListTitleText1'>
-                  <span>שם החקלאי</span>
+                <div className={'FarmerListTitleText1 ' + FloatClass + " " + TextAlignClass}>
+                  <span>{Language.GrowerFarmerName}</span>
                 </div>
-                <div className='FarmerListTitleText2'>
-                  <span>דבר החקלאי</span>
+                <div className={'FarmerListTitleText2 ' + FloatClass + " " + TextAlignClass}>
+                  <span>{Language.GrowerFarmerAboutMe}</span>
                 </div>
-                <div className='FarmerListTitleText3'>
-                  <span>מגדל</span>
+                <div className={'FarmerListTitleText3 ' + FloatClass + " " + TextAlignClass}>
+                  <span>{Language.GrowerFarmerVegs}</span>
                 </div>
-                <div className='FarmerListTitleText4'>
-                  <span>מסלולים</span>
+                <div className={'FarmerListTitleText4 ' + FloatClass + " " + TextAlignClass}>
+                  <span>{Language.GrowerFarmerPlans}</span>
                 </div>
               </div>
             </ListGroupItem>
@@ -1400,8 +1434,8 @@ class ChooseFarmer extends Component {
             {farmers.map(({ _id, name, familyname, phone, email, address, sizearea, hamamasize, numberofactivefarms, aboutme, imageurl, choosenvegetables, choosenfieldcrops, plans, fieldcropplan }) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
-                  <div className='FarmerList'>
-                    <div className='FarmerListRadioBtn'>
+                  <div className={'FarmerList ' + TextAlignClass}>
+                    <div className={'FarmerListRadioBtn ' + FloatClass}>
                       <Label check for={_id}>
                         <CustomInput
                           type="radio"
@@ -1414,33 +1448,31 @@ class ChooseFarmer extends Component {
                           onChange={this.onChange} />
                       </Label>
                     </div>
-                    <div className='FarmerListImage'>
+                    <div className={'FarmerListImage ' + FloatClass}>
                       <img
                         alt=""
                         src={imageurl}
                         className='FarmerThemeImage'
                       />
                     </div>
-                    <div className='FarmerListName'>
+                    <div className={'FarmerListName ' + FloatClass}>
                       <span>{name + " " + familyname}</span>
                     </div>
-                    <div className='FarmerListAboutme'>
+                    <div className={'FarmerListAboutme ' + FloatClass}>
                       <span>{aboutme}&nbsp;</span>
                     </div>
-                    <div className='FarmerListchoosenvegetables'>
+                    <div className={'FarmerListchoosenvegetables ' + FloatClass}>
                       <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}&nbsp;</span>
                     </div>
-                    <div className='FarmerListplans'>
-                      {plans.map(function (item, secondkey) {
-                        return (
-                          <span className='PlanItem' key={secondkey}>
-                            {item.name + '- ' + item.cost + ' ש"ח לחודש'}
-                            <br />
-                          </span>
-                        )
-                      })}
+                    <div className={'FarmerListplans ' + FloatClass}>
+                      {plans.map(({ key_id, name, cost }) => (
+                        <span className='PlanItem' key={key_id}>
+                          {this.ReturnPlanInChoosenLanguage(name) + '- ' + cost + Language.GrowerShekalsPerMonth}
+                          <br />
+                        </span>
+                      ))}
                     </div>
-                    <div className='FarmerListReadMore'>
+                    <div className={'FarmerListReadMore ' + FloatClass}>
                       <span><ReadMoreModal FarmerFullNmae={name + " " + familyname} FarmerPhone={phone} FarmerEmail={email} FarmerLocation={address} FarmerFieldCropPlan={fieldcropplan} FarmerFieldCrops={this.ReturnChoosingVegtabilesAsString(choosenfieldcrops)} FarmerNumberOfActiveFarms={numberofactivefarms} /></span>
                     </div>
                   </div>
@@ -1857,7 +1889,10 @@ const mapStateToProps = state => ({
   ChoosenFarmerById: state.choosenfarmer.ChoosenFarmerById,
   growervegbuyingbag: state.growervegbuyingbag,
   growerfieldcropsbuyingbag: state.growerfieldcropsbuyingbag,
-  FieldCropsToBuy: state.growerfieldcropsbuyingbag.FieldCropsToBuy
+  FieldCropsToBuy: state.growerfieldcropsbuyingbag.FieldCropsToBuy,
+  language: state.language,
+  Language: state.language.Language,
+  direction: state.language.direction
 });
 
 export default connect(

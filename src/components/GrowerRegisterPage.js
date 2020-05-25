@@ -695,23 +695,44 @@ class GrowerRegisterPage extends Component {
             {this.state.msg ? (
               <Alert color='danger'>{this.state.msg}</Alert>
             ) : null}
-            {this.state.ScreenNumber === "1" ? (
+            {this.state.ScreenNumber === "1" && direction === "rtl" ? (
                   <div className='RegisterStatus'>
                     <img alt="" src={require('../Resources/Step1-client.png')} />
                   </div>
                 ) : 
                   null
             }
-            {this.state.ScreenNumber === "2" ? (
+            {this.state.ScreenNumber === "2" && direction === "rtl" ? (
                   <div className='RegisterStatus'>
                     <img alt="" src={require('../Resources/Step2-client.png')} />
                   </div>
                 ) : 
                   null
             }
-            {this.state.ScreenNumber === "3" ? (
+            {this.state.ScreenNumber === "3" && direction === "rtl" ? (
                   <div className='RegisterStatus'>
                     <img alt="" src={require('../Resources/Step3-client.png')} />
+                  </div>
+                ) : 
+                  null
+            }
+            {this.state.ScreenNumber === "1" && direction === "ltr" ? (
+                  <div className='RegisterStatus'>
+                    <img alt="" src={require('../Resources/Step1-client-english.png')} />
+                  </div>
+                ) : 
+                  null
+            }
+            {this.state.ScreenNumber === "2" && direction === "ltr" ? (
+                  <div className='RegisterStatus'>
+                    <img alt="" src={require('../Resources/Step2-client-english.png')} />
+                  </div>
+                ) : 
+                  null
+            }
+            {this.state.ScreenNumber === "3" && direction === "ltr" ? (
+                  <div className='RegisterStatus'>
+                    <img alt="" src={require('../Resources/Step3-client-english.png')} />
                   </div>
                 ) : 
                   null
@@ -720,131 +741,131 @@ class GrowerRegisterPage extends Component {
             {this.state.ScreenNumber === "1" || this.state.ScreenNumber === "3" ? (
               <FormGroup>
                 {this.state.ScreenNumber === "1" ? (
-                  <div className='ProfileName'>
-                    <h1>פרופיל מגדל</h1>
+                  <div className={'ProfileName ' + FloatClass + " " + TextAlignClass}>
+                    <h1>{Language.GrowerProfile}</h1>
                   </div>
                 ) : 
-                  <div className='ProfileName'>
-                    <h1>שליחה לאישור סופי</h1>
+                  <div className={'ProfileName ' + FloatClass + " " + TextAlignClass}>
+                    <h1>{Language.FarmerProfileNameFinalApprove}</h1>
                   </div>
                 }
-              <div className='PersonalDetails'>
+              <div className={'PersonalDetails ' + FloatClass}>
                 <div className="form-group">
-                  <Label for='name'>שם פרטי</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='name'>{Language.FirstName}</Label>
                   <Input
                     type='text'
                     name='name'
                     id='name'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.name}
                     invalid= {!this.state.nameValidation}
                     required
                   />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='familyname'>שם משפחה</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='familyname'>{Language.LastName}</Label>
                   <Input
                     type='text'
                     name='familyname'
                     id='familyname'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.familyname}
                     invalid= {!this.state.familynameValidation}
                     required
                   />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='phone'>טלפון</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='phone'>{Language.Phone}</Label>
                   <Input
                     type='text'
                     name='phone'
                     id='phone'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.phone}
                     invalid= {!this.state.phoneValidation}
                     required
                   />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='email'>אימייל (שם משתמש)</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.Email}</Label>
                   <Input
                     type='email'
                     name='email'
                     id='email'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.email}
                     invalid= {!this.state.emailValidation}
                     required
                   />
-                  <FormFeedback>כתובת האימייל שגויה</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmailValidationError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='password'>סיסמה</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='password'>{Language.Password}</Label>
                   <Input
                     type='password'
                     name='password'
                     id='password'
                     autoComplete="off"
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     invalid= {!this.state.PasswordStrengthValidation}
                     onChange={this.onChange}
                     value={this.state.password}
                     required
                   />
-                  <FormFeedback>הסיסמה חייבת להכיל 8 תווים, אות גדולה, אות קטנה ומספר</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.PasswordError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='passwordconfirmation'>אימות סיסמה</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='passwordconfirmation'>{Language.PasswordConfirmation}</Label>
                   <Input
                     type='password'
                     name='passwordconfirmation'
                     id='passwordconfirmation'
                     autoComplete="off"
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.passwordconfirmation}
                     invalid= {!this.state.PasswordValidation}
                     required
                   />
-                  <FormFeedback>הסיסמאות לא זהות!</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.PasswordConfirmError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='address'>כתובת</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='address'>{Language.Address}</Label>
                   <Input
                     type='text'
                     name='address'
                     id='address'
                     placeholder='*'
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.onChange}
                     value={this.state.address}
                     invalid= {!this.state.addressValidation}
                     required
                   />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                 </div>
               </div>
-              <div className='UploadImage'>
+              <div className={'UploadImage ' + FloatClass}>
                 <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
                 {$imagePreview}
               </div>
-              <div className="PlansAlert">בחירת מסלול (יש לבחור מסלול אחד)</div>
+              <div className="PlansAlert">{Language.GrowerChooseOnlyOnePlan}</div>
               <div className="Plans">
-                <div className="PlanCard">
+                <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
                     <div className="Card1Image">
                        <img
@@ -862,24 +883,24 @@ class GrowerRegisterPage extends Component {
                         checked={this.state.plan1}
                         onChange={this.onChange} />
                       </Label> 
-                      <span className='PlanTitle' >מגדל עצמאי</span>
+                      <span className='PlanTitle' >{Language.PlanName1}</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
                     <div className="CardDetails">
-                      <span className="GrowerCardDetailsHeader">במסלול זה אין התערבות של החקלאי<br /> המסלול כולל:</span>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
+                      <span className="GrowerCardDetailsHeader">{Language.FarmerPlan1}<br /> {Language.FarmerPlanInclude}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>מים</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanWater}</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="PlanCard">
+                <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
                     <div className="Card2Image">
                        <img
@@ -897,32 +918,32 @@ class GrowerRegisterPage extends Component {
                         checked={this.state.plan2}
                         onChange={this.onChange} />
                       </Label> 
-                      <span className='PlanTitle' >ביניים</span>
+                      <span className='PlanTitle' >{Language.PlanName2}</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
                     <div className="CardDetails">
-                      <span className="GrowerCardDetailsHeader">במסלול זה יש התערבות חלקית של החקלאי<br /> המסלול כולל:</span>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>ייעוץ אישי</span>
+                      <span className="GrowerCardDetailsHeader">{Language.FarmerPlan2}<br /> {Language.FarmerPlanInclude}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>מים</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanWater}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>דישון</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>דישון</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="PlanCard">
+                <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
                     <div className="Card3Image">
                        <img
@@ -940,48 +961,48 @@ class GrowerRegisterPage extends Component {
                         className='mb-3'
                         onChange={this.onChange} />
                       </Label> 
-                      <span className='PlanTitle' >ליווי שוטף</span>
+                      <span className='PlanTitle' >{Language.PlanName3}</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
                     <div className="CardDetails" >
-                      <span className="GrowerCardDetailsHeader">במסלול זה יש התערבות מלאה של החקלאי<br /> המסלול כולל:</span>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>ייעוץ אישי</span>
+                      <span className="GrowerCardDetailsHeader">{Language.FarmerPlan3}<br /> {Language.FarmerPlanInclude}</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>שטח של {HamamadefaultsizeContainer} מ"ר</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>מים</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanWater}</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>דישון</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>דישון</span>
                       </div>
-                      <div className='PlanIncludeSection'>
-                        <span className='PlanVegetableImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PlanVegetableImageText'>טיפול מלא בחלקה</span>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCare}</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              {this.state.PlanValidation ? <div className='GrowerRegisterPlanAlert'><Alert color='danger'>יש לבחור מסלול</Alert></div> : null}
+              {this.state.PlanValidation ? <div className='GrowerRegisterPlanAlert'><Alert color='danger'>{Language.GrowerChooseAPlanError}</Alert></div> : null}
               <div className="Growersizearea">
                 <div className="form-group">
-                  <Label for='sizearea'>אזור השטח לגידול</Label>
-                  <Input type="select" name="sizearea" id="sizearea" className='SizeArea mb-3' onChange={this.onChange} value={this.state.sizearea}>
+                  <Label className={FloatClass + " " + TextAlignClass} for='sizearea'>{Language.GrowerSizearea}</Label>
+                  <Input type="select" name="sizearea" id="sizearea" className={'SizeArea mb-3 ' + FloatClass + " " + TextAlignClass} onChange={this.onChange} value={this.state.sizearea}>
                     <option value="מרכז">{Language.FarmerLocationOption1}</option>
                     <option value="צפון">{Language.FarmerLocationOption2}</option>
                     <option value="דרום">{Language.FarmerLocationOption3}</option>
                   </Input>
                 </div>
               </div>
-              {this.state.ChooseFarmerValidation ? <div className='GrowerRegisterPlanAlert'><Alert color='danger'>יש לבחור חקלאי</Alert></div> : null}
+              {this.state.ChooseFarmerValidation ? <div className='GrowerRegisterPlanAlert'><Alert color='danger'>{Language.GrowerChooseAFarmerError}</Alert></div> : null}
               { this.state.ActivePlan !== '' ? <div className='FarmerListContent'><ChooseFarmer SizeAreaParam={this.state.sizearea} PlanParam={this.state.ActivePlan}/></div> : null}
               <div className='ApproveRegulations'>
                 <div  className='RegulationsCheckBox'>
@@ -997,15 +1018,15 @@ class GrowerRegisterPage extends Component {
                   </Label> 
                 </div>
                   <div  className='RegulationsLink'>
-                    <span>קראתי את </span>
-                    <a href="/" target="_blank" rel="noopener noreferrer" >התקנון</a>
-                    <span> ואני מסכים לכל תנאיו</span>
+                    <span>{Language.Approval1} </span>
+                    <a href="/" target="_blank" rel="noopener noreferrer" >{Language.Approval2}</a>
+                    <span> {Language.Approval3}</span>
                 </div>
               </div>
               {this.state.ScreenNumber === "1" ? (
               <div className='MoveToPaymentScreenButton'>
                 <Button color="info" onClick={() => this.ChangeScreen("2")} type="button" >
-                  המשך להזנת אמצעי תשלום
+                  {Language.FormContinue}
                 </Button>
               </div>
               ) : null}

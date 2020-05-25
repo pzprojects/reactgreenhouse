@@ -862,7 +862,7 @@ class RegisterPage extends Component {
                   </div>
                 ) : 
                   <div className={'ProfileName ' + FloatClass + " " + TextAlignClass}>
-                    <h1>שליחה לאישור סופי</h1>
+                    <h1>{Language.FarmerProfileNameFinalApprove}</h1>
                   </div>
                 }
               <div className={'PersonalDetails ' + FloatClass}>
@@ -1259,14 +1259,14 @@ class RegisterPage extends Component {
               <FormGroup>
                 <div className='BankCollectPaymentContainer'>
                   <div className='BankCollectPayment'>
-                    <span className='RecivePaymentHeader'>חשבון בנק לקבלת תשלום</span>
+                    <span className='RecivePaymentHeader'>{Language.PaymentDetailsTitle}</span>
                     <div className="payment-form-group">
                       <Label for='fullname'></Label>
                       <Input
                         type='text'
                         name='fullname'
                         id='fullname'
-                        placeholder='שם בעל החשבון'
+                        placeholder={Language.PaymentDetailsAccOwner}
                         className='mb-3'
                         onChange={this.onChange}
                         value={this.state.fullname}
@@ -1278,7 +1278,7 @@ class RegisterPage extends Component {
                         type='text'
                         name='accountnumber'
                         id='accountnumber'
-                        placeholder='מספר חשבון הבנק'
+                        placeholder={Language.PaymentDetailsAccNumber}
                         className='mb-3'
                         onChange={this.onChange}
                         value={this.state.accountnumber}
@@ -1289,14 +1289,14 @@ class RegisterPage extends Component {
                         <div className="bankname">
                           <Label for='bankname'></Label>
                           <Input type="select" name="bankname" id="bankname" className='mb-3' placeholder='בנק' onChange={this.onChange} value={this.state.bankname}>
-                            <option>בחר בנק</option>
-                            <option>בנק אגוד</option>
-                            <option>בנק אוצר החייל</option>
-                            <option>בנק דיסקונט</option>
-                            <option>בנק הפועלים</option>
-                            <option>בנק לאומי</option>
-                            <option>בנק מזרחי</option>
-                            <option>הבנק הבינלאומי</option>
+                            <option value='בנק' >{Language.PaymentDetailsChooseBank}</option>
+                            <option value='בנק אגוד'>{Language.PaymentDetailsBankName1}</option>
+                            <option value='בנק אוצר החייל'>{Language.PaymentDetailsBankName2}</option>
+                            <option value='בנק דיסקונט'>{Language.PaymentDetailsBankName3}</option>
+                            <option value='בנק הפועלים'>{Language.PaymentDetailsBankName4}</option>
+                            <option value='בנק לאומי'>{Language.PaymentDetailsBankName5}</option>
+                            <option value='בנק מזרחי'>{Language.PaymentDetailsBankName6}</option>
+                            <option value='הבנק הבינלאומי'>{Language.PaymentDetailsBankName7}</option>
                         </Input>
                         </div>
                         <div className="banknumber">
@@ -1305,7 +1305,7 @@ class RegisterPage extends Component {
                             type='text'
                             name='banknumber'
                             id='banknumber'
-                            placeholder='שם בעל החשבון'
+                            placeholder={Language.PaymentDetailsBankNumber}
                             className='mb-3'
                             onChange={this.onChange}
                             value={this.state.banknumber}
@@ -1316,7 +1316,7 @@ class RegisterPage extends Component {
                    {this.state.ScreenNumber === "2" ? (
                      <div className='MoveToSecondPaymentScreenButton'>
                        <Button color="info" onClick={() => this.ChangeScreen("3")} type="button" >
-                          אישור
+                         {Language.Approve}
                        </Button>
                      </div>
                    ) : null}                  
@@ -1329,14 +1329,14 @@ class RegisterPage extends Component {
               <FormGroup>
                 <div className='BankCollectPaymentContainer'>
                   <div className='BankCollectPayment'>
-                    <span className='RecivePaymentHeader'>אמצעי תשלום</span>
+                    <span className='RecivePaymentHeader'>{Language.PaymentCreditCardTitle}</span>
                     <div className="payment-form-group">
                       <Label for='CreditCardfullname'></Label>
                       <Input
                         type='text'
                         name='CreditCardfullname'
                         id='CreditCardfullname'
-                        placeholder='שם בעל הכרטיס'
+                        placeholder={Language.PaymentCreditCardfullname}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -1347,7 +1347,7 @@ class RegisterPage extends Component {
                         type='text'
                         name='CreditCardNumber'
                         id='CreditCardNumber'
-                        placeholder='מספר כרטיס האשראי'
+                        placeholder={Language.PaymentCreditCardNumber}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -1362,7 +1362,7 @@ class RegisterPage extends Component {
                           name="CreditCardDate"
                           id="CreditCardDate"
                           className='mb-3'
-                          placeholder='תוקף'
+                          placeholder={Language.PaymentCreditCardDate}
                           onChange={this.onChange}>
                         </Input>
                         </div>
@@ -1372,7 +1372,7 @@ class RegisterPage extends Component {
                             type='text'
                             name='CreditCardCVV'
                             id='CreditCardCVV'
-                            placeholder='CVV'
+                            placeholder={Language.PaymentCreditCardCVV}
                             className='mb-3'
                             onChange={this.onChange}
                           />
@@ -1385,7 +1385,7 @@ class RegisterPage extends Component {
                         type='text'
                         name='CreditCardBusniessNumber'
                         id='CreditCardBusniessNumber'
-                        placeholder='מספר עוסק מורשה/ח.פ'
+                        placeholder={Language.PaymentCreditCardBusniessNumber}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -1393,7 +1393,7 @@ class RegisterPage extends Component {
                     {this.state.ScreenNumber === "3" ? (
                      <div className='MoveToSecondPaymentScreenButton'>
                        <Button color="info" onClick={() => this.ChangeScreen("4")} type="button" >
-                         אישור
+                         {Language.Approve}
                        </Button>
                      </div>
                     ) : null}  
@@ -1405,7 +1405,7 @@ class RegisterPage extends Component {
             {this.state.ScreenNumber === "4" ? (
               <div className='RegisterButtonContainer'>
                 <Button className='RegisterButton' >
-                  הירשם
+                   {Language.SignUpButton}
                 </Button>
               </div>
             ) : null}

@@ -117,6 +117,11 @@
     border-radius: 4vw; 
   }
 
+  nav .container div.collapse ul.navbar-nav {
+    margin-left: auto!important;
+    margin-right: auto!important;
+  }
+
   nav .container div.collapse ul.navbar-nav > li {
     margin-left: 0.5vw;
     margin-top: 1vw;
@@ -926,6 +931,7 @@
     position: relative;
     float: right;
     margin-left: 1vw;
+    margin-right: 1vw;
   }
 
   .UpdateMyuserName {
@@ -2848,14 +2854,24 @@
 
   /* Read More */
 
-  .ReadMoreItem {
+  .ReadMoreItemRtl {
     direction: rtl;
     text-align: right;
     font-size: 0.83vw;
   }
   
-  .ReadMoreItem span img {
+  .ReadMoreItemRtl span img {
     margin-left: 2vw;
+  }
+
+  .ReadMoreItemLtr {
+    direction: left;
+    text-align: left;
+    font-size: 0.83vw;
+  }
+  
+  .ReadMoreItemLtr span img {
+    margin-right: 2vw;
   }
 
   .modal-header h5 {
@@ -4113,6 +4129,7 @@ div.PersonalDetails .form-group input {
   position: relative;
   float: right;
   margin-left: 1vw;
+  margin-right: 1vw;
 }
 
 .UpdateMyuserName {
@@ -6035,14 +6052,24 @@ div.SystemDetails .form-group input {
 
 /* Read More */
 
-.ReadMoreItem {
+.ReadMoreItemRtl {
   direction: rtl;
   text-align: right;
   font-size: 0.83vw;
 }
 
-.ReadMoreItem span img {
+.ReadMoreItemRtl span img {
   margin-left: 2vw;
+}
+
+.ReadMoreItemLtr {
+  direction: left;
+  text-align: left;
+  font-size: 0.83vw;
+}
+
+.ReadMoreItemLtr span img {
+  margin-right: 2vw;
 }
 
 .modal-header h5 {
