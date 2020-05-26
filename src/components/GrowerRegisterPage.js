@@ -1005,7 +1005,7 @@ class GrowerRegisterPage extends Component {
               {this.state.ChooseFarmerValidation ? <div className='GrowerRegisterPlanAlert'><Alert color='danger'>{Language.GrowerChooseAFarmerError}</Alert></div> : null}
               { this.state.ActivePlan !== '' ? <div className='FarmerListContent'><ChooseFarmer SizeAreaParam={this.state.sizearea} PlanParam={this.state.ActivePlan}/></div> : null}
               <div className='ApproveRegulations'>
-                <div  className='RegulationsCheckBox'>
+                <div  className={'RegulationsCheckBox ' + FloatClass}>
                   <Label check for='CheckRegulations'>
                   <CustomInput 
                     type="checkbox"
@@ -1017,7 +1017,7 @@ class GrowerRegisterPage extends Component {
                     invalid= {!this.state.RegulationsValidation} />
                   </Label> 
                 </div>
-                  <div  className='RegulationsLink'>
+                  <div  className={'RegulationsLink ' + FloatClass}>
                     <span>{Language.Approval1} </span>
                     <a href="/" target="_blank" rel="noopener noreferrer" >{Language.Approval2}</a>
                     <span> {Language.Approval3}</span>
@@ -1037,14 +1037,14 @@ class GrowerRegisterPage extends Component {
               <FormGroup>
                 <div className='BankCollectPaymentContainer'>
                   <div className='BankCollectPayment'>
-                    <span className='RecivePaymentHeader'>אמצעי תשלום</span>
+                    <span className='RecivePaymentHeader'>{Language.PaymentCreditCardTitle}</span>
                     <div className="payment-form-group">
                       <Label for='CreditCardfullname'></Label>
                       <Input
                         type='text'
                         name='CreditCardfullname'
                         id='CreditCardfullname'
-                        placeholder='שם בעל הכרטיס'
+                        placeholder={Language.PaymentCreditCardfullname}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -1055,7 +1055,7 @@ class GrowerRegisterPage extends Component {
                         type='text'
                         name='CreditCardNumber'
                         id='CreditCardNumber'
-                        placeholder='מספר כרטיס האשראי'
+                        placeholder={Language.PaymentCreditCardNumber}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -1070,7 +1070,7 @@ class GrowerRegisterPage extends Component {
                           name="CreditCardDate"
                           id="CreditCardDate"
                           className='mb-3'
-                          placeholder='תוקף'
+                          placeholder={Language.PaymentCreditCardDate}
                           onChange={this.onChange}>
                         </Input>
                         </div>
@@ -1080,7 +1080,7 @@ class GrowerRegisterPage extends Component {
                             type='text'
                             name='CreditCardCVV'
                             id='CreditCardCVV'
-                            placeholder='CVV'
+                            placeholder={Language.PaymentCreditCardCVV}
                             className='mb-3'
                             onChange={this.onChange}
                           />
@@ -1093,7 +1093,7 @@ class GrowerRegisterPage extends Component {
                         type='text'
                         name='CreditCardBusniessNumber'
                         id='CreditCardBusniessNumber'
-                        placeholder='מספר עוסק מורשה/ח.פ'
+                        placeholder={Language.PaymentCreditCardBusniessNumber}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -1101,7 +1101,7 @@ class GrowerRegisterPage extends Component {
                     {this.state.ScreenNumber === "2" ? (
                      <div className='MoveToSecondPaymentScreenButton'>
                        <Button color="info" onClick={() => this.ChangeScreen("3")} type="button" >
-                         אישור
+                         {Language.Approve}
                        </Button>
                      </div>
                     ) : null}  
@@ -1113,7 +1113,7 @@ class GrowerRegisterPage extends Component {
             {this.state.ScreenNumber === "3" ? (
               <div className='RegisterButtonContainer'>
                 <Button className='RegisterButton' >
-                  הירשם
+                  {Language.SignUpButton}
                 </Button>
               </div>
             ) : null}

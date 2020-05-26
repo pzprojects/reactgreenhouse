@@ -540,6 +540,10 @@
     padding-right: 40px;
   }
 
+  .GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBox label div {
+    margin-left: 0.5vw;
+  }
+
   .GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBoxLogic {
     width: 100%;
     position: relative;
@@ -1133,6 +1137,8 @@
     padding-left: 0.3vw;
     margin-top: 1.5vw;
     font-size: 0.83vw;
+    padding-right: 0.3vw;
+    text-align: center;
   }
 
   .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo span.GrowerChoosenVegMoreInfoIMG {
@@ -1345,6 +1351,7 @@
     display: block;
     float: right;
     padding-right: 40px;
+    padding-left: 40px;
     font-weight: bold;
     margin-bottom: 0.5vw;
     text-align: right;
@@ -1385,6 +1392,7 @@
     display: block;
     float: right;
     padding-right: 0.5vw;
+    padding-left: 0.5vw;
     padding-top: 0.3vw;
     overflow-wrap: break-word;
   }
@@ -1395,6 +1403,7 @@
     display: block;
     float: right;
     padding-right: 0.5vw;
+    padding-left: 0.5vw;
     padding-top: 0.3vw;
     overflow-wrap: break-word;
   }
@@ -1405,6 +1414,7 @@
     display: block;
     float: right;
     padding-right: 0.5vw;
+    padding-left: 0.5vw;
     padding-top: 0.3vw;
     overflow-wrap: break-word;
   }
@@ -1415,6 +1425,7 @@
     display: block;
     float: right;
     padding-right: 0.5vw;
+    padding-left: 0.5vw;
     padding-top: 0.3vw;
     overflow-wrap: break-word;
   }
@@ -1425,6 +1436,7 @@
     display: block;
     float: right;
     padding-right: 0.5vw;
+    padding-left: 0.5vw;
     padding-top: 0.3vw;
     overflow-wrap: break-word;
   }
@@ -4331,6 +4343,8 @@ div.PersonalDetails .form-group input {
   padding-left: 0.3vw;
   margin-top: 1.5vw;
   font-size: 0.83vw;
+  padding-right: 0.3vw;
+  text-align: center;
 }
 
 .FarmerListContent .container div.GrowerVegContainer2 > ul > li div.GrowerChoosenVegMoreInfo span.GrowerChoosenVegMoreInfoIMG {
@@ -4543,6 +4557,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   display: block;
   float: right;
   padding-right: 40px;
+  padding-left: 40px;
   font-weight: bold;
   margin-bottom: 0.5vw;
   text-align: right;
@@ -4583,6 +4598,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   display: block;
   float: right;
   padding-right: 0.5vw;
+  padding-left: 0.5vw;
   padding-top: 0.3vw;
   overflow-wrap: break-word;
 }
@@ -4593,6 +4609,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   display: block;
   float: right;
   padding-right: 0.5vw;
+  padding-left: 0.5vw;
   padding-top: 0.3vw;
   overflow-wrap: break-word;
 }
@@ -4603,6 +4620,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   display: block;
   float: right;
   padding-right: 0.5vw;
+  padding-left: 0.5vw;
   padding-top: 0.3vw;
   overflow-wrap: break-word;
 }
@@ -4613,6 +4631,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   display: block;
   float: right;
   padding-right: 0.5vw;
+  padding-left: 0.5vw;
   padding-top: 0.3vw;
   overflow-wrap: break-word;
 }
@@ -4623,6 +4642,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   display: block;
   float: right;
   padding-right: 0.5vw;
+  padding-left: 0.5vw;
   padding-top: 0.3vw;
   overflow-wrap: break-word;
 }

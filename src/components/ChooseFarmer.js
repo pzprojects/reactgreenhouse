@@ -290,6 +290,7 @@ class ChooseFarmer extends Component {
   // Get veg amount by index
   GetVegAmount = (ItemId) => {
     var Amount = '';
+    const { Language } = this.props;
     try {
       if (this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined) {
         var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
@@ -329,7 +330,7 @@ class ChooseFarmer extends Component {
       }
       else Amount = "0";
 
-      Amount += ' ק"ג';
+      Amount += ' ' + Language.GrowerChooseVegWeight;
     } catch (e) {
       return Amount;
     }
@@ -340,6 +341,7 @@ class ChooseFarmer extends Component {
   // Get field crop amount by index
   GetFieldCropAmount = (ItemId) => {
     var Amount = '';
+    const { Language } = this.props;
     try {
       if (this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined) {
         var ChoosenFieldcropsArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenfieldcrops;
@@ -379,7 +381,7 @@ class ChooseFarmer extends Component {
       }
       else Amount = "0";
 
-      Amount += ' ק"ג';
+      Amount += ' ' + Language.GrowerChooseVegWeight;
     } catch (e) {
       return Amount;
     }
@@ -485,6 +487,7 @@ class ChooseFarmer extends Component {
 
   GetPlanData = (DataType) => {
     var PlanDataToReturn = '';
+    const { Language } = this.props;
     try {
       if (this.props.PlanParam !== '' && this.props.PlanParam !== null && this.props.PlanParam !== undefined) {
         if (this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined) {
@@ -492,7 +495,7 @@ class ChooseFarmer extends Component {
           if (DataType === "name") {
             PlanDataToReturn = this.props.PlanParam;
           }
-          else PlanDataToReturn = planprice.cost + ' ש"ח';
+          else PlanDataToReturn = planprice.cost + ' ' + Language.Shekals;
         }
       }
       else PlanDataToReturn = '';
@@ -505,6 +508,7 @@ class ChooseFarmer extends Component {
 
   GetVegData = (ItemId, DataType) => {
     var DataToRetrive = '';
+    const { Language } = this.props;
     try {
       if (this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined) {
         var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
@@ -567,9 +571,9 @@ class ChooseFarmer extends Component {
         }
 
         if (DataType === "amount") {
-          DataToRetrive += ' שתילים';
+          DataToRetrive += ' ' + Language.GrowerChooseVegPlants;
         }
-        else DataToRetrive += ' ש"ח';
+        else DataToRetrive += ' ' + Language.Shekals;
       }
     } catch (e) {
       return DataToRetrive;
@@ -580,6 +584,7 @@ class ChooseFarmer extends Component {
 
   GetFieldCropData = (ItemId, DataType) => {
     var DataToRetrive = '';
+    const { Language } = this.props;
     try {
       if (this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined) {
         var ChoosenFieldcropsArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenfieldcrops;
@@ -642,9 +647,9 @@ class ChooseFarmer extends Component {
         }
 
         if (DataType === "amount") {
-          DataToRetrive += ' שתילים';
+          DataToRetrive += ' ' + Language.GrowerChooseVegPlants;
         }
-        else DataToRetrive += ' ש"ח';
+        else DataToRetrive += ' ' + Language.Shekals;
       }
     } catch (e) {
       return DataToRetrive;
@@ -838,6 +843,7 @@ class ChooseFarmer extends Component {
 
   GetVegTotalBilling = (ItemId, DataType) => {
     var DataToRetrive = '';
+    const { Language } = this.props;
     try {
       if (this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined) {
         var ChoosenVegArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenvegetables;
@@ -924,7 +930,7 @@ class ChooseFarmer extends Component {
         }
 
         if (DataType !== "averagecrop") {
-          DataToRetrive += ' ש"ח';
+          DataToRetrive += ' ' + Language.Shekals;
         }
       }
     } catch (e) {
@@ -936,6 +942,7 @@ class ChooseFarmer extends Component {
 
   GetFieldCropTotalBilling = (ItemId, DataType) => {
     var DataToRetrive = '';
+    const { Language } = this.props;
     try {
       if (this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined) {
         var ChoosenFieldcropsArray = this.props.choosenfarmer.ChoosenFarmerById[0].choosenfieldcrops;
@@ -1022,7 +1029,7 @@ class ChooseFarmer extends Component {
         }
 
         if (DataType !== "averagecrop") {
-          DataToRetrive += ' ש"ח';
+          DataToRetrive += ' ' + Language.Shekals;
         }
       }
     } catch (e) {
@@ -1075,6 +1082,7 @@ class ChooseFarmer extends Component {
       var GrowerBagSpecialVeg = '';
       var DuplicateCounter = 0;
       var DuplicateList = [];
+      const { Language } = this.props;
       for (var k = 0; k < 4; k++) {
         if (GrowerBag[k].numberofveginrow === "2") {
           DuplicateList.push(GrowerBag[k].name);
@@ -1088,14 +1096,14 @@ class ChooseFarmer extends Component {
           break;
         case 2:
           if (DuplicateList[0] !== DuplicateList[1]) {
-            GrowerBagSpecialVeg = DuplicateList[0] + " וגם " + DuplicateList[1];
+            GrowerBagSpecialVeg = DuplicateList[0] + Language.GrowerAndText + DuplicateList[1];
           }
           break;
         case 3:
           if (DuplicateList[0] !== DuplicateList[1] && DuplicateList[0] !== DuplicateList[2]) {
             GrowerBagSpecialVeg = DuplicateList[0];
             if (DuplicateList[2] !== DuplicateList[1]) {
-              GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + " וגם " + DuplicateList[2];
+              GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + Language.GrowerAndText + DuplicateList[2];
             }
           }
           else {
@@ -1110,28 +1118,28 @@ class ChooseFarmer extends Component {
             GrowerBagSpecialVeg = DuplicateList[0];
             if (DuplicateList[1] !== DuplicateList[2] && DuplicateList[1] !== DuplicateList[3]) {
               if (DuplicateList[2] === DuplicateList[3]) {
-                GrowerBagSpecialVeg = GrowerBagSpecialVeg + " וגם " + DuplicateList[1];
+                GrowerBagSpecialVeg = GrowerBagSpecialVeg + Language.GrowerAndText + DuplicateList[1];
               }
               else {
-                GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + ", " + DuplicateList[2] + " וגם " + DuplicateList[3];
+                GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + ", " + DuplicateList[2] + Language.GrowerAndText + DuplicateList[3];
               }
             }
           }
           else {
             if (DuplicateList[0] === DuplicateList[1]) {
               if (DuplicateList[2] !== DuplicateList[3]) {
-                GrowerBagSpecialVeg = DuplicateList[2] + " וגם " + DuplicateList[3];
+                GrowerBagSpecialVeg = DuplicateList[2] + Language.GrowerAndText + DuplicateList[3];
               }
             }
             else {
               if (DuplicateList[0] === DuplicateList[2]) {
                 if (DuplicateList[1] !== DuplicateList[3]) {
-                  GrowerBagSpecialVeg = DuplicateList[1] + " וגם " + DuplicateList[3];
+                  GrowerBagSpecialVeg = DuplicateList[1] + Language.GrowerAndText + DuplicateList[3];
                 }
               }
               else {
                 if (DuplicateList[1] !== DuplicateList[2]) {
-                  GrowerBagSpecialVeg = DuplicateList[1] + " וגם " + DuplicateList[2];
+                  GrowerBagSpecialVeg = DuplicateList[1] + Language.GrowerAndText + DuplicateList[2];
                 }
               }
             }
@@ -1163,6 +1171,7 @@ class ChooseFarmer extends Component {
       var GrowerBagSpecialVeg = '';
       var DuplicateCounter = 0;
       var DuplicateList = [];
+      const { Language } = this.props;
       for (var k = 0; k < 4; k++) {
         if (GrowerBag[k].numberofveginrow === "2") {
           DuplicateList.push(GrowerBag[k].name);
@@ -1176,14 +1185,14 @@ class ChooseFarmer extends Component {
           break;
         case 2:
           if (DuplicateList[0] !== DuplicateList[1]) {
-            GrowerBagSpecialVeg = DuplicateList[0] + " וגם " + DuplicateList[1];
+            GrowerBagSpecialVeg = DuplicateList[0] + Language.GrowerAndText + DuplicateList[1];
           }
           break;
         case 3:
           if (DuplicateList[0] !== DuplicateList[1] && DuplicateList[0] !== DuplicateList[2]) {
             GrowerBagSpecialVeg = DuplicateList[0];
             if (DuplicateList[2] !== DuplicateList[1]) {
-              GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + " וגם " + DuplicateList[2];
+              GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + Language.GrowerAndText + DuplicateList[2];
             }
           }
           else {
@@ -1198,28 +1207,28 @@ class ChooseFarmer extends Component {
             GrowerBagSpecialVeg = DuplicateList[0];
             if (DuplicateList[1] !== DuplicateList[2] && DuplicateList[1] !== DuplicateList[3]) {
               if (DuplicateList[2] === DuplicateList[3]) {
-                GrowerBagSpecialVeg = GrowerBagSpecialVeg + " וגם " + DuplicateList[1];
+                GrowerBagSpecialVeg = GrowerBagSpecialVeg + Language.GrowerAndText + DuplicateList[1];
               }
               else {
-                GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + ", " + DuplicateList[2] + " וגם " + DuplicateList[3];
+                GrowerBagSpecialVeg = GrowerBagSpecialVeg + ", " + DuplicateList[1] + ", " + DuplicateList[2] + Language.GrowerAndText + DuplicateList[3];
               }
             }
           }
           else {
             if (DuplicateList[0] === DuplicateList[1]) {
               if (DuplicateList[2] !== DuplicateList[3]) {
-                GrowerBagSpecialVeg = DuplicateList[2] + " וגם " + DuplicateList[3];
+                GrowerBagSpecialVeg = DuplicateList[2] + Language.GrowerAndText + DuplicateList[3];
               }
             }
             else {
               if (DuplicateList[0] === DuplicateList[2]) {
                 if (DuplicateList[1] !== DuplicateList[3]) {
-                  GrowerBagSpecialVeg = DuplicateList[1] + " וגם " + DuplicateList[3];
+                  GrowerBagSpecialVeg = DuplicateList[1] + Language.GrowerAndText + DuplicateList[3];
                 }
               }
               else {
                 if (DuplicateList[1] !== DuplicateList[2]) {
-                  GrowerBagSpecialVeg = DuplicateList[1] + " וגם " + DuplicateList[2];
+                  GrowerBagSpecialVeg = DuplicateList[1] + Language.GrowerAndText + DuplicateList[2];
                 }
               }
             }
@@ -1388,16 +1397,19 @@ class ChooseFarmer extends Component {
     const { Language, direction } = this.props;
     let FloatClass = "Co-Align-Right";
     let TextAlignClass = "Co-Text-Align-Right";
-    let ReverseTextAlignClass = "Co-Text-Align-Left";
+    let OnTheLeftText = Language.GrowerTotalBillPlants + ' ';
+    let OnTheRightText = '';
     if (direction === 'rtl') {
       FloatClass = "Co-Align-Right";
       TextAlignClass = "Co-Text-Align-Right";
-      ReverseTextAlignClass = "Co-Text-Align-Left";
+      OnTheLeftText = Language.GrowerTotalBillPlants + ' ';
+      OnTheRightText = '';
     }
     else {
       FloatClass = "Co-Align-Left";
       TextAlignClass = "Co-Text-Align-Left";
-      ReverseTextAlignClass = "Co-Text-Align-Right";
+      OnTheLeftText = '';
+      OnTheRightText = ' ' + Language.GrowerTotalBillPlants;
     }
     if (this.state.ChoosenFarmerId !== '') {
       var ExtractFarmer = this.props.farmer.farmers.filter(farmer => farmer._id === this.state.ChoosenFarmerId);
@@ -1465,8 +1477,8 @@ class ChooseFarmer extends Component {
                       <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}&nbsp;</span>
                     </div>
                     <div className={'FarmerListplans ' + FloatClass}>
-                      {plans.map(({ key_id, name, cost }) => (
-                        <span className='PlanItem' key={key_id}>
+                      {plans.map(({ name, cost }) => (
+                        <span className='PlanItem' key={name}>
                           {this.ReturnPlanInChoosenLanguage(name) + '- ' + cost + Language.GrowerShekalsPerMonth}
                           <br />
                         </span>
@@ -1483,18 +1495,18 @@ class ChooseFarmer extends Component {
         </div>
         {this.state.ChoosenFarmerId !== '' && this.state.ChoosenFarmerId !== undefined ?
           <div className="GrowerMainPicking">
-            <div className="GrowerVegContainer2">
-              <div className="GrowerVegContainer2Example" >אנא בחר\י את הירקות שברצונך לגדל</div>
+            <div className={'GrowerVegContainer2 ' + FloatClass}>
+              <div className={'GrowerVegContainer2Example ' + FloatClass + " " + TextAlignClass}>{Language.GrowerChooseVegHeader}</div>
               <ListGroup>
                 <ListGroupItem>
                   <div className="GrowerMainPickingTitle">
-                    צפי יבול ממוצע לשנה לפי טור גידול
+                    {Language.GrowerChooseVegMiniTitle}
                 </div>
                 </ListGroupItem>
               </ListGroup>
               <ListGroup>
                 <ListGroupItem>
-                  <div className="GrowerVegHolder">
+                  <div className={'GrowerVegHolder ' + FloatClass}>
                     <Label for='GrowerVeg1'></Label>
                     <Input type="select" name="GrowerVeg1" id="GrowerVeg1" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerVeg1}>
                       {ChoosenFarmerContainer.map(function (item, thirdkey) {
@@ -1506,16 +1518,16 @@ class ChooseFarmer extends Component {
                       })}
                     </Input>
                   </div>
-                  <div className="GrowerChoosenVegAVGPrice">
+                  <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
                     <span>{this.GetVegAmount("1")}</span>
                   </div>
-                  <div className="GrowerChoosenVegMoreInfo">
-                    <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                    <span className="GrowerChoosenVegMoreInfoText"><a href={this.GetVegLink("1")} target="_blank" rel="noopener noreferrer">מידע נוסף</a></span>
+                  <div className={'GrowerChoosenVegMoreInfo ' + FloatClass}>
+                    <span className={'GrowerChoosenVegMoreInfoIMG ' + FloatClass}><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
+                    <span className={'GrowerChoosenVegMoreInfoText ' + FloatClass}><a href={this.GetVegLink("1")} target="_blank" rel="noopener noreferrer">{Language.GrowerChooseVegMoreInformation}</a></span>
                   </div>
                 </ListGroupItem>
                 <ListGroupItem>
-                  <div className="GrowerVegHolder">
+                  <div className={'GrowerVegHolder ' + FloatClass}>
                     <Label for='GrowerVeg2'></Label>
                     <Input type="select" name="GrowerVeg2" id="GrowerVeg2" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerVeg2}>
                       {ChoosenFarmerContainer.map(function (item, thirdkey) {
@@ -1527,16 +1539,16 @@ class ChooseFarmer extends Component {
                       })}
                     </Input>
                   </div>
-                  <div className="GrowerChoosenVegAVGPrice">
+                  <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
                     <span>{this.GetVegAmount("2")}</span>
                   </div>
-                  <div className="GrowerChoosenVegMoreInfo">
-                    <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                    <span className="GrowerChoosenVegMoreInfoText"><a href={this.GetVegLink("2")} target="_blank" rel="noopener noreferrer">מידע נוסף</a></span>
+                  <div className={'GrowerChoosenVegMoreInfo ' + FloatClass}>
+                    <span className={'GrowerChoosenVegMoreInfoIMG ' + FloatClass}><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
+                    <span className={'GrowerChoosenVegMoreInfoText ' + FloatClass}><a href={this.GetVegLink("2")} target="_blank" rel="noopener noreferrer">{Language.GrowerChooseVegMoreInformation}</a></span>
                   </div>
                 </ListGroupItem>
                 <ListGroupItem>
-                  <div className="GrowerVegHolder">
+                  <div className={'GrowerVegHolder ' + FloatClass}>
                     <Label for='GrowerVeg3'></Label>
                     <Input type="select" name="GrowerVeg3" id="GrowerVeg3" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerVeg3}>
                       {ChoosenFarmerContainer.map(function (item, thirdkey) {
@@ -1548,16 +1560,16 @@ class ChooseFarmer extends Component {
                       })}
                     </Input>
                   </div>
-                  <div className="GrowerChoosenVegAVGPrice">
+                  <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
                     <span>{this.GetVegAmount("3")}</span>
                   </div>
-                  <div className="GrowerChoosenVegMoreInfo">
-                    <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                    <span className="GrowerChoosenVegMoreInfoText"><a href={this.GetVegLink("3")} target="_blank" rel="noopener noreferrer">מידע נוסף</a></span>
+                  <div className={'GrowerChoosenVegMoreInfo ' + FloatClass}>
+                    <span className={'GrowerChoosenVegMoreInfoIMG ' + FloatClass}><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
+                    <span className={'GrowerChoosenVegMoreInfoText ' + FloatClass}><a href={this.GetVegLink("3")} target="_blank" rel="noopener noreferrer">{Language.GrowerChooseVegMoreInformation}</a></span>
                   </div>
                 </ListGroupItem>
                 <ListGroupItem>
-                  <div className="GrowerVegHolder">
+                  <div className={'GrowerVegHolder ' + FloatClass}>
                     <Label for='GrowerVeg4'></Label>
                     <Input type="select" name="GrowerVeg4" id="GrowerVeg4" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerVeg4}>
                       {ChoosenFarmerContainer.map(function (item, thirdkey) {
@@ -1569,50 +1581,50 @@ class ChooseFarmer extends Component {
                       })}
                     </Input>
                   </div>
-                  <div className="GrowerChoosenVegAVGPrice">
+                  <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
                     <span>{this.GetVegAmount("4")}</span>
                   </div>
-                  <div className="GrowerChoosenVegMoreInfo">
-                    <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                    <span className="GrowerChoosenVegMoreInfoText"><a href={this.GetVegLink("4")} target="_blank" rel="noopener noreferrer">מידע נוסף</a></span>
+                  <div className={'GrowerChoosenVegMoreInfo ' + FloatClass}>
+                    <span className={'GrowerChoosenVegMoreInfoIMG ' + FloatClass}><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
+                    <span className={'GrowerChoosenVegMoreInfoText ' + FloatClass}><a href={this.GetVegLink("4")} target="_blank" rel="noopener noreferrer">{Language.GrowerChooseVegMoreInformation}</a></span>
                   </div>
                 </ListGroupItem>
               </ListGroup>
             </div>
-            <div className="GrowerFieldsGroupsContainer" >
-              <div className="GrowerFieldsGroupsContainerExample" >הרכב החלקה לגידולי חממה (לפי טור גידול)</div>
+            <div className={'GrowerFieldsGroupsContainer ' + FloatClass} >
+              <div className={'GrowerFieldsGroupsContainerExample ' + TextAlignClass} >{Language.GrowerChooseVegHelkaHeader}</div>
               <div className="GrowerFieldsGroupsSection" >
                 <div className="GrowerHelka1" >
                   <span className="GrowerHelkaName" >{this.state.GrowerVeg1}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("1", "amount")}</span>
-                  <span className="GrowerHelkaTotal" >עלות כוללת:</span>
+                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("1", "totalcost")}</span>
                 </div>
                 <div className="GrowerHelka2" >
                   <span className="GrowerHelkaName" >{this.state.GrowerVeg2}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("2", "amount")}</span>
-                  <span className="GrowerHelkaTotal" >עלות כוללת:</span>
+                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("2", "totalcost")}</span>
                 </div>
                 <div className="GrowerHelka3" >
                   <span className="GrowerHelkaName" >{this.state.GrowerVeg3}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("3", "amount")}</span>
-                  <span className="GrowerHelkaTotal" >עלות כוללת:</span>
+                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("3", "totalcost")}</span>
                 </div>
                 <div className="GrowerHelka4" >
                   <span className="GrowerHelkaName" >{this.state.GrowerVeg4}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("4", "amount")}</span>
-                  <span className="GrowerHelkaTotal" >עלות כוללת:</span>
+                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("4", "totalcost")}</span>
                 </div>
               </div>
             </div>
-            {!this.state.DuplicaesValidationActive ? <div className="DuplicatesAlert" ><Alert className='DuplicatesAlertContent' color="danger">לגידול הירקות הבאים: {this.state.DuplicatesVegInBag}, יש צורך בשני טורי גידול</Alert></div> : null}
+            {!this.state.DuplicaesValidationActive ? <div className="DuplicatesAlert" ><Alert className='DuplicatesAlertContent' color="danger">{Language.GrowerDoubleHelkaErrorText1} {this.state.DuplicatesVegInBag}, {Language.GrowerDoubleHelkaErrorText2}</Alert></div> : null}
             {this.state.FieldCropPlanActive ?
               <div className='GrowerChoosenFieldCrops'>
-                <div className='GrowerChoosenFieldCropsCheckBox'>
-                  <span>אני מעוניין לרכוש מסלול לגידולי שדה</span>
+                <div className={'GrowerChoosenFieldCropsCheckBox ' + FloatClass + " " + TextAlignClass}>
+                  <span>{Language.GrowerFieldCropsPlanApproval}</span>
                   <Label check for='CheckFieldCropsPlan'>
                     <CustomInput
                       type="checkbox"
@@ -1626,20 +1638,20 @@ class ChooseFarmer extends Component {
                 </div>
                 {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                   <div className='GrowerChoosenFieldCropsCheckBoxLogic'>
-                    <div className='PlanPriceHeader'>עלות מסלול גידולי שדה הינה {this.state.FieldCropPlanCost} ש"ח</div>
+                    <div className={'PlanPriceHeader ' + TextAlignClass}>{Language.GrowerFieldCropsPlanCost} {this.state.FieldCropPlanCost} {Language.Shekals}</div>
                     <div className="GrowerMainPicking">
-                      <div className="GrowerVegContainer2">
-                        <div className="GrowerVegContainer2Example" >אנא בחר\י את גידולי השדה שברצונך לגדל</div>
+                      <div className={'GrowerVegContainer2 ' + FloatClass}>
+                        <div className={'GrowerVegContainer2Example ' + FloatClass + " " + TextAlignClass} >{Language.GrowerChooseFieldCropHeader}</div>
                         <ListGroup>
                           <ListGroupItem>
                             <div className="GrowerMainPickingTitle">
-                              צפי יבול ממוצע לשנה לפי טור גידול
+                              {Language.GrowerChooseVegMiniTitle}
                             </div>
                           </ListGroupItem>
                         </ListGroup>
                         <ListGroup>
                           <ListGroupItem>
-                            <div className="GrowerVegHolder">
+                            <div className={'GrowerVegHolder ' + FloatClass}>
                               <Label for='GrowerFieldCrop1'></Label>
                               <Input type="select" name="GrowerFieldCrop1" id="GrowerFieldCrop1" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerFieldCrop1}>
                                 {ChoosenFarmerFieldCrops.map(function (item, thirdkey) {
@@ -1651,16 +1663,16 @@ class ChooseFarmer extends Component {
                                 })}
                               </Input>
                             </div>
-                            <div className="GrowerChoosenVegAVGPrice">
+                            <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
                               <span>{this.GetFieldCropAmount("1")}</span>
                             </div>
-                            <div className="GrowerChoosenVegMoreInfo">
-                              <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                              <span className="GrowerChoosenVegMoreInfoText"><a href={this.GetFieldCropLink("1")} target="_blank" rel="noopener noreferrer">מידע נוסף</a></span>
+                            <div className={'GrowerChoosenVegMoreInfo ' + FloatClass}>
+                              <span className={'GrowerChoosenVegMoreInfoIMG ' + FloatClass}><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
+                              <span className={'GrowerChoosenVegMoreInfoText ' + FloatClass}><a href={this.GetFieldCropLink("1")} target="_blank" rel="noopener noreferrer">{Language.GrowerChooseVegMoreInformation}</a></span>
                             </div>
                           </ListGroupItem>
                           <ListGroupItem>
-                            <div className="GrowerVegHolder">
+                            <div className={'GrowerVegHolder ' + FloatClass}>
                               <Label for='GrowerFieldCrop2'></Label>
                               <Input type="select" name="GrowerFieldCrop2" id="GrowerFieldCrop2" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerFieldCrop2}>
                                 {ChoosenFarmerFieldCrops.map(function (item, thirdkey) {
@@ -1672,16 +1684,16 @@ class ChooseFarmer extends Component {
                                 })}
                               </Input>
                             </div>
-                            <div className="GrowerChoosenVegAVGPrice">
+                            <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
                               <span>{this.GetFieldCropAmount("2")}</span>
                             </div>
-                            <div className="GrowerChoosenVegMoreInfo">
-                              <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                              <span className="GrowerChoosenVegMoreInfoText"><a href={this.GetFieldCropLink("2")} target="_blank" rel="noopener noreferrer">מידע נוסף</a></span>
+                            <div className={'GrowerChoosenVegMoreInfo ' + FloatClass}>
+                              <span className={'GrowerChoosenVegMoreInfoIMG ' + FloatClass}><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
+                              <span className={'GrowerChoosenVegMoreInfoText ' + FloatClass}><a href={this.GetFieldCropLink("2")} target="_blank" rel="noopener noreferrer">{Language.GrowerChooseVegMoreInformation}</a></span>
                             </div>
                           </ListGroupItem>
                           <ListGroupItem>
-                            <div className="GrowerVegHolder">
+                            <div className={'GrowerVegHolder ' + FloatClass}>
                               <Label for='GrowerFieldCrop3'></Label>
                               <Input type="select" name="GrowerFieldCrop3" id="GrowerFieldCrop3" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerFieldCrop3}>
                                 {ChoosenFarmerFieldCrops.map(function (item, thirdkey) {
@@ -1693,16 +1705,16 @@ class ChooseFarmer extends Component {
                                 })}
                               </Input>
                             </div>
-                            <div className="GrowerChoosenVegAVGPrice">
+                            <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
                               <span>{this.GetFieldCropAmount("3")}</span>
                             </div>
-                            <div className="GrowerChoosenVegMoreInfo">
-                              <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                              <span className="GrowerChoosenVegMoreInfoText"><a href={this.GetFieldCropLink("3")} target="_blank" rel="noopener noreferrer">מידע נוסף</a></span>
+                            <div className={'GrowerChoosenVegMoreInfo ' + FloatClass}>
+                              <span className={'GrowerChoosenVegMoreInfoIMG ' + FloatClass}><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
+                              <span className={'GrowerChoosenVegMoreInfoText ' + FloatClass}><a href={this.GetFieldCropLink("3")} target="_blank" rel="noopener noreferrer">{Language.GrowerChooseVegMoreInformation}</a></span>
                             </div>
                           </ListGroupItem>
                           <ListGroupItem>
-                            <div className="GrowerVegHolder">
+                            <div className={'GrowerVegHolder ' + FloatClass}>
                               <Label for='GrowerFieldCrop4'></Label>
                               <Input type="select" name="GrowerFieldCrop4" id="GrowerFieldCrop4" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerFieldCrop4}>
                                 {ChoosenFarmerFieldCrops.map(function (item, thirdkey) {
@@ -1714,164 +1726,164 @@ class ChooseFarmer extends Component {
                                 })}
                               </Input>
                             </div>
-                            <div className="GrowerChoosenVegAVGPrice">
+                            <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
                               <span>{this.GetFieldCropAmount("4")}</span>
                             </div>
-                            <div className="GrowerChoosenVegMoreInfo">
-                              <span className="GrowerChoosenVegMoreInfoIMG"><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
-                              <span className="GrowerChoosenVegMoreInfoText"><a href={this.GetFieldCropLink("4")} target="_blank" rel="noopener noreferrer">מידע נוסף</a></span>
+                            <div className={'GrowerChoosenVegMoreInfo ' + FloatClass}>
+                              <span className={'GrowerChoosenVegMoreInfoIMG ' + FloatClass}><img alt="" src={require('../Resources/QuestionMark.png')} /></span>
+                              <span className={'GrowerChoosenVegMoreInfoText ' + FloatClass}><a href={this.GetFieldCropLink("4")} target="_blank" rel="noopener noreferrer">{Language.GrowerChooseVegMoreInformation}</a></span>
                             </div>
                           </ListGroupItem>
                         </ListGroup>
                       </div>
-                      <div className="GrowerFieldsGroupsContainer" >
-                        <div className="GrowerFieldsGroupsContainerExample" >הרכב החלקה לגידולי שדה (לפי טור גידול)</div>
+                      <div className={'GrowerFieldsGroupsContainer ' + FloatClass} >
+                        <div className={'GrowerFieldsGroupsContainerExample ' + FloatClass + " " + TextAlignClass} >{Language.GrowerChooseVegHelkaHeader}</div>
                         <div className="GrowerFieldsGroupsSection" >
                           <div className="GrowerHelka1" >
                             <span className="GrowerHelkaName" >{this.state.GrowerFieldCrop1}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("1", "amount")}</span>
-                            <span className="GrowerHelkaTotal" >עלות כוללת:</span>
+                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("1", "totalcost")}</span>
                           </div>
                           <div className="GrowerHelka2" >
                             <span className="GrowerHelkaName" >{this.state.GrowerFieldCrop2}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("2", "amount")}</span>
-                            <span className="GrowerHelkaTotal" >עלות כוללת:</span>
+                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("2", "totalcost")}</span>
                           </div>
                           <div className="GrowerHelka3" >
                             <span className="GrowerHelkaName" >{this.state.GrowerFieldCrop3}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("3", "amount")}</span>
-                            <span className="GrowerHelkaTotal" >עלות כוללת:</span>
+                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("3", "totalcost")}</span>
                           </div>
                           <div className="GrowerHelka4" >
                             <span className="GrowerHelkaName" >{this.state.GrowerFieldCrop4}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("4", "amount")}</span>
-                            <span className="GrowerHelkaTotal" >עלות כוללת:</span>
+                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("4", "totalcost")}</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                    {!this.state.DuplicaesFieldCropValidationActive ? <div className="DuplicatesAlert" ><Alert className='DuplicatesAlertContent' color="danger">לגידול הירקות הבאים: {this.state.DuplicatesFieldCropInBag}, יש צורך בשני טורי גידול</Alert></div> : null}
+                    {!this.state.DuplicaesFieldCropValidationActive ? <div className="DuplicatesAlert" ><Alert className='DuplicatesAlertContent' color="danger">{Language.GrowerDoubleHelkaErrorText1} {this.state.DuplicatesFieldCropInBag}, {Language.GrowerDoubleHelkaErrorText2}</Alert></div> : null}
                   </div>
                   : null}
               </div>
               : null}
             <div className="GrowerFinalBilling" >
-              <div className="GrowerFinalBillingContainer" >
-                <div className="GrowerFinalBillingExample" >פירוט חשבון לתשלום חודשי</div>
+              <div className={'GrowerFinalBillingContainer ' + FloatClass + " " + TextAlignClass} >
+                <div className={'GrowerFinalBillingExample ' + FloatClass + " " + TextAlignClass} >{Language.GrowerTotalBillMonthlyTitle}</div>
                 <ul className="GrowerFinalBillingSection" >
                   <li className="GrowerFinalBillingMainHeader1" >
-                    <span className="GrowerFinalBillingItemName" >פריט</span>
-                    <span className="GrowerFinalBillingItemPrice" >מחיר פריט</span>
-                    <span className="GrowerFinalBillingItemAmount" >כמות</span>
-                    <span className="GrowerFinalBillingItemTotal" >סה"כ</span>
-                    <span className="GrowerFinalBillingItemBullingType" >סוג התשלום</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass}>{Language.GrowerTotalBillMonthlyItem}</span>
+                    <span className={'GrowerFinalBillingItemPrice ' + FloatClass}>{Language.GrowerTotalBillMonthlyItemCost}</span>
+                    <span className={'GrowerFinalBillingItemAmount ' + FloatClass}>{Language.GrowerTotalBillMonthlyItemAnount}</span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{Language.GrowerTotalBillMonthlyItemTotal}</span>
+                    <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillItemPaymentType}</span>
                   </li>
                   <li>
-                    <span className="GrowerFinalBillingItemName" >{this.GetPlanData("name")}</span>
-                    <span className="GrowerFinalBillingItemPrice" >{this.GetPlanData("price")}</span>
-                    <span className="GrowerFinalBillingItemAmount" >1</span>
-                    <span className="GrowerFinalBillingItemTotal" >{this.GetPlanData("price")}</span>
-                    <span className="GrowerFinalBillingItemBullingType" >חודשי</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{this.ReturnPlanInChoosenLanguage(this.GetPlanData("name"))}</span>
+                    <span className={'GrowerFinalBillingItemPrice ' + FloatClass}>{this.GetPlanData("price")}</span>
+                    <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >1</span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetPlanData("price")}</span>
+                    <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillMonthlyItemPaymentType}</span>
                   </li>
                   {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                     <li>
-                      <span className="GrowerFinalBillingItemName" >גידולי שדה</span>
-                      <span className="GrowerFinalBillingItemPrice" >{this.state.FieldCropPlanCost} ש"ח</span>
-                      <span className="GrowerFinalBillingItemAmount" >1</span>
-                      <span className="GrowerFinalBillingItemTotal" >{this.state.FieldCropPlanCost} ש"ח</span>
-                      <span className="GrowerFinalBillingItemBullingType" >חודשי</span>
+                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{Language.GrowerFieldCropsText}</span>
+                      <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.state.FieldCropPlanCost} {Language.Shekals}</span>
+                      <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >1</span>
+                      <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.state.FieldCropPlanCost} {Language.Shekals}</span>
+                      <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillMonthlyItemPaymentType}</span>
                     </li> : null}
                   <li className="GrowerFinalBillingMainHeader2" >
-                    <span className="GrowerFinalBillingItemName" >סה"כ לתשלום</span>
-                    <span className="GrowerFinalBillingItemPrice" ></span>
-                    <span className="GrowerFinalBillingItemAmount" ></span>
-                    <span className="GrowerFinalBillingItemTotal" >{(parseFloat(this.GetFieldCropTotalPayment("2")) + parseFloat(this.GetTotalPayment("2"))).toString()} ש"ח</span>
-                    <span className="GrowerFinalBillingItemBullingType" ></span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{Language.GrowerTotalBillMonthlyTotalToPay}</span>
+                    <span className={'GrowerFinalBillingItemPrice ' + FloatClass} ></span>
+                    <span className={'GrowerFinalBillingItemAmount ' + FloatClass} ></span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{(parseFloat(this.GetFieldCropTotalPayment("2")) + parseFloat(this.GetTotalPayment("2"))).toString()} {Language.Shekals}</span>
+                    <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} ></span>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="GrowerFinalBilling" >
-              <div className="GrowerFinalBillingContainer" >
-                <div className="GrowerFinalBillingExample" >פירוט חשבון רכיבים משתנים</div>
+              <div className={'GrowerFinalBillingContainer ' + FloatClass + " " + TextAlignClass} >
+                <div className={'GrowerFinalBillingExample ' + FloatClass + " " + TextAlignClass} >{Language.GrowerTotalBillOneTimeTitle}</div>
                 <ul className="GrowerFinalBillingSection" >
                   <li className="GrowerFinalBillingMainHeader1" >
-                    <span className="GrowerFinalBillingItemName" >פריט</span>
-                    <span className="GrowerFinalBillingItemPrice" >מחיר פריט</span>
-                    <span className="GrowerFinalBillingItemAmount" >כמות</span>
-                    <span className="GrowerFinalBillingItemTotal" >סה"כ</span>
-                    <span className="GrowerFinalBillingItemBullingType" >סוג התשלום</span>
+                  <span className={'GrowerFinalBillingItemName ' + FloatClass} >{Language.GrowerTotalBillMonthlyItem}</span>
+                    <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{Language.GrowerTotalBillMonthlyItemCost}</span>
+                    <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{Language.GrowerTotalBillMonthlyItemAnount}</span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{Language.GrowerTotalBillMonthlyItemTotal}</span>
+                    <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillItemPaymentType}</span>
                   </li>
                   <li>
-                    <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerVeg1}</span>
-                    <span className="GrowerFinalBillingItemPrice" >{this.GetVegTotalBilling("1", "price")}</span>
-                    <span className="GrowerFinalBillingItemAmount" >{this.GetVegTotalBilling("1", "averagecrop")}</span>
-                    <span className="GrowerFinalBillingItemTotal" >{this.GetVegTotalBilling("1", "Total")}</span>
-                    <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerVeg1}{OnTheRightText}</span>
+                    <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetVegTotalBilling("1", "price")}</span>
+                    <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetVegTotalBilling("1", "averagecrop")}</span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetVegTotalBilling("1", "Total")}</span>
+                    <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                   </li>
                   <li>
-                    <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerVeg2}</span>
-                    <span className="GrowerFinalBillingItemPrice" >{this.GetVegTotalBilling("2", "price")}</span>
-                    <span className="GrowerFinalBillingItemAmount" >{this.GetVegTotalBilling("2", "averagecrop")}</span>
-                    <span className="GrowerFinalBillingItemTotal" >{this.GetVegTotalBilling("2", "Total")}</span>
-                    <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerVeg2}{OnTheRightText}</span>
+                    <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetVegTotalBilling("2", "price")}</span>
+                    <span className={'GrowerFinalBillingItemAmount ' + FloatClass}>{this.GetVegTotalBilling("2", "averagecrop")}</span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetVegTotalBilling("2", "Total")}</span>
+                    <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                   </li>
                   <li>
-                    <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerVeg3}</span>
-                    <span className="GrowerFinalBillingItemPrice" >{this.GetVegTotalBilling("3", "price")}</span>
-                    <span className="GrowerFinalBillingItemAmount" >{this.GetVegTotalBilling("3", "averagecrop")}</span>
-                    <span className="GrowerFinalBillingItemTotal" >{this.GetVegTotalBilling("3", "Total")}</span>
-                    <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerVeg3}{OnTheRightText}</span>
+                    <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetVegTotalBilling("3", "price")}</span>
+                    <span className={'GrowerFinalBillingItemAmount ' + FloatClass}>{this.GetVegTotalBilling("3", "averagecrop")}</span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetVegTotalBilling("3", "Total")}</span>
+                    <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                   </li>
                   <li>
-                    <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerVeg4}</span>
-                    <span className="GrowerFinalBillingItemPrice" >{this.GetVegTotalBilling("4", "price")}</span>
-                    <span className="GrowerFinalBillingItemAmount" >{this.GetVegTotalBilling("4", "averagecrop")}</span>
-                    <span className="GrowerFinalBillingItemTotal" >{this.GetVegTotalBilling("4", "Total")}</span>
-                    <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerVeg4}{OnTheRightText}</span>
+                    <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetVegTotalBilling("4", "price")}</span>
+                    <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetVegTotalBilling("4", "averagecrop")}</span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetVegTotalBilling("4", "Total")}</span>
+                    <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                   </li>
                   {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                     <li>
-                      <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerFieldCrop1}</span>
-                      <span className="GrowerFinalBillingItemPrice" >{this.GetFieldCropTotalBilling("1", "price")}</span>
-                      <span className="GrowerFinalBillingItemAmount" >{this.GetFieldCropTotalBilling("1", "averagecrop")}</span>
-                      <span className="GrowerFinalBillingItemTotal" >{this.GetFieldCropTotalBilling("1", "Total")}</span>
-                      <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
+                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerFieldCrop1}{OnTheRightText}</span>
+                      <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetFieldCropTotalBilling("1", "price")}</span>
+                      <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetFieldCropTotalBilling("1", "averagecrop")}</span>
+                      <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetFieldCropTotalBilling("1", "Total")}</span>
+                      <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                     </li> : null}
                   {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                     <li>
-                      <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerFieldCrop2}</span>
-                      <span className="GrowerFinalBillingItemPrice" >{this.GetFieldCropTotalBilling("2", "price")}</span>
-                      <span className="GrowerFinalBillingItemAmount" >{this.GetFieldCropTotalBilling("2", "averagecrop")}</span>
-                      <span className="GrowerFinalBillingItemTotal" >{this.GetFieldCropTotalBilling("2", "Total")}</span>
-                      <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
+                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerFieldCrop2}{OnTheRightText}</span>
+                      <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetFieldCropTotalBilling("2", "price")}</span>
+                      <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetFieldCropTotalBilling("2", "averagecrop")}</span>
+                      <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetFieldCropTotalBilling("2", "Total")}</span>
+                      <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                     </li> : null}
                   {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                     <li>
-                      <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerFieldCrop3}</span>
-                      <span className="GrowerFinalBillingItemPrice" >{this.GetFieldCropTotalBilling("3", "price")}</span>
-                      <span className="GrowerFinalBillingItemAmount" >{this.GetFieldCropTotalBilling("3", "averagecrop")}</span>
-                      <span className="GrowerFinalBillingItemTotal" >{this.GetFieldCropTotalBilling("3", "Total")}</span>
-                      <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
+                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerFieldCrop3}{OnTheRightText}</span>
+                      <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetFieldCropTotalBilling("3", "price")}</span>
+                      <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetFieldCropTotalBilling("3", "averagecrop")}</span>
+                      <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetFieldCropTotalBilling("3", "Total")}</span>
+                      <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                     </li> : null}
                   {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                     <li>
-                      <span className="GrowerFinalBillingItemName" >שתילי {this.state.GrowerFieldCrop4}</span>
-                      <span className="GrowerFinalBillingItemPrice" >{this.GetFieldCropTotalBilling("4", "price")}</span>
-                      <span className="GrowerFinalBillingItemAmount" >{this.GetFieldCropTotalBilling("4", "averagecrop")}</span>
-                      <span className="GrowerFinalBillingItemTotal" >{this.GetFieldCropTotalBilling("4", "Total")}</span>
-                      <span className="GrowerFinalBillingItemBullingType" >חד פעמי</span>
+                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerFieldCrop4}{OnTheRightText}</span>
+                      <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetFieldCropTotalBilling("4", "price")}</span>
+                      <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetFieldCropTotalBilling("4", "averagecrop")}</span>
+                      <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetFieldCropTotalBilling("4", "Total")}</span>
+                      <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                     </li> : null}
                   <li className="GrowerFinalBillingMainHeader2" >
-                    <span className="GrowerFinalBillingItemName" >סה"כ לתשלום</span>
-                    <span className="GrowerFinalBillingItemPrice" ></span>
-                    <span className="GrowerFinalBillingItemAmount" ></span>
-                    <span className="GrowerFinalBillingItemTotal" >{(parseFloat(this.GetFieldCropTotalPayment("1")) + parseFloat(this.GetTotalPayment("1"))).toString()} ש"ח</span>
-                    <span className="GrowerFinalBillingItemBullingType" ></span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{Language.GrowerTotalBillMonthlyTotalToPay}</span>
+                    <span className={'GrowerFinalBillingItemPrice ' + FloatClass} ></span>
+                    <span className={'GrowerFinalBillingItemAmount ' + FloatClass} ></span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{(parseFloat(this.GetFieldCropTotalPayment("1")) + parseFloat(this.GetTotalPayment("1"))).toString()} {Language.Shekals}</span>
+                    <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} ></span>
                   </li>
                 </ul>
               </div>
