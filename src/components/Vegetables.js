@@ -71,7 +71,6 @@ class Vegetables extends Component {
                   alt=""
                   src={require('../Resources/EmptyLeaf.png')}
                   className='vegetableImage'
-                  color='danger'
                   size='sm'
                   id={_id}
                   onClick={this.onVegtClick.bind(this, _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink)}
@@ -81,7 +80,6 @@ class Vegetables extends Component {
                   alt=""
                   src={require('../Resources/Leaf.png')}
                   className='vegetableImage'
-                  color='danger'
                   size='sm'
                   id={_id}
                   onClick={this.RemoveVegtClick.bind(this, name)}

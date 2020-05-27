@@ -199,6 +199,7 @@ class RegisterPage extends Component {
     var lowerCaseLetters = /[a-z]/g;
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
+    var english = /^[A-Za-z0-9@!~#$%^&*_-]*$/;
     let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString();
     const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
     let FoundEmpty = false;
@@ -221,7 +222,7 @@ class RegisterPage extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.password.length < 8 || !this.state.password.match(numbers) || !this.state.password.match(upperCaseLetters ) || !this.state.password.match(lowerCaseLetters )){
+    if(this.state.password.length < 8 || !this.state.password.match(numbers) || !this.state.password.match(upperCaseLetters ) || !this.state.password.match(lowerCaseLetters ) || !english.test(this.state.password)){
       this.setState({
         PasswordStrengthValidation: false
       });
@@ -390,7 +391,8 @@ class RegisterPage extends Component {
     var lowerCaseLetters = /[a-z]/g;
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
-    if(password.length < 8 || !password.match(numbers) || !password.match(upperCaseLetters ) || !password.match(lowerCaseLetters )){
+    var english = /^[A-Za-z0-9@!~#$%^&*_-]*$/;
+    if(password.length < 8 || !password.match(numbers) || !password.match(upperCaseLetters ) || !password.match(lowerCaseLetters ) || !english.test(password)){
       if(password.length !== 0){
         if(this.state.PasswordStrengthValidation){
           this.setState({

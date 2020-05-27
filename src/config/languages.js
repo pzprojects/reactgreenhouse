@@ -118,12 +118,18 @@ export const Hebrew = {
     GrowerTotalBillItemPaymentType: 'סוג התשלום',
     GrowerTotalBillMonthlyItemPaymentType: 'חודשי',
     GrowerTotalBillOneTimeItemPaymentType: 'חד פעמי',
-    GrowerTotalBillOneTimeTitle: 'פירוט חשבון רכיבים משתנים',
+    GrowerTotalBillOneTimeTitle: 'פירוט חשבון שתילים',
     GrowerTotalBillMonthlyTotalToPay: 'סה"כ לתשלום',
     GrowerTotalBillPlants: 'שתילי',
     GrowerFieldCropsText: 'גידולי שדה',
     GrowerDoubleHelkaErrorText1: 'לגידול הירקות הבאים:',
-    GrowerDoubleHelkaErrorText2: 'יש צורך בשני טורי גידול'
+    GrowerDoubleHelkaErrorText2: 'יש צורך בשני טורי גידול',
+    GrowerSubmitMsgText: 'מגדל יקר',
+    FarmerSubmitMsgText: 'חקלאי יקר',
+    SubmitMsgText2: 'פרטיך נקלטו בהצלחה ונבדקים כעת ע"י Co-GreenHouse',
+    SubmitMsgText3: 'נציג ייצור איתך קשר בהקדם',
+    SubmutMsgButton: 'חזרה לדף הבית',
+    UpdateProfileMsg: 'פרטיך עודכנו בהצלחה!'
 };
 
 export const English = {
@@ -245,11 +251,17 @@ export const English = {
     GrowerTotalBillMonthlyItemTotal: 'Total',
     GrowerTotalBillMonthlyItemPaymentType: 'Monthly',
     GrowerTotalBillOneTimeItemPaymentType: 'one-time',
-    GrowerTotalBillOneTimeTitle: 'Details of a changing elements payment',
+    GrowerTotalBillOneTimeTitle: 'Details of a seedlings payment',
     GrowerTotalBillMonthlyTotalToPay: 'Total charge',
     GrowerTotalBillPlants: 'seedling',
     GrowerTotalBillItemPaymentType: 'Payment method',
     GrowerFieldCropsText: 'Field crops',
     GrowerDoubleHelkaErrorText1: 'For growing the following vegetables:',
-    GrowerDoubleHelkaErrorText2: 'two crops columns are needed'
+    GrowerDoubleHelkaErrorText2: 'two crops columns are needed',
+    GrowerSubmitMsgText: 'Dear grower',
+    FarmerSubmitMsgText: 'Dear farmer',
+    SubmitMsgText2: 'Your details have been successfully received and are now being tested by Co-GreenHouse',
+    SubmitMsgText3: 'Representative will contact you shortly',
+    SubmutMsgButton: 'Back to Home page',
+    UpdateProfileMsg: 'Your details have been updated successfully'
 };

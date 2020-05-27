@@ -111,7 +111,8 @@ class FarmerPersonalArea extends Component {
     ResetVegLog: PropTypes.func.isRequired,
     SetVegLogDone: PropTypes.func.isRequired,
     resetChoosenVegetables: PropTypes.func.isRequired,
-    resetChoosenfieldCrop: PropTypes.func.isRequired
+    resetChoosenfieldCrop: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -585,10 +586,29 @@ class FarmerPersonalArea extends Component {
   }
 
   render() {
+    const { Language, direction } = this.props;
     let ShowVegPricing = false;
     let ShowFieldCropPricing = false;
     let {imagePreviewUrl} = this.state;
-    let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
+    let $imagePreview;
+    let FloatClass = "Co-Align-Right";
+    let TextAlignClass = "Co-Text-Align-Right";
+    let ReverseTextAlignClass = "Co-Text-Align-Left";
+    let HelpBtnClass = "HelpBtnRtl";
+    if(direction === 'rtl'){
+     $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
+     FloatClass = "Co-Align-Right";
+     TextAlignClass = "Co-Text-Align-Right";
+     ReverseTextAlignClass = "Co-Text-Align-Left";
+     HelpBtnClass = "HelpBtnRtl";
+    }
+    else{
+     $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload-English.png')} onClick={this.OpenFileExplorer}/>);
+     FloatClass = "Co-Align-Left";
+     TextAlignClass = "Co-Text-Align-Left";
+     ReverseTextAlignClass = "Co-Text-Align-Right";
+     HelpBtnClass = "HelpBtnLtr";
+    }
     if (imagePreviewUrl) {
       $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
     }
@@ -955,7 +975,10 @@ const mapStateToProps = state => ({
   choosenfieldcrop: state.choosenfieldcrop,
   ChoosenFieldCrops: state.choosenfieldcrop.ChoosenFieldCrops,
   veglog: state.veglog,
-  VegLogUpdated: state.veglog.VegLogUpdated
+  VegLogUpdated: state.veglog.VegLogUpdated,
+  language: state.language,
+  Language: state.language.Language,
+  direction: state.language.direction
 });
 
 export default connect(

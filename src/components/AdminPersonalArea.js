@@ -99,9 +99,9 @@ class AdminPersonalArea extends Component {
     var VegAsString = '';
     for(var i=0; i<Mychoosenvegetables.length ;i++){
       if(Mychoosenvegetables.length === (i+1)){
-        VegAsString += Mychoosenvegetables[i].name + ": " + Mychoosenvegetables[i].price;
+        VegAsString += Mychoosenvegetables[i].name + ": " + Mychoosenvegetables[i].price + ' ש"ח';
       }
-      else VegAsString += Mychoosenvegetables[i].name + ": " + Mychoosenvegetables[i].price + ", ";   
+      else VegAsString += Mychoosenvegetables[i].name + ": " + Mychoosenvegetables[i].price + ' ש"ח' + ", ";   
     }
     return VegAsString;
   };
@@ -121,9 +121,9 @@ class AdminPersonalArea extends Component {
     var PlansAsString = '';
     for(var i=0; i<MychoosenPlans.length ;i++){
       if(MychoosenPlans.length === (i+1)){
-        PlansAsString += MychoosenPlans[i].name + ": " + MychoosenPlans[i].cost;
+        PlansAsString += MychoosenPlans[i].name + ": " + MychoosenPlans[i].cost + ' ש"ח';
       }
-      else PlansAsString += MychoosenPlans[i].name + ": " + MychoosenPlans[i].cost + ", ";   
+      else PlansAsString += MychoosenPlans[i].name + ": " + MychoosenPlans[i].cost + ' ש"ח' + ", ";   
     }
     return PlansAsString;
   };
@@ -131,7 +131,7 @@ class AdminPersonalArea extends Component {
   ReturnChoosingFieldCropPlanAsStringForExcel = (fieldcropplan) => {
     var PlansAsString = '';
     if(fieldcropplan.avaliabile){
-      PlansAsString = "מסלול גידולי שדה פעיל בעלות: " + fieldcropplan.cost;
+      PlansAsString = "מסלול גידולי שדה פעיל בעלות: " + fieldcropplan.cost + ' ש"ח';
     }
     else{
       PlansAsString = "מסלול גידולי שדה אינו פעיל";
@@ -159,7 +159,7 @@ class AdminPersonalArea extends Component {
       'ירקות נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(farmer.choosenvegetables),
       'גידולי שדה נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(farmer.choosenfieldcrops),
       'מסלול גידולי שדה': this.ReturnChoosingFieldCropPlanAsStringForExcel(farmer.fieldcropplan), 
-      'תוכניות': this.ReturnPlansAsStringForExcel(farmer.plans), 
+      'מסלולי חממה': this.ReturnPlansAsStringForExcel(farmer.plans), 
       'כתובת': farmer.address, 
       'תאריך רישום': farmer.register_date
     }));
@@ -178,7 +178,7 @@ class AdminPersonalArea extends Component {
       'ירקות נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(grower.choosenvegetables),
       'גידולי שדה נבחרים': this.ReturnChoosingVegtabilesAsStringForExcel(grower.choosenfieldcrops),
       'מסלול גידולי שדה': this.ReturnChoosingFieldCropPlanAsStringForExcel(grower.fieldcropplan), 
-      'תוכניות': grower.plan.name + ": " + grower.plan.cost, 
+      'מסלולי חממה': grower.plan.name + ": " + grower.plan.cost, 
       'חקלאי נבחר': grower.chossenfarmerfullname + ": " + grower.chossenfarmer,
       'האם פעיל':  grower.isactive,
       'כתובת': grower.address, 

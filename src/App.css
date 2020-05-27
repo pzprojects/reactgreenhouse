@@ -334,7 +334,6 @@
     margin-bottom: 4vw;
     background-color: #E4FBDC;
     border-radius: 4vw;
-    font-size: 0.83vw;
   }
 
   .vegetablesOpen div.container ul.list-group {
@@ -372,10 +371,18 @@
     display: block;
     float: right;
   }
+
+  .vegetablesList li span img {
+    width: 0.68vw;
+    height: 0.73vw;
+    margin-top: 0.4vw;
+    display: block;
+  }
   
   .vegetablesList li span.vegetablesItemName {
     margin-right: 0.5vw;
     margin-left: 0.5vw;
+    font-size: 0.83vw;
   }
   
   .vegetablesApproveButton {
@@ -474,9 +481,6 @@
     text-align: right;
   }
   
-  .ChoosenVegetablesList span.ChoosenVegetabletext {
-    
-  }
 
   /* Field Crop plan */
 
@@ -3545,7 +3549,6 @@ div.PersonalDetails .form-group input {
   margin-bottom: 4vw;
   background-color: #E4FBDC;
   border-radius: 4vw;
-  font-size: 0.83vw;
 }
 
 .vegetablesOpen div.container ul.list-group {
@@ -3584,9 +3587,17 @@ div.PersonalDetails .form-group input {
   float: right;
 }
 
+.vegetablesList li span img {
+  width: 0.68vw;
+  height: 0.73vw;
+  margin-top: 0.4vw;
+  display: block;
+}
+
 .vegetablesList li span.vegetablesItemName {
   margin-right: 0.5vw;
   margin-left: 0.5vw;
+  font-size: 0.83vw;
 }
 
 .vegetablesApproveButton {

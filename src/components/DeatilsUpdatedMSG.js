@@ -3,19 +3,31 @@ import { Container, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import { loadUser } from '../actions/authActions';
 
 class DeatilsUpdatedMSG extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool
   };
 
+  static propTypes = {
+    language: PropTypes.object.isRequired,
+    loadUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+  };
+
+  componentWillUnmount() {
+    window.location.reload(false);
+  }
+
   render() {
+    const { Language } = this.props;
     return (
       <Container>
         <div className="FarmerSubmissionMSGHolder">
-          <div className="FarmerSubmissionMSGHeader">פרטיך עודכנו בהצלחה!</div>
+          <div className="FarmerSubmissionMSGHeader">{Language.UpdateProfileMsg}</div>
           <div className="FarmerSubmissionMSGButtonHolder">
-            <Button className="FarmerSubmissionMSGButton" type="button" size="lg" tag={Link} to="/">חזרה לדף הבית</Button>
+            <Button className="FarmerSubmissionMSGButton" type="button" size="lg" tag={Link} to="/">{Language.SubmutMsgButton}</Button>
          </div>
         </div>
       </Container>
@@ -24,9 +36,13 @@ class DeatilsUpdatedMSG extends Component {
 }
 
 const mapStateToProps = state => ({
+  auth: state.auth,
+  language: state.language,
+  Language: state.language.Language,
+  direction: state.language.direction
 });
 
 export default connect(
   mapStateToProps,
-  { }
+  { loadUser }
 )(DeatilsUpdatedMSG);
