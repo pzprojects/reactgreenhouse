@@ -16,6 +16,7 @@ class ListOfGrowers extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
+    language: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool,
     grower: PropTypes.object.isRequired,
     getgrowersbyfarmer: PropTypes.func.isRequired
@@ -28,6 +29,25 @@ class ListOfGrowers extends Component {
   componentDidUpdate(prevProps) {
     
   }
+
+  // Return plan name in the choosen language
+  ReturnPlanInChoosenLanguage = (PlanName) => {
+    var NameToReturn = '';
+    const { Language } = this.props;
+    switch (PlanName) {
+      case "מגדל עצמאי":
+        NameToReturn = Language.PlanName1;
+        break;
+      case "ביניים":
+        NameToReturn = Language.PlanName2;
+        break;
+      case "ליווי שוטף":
+        NameToReturn = Language.PlanName3;
+        break;
+    }
+
+    return NameToReturn;
+  };
 
   ReturnChoosingVegtabilesAsString = (Mychoosenvegetables) => {
     var VegAsString = '';
@@ -47,6 +67,14 @@ class ListOfGrowers extends Component {
   };
 
   render() {
+    const { direction, Language } = this.props;
+    let FloatClass = "Co-Align-Right";
+    if(direction === 'rtl'){
+     FloatClass = "Co-Align-Right";
+    }
+    else{
+     FloatClass = "Co-Align-Left";
+    }
     try{
         const { growers } = this.props.grower;
         var SortedGrowers = [];
@@ -96,65 +124,66 @@ class ListOfGrowers extends Component {
         <ListGroup>
             <ListGroupItem className="GrowerListMainTitleListItem" >
             <div className='GrowerListMainTitle'>
-            לקוחות
+            {Language.GrowerListTitle}
             </div>
             </ListGroupItem>
         </ListGroup>
         <ListGroup>
             <ListGroupItem className="GrowerListTitleListItem" >
             <div className='GrowerListTitle'>
-                    <div className='GrowerListTitleText1'>
-                      <span>שם מלא</span>
+                    <div className={'GrowerListTitleText1 ' + FloatClass}>
+                      <span>{Language.GrowerListFullName}</span>
                       <span className='IsActiveArrow' onClick={() => this.setState({ NameOrder: !this.state.NameOrder, ActiveSort: "NameOrder" })} >{this.state.NameOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
-                    <div className='GrowerListTitleText2'>
-                      <span>טלפון</span>
+                    <div className={'GrowerListTitleText2 ' + FloatClass}>
+                      <span>{Language.GrowerListPhone}</span>
                     </div>
-                    <div className='GrowerListTitleText3'>
-                      <span>דואר אלקטרוני</span>
+                    <div className={'GrowerListTitleText3 ' + FloatClass}>
+                      <span>{Language.GrowerListEmail}</span>
                     </div>
-                    <div className='GrowerListTitleText4'>
-                      <span>ארבעת הגידולים</span>
+                    <div className={'GrowerListTitleText4 ' + FloatClass}>
+                      <span>{Language.GrowerListFourCrops}</span>
                     </div>
-                    <div className='GrowerListTitleText5'>
-                      <span>לקוח פעיל</span>
+                    <div className={'GrowerListTitleText5 ' + FloatClass}>
+                      <span>{Language.GrowerListClientActive}</span>
                       <span className='IsActiveArrow' onClick={() => this.setState({ IsActiveOrder: !this.state.IsActiveOrder, ActiveSort: "IsActiveOrder" })} >{this.state.IsActiveOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
-                    <div className='GrowerListTitleText6'>
-                      <span>תחילת מסלול</span>
+                    <div className={'GrowerListTitleText6 ' + FloatClass}>
+                      <span>{Language.GrowerListPlanActivation}</span>
                       <span className='IsActiveArrow' onClick={() => this.setState({ DateOrder: !this.state.DateOrder, ActiveSort: "DateOrder" })} >{this.state.DateOrder ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</span>
                     </div>
-                    <div className='GrowerListTitleText7'>
-                      <span>מסלול</span>
+                    <div className={'GrowerListTitleText7 ' + FloatClass}>
+                      <span>{Language.GrowerListPlan}</span>
                     </div>
             </div>
             </ListGroupItem>
         </ListGroup>
         <ListGroup>
-            {SortedGrowers.map(({ _id, name, familyname, phone, email, sizearea, choosenvegetables, plan, isactive, register_date}) => (
+            {SortedGrowers.map(({ _id, name, familyname, phone, email, sizearea, choosenvegetables, choosenfieldcrops, fieldcropplan, plan, isactive, register_date}) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem className="GrowerListBodyListItem">
                   <div className='GrowerList'>
-                    <div  className='GrowerListName'>
+                    <div  className={'GrowerListName ' + FloatClass}>
                       <span>{name + " " + familyname}&nbsp;</span>
                     </div>
-                    <div  className='GrowerListPhone'>
+                    <div  className={'GrowerListPhone ' + FloatClass}>
                       <span>{phone}&nbsp;</span>
                     </div>
-                    <div className='GrowerListEmail'>
+                    <div className={'GrowerListEmail ' + FloatClass}>
                       <span><a href={"mailto:" + email}>{email}</a>&nbsp;</span>
                     </div>
-                    <div className='GrowerListOfchoosenvegetables2'>
-                      <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}&nbsp;</span>
+                    <div className={'GrowerListOfchoosenvegetables2 ' + FloatClass}>
+                      <span><strong>{Language.GrowerListVegDetails}</strong>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}<p>
+                      <strong>{fieldcropplan.avaliabile ? Language.GrowerListFieldCropsDetails : null}</strong>{fieldcropplan.avaliabile ? this.ReturnChoosingVegtabilesAsString(choosenfieldcrops) : null}</p>&nbsp;</span>
                     </div>
-                    <div className='GrowerListIsActive'>
+                    <div className={'GrowerListIsActive ' + FloatClass}>
                       <span>{isactive ? 'כן' : 'לא'}&nbsp;</span>
                     </div>
-                    <div className='GrowerListPlanActivation'>
+                    <div className={'GrowerListPlanActivation ' + FloatClass}>
                       <span>{this.GetDateAsString(register_date)}&nbsp;</span>
                     </div>
-                    <div className='GrowerListplan'>
-                      <span>{plan.name}&nbsp;</span>
+                    <div className={'GrowerListplan ' + FloatClass}>
+                      <span>{this.ReturnPlanInChoosenLanguage(plan.name)}{fieldcropplan.avaliabile ? Language.GrowerListFieldCropsExtra : null}&nbsp;</span>
                     </div>
                   </div>
                 </ListGroupItem>
@@ -170,7 +199,10 @@ class ListOfGrowers extends Component {
 const mapStateToProps = state => ({
     auth: state.auth,
     isAuthenticated: state.auth.isAuthenticated,
-    grower: state.grower
+    grower: state.grower,
+    language: state.language,
+    Language: state.language.Language,
+    direction: state.language.direction
 });
 
 export default connect(

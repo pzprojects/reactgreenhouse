@@ -21,7 +21,7 @@ import Vegetables from '../components/Vegetables';
 import VegetablesPricing from '../components/VegetablesPricing';
 import FieldCrops from '../components/FieldCrops';
 import FarmCropsPricing from '../components/FarmCropsPricing';
-import { getChoosenVegetables,addChoosenVegetable, resetChoosenVegetables } from '../actions/choosenVegetablesAction';
+import { getChoosenVegetables, addChoosenVegetable, resetChoosenVegetables } from '../actions/choosenVegetablesAction';
 import { getChoosenfieldCrops, addChoosenfieldCrop, resetChoosenfieldCrop } from '../actions/choosenFieldCropsAction';
 import { updatefarmerprofile, updatefarmerbyemail } from '../actions/updateUserAction';
 import { addFarmer } from '../actions/farmerAction';
@@ -53,12 +53,12 @@ class FarmerPersonalArea extends Component {
     FieldCropsButtonOn: true,
     VegtButtonOn: true,
     AddBackgroundClassToVeg: 'vegetables',
-    cost1 : '200',
-    plan1 : false,
-    cost2 : '300',
-    plan2 : false,
-    cost3 : '400',
-    plan3 : false,
+    cost1: '200',
+    plan1: false,
+    cost2: '300',
+    plan2: false,
+    cost3: '400',
+    plan3: false,
     ScreenNumber: "1",
     fullname: '',
     accountnumber: '',
@@ -101,7 +101,7 @@ class FarmerPersonalArea extends Component {
     choosenfieldcrop: PropTypes.object.isRequired,
     addFarmer: PropTypes.func.isRequired,
     farmer: PropTypes.object.isRequired,
-    updatefarmerprofile : PropTypes.func.isRequired,
+    updatefarmerprofile: PropTypes.func.isRequired,
     updateduser: PropTypes.object.isRequired,
     updatefarmerbyemail: PropTypes.func.isRequired,
     getSystemData: PropTypes.func.isRequired,
@@ -121,30 +121,30 @@ class FarmerPersonalArea extends Component {
     this.props.resetChoosenVegetables();
     this.props.resetChoosenfieldCrop();
     this.props.getSystemData();
-    var i=0;
+    var i = 0;
     const { user } = this.props.auth;
 
     this.setState({
-        name: user.name,
-        email: user.email,
-        familyname: user.familyname,
-        phone: user.phone,
-        imageurl: user.imageurl,
-        imagePreviewUrl: user.imageurl,
-        UserID: user._id,
-        hamamasize: user.hamamasize,
-        aboutme: user.aboutme,
-        TotalNumberOfHamamot: (parseFloat(user.hamamasize)/16).toString(),
-        DefaultNumberOfHamamot: (parseFloat(user.hamamasize)/16).toString(),
-        CurrentActiveFarms: user.numberofactivefarms,
-        CropFieldPlanActive: user.fieldcropplan.avaliabile,
-        CropFieldPlanCost: user.fieldcropplan.cost
+      name: user.name,
+      email: user.email,
+      familyname: user.familyname,
+      phone: user.phone,
+      imageurl: user.imageurl,
+      imagePreviewUrl: user.imageurl,
+      UserID: user._id,
+      hamamasize: user.hamamasize,
+      aboutme: user.aboutme,
+      TotalNumberOfHamamot: (parseFloat(user.hamamasize) / 16).toString(),
+      DefaultNumberOfHamamot: (parseFloat(user.hamamasize) / 16).toString(),
+      CurrentActiveFarms: user.numberofactivefarms,
+      CropFieldPlanActive: user.fieldcropplan.avaliabile,
+      CropFieldPlanCost: user.fieldcropplan.cost
     })
 
-    for(i=0; i < user.choosenvegetables.length; i++){
+    for (i = 0; i < user.choosenvegetables.length; i++) {
       this.props.addChoosenVegetable(user.choosenvegetables[i]);
     }
-    for(i=0; i < user.choosenfieldcrops.length; i++){
+    for (i = 0; i < user.choosenfieldcrops.length; i++) {
       this.props.addChoosenfieldCrop(user.choosenfieldcrops[i]);
     }
   }
@@ -173,31 +173,31 @@ class FarmerPersonalArea extends Component {
         this.setState({ msg: null });
       }
     }
-    
+
     if (system !== prevProps.system) {
-      try{
+      try {
         const { SystemData } = this.props.system;
         this.setState({
           SystemDefaulNumberOfHamamot: SystemData.hamamadefaultsize,
-          TotalNumberOfHamamot: (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString(),
-          DefaultNumberOfHamamot: (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString()
+          TotalNumberOfHamamot: (parseFloat(this.state.hamamasize) / parseFloat(SystemData.hamamadefaultsize)).toString(),
+          DefaultNumberOfHamamot: (parseFloat(this.state.hamamasize) / parseFloat(SystemData.hamamadefaultsize)).toString()
         });
       }
-      catch{}
+      catch{ }
     }
 
     // If authenticated, close modal
     if (this.state.modal) {
-        let VegLogUpdatedSuccess = false;
-        if(!this.state.IgnoreVegLog){
-          VegLogUpdatedSuccess = VegLogUpdated;
-        }
-        else{
-          VegLogUpdatedSuccess = true;
-        }
-        if (isAuthenticated && this.state.SuccessFileUpload && VegLogUpdatedSuccess) {
-          this.toggle();
-        }
+      let VegLogUpdatedSuccess = false;
+      if (!this.state.IgnoreVegLog) {
+        VegLogUpdatedSuccess = VegLogUpdated;
+      }
+      else {
+        VegLogUpdatedSuccess = true;
+      }
+      if (isAuthenticated && this.state.SuccessFileUpload && VegLogUpdatedSuccess) {
+        this.toggle();
+      }
     }
   }
 
@@ -208,7 +208,7 @@ class FarmerPersonalArea extends Component {
     this.props.resetChoosenVegetables();
     this.props.resetChoosenfieldCrop();
     this.setState({
-        modal: !this.state.modal
+      modal: !this.state.modal
     });
     this.setState({
       ActivateLoader: !this.state.ActivateLoader,
@@ -225,13 +225,13 @@ class FarmerPersonalArea extends Component {
 
     var Validated = true;
     var ScrollToLocation = "top";
-    let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(this.state.SystemDefaulNumberOfHamamot)).toString();
+    let numberofactivefarms = (parseFloat(this.state.hamamasize) / parseFloat(this.state.SystemDefaulNumberOfHamamot)).toString();
     const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
     const { ChoosenFieldCrops } = this.props.choosenfieldcrop;
     let FoundEmpty = false;
 
     // Empty fields
-    if(this.state.name === ''){
+    if (this.state.name === '') {
       this.setState({
         nameValidation: false
       });
@@ -239,7 +239,7 @@ class FarmerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.email === '' || !this.ValidateEmail(this.state.email)){
+    if (this.state.email === '' || !this.ValidateEmail(this.state.email)) {
       this.setState({
         emailValidation: false
       });
@@ -247,7 +247,7 @@ class FarmerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.familyname === ''){
+    if (this.state.familyname === '') {
       this.setState({
         familynameValidation: false
       });
@@ -255,7 +255,7 @@ class FarmerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.phone === ''){
+    if (this.state.phone === '') {
       this.setState({
         phoneValidation: false
       });
@@ -263,7 +263,7 @@ class FarmerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.hamamasize === '' || (numberofactivefarms%1) !== 0){
+    if (this.state.hamamasize === '' || (numberofactivefarms % 1) !== 0) {
       this.setState({
         hamamasizeValidation: false
       });
@@ -273,31 +273,31 @@ class FarmerPersonalArea extends Component {
 
     // Validate veg pricing
     var i = 0;
-    for(i = 0; i < choosenvegetables.length; i++){
-      if(choosenvegetables[i].price === ''){
+    for (i = 0; i < choosenvegetables.length; i++) {
+      if (choosenvegetables[i].price === '') {
         FoundEmpty = true;
       }
     }
-    for(i = 0; i < ChoosenFieldCrops.length; i++){
-      if(ChoosenFieldCrops[i].price === ''){
+    for (i = 0; i < ChoosenFieldCrops.length; i++) {
+      if (ChoosenFieldCrops[i].price === '') {
         FoundEmpty = true;
       }
     }
-    if(FoundEmpty){
+    if (FoundEmpty) {
       Validated = false;
       ScrollToLocation = "bottom";
       this.setState({
-        VegPricingValidation : true
+        VegPricingValidation: true
       })
     }
-    else{
+    else {
       this.setState({
-        VegPricingValidation : false
+        VegPricingValidation: false
       })
     }
 
-    if(!Validated){
-      if(ScrollToLocation === "top"){
+    if (!Validated) {
+      if (ScrollToLocation === "top") {
         window.scrollTo({
           top: 0,
           behavior: 'smooth',
@@ -309,7 +309,7 @@ class FarmerPersonalArea extends Component {
   };
 
   ChangeScreen = (ScreenNum) => {
-    if(this.ValidateForm()){
+    if (this.ValidateForm()) {
       this.setState({
         ScreenNumber: ScreenNum
       });
@@ -318,7 +318,7 @@ class FarmerPersonalArea extends Component {
 
   ResetValidation = (FieldToReset) => {
 
-    switch(FieldToReset) {
+    switch (FieldToReset) {
       case "name":
         // Regulations
         this.setState({
@@ -354,35 +354,35 @@ class FarmerPersonalArea extends Component {
   };
 
   onChange = e => {
-    
+
     // validations
-    switch(e.target.name) {
+    switch (e.target.name) {
       case "name":
-        if(this.state.nameValidation === false){
+        if (this.state.nameValidation === false) {
           this.ResetValidation("name")
         }
         break;
       case "familyname":
-        if(this.state.familynameValidation === false){
+        if (this.state.familynameValidation === false) {
           this.ResetValidation("familyname")
         }
         break;
       case "email":
-        if(this.state.emailValidation === false){
+        if (this.state.emailValidation === false) {
           this.ResetValidation("email")
         }
         break;
       case "phone":
-        if(this.state.phoneValidation === false){
+        if (this.state.phoneValidation === false) {
           this.ResetValidation("phone")
         }
         break;
       case "hamamasize":
-        if(this.state.hamamasizeValidation === false){
+        if (this.state.hamamasizeValidation === false) {
           this.ResetValidation("hamamasize")
         }
         this.setState({
-          TotalNumberOfHamamot: (parseFloat(e.target.value)/parseFloat(this.state.SystemDefaulNumberOfHamamot)).toString()
+          TotalNumberOfHamamot: (parseFloat(e.target.value) / parseFloat(this.state.SystemDefaulNumberOfHamamot)).toString()
         })
         break;
       default:
@@ -391,14 +391,14 @@ class FarmerPersonalArea extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  mergeArrayObjects = (arr1,arr2) => {
+  mergeArrayObjects = (arr1, arr2) => {
     let merge = [];
-  
-    for(var i =0; i < arr1.length; i++){
-      for(var j =0; j < arr2.length;j++){
-        if(arr1[i].name === arr2[j].name  && arr1[i].price !== arr2[j].price){
-            //pushing the merged objects into array
-            merge.push({_id:arr1[i]._id ,name:arr1[i].name ,pricebefore: arr1[i].price,priceafter: arr2[j].price})
+
+    for (var i = 0; i < arr1.length; i++) {
+      for (var j = 0; j < arr2.length; j++) {
+        if (arr1[i].name === arr2[j].name && arr1[i].price !== arr2[j].price) {
+          //pushing the merged objects into array
+          merge.push({ _id: arr1[i]._id, name: arr1[i].name, pricebefore: arr1[i].price, priceafter: arr2[j].price })
         }
       }
     }
@@ -408,7 +408,7 @@ class FarmerPersonalArea extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    if(this.ValidateForm()){
+    if (this.ValidateForm()) {
       const { user } = this.props.auth;
       const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
       const choosenfieldcrops = this.props.choosenfieldcrop.ChoosenFieldCrops;
@@ -421,16 +421,16 @@ class FarmerPersonalArea extends Component {
 
       let HelkotToAdd = parseFloat(this.state.TotalNumberOfHamamot) - parseFloat(this.state.DefaultNumberOfHamamot);
       let numberofactivefarms = (parseFloat(this.state.CurrentActiveFarms) + HelkotToAdd).toString();
-    
+
       this.setState({
         ActivateLoader: !this.state.ActivateLoader,
         modal: !this.state.modal
       });
 
-      if(this.state.imagename!==''){
+      if (this.state.imagename !== '') {
         this.uploadFile();
       }
-      else{
+      else {
         this.setState({
           SuccessFileUpload: true
         });
@@ -471,10 +471,10 @@ class FarmerPersonalArea extends Component {
       };
 
       // Attempt to save data
-      if(vegetablesafterchange.length > 0){
+      if (vegetablesafterchange.length > 0) {
         this.props.addVegLog(newLog);
       }
-      else{
+      else {
         this.setState({
           IgnoreVegLog: true
         });
@@ -490,16 +490,16 @@ class FarmerPersonalArea extends Component {
 
     let reader = new FileReader();
     let file = e.target.files[0];
-    
+
     const Allfiles = e.target.files;
     if (Allfiles && Allfiles.length > 0) {
       const tempFile = Allfiles[0];
       this.setState({ file: tempFile });
       var improvedname = uuidv4() + tempFile.name;
       improvedname = improvedname.replace(/[/\\?%_*:|"<>]/g, '-').trim().toLowerCase();
-      improvedname = improvedname.replace(/\s/g,'');
+      improvedname = improvedname.replace(/\s/g, '');
       const GenerateUrl = "https://profileimages12.s3.eu-west-1.amazonaws.com/" + improvedname;
-      this.setState({imageurl: GenerateUrl, imagename: improvedname});
+      this.setState({ imageurl: GenerateUrl, imagename: improvedname });
     }
 
     reader.onloadend = () => {
@@ -520,7 +520,7 @@ class FarmerPersonalArea extends Component {
   }
 
   uploadFile = e => {
-    
+
     const { file } = this.state;
     const contentType = file.type; // eg. image/jpeg or image/svg+xml
 
@@ -554,10 +554,10 @@ class FarmerPersonalArea extends Component {
 
   OpenListOfvegetables = e => {
     e.preventDefault();
-    
+
     let ChoosenClass = this.state.AddBackgroundClassToVeg;
 
-    if(ChoosenClass === 'vegetablesOpen'){
+    if (ChoosenClass === 'vegetablesOpen') {
       ChoosenClass = 'vegetables';
     }
     else ChoosenClass = 'vegetablesOpen';
@@ -571,10 +571,10 @@ class FarmerPersonalArea extends Component {
 
   OpenListOfFieldsCrops = e => {
     e.preventDefault();
-    
+
     let ChoosenClass = this.state.AddBackgroundClassToVeg;
 
-    if(ChoosenClass === 'vegetablesOpen'){
+    if (ChoosenClass === 'vegetablesOpen') {
       ChoosenClass = 'vegetables';
     }
     else ChoosenClass = 'vegetablesOpen';
@@ -585,45 +585,62 @@ class FarmerPersonalArea extends Component {
     });
   }
 
+  ReturnPlanInChoosenLanguage = (PlanName) => {
+    var NameToReturn = '';
+    const { Language } = this.props;
+    switch (PlanName) {
+      case "מגדל עצמאי":
+        NameToReturn = Language.PlanName1;
+        break;
+      case "ביניים":
+        NameToReturn = Language.PlanName2;
+        break;
+      case "ליווי שוטף":
+        NameToReturn = Language.PlanName3;
+        break;
+    }
+
+    return NameToReturn;
+  };
+
   render() {
     const { Language, direction } = this.props;
     let ShowVegPricing = false;
     let ShowFieldCropPricing = false;
-    let {imagePreviewUrl} = this.state;
+    let { imagePreviewUrl } = this.state;
     let $imagePreview;
     let FloatClass = "Co-Align-Right";
     let TextAlignClass = "Co-Text-Align-Right";
     let ReverseTextAlignClass = "Co-Text-Align-Left";
-    let HelpBtnClass = "HelpBtnRtl";
-    if(direction === 'rtl'){
-     $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer}/>);
-     FloatClass = "Co-Align-Right";
-     TextAlignClass = "Co-Text-Align-Right";
-     ReverseTextAlignClass = "Co-Text-Align-Left";
-     HelpBtnClass = "HelpBtnRtl";
+    if (direction === 'rtl') {
+      $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer} />);
+      FloatClass = "Co-Align-Right";
+      TextAlignClass = "Co-Text-Align-Right";
+      ReverseTextAlignClass = "Co-Text-Align-Left";
     }
-    else{
-     $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload-English.png')} onClick={this.OpenFileExplorer}/>);
-     FloatClass = "Co-Align-Left";
-     TextAlignClass = "Co-Text-Align-Left";
-     ReverseTextAlignClass = "Co-Text-Align-Right";
-     HelpBtnClass = "HelpBtnLtr";
+    else {
+      $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload-English.png')} onClick={this.OpenFileExplorer} />);
+      FloatClass = "Co-Align-Left";
+      TextAlignClass = "Co-Text-Align-Left";
+      ReverseTextAlignClass = "Co-Text-Align-Right";
     }
     if (imagePreviewUrl) {
       $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
     }
     const { user } = this.props.auth;
-    try{
+    try {
       var PersonalUserPlans = user.plans;
+      const { SystemData } = this.props.system;
+      var HamamadefaultsizeContainer = SystemData.hamamadefaultsize;
       const { ChoosenVegetables } = this.props.choosenvegetable;
-      if(ChoosenVegetables.length !== 0){
+      if (ChoosenVegetables.length !== 0) {
         ShowVegPricing = true;
       }
       const { ChoosenFieldCrops } = this.props.choosenfieldcrop;
-      if(ChoosenFieldCrops.length !== 0){
+      if (ChoosenFieldCrops.length !== 0) {
         ShowFieldCropPricing = true;
       }
-    }catch(e){
+    } catch (e) {
       PersonalUserPlans = [];
     }
     if (this.state.redirect) {
@@ -633,203 +650,201 @@ class FarmerPersonalArea extends Component {
     return (
       <div>
         <Container>
-            {this.state.msg ? (
-              <Alert color='danger'>{this.state.msg}</Alert>
-            ) : null}
-            {this.state.ScreenNumber === "1" ? (
-                <div className='GrowerPersonalAreaTabs'>
-                  <div className='GrowerPersonalAreaTabsButtons'>
-                    <Button color="success" type="button" disabled>
-                    פרטים אישיים
-                    </Button>
-                    <Button outline color="success" onClick={() => this.ChangeScreen("2")} type="button" >
-                    שינוי פרטים לתשלום חודשי
-                    </Button>
-                  </div>
-                </div>
-            ) : null}
-            {this.state.ScreenNumber === "2" ? (
-                <div className='GrowerPersonalAreaTabs'>
-                  <div className='GrowerPersonalAreaTabsButtons'>
-                    <Button outline color="success" onClick={() => this.ChangeScreen("1")} type="button" >
-                    פרטים אישיים
-                    </Button>
-                    <Button color="success" type="button" disabled>
-                    שינוי פרטים לתשלום חודשי
-                    </Button>
-                  </div>
-                </div>
-            ) : null}
-            <Form onSubmit={this.onSubmit}>
+          {this.state.msg ? (
+            <Alert color='danger'>{this.state.msg}</Alert>
+          ) : null}
+          {this.state.ScreenNumber === "1" ? (
+            <div className='GrowerPersonalAreaTabs'>
+              <div className='GrowerPersonalAreaTabsButtons'>
+                <Button color="success" type="button" disabled>
+                  {Language.PersonalDetails}
+                </Button>
+                <Button outline color="success" onClick={() => this.ChangeScreen("2")} type="button" >
+                  {Language.ChangePaymentMethod}
+                </Button>
+              </div>
+            </div>
+          ) : null}
+          {this.state.ScreenNumber === "2" ? (
+            <div className='GrowerPersonalAreaTabs'>
+              <div className='GrowerPersonalAreaTabsButtons'>
+                <Button outline color="success" onClick={() => this.ChangeScreen("1")} type="button" >
+                  {Language.PersonalDetails}
+                </Button>
+                <Button color="success" type="button" disabled>
+                  {Language.ChangePaymentMethod}
+                </Button>
+              </div>
+            </div>
+          ) : null}
+          <Form onSubmit={this.onSubmit}>
             {this.state.ScreenNumber === "1" ? (
               <FormGroup>
-              <div className='PersonalDetails'>
-                <div className="form-group">
-                  <Label for='name'>שם פרטי:</Label>
-                  <Input
-                    type='text'
-                    name='name'
-                    id='name'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.name}
-                    invalid= {!this.state.nameValidation}
-                    required
-                  />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
-                </div>
-                <div className="form-group">
-                  <Label for='familyname'>שם משפחה:</Label>
-                  <Input
-                    type='text'
-                    name='familyname'
-                    id='familyname'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.familyname}
-                    invalid= {!this.state.familynameValidation}
-                    required
-                  />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
-                </div>
-                <div className="form-group">
-                  <Label for='phone'>טלפון:</Label>
-                  <Input
-                    type='text'
-                    name='phone'
-                    id='phone'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.phone}
-                    invalid= {!this.state.phoneValidation}
-                    required
-                  />
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
-                </div>
-                <div className="form-group">
-                  <Label for='email'>אימייל (שם משתמש):</Label>
-                  <Input
-                    type='email'
-                    name='email'
-                    id='email'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.email}
-                    invalid= {!this.state.emailValidation}
-                    required
-                    disabled
-                  />
-                  <FormFeedback>כתובת האימייל שגויה</FormFeedback>
-                </div>
-                <div className="form-group">
-                  <Label for='hamamasize'>גודל שטח החממה:</Label>
-                  <Input
-                    type='text'
-                    name='hamamasize'
-                    id='hamamasize'
-                    placeholder='*'
-                    className='mb-3'
-                    onChange={this.onChange}
-                    value={this.state.hamamasize}
-                    invalid= {!this.state.hamamasizeValidation}
-                    required
-                  />
-                  <FormText>* יש להזין את גודל השטח בכפולות של {this.state.SystemDefaulNumberOfHamamot} מ"ר</FormText>
-                  <FormFeedback>שדה זה אינו יכול להישאר ריק או לא להיות בכפולות שצוינו</FormFeedback>
-                </div>
-                <div className="form-group">
-                  <Label for='TotalNumberOfHamamot'>מספר חלקות:</Label>
-                  <Input
-                    type='text'
-                    name='TotalNumberOfHamamot'
-                    id='TotalNumberOfHamamot'
-                    placeholder=''
-                    className='mb-3'
-                    value={this.state.TotalNumberOfHamamot}
-                    disabled
-                  />
-                </div>
-                <div className="form-group">
-                  <Label for='aboutme'>על עצמי:</Label>
-                  <Input type="textarea" name="aboutme" id="aboutme" className='AboutMe mb-3' onChange={this.onChange} value={this.state.aboutme}/>
-                  <FormText>* טקסט זה יופיע כאשר הלקוח יבחר חקלאי</FormText>
-                </div>
-              </div>
-              <div className='UploadImage'>
-                <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
-                {$imagePreview}
-              </div>
-              {this.state.email !== '' ? <div className='MyGrowersList'><ListOfGrowers FarmerEmail={this.state.email} /></div> : null}
-              <div className={this.state.AddBackgroundClassToVeg}>
-                <h3>יש לי את התנאים והניסיון לגדל:</h3>
-                { this.state.VegtButtonOn && this.state.FieldCropsButtonOn ? 
-                <Button color="success" onClick={this.OpenListOfvegetables}>רשימת ירקות לגידול</Button> : null }
-                { this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} /> }
-                { this.state.FieldCropsButtonOn && this.state.VegtButtonOn && this.state.CropFieldPlanActive ? 
-                <Button color="success" onClick={this.OpenListOfFieldsCrops}>רשימת גידולי שדה</Button> : null }
-                { this.state.FieldCropsButtonOn ? null : <FieldCrops OpenListOffieldcrops={this.OpenListOfFieldsCrops} /> }
-              </div>
-              <div className="ListOfVegCost">
-                <p>מחירי הירקות וגידולי השדה הינם המחירים המומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי</p>
-                { ShowVegPricing ? <VegetablesPricing /> : null}
-                { ShowFieldCropPricing ? <FarmCropsPricing /> : null}
-              </div>
-              {this.state.VegPricingValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>יש לוודא שלכל ירק מעודכן מחיר</Alert></div> : null}
-              <div className="farmer-personal-form-group">
-                <div className="PersonalFarmerPlansContainer">
-                  <div className="PersonalFarmerPlansHeader">מחירי מסלולים</div>
-                  <div className="PersonalFarmerPlans">
-                    {PersonalUserPlans.map(function(item, key) {
-                      return (
-                        <div className='PersonalChoosenPlanItem'  key={key}>
-                          <div className='PersonalChoosenPlanItemName'>
-                            <span className='PersonalChoosenPlanItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                            <span className='PersonalChoosenPlanItemTitle'>{item.name}</span>
-                            <span className='PersonalChoosenPlanItemCost'> ₪ {item.cost}</span>
-                            <span className='PersonalChoosenPlanItemText1'>לחודש</span>
-                          </div>
-                        </div>
-                      )
-                    })}
+                <div className={'PersonalDetails ' + FloatClass}>
+                  <div className="form-group">
+                    <Label className={FloatClass + " " + TextAlignClass} for='name'>{Language.FirstName}:</Label>
+                    <Input
+                      type='text'
+                      name='name'
+                      id='name'
+                      placeholder='*'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
+                      onChange={this.onChange}
+                      value={this.state.name}
+                      invalid={!this.state.nameValidation}
+                      required
+                    />
+                    <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
+                  </div>
+                  <div className="form-group">
+                    <Label className={FloatClass + " " + TextAlignClass} for='familyname'>{Language.LastName}:</Label>
+                    <Input
+                      type='text'
+                      name='familyname'
+                      id='familyname'
+                      placeholder='*'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
+                      onChange={this.onChange}
+                      value={this.state.familyname}
+                      invalid={!this.state.familynameValidation}
+                      required
+                    />
+                    <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
+                  </div>
+                  <div className="form-group">
+                    <Label className={FloatClass + " " + TextAlignClass} for='phone'>{Language.Phone}:</Label>
+                    <Input
+                      type='text'
+                      name='phone'
+                      id='phone'
+                      placeholder='*'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
+                      onChange={this.onChange}
+                      value={this.state.phone}
+                      invalid={!this.state.phoneValidation}
+                      required
+                    />
+                    <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
+                  </div>
+                  <div className="form-group">
+                    <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.Email}:</Label>
+                    <Input
+                      type='email'
+                      name='email'
+                      id='email'
+                      placeholder='*'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
+                      onChange={this.onChange}
+                      value={this.state.email}
+                      invalid={!this.state.emailValidation}
+                      required
+                      disabled
+                    />
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.EmailValidationError}</FormFeedback>
+                  </div>
+                  <div className="form-group">
+                    <Label className={FloatClass + " " + TextAlignClass} for='hamamasize'>{Language.FarmerSizeArea}:</Label>
+                    <Input
+                      type='text'
+                      name='hamamasize'
+                      id='hamamasize'
+                      placeholder='*'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
+                      onChange={this.onChange}
+                      value={this.state.hamamasize}
+                      invalid={!this.state.hamamasizeValidation}
+                      required
+                    />
+                    <FormText className={ReverseTextAlignClass}>* {Language.FarmerSizeAreaMsg1} {HamamadefaultsizeContainer} {Language.SquareMeter}</FormText>
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.SizeAreaError}</FormFeedback>
+                  </div>
+                  <div className="form-group">
+                    <Label className={FloatClass + " " + TextAlignClass} for='TotalNumberOfHamamot'>{Language.NumberOfActivePlots}:</Label>
+                    <Input
+                      type='text'
+                      name='TotalNumberOfHamamot'
+                      id='TotalNumberOfHamamot'
+                      placeholder=''
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
+                      value={this.state.TotalNumberOfHamamot}
+                      disabled
+                    />
+                  </div>
+                  <div className="form-group">
+                    <Label className={FloatClass + " " + TextAlignClass} for='aboutme'>{Language.FarmerAboutMe}:</Label>
+                    <Input type="textarea" name="aboutme" id="aboutme" className={'AboutMe mb-3 ' + FloatClass + " " + TextAlignClass} onChange={this.onChange} value={this.state.aboutme} />
+                    <FormText className={ReverseTextAlignClass}>* {Language.FarmerAboutMeMsg}</FormText>
                   </div>
                 </div>
-              </div>
-              {this.state.CropFieldPlanActive ? 
-              <div className="farmer-personal-form-group">
-                <div className="PersonalFarmerPlansContainer">
-                  <div className="PersonalFarmerPlansHeader">מחיר מסלול גידולי שדה</div>
-                  <div className="PersonalFarmerPlans">
-                    <div className='PersonalChoosenPlanItem'>
-                      <div className='PersonalChoosenPlanItemName'>
-                        <span className='PersonalChoosenPlanItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className='PersonalChoosenPlanItemTitle'>גידולי שדה</span>
-                        <span className='PersonalChoosenPlanItemCost'> ₪ {this.state.CropFieldPlanCost}</span>
-                        <span className='PersonalChoosenPlanItemText1'>לחודש</span>
-                      </div>
+                <div className={'UploadImage ' + FloatClass}>
+                  <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
+                  {$imagePreview}
+                </div>
+                {this.state.email !== '' ? <div className='MyGrowersList'><ListOfGrowers FarmerEmail={this.state.email} /></div> : null}
+                <div className={this.state.AddBackgroundClassToVeg}>
+                  <h3>{Language.ExperienceToGrow}</h3>
+                  {this.state.VegtButtonOn && this.state.FieldCropsButtonOn ?
+                    <Button color="success" onClick={this.OpenListOfvegetables}>{Language.VegList}</Button> : null}
+                  {this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} />}
+                  {this.state.FieldCropsButtonOn && this.state.VegtButtonOn && this.state.CropFieldPlanActive ?
+                    <Button color="success" onClick={this.OpenListOfFieldsCrops}>{Language.FieldCropList}</Button> : null}
+                  {this.state.FieldCropsButtonOn ? null : <FieldCrops OpenListOffieldcrops={this.OpenListOfFieldsCrops} />}
+                </div>
+                <div className="ListOfVegCost">
+                  <p>{Language.PricingComment}</p>
+                  {ShowVegPricing ? <VegetablesPricing /> : null}
+                  {ShowFieldCropPricing ? <FarmCropsPricing /> : null}
+                </div>
+                {this.state.VegPricingValidation ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.VegPricingComment}</Alert></div> : null}
+                <div className="farmer-personal-form-group">
+                  <div className="PersonalFarmerPlansContainer">
+                    <div className="PersonalFarmerPlansHeader">{Language.FarmerPersonalAreaPlansCost}</div>
+                    <div className="PersonalFarmerPlans">
+                      {PersonalUserPlans.map(({ name, cost, }) => (
+                        <div className='PersonalChoosenPlanItem' key={name}>
+                          <div className='PersonalChoosenPlanItemName'>
+                            <span className={'PersonalChoosenPlanItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                            <span className={'PersonalChoosenPlanItemTitle ' + FloatClass}>{this.ReturnPlanInChoosenLanguage(name)}</span>
+                            <span className={'PersonalChoosenPlanItemCost ' + FloatClass}> ₪ {cost}</span>
+                            <span className={'PersonalChoosenPlanItemText1 ' + FloatClass}>{Language.PerMonth}</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              </div>
-            : null}
-            </FormGroup>
+                {this.state.CropFieldPlanActive ?
+                  <div className="farmer-personal-form-group">
+                    <div className="PersonalFarmerPlansContainer">
+                      <div className="PersonalFarmerPlansHeader">{Language.FarmerPersonalAreaFieldCropPlanCost}</div>
+                      <div className="PersonalFarmerPlans">
+                        <div className='PersonalChoosenPlanItem'>
+                          <div className='PersonalChoosenPlanItemName'>
+                            <span className={'PersonalChoosenPlanItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                            <span className={'PersonalChoosenPlanItemTitle ' + FloatClass}>{Language.GrowerFieldCropsText}</span>
+                            <span className={'PersonalChoosenPlanItemCost ' + FloatClass}> ₪ {this.state.CropFieldPlanCost}</span>
+                            <span className={'PersonalChoosenPlanItemText1 ' + FloatClass}>{Language.PerMonth}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  : null}
+              </FormGroup>
             ) : null}
 
             {this.state.ScreenNumber === "2" ? (
               <FormGroup>
                 <div className='BankCollectPaymentContainer'>
                   <div className='BankCollectPayment'>
-                    <span className='RecivePaymentHeader'>חשבון בנק לקבלת תשלום</span>
+                    <span className='RecivePaymentHeader'>{Language.PaymentDetailsTitle}</span>
                     <div className="payment-form-group">
                       <Label for='fullname'></Label>
                       <Input
                         type='text'
                         name='fullname'
                         id='fullname'
-                        placeholder='שם בעל החשבון'
+                        placeholder={Language.PaymentDetailsAccOwner}
                         className='mb-3'
                         onChange={this.onChange}
                         value={this.state.fullname}
@@ -841,7 +856,7 @@ class FarmerPersonalArea extends Component {
                         type='text'
                         name='accountnumber'
                         id='accountnumber'
-                        placeholder='מספר חשבון הבנק'
+                        placeholder={Language.PaymentDetailsAccNumber}
                         className='mb-3'
                         onChange={this.onChange}
                         value={this.state.accountnumber}
@@ -852,15 +867,15 @@ class FarmerPersonalArea extends Component {
                         <div className="bankname">
                           <Label for='bankname'></Label>
                           <Input type="select" name="bankname" id="bankname" className='mb-3' placeholder='בנק' onChange={this.onChange} value={this.state.bankname}>
-                            <option>בחר בנק</option>
-                            <option>בנק אגוד</option>
-                            <option>בנק אוצר החייל</option>
-                            <option>בנק דיסקונט</option>
-                            <option>בנק הפועלים</option>
-                            <option>בנק לאומי</option>
-                            <option>בנק מזרחי</option>
-                            <option>הבנק הבינלאומי</option>
-                        </Input>
+                            <option value='בנק' >{Language.PaymentDetailsChooseBank}</option>
+                            <option value='בנק אגוד'>{Language.PaymentDetailsBankName1}</option>
+                            <option value='בנק אוצר החייל'>{Language.PaymentDetailsBankName2}</option>
+                            <option value='בנק דיסקונט'>{Language.PaymentDetailsBankName3}</option>
+                            <option value='בנק הפועלים'>{Language.PaymentDetailsBankName4}</option>
+                            <option value='בנק לאומי'>{Language.PaymentDetailsBankName5}</option>
+                            <option value='בנק מזרחי'>{Language.PaymentDetailsBankName6}</option>
+                            <option value='הבנק הבינלאומי'>{Language.PaymentDetailsBankName7}</option>
+                          </Input>
                         </div>
                         <div className="banknumber">
                           <Label for='banknumber'></Label>
@@ -868,14 +883,21 @@ class FarmerPersonalArea extends Component {
                             type='text'
                             name='banknumber'
                             id='banknumber'
-                            placeholder='שם בעל החשבון'
+                            placeholder={Language.PaymentDetailsBankNumber}
                             className='mb-3'
                             onChange={this.onChange}
                             value={this.state.banknumber}
                           />
                         </div>
+                      </div>
                     </div>
-                   </div>                 
+                    {this.state.ScreenNumber === "2" ? (
+                      <div className='MoveToSecondPaymentScreenButton'>
+                        <Button color="info" onClick={() => this.ChangeScreen("3")} type="button" >
+                          {Language.Approve}
+                        </Button>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </FormGroup>
@@ -885,14 +907,14 @@ class FarmerPersonalArea extends Component {
               <FormGroup>
                 <div className='BankCollectPaymentContainer'>
                   <div className='BankCollectPayment'>
-                    <span className='RecivePaymentHeader'>אמצעי תשלום</span>
+                    <span className='RecivePaymentHeader'>{Language.PaymentCreditCardTitle}</span>
                     <div className="payment-form-group">
                       <Label for='CreditCardfullname'></Label>
                       <Input
                         type='text'
                         name='CreditCardfullname'
                         id='CreditCardfullname'
-                        placeholder='שם בעל הכרטיס'
+                        placeholder={Language.PaymentCreditCardfullname}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -903,7 +925,7 @@ class FarmerPersonalArea extends Component {
                         type='text'
                         name='CreditCardNumber'
                         id='CreditCardNumber'
-                        placeholder='מספר כרטיס האשראי'
+                        placeholder={Language.PaymentCreditCardNumber}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -912,15 +934,15 @@ class FarmerPersonalArea extends Component {
                       <div className="bankDetails">
                         <div className="bankname">
                           <Label for='CreditCardDate'></Label>
-                          <Input 
-                          type="text"
-                          maxLength="5"
-                          name="CreditCardDate"
-                          id="CreditCardDate"
-                          className='mb-3'
-                          placeholder='תוקף'
-                          onChange={this.onChange}>
-                        </Input>
+                          <Input
+                            type="text"
+                            maxLength="5"
+                            name="CreditCardDate"
+                            id="CreditCardDate"
+                            className='mb-3'
+                            placeholder={Language.PaymentCreditCardDate}
+                            onChange={this.onChange}>
+                          </Input>
                         </div>
                         <div className="banknumber">
                           <Label for='CreditCardCVV'></Label>
@@ -928,36 +950,43 @@ class FarmerPersonalArea extends Component {
                             type='text'
                             name='CreditCardCVV'
                             id='CreditCardCVV'
-                            placeholder='CVV'
+                            placeholder={Language.PaymentCreditCardCVV}
                             className='mb-3'
                             onChange={this.onChange}
                           />
                         </div>
+                      </div>
                     </div>
-                   </div>
-                   <div className="payment-form-group">
+                    <div className="payment-form-group">
                       <Label for='CreditCardBusniessNumber'></Label>
                       <Input
                         type='text'
                         name='CreditCardBusniessNumber'
                         id='CreditCardBusniessNumber'
-                        placeholder='מספר עוסק מורשה/ח.פ'
+                        placeholder={Language.PaymentCreditCardBusniessNumber}
                         className='mb-3'
                         onChange={this.onChange}
                       />
                     </div>
+                    {this.state.ScreenNumber === "3" ? (
+                      <div className='MoveToSecondPaymentScreenButton'>
+                        <Button color="info" onClick={() => this.ChangeScreen("4")} type="button" >
+                          {Language.Approve}
+                        </Button>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </FormGroup>
             ) : null}
 
-              <div className='RegisterButtonContainer'>
-                <Button color="success" className='UpdateDetails' >
-                  עדכון
+            <div className='RegisterButtonContainer'>
+              <Button color="success" className='UpdateDetails' >
+                {Language.Update} 
                 </Button>
-              </div>
-            </Form>
-            { this.state.ActivateLoader ? <Loader /> : null }
+            </div>
+          </Form>
+          {this.state.ActivateLoader ? <Loader /> : null}
         </Container>
       </div>
     );
@@ -983,6 +1012,8 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { register, clearErrors, getChoosenVegetables, addChoosenVegetable, resetChoosenVegetables, addFarmer, updatefarmerprofile, updatefarmerbyemail, getSystemData, getChoosenfieldCrops, 
-    addChoosenfieldCrop, resetChoosenfieldCrop, addVegLog, ResetVegLog, SetVegLogDone }
+  {
+    register, clearErrors, getChoosenVegetables, addChoosenVegetable, resetChoosenVegetables, addFarmer, updatefarmerprofile, updatefarmerbyemail, getSystemData, getChoosenfieldCrops,
+    addChoosenfieldCrop, resetChoosenfieldCrop, addVegLog, ResetVegLog, SetVegLogDone
+  }
 )(FarmerPersonalArea);

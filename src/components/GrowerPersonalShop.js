@@ -64,7 +64,8 @@ class GrowerPersonalShop extends Component {
         personalshop: PropTypes.object.isRequired,
         addpersonalShoopingItems: PropTypes.func.isRequired,
         resetpersonalShoopingItems: PropTypes.func.isRequired,
-        resetFarmersList: PropTypes.func.isRequired
+        resetFarmersList: PropTypes.func.isRequired,
+        language: PropTypes.object.isRequired
     };
 
     componentDidMount() {
@@ -226,7 +227,9 @@ class GrowerPersonalShop extends Component {
 
 
     onChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
+        if(e.target.name !== 'ChoosenVegAmount'){
+          this.setState({ [e.target.name]: e.target.value });
+        }
 
         // validations
         switch (e.target.name) {
@@ -235,6 +238,11 @@ class GrowerPersonalShop extends Component {
                     ChoosenVegAmount: "1",
                     ChoosenVegPrice: this.GetVegPrice(e.target.value)
                 });
+                break;
+            case "ChoosenVegAmount":
+                if(e.target.value > 0 && e.target.value < 1000){
+                  this.setState({ [e.target.name]: e.target.value });
+                }
                 break;
             default:
         }
@@ -252,7 +260,7 @@ class GrowerPersonalShop extends Component {
             const farmeremail = this.state.FarmerEmail;
             const totalpayed = this.GetTotalPayment();
             const growershoopinglist = GrowerShoopingList;
-                
+
 
             this.setState({
                 ActivateLoader: !this.state.ActivateLoader,
@@ -323,6 +331,20 @@ class GrowerPersonalShop extends Component {
     render() {
         const { farmers } = this.props.farmer;
         const { GrowerShoopingList } = this.props;
+        const { Language, direction } = this.props;
+        let FloatClass = "Co-Align-Right";
+        let TextAlignClass = "Co-Text-Align-Right";
+        let ReverseTextAlignClass = "Co-Text-Align-Left";
+        if (direction === 'rtl') {
+            FloatClass = "Co-Align-Right";
+            TextAlignClass = "Co-Text-Align-Right";
+            ReverseTextAlignClass = "Co-Text-Align-Left";
+        }
+        else {
+            FloatClass = "Co-Align-Left";
+            TextAlignClass = "Co-Text-Align-Left";
+            ReverseTextAlignClass = "Co-Text-Align-Right";
+        }
         try {
             var vegetablesforshop = farmers[0].choosenvegetables.concat(farmers[0].choosenfieldcrops);
         }
@@ -343,13 +365,13 @@ class GrowerPersonalShop extends Component {
                     <Form onSubmit={this.onSubmit}>
                         <FormGroup>
                             <div className='GrowerPersonalShop'>
-                                <div className='GrowerPersonalShopHeader'> רכישת שתילים מהחקלאי שלי </div>
+                                <div className='GrowerPersonalShopHeader'>{Language.GrowerPersonalShopTitle}</div>
                                 <div className="GrowerPersonalShop-form-group">
                                     <div className="GrowerPersonalShopItemsToBuy">
                                         {vegetablesforshop.length > 0 ?
                                             <ListGroup>
                                                 <ListGroupItem>
-                                                    <div className="GrowerPersonalShopVeg">
+                                                    <div className={'GrowerPersonalShopVeg ' + FloatClass}>
                                                         <Label for='ChoosenVegName'></Label>
                                                         <Input type="select" name="ChoosenVegName" id="ChoosenVegName" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.ChoosenVeg}>
                                                             {vegetablesforshop.map(function (item, thirdkey) {
@@ -361,26 +383,26 @@ class GrowerPersonalShop extends Component {
                                                             })}
                                                         </Input>
                                                     </div>
-                                                    <div className="GrowerPersonalShopVegPrice">
+                                                    <div className={'GrowerPersonalShopVegPrice ' + FloatClass}>
                                                         <span>{this.state.ChoosenVegPrice} ₪</span>
                                                     </div>
-                                                    <div className="GrowerPersonalShopVegAmount">
+                                                    <div className={'GrowerPersonalShopVegAmount ' + FloatClass}>
                                                         <div className="GrowerPersonalShopVegAmountContainer">
-                                                            <span><Button outline color="success" onClick={() => this.DecreseAmount()} type="button" >-</Button></span>
-                                                            <Label for='ChoosenVegAmount'></Label>
-                                                            <Input type="text" name="ChoosenVegAmount" id="ChoosenVegAmount" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.ChoosenVegAmount} disabled />
-                                                            <span><Button outline color="success" onClick={() => this.IncreseAmount()} type="button" >+</Button></span>
+                                                            <span className={FloatClass}><Button outline color="success" onClick={() => this.DecreseAmount()} type="button" >-</Button></span>
+                                                            <Label className={FloatClass} for='ChoosenVegAmount'></Label>
+                                                            <Input className={'GrowerVeg mb-3 ' + FloatClass} type="text" name="ChoosenVegAmount" id="ChoosenVegAmount" onChange={this.onChange} value={this.state.ChoosenVegAmount} />
+                                                            <span className={FloatClass}><Button outline color="success" onClick={() => this.IncreseAmount()} type="button" >+</Button></span>
                                                         </div>
                                                     </div>
-                                                    <div className="GrowerPersonalShopVegAddToBucket">
-                                                        <span><Button outline color="success" onClick={() => this.AddToBucket()} type="button" >הוסף לסל</Button></span>
+                                                    <div className={'GrowerPersonalShopVegAddToBucket ' + FloatClass}>
+                                                        <span><Button outline color="success" onClick={() => this.AddToBucket()} type="button" >{Language.GrowerPersonalShopAddToBucket}</Button></span>
                                                     </div>
                                                 </ListGroupItem>
                                             </ListGroup>
                                             :
                                             <ListGroup>
                                                 <ListGroupItem>
-                                                    לחקלאי זה אין שתילים למכירה
+                                                {Language.GrowerPersonalShopFarmerEmpty}
                                             </ListGroupItem>
                                             </ListGroup>
                                         }
@@ -393,16 +415,16 @@ class GrowerPersonalShop extends Component {
                                                 <CSSTransition timeout={500} classNames='fade'>
                                                     <ListGroupItem className="GrowerPersonalShopBucketItemHeader">
                                                         <div className='GrowerPersonalShopBucketItemHeaderContainer'>
-                                                            <div className='GrowerPersonalShopBucketItemHeaderText1'>
-                                                                <span>שם המוצר</span>
+                                                            <div className={'GrowerPersonalShopBucketItemHeaderText1 ' + FloatClass}>
+                                                                <span>{Language.GrowerPersonalShopProductName}</span>
                                                             </div>
-                                                            <div className='GrowerPersonalShopBucketItemHeaderText2'>
-                                                                <span>כמות</span>
+                                                            <div className={'GrowerPersonalShopBucketItemHeaderText2 ' + FloatClass}>
+                                                                <span>{Language.GrowerPersonalShopProductAmount}</span>
                                                             </div>
-                                                            <div className='GrowerPersonalShopBucketItemHeaderText3'>
-                                                                <span>מחיר</span>
+                                                            <div className={'GrowerPersonalShopBucketItemHeaderText3 ' + FloatClass}>
+                                                                <span>{Language.GrowerPersonalShopProductPrice}</span>
                                                             </div>
-                                                            <div className='GrowerPersonalShopBucketItemHeaderText4'>
+                                                            <div className={'GrowerPersonalShopBucketItemHeaderText4 ' + FloatClass}>
                                                                 <span>&nbsp;</span>
                                                             </div>
                                                         </div>
@@ -415,16 +437,16 @@ class GrowerPersonalShop extends Component {
                                                         <CSSTransition key={ChoosenVegName} timeout={500} classNames='fade'>
                                                             <ListGroupItem className="GrowerPersonalShopBucketItem">
                                                                 <div className='GrowerPersonalShopBucketItemContainer'>
-                                                                    <div className='GrowerPersonalShopBucketItemName'>
+                                                                    <div className={'GrowerPersonalShopBucketItemName ' + FloatClass}>
                                                                         <span>{ChoosenVegName}&nbsp;</span>
                                                                     </div>
-                                                                    <div className='GrowerPersonalShopBucketItemAmount'>
+                                                                    <div className={'GrowerPersonalShopBucketItemAmount ' + FloatClass}>
                                                                         <span>{ChoosenVegAmount}&nbsp;</span>
                                                                     </div>
-                                                                    <div className='GrowerPersonalShopBucketItemPrice'>
+                                                                    <div className={'GrowerPersonalShopBucketItemPrice ' + FloatClass}>
                                                                         <span>{(parseFloat(ChoosenVegAmount) * parseFloat(ChoosenVegPrice)).toString()}&nbsp;</span>
                                                                     </div>
-                                                                    <div className='GrowerPersonalShopBucketItemRemoveBtn'>
+                                                                    <div className={'GrowerPersonalShopBucketItemRemoveBtn ' + FloatClass}>
                                                                         <span><span className='Deletebutton' onClick={() => this.RemoveFromBucket(ChoosenVegName)} >x</span></span>
                                                                     </div>
                                                                 </div>
@@ -437,7 +459,7 @@ class GrowerPersonalShop extends Component {
                                                     <CSSTransition timeout={500} classNames='fade'>
                                                         <ListGroupItem className="GrowerPersonalShopBucketItem">
                                                             <div className='GrowerPersonalShopBucketItemContainer'>
-                                                                סל הקניות ריק
+                                                            {Language.GrowerPersonalShopBucketEmpty}
                                                             </div>
                                                         </ListGroupItem>
                                                     </CSSTransition>
@@ -448,16 +470,16 @@ class GrowerPersonalShop extends Component {
                                                     <CSSTransition timeout={500} classNames='fade'>
                                                         <ListGroupItem className="GrowerPersonalShopBucketItemHeader">
                                                             <div className='GrowerPersonalShopBucketItemHeaderContainer'>
-                                                                <div className='GrowerPersonalShopBucketItemHeaderText1'>
-                                                                    <span>סה"כ לתשלום</span>
+                                                                <div className={'GrowerPersonalShopBucketItemHeaderText1 ' + FloatClass}>
+                                                                    <span>{Language.GrowerPersonalShopTotalToPay}</span>
                                                                 </div>
-                                                                <div className='GrowerPersonalShopBucketItemHeaderText2'>
+                                                                <div className={'GrowerPersonalShopBucketItemHeaderText2 ' + FloatClass}>
                                                                     <span>&nbsp;</span>
                                                                 </div>
-                                                                <div className='GrowerPersonalShopBucketItemHeaderText3'>
-                                                                    <span>{this.GetTotalPayment()} ש"ח</span>
+                                                                <div className={'GrowerPersonalShopBucketItemHeaderText3 ' + FloatClass}>
+                                                                    <span>{this.GetTotalPayment()} {Language.Shekals}</span>
                                                                 </div>
-                                                                <div className='GrowerPersonalShopBucketItemHeaderText4'>
+                                                                <div className={'GrowerPersonalShopBucketItemHeaderText4 ' + FloatClass}>
                                                                     <span>&nbsp;</span>
                                                                 </div>
                                                             </div>
@@ -468,12 +490,12 @@ class GrowerPersonalShop extends Component {
                                         </div>
                                         <div className="GrowerPersonalShopChoosingFarmer">
                                             <Card>
-                                                <CardHeader>פרטי החקלאי שלי</CardHeader>
+                                                <CardHeader>{Language.GrowerPersonalShopFarmerDetails}</CardHeader>
                                                 <CardBody>
-                                                    <span><img alt="" src={require('../Resources/Name.png')} size='sm' />{this.state.FarmerFullNmae}</span>
-                                                    <span><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.state.FarmerPhone}</span>
-                                                    <span><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.state.FarmerEmail}>{this.state.FarmerEmail}</a></span>
-                                                    <span><img alt="" src={require('../Resources/location.png')} size='sm' />{this.state.FarmerLocation}</span>
+                                                    <span className={TextAlignClass}><img alt="" src={require('../Resources/Name.png')} size='sm' />{this.state.FarmerFullNmae}</span>
+                                                    <span className={TextAlignClass}><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.state.FarmerPhone}</span>
+                                                    <span className={TextAlignClass}><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.state.FarmerEmail}>{this.state.FarmerEmail}</a></span>
+                                                    <span className={TextAlignClass}><img alt="" src={require('../Resources/location.png')} size='sm' />{this.state.FarmerLocation}</span>
                                                 </CardBody>
                                             </Card>
                                         </div>
@@ -481,10 +503,10 @@ class GrowerPersonalShop extends Component {
                                 </div>
                             </div>
                         </FormGroup>
-                        {!this.state.ListEmptyValidation ? (<div className="DuplicatesAlert" ><Alert className='DuplicatesAlertContent' color="danger">יש לרכוש לפחות מוצר אחד</Alert></div>) : null}
+                        {!this.state.ListEmptyValidation ? (<div className="DuplicatesAlert" ><Alert className='DuplicatesAlertContent' color="danger">{Language.GrowerPersonalShopError}</Alert></div>) : null}
                         <div className='GrowerPersonalShopBuyButtonHolder'>
                             <Button color="success" className='GrowerPersonalShopBuyButton' >
-                                לסיום ורכישה
+                            {Language.GrowerPersonalShopPurchase}
                             </Button>
                         </div>
                     </Form>
@@ -504,11 +526,16 @@ const mapStateToProps = state => ({
     growershop: state.growershop,
     GrowerShoopingList: state.growershop.GrowerShoopingList,
     personalshop: state.personalshop,
-    transactionDone: state.personalshop.transactionDone
+    transactionDone: state.personalshop.transactionDone,
+    language: state.language,
+    Language: state.language.Language,
+    direction: state.language.direction
 });
 
 export default connect(
     mapStateToProps,
-    { register, clearErrors, getfarmerbyemail, resetFarmersList, getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList,
-         ResetGrowerShoopinList, resetpersonalShoopingItems, UpdateGrowerShoopinList, addpersonalShoopingItems }
+    {
+        register, clearErrors, getfarmerbyemail, resetFarmersList, getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList,
+        ResetGrowerShoopinList, resetpersonalShoopingItems, UpdateGrowerShoopinList, addpersonalShoopingItems
+    }
 )(GrowerPersonalShop);

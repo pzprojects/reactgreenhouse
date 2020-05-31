@@ -86,7 +86,8 @@ class GrowerPersonalArea extends Component {
     deactivateuserplan: PropTypes.func.isRequired,
     growerDeactivationSuccess: PropTypes.func.isRequired,
     userDeactivationSuccess: PropTypes.func.isRequired,
-    resetUpdateUser: PropTypes.func.isRequired
+    resetUpdateUser: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -445,6 +446,24 @@ class GrowerPersonalArea extends Component {
 
   }
 
+  ReturnPlanInChoosenLanguage = (PlanName) => {
+    var NameToReturn = '';
+    const { Language } = this.props;
+    switch (PlanName) {
+      case "מגדל עצמאי":
+        NameToReturn = Language.PlanName1;
+        break;
+      case "ביניים":
+        NameToReturn = Language.PlanName2;
+        break;
+      case "ליווי שוטף":
+        NameToReturn = Language.PlanName3;
+        break;
+    }
+
+    return NameToReturn;
+  };
+
   uploadFile = e => {
 
     const { file } = this.state;
@@ -479,8 +498,27 @@ class GrowerPersonalArea extends Component {
   };
 
   render() {
+    const { Language, direction } = this.props;
     let { imagePreviewUrl } = this.state;
-    let $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer} />);
+    let $imagePreview;
+    let FloatClass = "Co-Align-Right";
+    let TextAlignClass = "Co-Text-Align-Right";
+    let ReverseTextAlignClass = "Co-Text-Align-Left";
+    let UpdateMyuserName = "UpdateMyuserNameRTL";
+    if (direction === 'rtl') {
+      $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload.png')} onClick={this.OpenFileExplorer} />);
+      FloatClass = "Co-Align-Right";
+      TextAlignClass = "Co-Text-Align-Right";
+      ReverseTextAlignClass = "Co-Text-Align-Left";
+      UpdateMyuserName = "UpdateMyuserNameRTL";
+    }
+    else {
+      $imagePreview = (<img alt="" className="ProfileImage" src={require('../Resources/Upload-English.png')} onClick={this.OpenFileExplorer} />);
+      FloatClass = "Co-Align-Left";
+      TextAlignClass = "Co-Text-Align-Left";
+      ReverseTextAlignClass = "Co-Text-Align-Right";
+      UpdateMyuserName = "UpdateMyuserNameLTR";
+    }
     if (imagePreviewUrl) {
       $imagePreview = (<img alt="" className="ProfileImage" src={imagePreviewUrl} onClick={this.OpenFileExplorer} />);
     }
@@ -514,14 +552,14 @@ class GrowerPersonalArea extends Component {
             <div className='GrowerPersonalAreaTabs'>
               <div className='GrowerPersonalAreaTabsButtons'>
                 <Button color="success" type="button" disabled>
-                  פרטים אישיים
-                    </Button>
+                  {Language.PersonalDetails}
+                </Button>
                 <Button tag={Link} to='/GrowerPersonalShop' outline color="success" type="button" >
-                  רכישת שתילים מחקלאי
-                    </Button>
+                  {Language.GrowerPurchaseInShop}
+                </Button>
                 <Button outline color="success" onClick={() => this.ChangeScreen("2")} type="button" >
-                  שינוי פרטים לתשלום חודשי
-                    </Button>
+                  {Language.ChangePaymentMethod}
+                </Button>
               </div>
             </div>
           ) : null}
@@ -529,110 +567,110 @@ class GrowerPersonalArea extends Component {
             <div className='GrowerPersonalAreaTabs'>
               <div className='GrowerPersonalAreaTabsButtons'>
                 <Button outline color="success" onClick={() => this.ChangeScreen("1")} type="button" >
-                  פרטים אישיים
-                    </Button>
+                  {Language.PersonalDetails}
+                </Button>
                 <Button tag={Link} to='/GrowerPersonalShop' outline color="success" type="button" >
-                  רכישת שתילים מחקלאי
-                    </Button>
+                  {Language.GrowerPurchaseInShop}
+                </Button>
                 <Button color="success" type="button" disabled>
-                  שינוי פרטים לתשלום חודשי
-                    </Button>
+                  {Language.ChangePaymentMethod}
+                </Button>
               </div>
             </div>
           ) : null}
           <Form onSubmit={this.onSubmit}>
             {this.state.ScreenNumber === "1" ? (
               <FormGroup>
-                <div className='PersonalDetails'>
+                <div className={'PersonalDetails ' + FloatClass}>
                   <div className="personal-form-group">
-                    <Label for='name'>שם פרטי:</Label>
+                    <Label className={FloatClass + " " + TextAlignClass} for='name'>{Language.FirstName}:</Label>
                     <Input
                       type='text'
                       name='name'
                       id='name'
                       placeholder='*'
-                      className='mb-3'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                       onChange={this.onChange}
                       value={this.state.name}
                       invalid={!this.state.nameValidation}
                       required
                     />
-                    <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                   </div>
                   <div className="personal-form-group">
-                    <Label for='familyname'>שם משפחה:</Label>
+                    <Label className={FloatClass + " " + TextAlignClass} for='familyname'>{Language.LastName}:</Label>
                     <Input
                       type='text'
                       name='familyname'
                       id='familyname'
                       placeholder='*'
-                      className='mb-3'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                       onChange={this.onChange}
                       value={this.state.familyname}
                       invalid={!this.state.familynameValidation}
                       required
                     />
-                    <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                   </div>
                   <div className="personal-form-group">
-                    <Label for='phone'>טלפון:</Label>
+                    <Label className={FloatClass + " " + TextAlignClass} for='phone'>{Language.Phone}:</Label>
                     <Input
                       type='text'
                       name='phone'
                       id='phone'
                       placeholder='*'
-                      className='mb-3'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                       onChange={this.onChange}
                       value={this.state.phone}
                       invalid={!this.state.phoneValidation}
                       required
                     />
-                    <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                   </div>
                   <div className="personal-form-group">
-                    <Label for='email'>אימייל (שם משתמש):</Label>
+                    <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.Email}:</Label>
                     <Input
                       type='email'
                       name='email'
                       id='email'
                       placeholder='*'
-                      className='mb-3'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                       onChange={this.onChange}
                       value={this.state.email}
                       invalid={!this.state.emailValidation}
                       required
                       disabled
                     />
-                    <FormFeedback>כתובת האימייל שגויה</FormFeedback>
-                    <div className="UpdateMyuserName"><Link to="/UpdateGrowerEmail" className="ghost-btn"><FiEdit /></Link></div>
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.EmailValidationError}</FormFeedback>
+                    <div className={UpdateMyuserName}><Link to="/UpdateGrowerEmail" className="ghost-btn"><FiEdit /></Link></div>
                   </div>
                   <div className="personal-form-group">
-                    <Label for='address'>כתובת:</Label>
+                    <Label className={FloatClass + " " + TextAlignClass} for='address'>{Language.Address}:</Label>
                     <Input
                       type='text'
                       name='address'
                       id='address'
                       placeholder='*'
-                      className='mb-3'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                       onChange={this.onChange}
                       value={this.state.address}
                       invalid={!this.state.addressValidation}
                       required
                     />
-                    <FormFeedback>שדה זה אינו יכול להישאר ריק</FormFeedback>
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                   </div>
                   <div className="personal-form-group">
-                    <Label>תאריך תחילת מנוי:</Label>
-                    <div className="RegisterDate">{RegisterDateToStringFormat}</div>
-                    <div className="CancelSubscription">
-                      <Button color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" disabled={!this.state.UserActive} >ביטול מנוי</Button>
+                    <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaSubscriptionActivationDate}:</Label>
+                    <div className={'RegisterDate ' + FloatClass + " " + TextAlignClass}>{RegisterDateToStringFormat}</div>
+                    <div className={'CancelSubscription ' + FloatClass}>
+                      <Button color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" disabled={!this.state.UserActive} >{Language.GrowerPersonalAreaCancelSubButton}</Button>
                       <UncontrolledCollapse toggler="#toggler">
                         <Card>
                           <CardBody>
-                            <span className="CancelSubscriptionAlertText">האם אתה בטוח שברצונך לבטל את המנוי?</span>
+                            <span className="CancelSubscriptionAlertText">{Language.GrowerPersonalAreaCancelSubButtonAreUSure}</span>
                             <span className="CancelSubscriptionAlertButtons">
-                              <span><Button outline color="success" onClick={() => this.DeactivateAcount()} type="button" >כן</Button></span>
-                              <span><Button outline color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" >לא</Button></span>
+                              <span><Button outline color="success" onClick={() => this.DeactivateAcount()} type="button" >{Language.Yes}</Button></span>
+                              <span><Button outline color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" >{Language.No}</Button></span>
                             </span>
                           </CardBody>
                         </Card>
@@ -640,17 +678,17 @@ class GrowerPersonalArea extends Component {
                     </div>
                   </div>
                   <div className="personal-form-group">
-                    <Label>מסלול שנבחר:</Label>
-                    <div className="CurrentPlan">{PlanName}{this.state.FieldCropPlanActive ? " + גידולי שדה" : null}</div>
+                    <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenPlan}:</Label>
+                    <div className={'CurrentPlan ' + FloatClass + " " + TextAlignClass}>{this.ReturnPlanInChoosenLanguage(PlanName)}{this.state.FieldCropPlanActive ? Language.GrowerListFieldCropsExtra : null}</div>
                   </div>
                   <div className="personal-form-group">
-                    <Label>גידולים שנבחרו:</Label>
-                    <div className="PersonalChoosenVeg">
+                    <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenVeg}:</Label>
+                    <div className={'PersonalChoosenVeg ' + FloatClass + " " + TextAlignClass}>
                       {ChoosenPersonalUserVeg.map(function (item, key) {
                         return (
-                          <div className='PersonalChoosenVegItem' key={key}>
-                            <span className='PersonalChoosenVegItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                            <span className='PersonalChoosenVegItemName'>{item.name}</span>
+                          <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={key}>
+                            <span className={'PersonalChoosenVegItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                            <span className={'PersonalChoosenVegItemName ' + FloatClass}>{item.name}</span>
                           </div>
                         )
                       })}
@@ -658,13 +696,13 @@ class GrowerPersonalArea extends Component {
                   </div>
                   {this.state.FieldCropPlanActive ?
                     <div className="personal-form-group">
-                      <Label>גידולי שדה שנבחרו:</Label>
-                      <div className="PersonalChoosenVeg">
+                      <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenFieldCrops}:</Label>
+                      <div className={'PersonalChoosenVeg ' + FloatClass + " " + TextAlignClass}>
                         {ChoosenPersonalUserFieldCrops.map(function (item, key) {
                           return (
-                            <div className='PersonalChoosenVegItem' key={key}>
-                              <span className='PersonalChoosenVegItemImage'><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                              <span className='PersonalChoosenVegItemName'>{item.name}</span>
+                            <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={key}>
+                              <span className={'PersonalChoosenVegItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                              <span className={'PersonalChoosenVegItemName ' + FloatClass}>{item.name}</span>
                             </div>
                           )
                         })}
@@ -672,8 +710,8 @@ class GrowerPersonalArea extends Component {
                     </div>
                     : null}
                   <div className="personal-form-group">
-                    <Label>החקלאי שנבחר:</Label>
-                    <div className="PersonalChoosenFarmer">
+                    <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenFarmer}:</Label>
+                    <div className={'PersonalChoosenFarmer ' + FloatClass + " " + TextAlignClass}>
                       <span><img alt="" src={require('../Resources/Name.png')} size='sm' />{this.state.FarmerFullNmae}</span>
                       <span><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.state.FarmerPhone}</span>
                       <span><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.state.FarmerEmail}>{this.state.FarmerEmail}</a></span>
@@ -681,7 +719,7 @@ class GrowerPersonalArea extends Component {
                     </div>
                   </div>
                 </div>
-                <div className='UploadImage'>
+                <div className={'UploadImage ' + FloatClass}>
                   <Input type="file" name="profileimg" id="profileimg" onChange={this.handleUploadFile} />
                   {$imagePreview}
                 </div>
@@ -692,14 +730,14 @@ class GrowerPersonalArea extends Component {
               <FormGroup>
                 <div className='BankCollectPaymentContainer'>
                   <div className='BankCollectPayment'>
-                    <span className='RecivePaymentHeader'>אמצעי תשלום</span>
+                    <span className='RecivePaymentHeader'>{Language.PaymentCreditCardTitle}</span>
                     <div className="payment-form-group">
                       <Label for='CreditCardfullname'></Label>
                       <Input
                         type='text'
                         name='CreditCardfullname'
                         id='CreditCardfullname'
-                        placeholder='שם בעל הכרטיס'
+                        placeholder={Language.PaymentCreditCardfullname}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -710,7 +748,7 @@ class GrowerPersonalArea extends Component {
                         type='text'
                         name='CreditCardNumber'
                         id='CreditCardNumber'
-                        placeholder='מספר כרטיס האשראי'
+                        placeholder={Language.PaymentCreditCardNumber}
                         className='mb-3'
                         onChange={this.onChange}
                       />
@@ -725,7 +763,7 @@ class GrowerPersonalArea extends Component {
                             name="CreditCardDate"
                             id="CreditCardDate"
                             className='mb-3'
-                            placeholder='תוקף'
+                            placeholder={Language.PaymentCreditCardDate}
                             onChange={this.onChange}>
                           </Input>
                         </div>
@@ -735,7 +773,7 @@ class GrowerPersonalArea extends Component {
                             type='text'
                             name='CreditCardCVV'
                             id='CreditCardCVV'
-                            placeholder='CVV'
+                            placeholder={Language.PaymentCreditCardCVV}
                             className='mb-3'
                             onChange={this.onChange}
                           />
@@ -748,11 +786,18 @@ class GrowerPersonalArea extends Component {
                         type='text'
                         name='CreditCardBusniessNumber'
                         id='CreditCardBusniessNumber'
-                        placeholder='מספר עוסק מורשה/ח.פ'
+                        placeholder={Language.PaymentCreditCardBusniessNumber}
                         className='mb-3'
                         onChange={this.onChange}
                       />
                     </div>
+                    {this.state.ScreenNumber === "2" ? (
+                      <div className='MoveToSecondPaymentScreenButton'>
+                        <Button color="info" onClick={() => this.ChangeScreen("3")} type="button" >
+                          {Language.Approve}
+                        </Button>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </FormGroup>
@@ -760,7 +805,7 @@ class GrowerPersonalArea extends Component {
 
             <div className='RegisterButtonContainer'>
               <Button color="success" className='UpdateDetails' >
-                עדכון
+                {Language.Update} 
               </Button>
             </div>
 
@@ -780,7 +825,10 @@ const mapStateToProps = state => ({
   farmers: state.farmer.farmers,
   updateduser: state.updateduser,
   growerdeactivate: state.updateduser.growerdeactivate,
-  userdeactivate: state.updateduser.userdeactivate
+  userdeactivate: state.updateduser.userdeactivate,
+  language: state.language,
+  Language: state.language.Language,
+  direction: state.language.direction
 });
 
 export default connect(

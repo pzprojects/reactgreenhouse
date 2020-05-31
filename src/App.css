@@ -64,6 +64,7 @@
     position: relative;
     display: block;
     text-align: center;
+    margin-right: 1.5vw;
   }
 
   .COHeaderLTR {
@@ -120,17 +121,18 @@
   nav .container div.collapse ul.navbar-nav {
     margin-left: auto!important;
     margin-right: auto!important;
+    margin-top: 1vw!important;
   }
 
   nav .container div.collapse ul.navbar-nav > li {
     margin-left: 0.5vw;
-    margin-top: 1vw;
+    margin-top: 2vw;
     border-top: 0.2vw solid #5E6269;
   }
 
   nav .container div.collapse ul.navbar-nav > li.active {
     margin-left: 0.5vw;
-    margin-top: 1vw;
+    margin-top: 2vw;
     border-top: 0.2vw solid #ADC742;
   }
 
@@ -140,7 +142,7 @@
 
   nav .container div.collapse ul.navbar-nav > li:hover {
     margin-left: 0.5vw;
-    margin-top: 1vw;
+    margin-top: 2vw;
     border-top: 0.2vw solid #ADC742;
   }
 
@@ -942,10 +944,16 @@
     margin-right: 1vw;
   }
 
-  .UpdateMyuserName {
+  .UpdateMyuserNameRTL {
     position: absolute;
     display: block;
     left: 1vw;
+  }
+
+  .UpdateMyuserNameLTR {
+    position: absolute;
+    display: block;
+    right: 1vw;
   }
 
   .Growersizearea div.form-group select {
@@ -1579,6 +1587,7 @@
 
   .PersonalChoosenFarmer span img {
     margin-left: 0.5vw;
+    margin-right: 0.5vw;
   }
 
   .GrowerPersonalAreaTabs {
@@ -1602,13 +1611,13 @@
   .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons button {
     margin-left: 3%;
     width: 30%;
-    font-size: 0.83vw;
+    font-size: 0.73vw;
   }
 
   .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons a {
     margin-left: 3%;
     width: 30%;
-    font-size: 0.83vw;
+    font-size: 0.73vw;
   }
 
   .RegisterButtonContainer Button.UpdateDetails {
@@ -3088,6 +3097,7 @@
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer div.card div.card-body img {
     margin-left: 0.8vw;
+    margin-right: 0.8vw;
     width: 0.8vw;
     height: 0.8vw;
   }
@@ -3225,6 +3235,7 @@
     position: relative;
     display: block;
     float: right;
+    margin-bottom: 4vw;
   }
 
   .GrowerPersonalShopBuyButtonHolder button {
@@ -4155,10 +4166,16 @@ div.PersonalDetails .form-group input {
   margin-right: 1vw;
 }
 
-.UpdateMyuserName {
+.UpdateMyuserNameRTL {
   position: absolute;
   display: block;
   left: 1vw;
+}
+
+.UpdateMyuserNameLTR {
+  position: absolute;
+  display: block;
+  right: 1vw;
 }
 
 .Growersizearea div.form-group select {
@@ -4792,6 +4809,7 @@ div.PersonalDetails .personal-form-group input {
 
 .PersonalChoosenFarmer span img {
   margin-left: 0.5vw;
+  margin-right: 0.5vw;
 }
 
 .GrowerPersonalAreaTabs {
@@ -4815,13 +4833,13 @@ div.PersonalDetails .personal-form-group input {
 .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons button {
   margin-left: 3%;
   width: 30%;
-  font-size: 0.83vw;
+  font-size: 0.73vw;
 }
 
 .GrowerPersonalAreaTabs .GrowerPersonalAreaTabsButtons a {
   margin-left: 3%;
   width: 30%;
-  font-size: 0.83vw;
+  font-size: 0.73vw;
 }
 
 .RegisterButtonContainer Button.UpdateDetails {
@@ -6301,6 +6319,7 @@ div.SystemDetails .form-group input {
 
 .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer div.card div.card-body img {
   margin-left: 0.8vw;
+  margin-right: 0.8vw;
   width: 0.8vw;
   height: 0.8vw;
 }
@@ -6438,6 +6457,7 @@ div.SystemDetails .form-group input {
   position: relative;
   display: block;
   float: right;
+  margin-bottom: 4vw;
 }
 
 .GrowerPersonalShopBuyButtonHolder button {

@@ -237,10 +237,10 @@ class AppNavbar extends Component {
                 </div>
                 {isAuthenticated ? user.usertype === 'SysAdmin' && user.usertype !== "null" ? adminnavitems : navitems
                   : navitems}
+                <div className={this.state.LogoClass} >
+                  <NavbarBrand tag={Link} to='/'><img alt="" src={require('../Resources/logo.png')} /></NavbarBrand>
+                </div>
               </Nav>
-              <div className={this.state.LogoClass} >
-                <NavbarBrand tag={Link} to='/'><img alt="" src={require('../Resources/logo.png')} /></NavbarBrand>
-              </div>
             </Collapse>
           </Container>
         </Navbar>
