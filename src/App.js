@@ -11,6 +11,7 @@ import GrowerRegisterPage from './components/GrowerRegisterPage';
 import GrowersubmissionMSG from './components/GrowersubmissionMSG';
 import DeatilsUpdatedMSG from './components/DeatilsUpdatedMSG';
 import VegManagment from './components/VegManagment';
+import LanguagesManagment from './components/LanguagesManagment';
 import SystemSettings from './components/SystemSettings';
 import SystemLogs from './components/SystemLogs';
 import LoginPage from './components/auth/LoginPage';
@@ -20,6 +21,7 @@ import UpdateGrowerEmail from './components/UpdateGrowerEmail';
 import FieldCropManagment from './components/FieldCropManagment';
 import GrowerPersonalShop from './components/GrowerPersonalShop';
 import PurchaseCompleted from './components/PurchaseCompleted';
+import GrowerDeactivateMsg from './components/GrowerDeactivateMsg';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -66,6 +68,8 @@ class App extends Component {
               <Route path="/UpdateGrowerEmail" component={UpdateGrowerEmail} />
               <Route path="/PurchaseCompleted" component={PurchaseCompleted} />
               <Route path="/FieldCropManagment" component={FieldCropManagment} />
+              <Route path="/LanguagesManagment" component={LanguagesManagment} />
+              <Route path="/GrowerDeactivateMsg" component={GrowerDeactivateMsg} />
               <Route path="/UpdatePassword/:userId/:token" render={({ match }) => (<UpdatePassword userId={match.params.userId} token={match.params.token} /> )} />
             </Container>
           </div>

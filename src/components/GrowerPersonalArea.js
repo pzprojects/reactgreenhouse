@@ -22,6 +22,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Loader from '../components/Loader';
 import { getfarmerbyemail, resetFarmersList } from '../actions/farmerAction';
 import { updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan, growerDeactivationSuccess, userDeactivationSuccess, resetUpdateUser } from '../actions/updateUserAction';
+import { getvegetablelanguages } from '../actions/vegLanguageConvertorAction';
 import { Redirect } from "react-router-dom";
 import { API_URL } from '../config/keys';
 import { FiEdit } from "react-icons/fi";
@@ -87,10 +88,13 @@ class GrowerPersonalArea extends Component {
     growerDeactivationSuccess: PropTypes.func.isRequired,
     userDeactivationSuccess: PropTypes.func.isRequired,
     resetUpdateUser: PropTypes.func.isRequired,
-    language: PropTypes.object.isRequired
+    language: PropTypes.object.isRequired,
+    languagedbconversion: PropTypes.object.isRequired,
+    getvegetablelanguages: PropTypes.func.isRequired
   };
 
   componentDidMount() {
+    this.props.getvegetablelanguages();
     const { user } = this.props.auth;
 
     if (user.workingwith[0].active) {
@@ -172,12 +176,35 @@ class GrowerPersonalArea extends Component {
     // Clear errors
     this.props.clearErrors();
     this.props.resetUpdateUser();
-    this.setState({
-      modal: !this.state.modal,
-      DeactivateRequest: !this.state.DeactivateRequest,
-      ActivateLoader: !this.state.ActivateLoader,
-      redirect: '/DeatilsUpdatedMSG'
-    });
+    if(this.state.DeactivateRequest){
+      this.setState({
+        modal: !this.state.modal,
+        DeactivateRequest: !this.state.DeactivateRequest,
+        ActivateLoader: !this.state.ActivateLoader,
+        redirect: '/GrowerDeactivateMsg'
+      });
+    }
+    else{
+      this.setState({
+        modal: !this.state.modal,
+        DeactivateRequest: !this.state.DeactivateRequest,
+        ActivateLoader: !this.state.ActivateLoader,
+        redirect: '/DeatilsUpdatedMSG'
+      });
+    }
+    
+  };
+
+  Translate = name => {
+    try {
+      const { vegetablelsanguages, LanguageCode } = this.props;
+      var VegToFind = vegetablelsanguages.find(vegetablelanguage => vegetablelanguage.vegname === name);
+      var NameToReturn = VegToFind.langconvert.find(vegetablelanguage => vegetablelanguage.langname === LanguageCode);
+      return(NameToReturn.langvalue);
+    }
+    catch{return name;}
+
+    return name;
   };
 
   ValidateEmail = (mail) => {
@@ -554,7 +581,7 @@ class GrowerPersonalArea extends Component {
                 <Button color="success" type="button" disabled>
                   {Language.PersonalDetails}
                 </Button>
-                <Button tag={Link} to='/GrowerPersonalShop' outline color="success" type="button" >
+                <Button tag={Link} to='/GrowerPersonalShop' outline color="success" type="button" disabled={!this.state.UserActive} >
                   {Language.GrowerPurchaseInShop}
                 </Button>
                 <Button outline color="success" onClick={() => this.ChangeScreen("2")} type="button" >
@@ -569,7 +596,7 @@ class GrowerPersonalArea extends Component {
                 <Button outline color="success" onClick={() => this.ChangeScreen("1")} type="button" >
                   {Language.PersonalDetails}
                 </Button>
-                <Button tag={Link} to='/GrowerPersonalShop' outline color="success" type="button" >
+                <Button tag={Link} to='/GrowerPersonalShop' outline color="success" type="button" disabled={!this.state.UserActive} >
                   {Language.GrowerPurchaseInShop}
                 </Button>
                 <Button color="success" type="button" disabled>
@@ -684,28 +711,24 @@ class GrowerPersonalArea extends Component {
                   <div className="personal-form-group">
                     <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenVeg}:</Label>
                     <div className={'PersonalChoosenVeg ' + FloatClass + " " + TextAlignClass}>
-                      {ChoosenPersonalUserVeg.map(function (item, key) {
-                        return (
-                          <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={key}>
-                            <span className={'PersonalChoosenVegItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                            <span className={'PersonalChoosenVegItemName ' + FloatClass}>{item.name}</span>
-                          </div>
-                        )
-                      })}
+                      {ChoosenPersonalUserVeg.map(({ _id, name }) => (
+                        <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={_id}>
+                          <span className={'PersonalChoosenVegItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                          <span className={'PersonalChoosenVegItemName ' + FloatClass}>{this.Translate(name)}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                   {this.state.FieldCropPlanActive ?
                     <div className="personal-form-group">
                       <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenFieldCrops}:</Label>
                       <div className={'PersonalChoosenVeg ' + FloatClass + " " + TextAlignClass}>
-                        {ChoosenPersonalUserFieldCrops.map(function (item, key) {
-                          return (
-                            <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={key}>
-                              <span className={'PersonalChoosenVegItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                              <span className={'PersonalChoosenVegItemName ' + FloatClass}>{item.name}</span>
-                            </div>
-                          )
-                        })}
+                        {ChoosenPersonalUserFieldCrops.map(({ _id, name }) => (
+                          <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={_id}>
+                            <span className={'PersonalChoosenVegItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                            <span className={'PersonalChoosenVegItemName ' + FloatClass}>{this.Translate(name)}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                     : null}
@@ -805,7 +828,7 @@ class GrowerPersonalArea extends Component {
 
             <div className='RegisterButtonContainer'>
               <Button color="success" className='UpdateDetails' >
-                {Language.Update} 
+                {Language.Update}
               </Button>
             </div>
 
@@ -828,13 +851,16 @@ const mapStateToProps = state => ({
   userdeactivate: state.updateduser.userdeactivate,
   language: state.language,
   Language: state.language.Language,
-  direction: state.language.direction
+  direction: state.language.direction,
+  LanguageCode: state.language.LanguageCode,
+  languagedbconversion: state.languagedbconversion,
+  vegetablelsanguages: state.languagedbconversion.vegetablelsanguages
 });
 
 export default connect(
   mapStateToProps,
   {
     register, clearErrors, getfarmerbyemail, resetFarmersList, updategrowerprofile, updategrowerbyemail, deactivategrowerplan, deactivateuserplan,
-    growerDeactivationSuccess, userDeactivationSuccess, resetUpdateUser
+    growerDeactivationSuccess, userDeactivationSuccess, resetUpdateUser, getvegetablelanguages
   }
 )(GrowerPersonalArea);

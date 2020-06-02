@@ -3,6 +3,7 @@ import { Input, Container, ListGroup, ListGroupItem } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getChoosenfieldCrops, addChoosenfieldCrop, deleteChoosenfieldCrop } from '../actions/choosenFieldCropsAction';
+import { getvegetablelanguages } from '../actions/vegLanguageConvertorAction';
 import PropTypes from 'prop-types';
 
 class FarmCropsPricing extends Component {
@@ -14,11 +15,14 @@ class FarmCropsPricing extends Component {
     addChoosenfieldCrop: PropTypes.func.isRequired,
     deleteChoosenfieldCrop: PropTypes.func.isRequired,
     language: PropTypes.object.isRequired,
-    choosenfieldcrop: PropTypes.object.isRequired
+    choosenfieldcrop: PropTypes.object.isRequired,
+    languagedbconversion: PropTypes.object.isRequired,
+    getvegetablelanguages: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getChoosenfieldCrops();
+    this.props.getvegetablelanguages();
   }
 
   onVegtClick = (id, name, price, averagecrop, amount, numberofveginrow, moreinfolink) => {
@@ -33,6 +37,18 @@ class FarmCropsPricing extends Component {
   UpdateChoosenVegetable = (id, name, price, averagecrop, amount, numberofveginrow, moreinfolink) => {
       this.props.deleteChoosenfieldCrop(name);
       this.props.addChoosenfieldCrop({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount, numberofveginrow, moreinfolink: moreinfolink});
+  };
+
+  Translate = name => {
+    try {
+      const { vegetablelsanguages, LanguageCode } = this.props;
+      var VegToFind = vegetablelsanguages.find(vegetablelanguage => vegetablelanguage.vegname === name);
+      var NameToReturn = VegToFind.langconvert.find(vegetablelanguage => vegetablelanguage.langname === LanguageCode);
+      return(NameToReturn.langvalue);
+    }
+    catch{return name;}
+
+    return name;
   };
 
   render() {
@@ -63,7 +79,7 @@ class FarmCropsPricing extends Component {
                   className='ChoosenVegetableImage'
                   size='sm'
                   /></span>
-                  <span className={'ChoosenVegetableName ' + FloatClass + " " + TextAlignClass}>{name}</span>
+                  <span className={'ChoosenVegetableName ' + FloatClass + " " + TextAlignClass}>{this.Translate(name)}</span>
                   <span className={'ChoosenVegetabletext ' + FloatClass}>{Language.VegPricingListItemCost}</span>
                   <span className={'ChoosenVegetablePrice ' + FloatClass}>
                     <Input
@@ -88,10 +104,13 @@ const mapStateToProps = state => ({
     choosenfieldcrop: state.choosenfieldcrop,
     language: state.language,
     Language: state.language.Language,
-    direction: state.language.direction
+    direction: state.language.direction,
+    LanguageCode: state.language.LanguageCode,
+    languagedbconversion: state.languagedbconversion,
+    vegetablelsanguages: state.languagedbconversion.vegetablelsanguages
 });
 
 export default connect(
   mapStateToProps,
-  { getChoosenfieldCrops, addChoosenfieldCrop, deleteChoosenfieldCrop }
+  { getChoosenfieldCrops, addChoosenfieldCrop, deleteChoosenfieldCrop, getvegetablelanguages }
 )(FarmCropsPricing);

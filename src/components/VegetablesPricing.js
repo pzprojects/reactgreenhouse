@@ -3,6 +3,7 @@ import { Input, Container, ListGroup, ListGroupItem } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getChoosenVegetables, addChoosenVegetable, deleteChoosenVegetable } from '../actions/choosenVegetablesAction';
+import { getvegetablelanguages } from '../actions/vegLanguageConvertorAction';
 import PropTypes from 'prop-types';
 
 class VegetablesPricing extends Component {
@@ -14,11 +15,14 @@ class VegetablesPricing extends Component {
     addChoosenVegetable: PropTypes.func.isRequired,
     deleteChoosenVegetable: PropTypes.func.isRequired,
     language: PropTypes.object.isRequired,
-    choosenvegetable: PropTypes.object.isRequired
+    choosenvegetable: PropTypes.object.isRequired,
+    languagedbconversion: PropTypes.object.isRequired,
+    getvegetablelanguages: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getChoosenVegetables();
+    this.props.getvegetablelanguages();
   }
 
   onVegtClick = (id, name, price, averagecrop, amount, numberofveginrow, moreinfolink) => {
@@ -33,6 +37,18 @@ class VegetablesPricing extends Component {
   UpdateChoosenVegetable = (id, name, price, averagecrop, amount, numberofveginrow, moreinfolink) => {
       this.props.deleteChoosenVegetable(name);
       this.props.addChoosenVegetable({_id: id, name: name, price: price, averagecrop: averagecrop, amount: amount, numberofveginrow, moreinfolink: moreinfolink});
+  };
+
+  Translate = name => {
+    try {
+      const { vegetablelsanguages, LanguageCode } = this.props;
+      var VegToFind = vegetablelsanguages.find(vegetablelanguage => vegetablelanguage.vegname === name);
+      var NameToReturn = VegToFind.langconvert.find(vegetablelanguage => vegetablelanguage.langname === LanguageCode);
+      return(NameToReturn.langvalue);
+    }
+    catch{return name;}
+
+    return name;
   };
 
   render() {
@@ -64,7 +80,7 @@ class VegetablesPricing extends Component {
                   className='ChoosenVegetableImage'
                   size='sm'
                   /></span>
-                  <span className={'ChoosenVegetableName ' + FloatClass + " " + TextAlignClass} >{name}</span>
+                  <span className={'ChoosenVegetableName ' + FloatClass + " " + TextAlignClass} >{this.Translate(name)}</span>
                   <span className={'ChoosenVegetabletext ' + FloatClass}>{Language.VegPricingListItemCost}</span>
                   <span className={'ChoosenVegetablePrice ' + FloatClass}>
                     <Input
@@ -89,10 +105,13 @@ const mapStateToProps = state => ({
     choosenvegetable: state.choosenvegetable,
     language: state.language,
     Language: state.language.Language,
-    direction: state.language.direction
+    direction: state.language.direction,
+    LanguageCode: state.language.LanguageCode,
+    languagedbconversion: state.languagedbconversion,
+    vegetablelsanguages: state.languagedbconversion.vegetablelsanguages
 });
 
 export default connect(
   mapStateToProps,
-  { getChoosenVegetables, addChoosenVegetable, deleteChoosenVegetable }
+  { getChoosenVegetables, addChoosenVegetable, deleteChoosenVegetable, getvegetablelanguages }
 )(VegetablesPricing);

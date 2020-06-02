@@ -6,6 +6,7 @@ import { getfarmersbyarea, resetFarmersList } from '../actions/farmerAction';
 import { updatechoosenfarmer, getchoosenfarmer, resetchoosenfarmer } from '../actions/choosenFarmerAction';
 import { addToGrowerVegBag, deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag, SetIsValidatedVegBag } from '../actions/growerVegChoiceAction';
 import { getGrowerFieldCropBag, addToGrowerFieldCropBag, deleteFromGrowerFieldCropBag, ResetGrowerFieldCropBag, SetTotalGrowerFieldCropBag, SetPlanGrowerFieldCropBag, SetIsValidatedFieldCropBag } from '../actions/growerFieldCropsChoiceAction';
+import { getvegetablelanguages } from '../actions/vegLanguageConvertorAction';
 import PropTypes from 'prop-types';
 import ReadMoreModal from './ReadMoreModal';
 
@@ -55,7 +56,9 @@ class ChooseFarmer extends Component {
     SetTotalGrowerFieldCropBag: PropTypes.func.isRequired,
     SetPlanGrowerFieldCropBag: PropTypes.func.isRequired,
     SetIsValidatedFieldCropBag: PropTypes.func.isRequired,
-    language: PropTypes.object.isRequired
+    language: PropTypes.object.isRequired,
+    languagedbconversion: PropTypes.object.isRequired,
+    getvegetablelanguages: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -63,6 +66,7 @@ class ChooseFarmer extends Component {
     this.props.getchoosenfarmer();
     this.props.getGrowerVegBag();
     this.props.getGrowerFieldCropBag();
+    this.props.getvegetablelanguages();
 
     if (this.props.choosenfarmer.ChoosenFarmerById[0] !== undefined && this.props.choosenfarmer.ChoosenFarmerById[0] !== null) {
       const { FieldCropsToBuy } = this.props.growerfieldcropsbuyingbag;
@@ -256,14 +260,26 @@ class ChooseFarmer extends Component {
 
   };
 
+  Translate = name => {
+    try {
+      const { vegetablelsanguages, LanguageCode } = this.props;
+      var VegToFind = vegetablelsanguages.find(vegetablelanguage => vegetablelanguage.vegname === name);
+      var NameToReturn = VegToFind.langconvert.find(vegetablelanguage => vegetablelanguage.langname === LanguageCode);
+      return (NameToReturn.langvalue);
+    }
+    catch{ return name; }
+
+    return name;
+  };
+
   // Return a connected string of vegetabiles
   ReturnChoosingVegtabilesAsString = (Mychoosenvegetables) => {
     var VegAsString = '';
     for (var i = 0; i < Mychoosenvegetables.length; i++) {
       if (Mychoosenvegetables.length === (i + 1)) {
-        VegAsString += Mychoosenvegetables[i].name;
+        VegAsString += this.Translate(Mychoosenvegetables[i].name);
       }
-      else VegAsString += Mychoosenvegetables[i].name + ", ";
+      else VegAsString += this.Translate(Mychoosenvegetables[i].name) + ", ";
     }
     return VegAsString;
   };
@@ -1501,7 +1517,7 @@ class ChooseFarmer extends Component {
                 <ListGroupItem>
                   <div className="GrowerMainPickingTitle">
                     {Language.GrowerChooseVegMiniTitle}
-                </div>
+                  </div>
                 </ListGroupItem>
               </ListGroup>
               <ListGroup>
@@ -1509,13 +1525,11 @@ class ChooseFarmer extends Component {
                   <div className={'GrowerVegHolder ' + FloatClass}>
                     <Label for='GrowerVeg1'></Label>
                     <Input type="select" name="GrowerVeg1" id="GrowerVeg1" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerVeg1}>
-                      {ChoosenFarmerContainer.map(function (item, thirdkey) {
-                        return (
-                          <option className='GrowerVegItem' key={thirdkey}>
-                            {item.name}
-                          </option>
-                        )
-                      })}
+                      {ChoosenFarmerContainer.map(({ _id, name }) => (
+                        <option className='GrowerVegItem' key={_id} value={name}>
+                          {this.Translate(name)}
+                        </option>
+                      ))}
                     </Input>
                   </div>
                   <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
@@ -1530,13 +1544,11 @@ class ChooseFarmer extends Component {
                   <div className={'GrowerVegHolder ' + FloatClass}>
                     <Label for='GrowerVeg2'></Label>
                     <Input type="select" name="GrowerVeg2" id="GrowerVeg2" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerVeg2}>
-                      {ChoosenFarmerContainer.map(function (item, thirdkey) {
-                        return (
-                          <option className='GrowerVegItem' key={thirdkey}>
-                            {item.name}
-                          </option>
-                        )
-                      })}
+                      {ChoosenFarmerContainer.map(({ _id, name }) => (
+                        <option className='GrowerVegItem' key={_id} value={name}>
+                          {this.Translate(name)}
+                        </option>
+                      ))}
                     </Input>
                   </div>
                   <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
@@ -1551,13 +1563,11 @@ class ChooseFarmer extends Component {
                   <div className={'GrowerVegHolder ' + FloatClass}>
                     <Label for='GrowerVeg3'></Label>
                     <Input type="select" name="GrowerVeg3" id="GrowerVeg3" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerVeg3}>
-                      {ChoosenFarmerContainer.map(function (item, thirdkey) {
-                        return (
-                          <option className='GrowerVegItem' key={thirdkey}>
-                            {item.name}
-                          </option>
-                        )
-                      })}
+                      {ChoosenFarmerContainer.map(({ _id, name }) => (
+                        <option className='GrowerVegItem' key={_id} value={name}>
+                          {this.Translate(name)}
+                        </option>
+                      ))}
                     </Input>
                   </div>
                   <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
@@ -1572,13 +1582,11 @@ class ChooseFarmer extends Component {
                   <div className={'GrowerVegHolder ' + FloatClass}>
                     <Label for='GrowerVeg4'></Label>
                     <Input type="select" name="GrowerVeg4" id="GrowerVeg4" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerVeg4}>
-                      {ChoosenFarmerContainer.map(function (item, thirdkey) {
-                        return (
-                          <option className='GrowerVegItem' key={thirdkey}>
-                            {item.name}
-                          </option>
-                        )
-                      })}
+                      {ChoosenFarmerContainer.map(({ _id, name }) => (
+                        <option className='GrowerVegItem' key={_id} value={name}>
+                          {this.Translate(name)}
+                        </option>
+                      ))}
                     </Input>
                   </div>
                   <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
@@ -1595,25 +1603,25 @@ class ChooseFarmer extends Component {
               <div className={'GrowerFieldsGroupsContainerExample ' + TextAlignClass} >{Language.GrowerChooseVegHelkaHeader}</div>
               <div className="GrowerFieldsGroupsSection" >
                 <div className="GrowerHelka1" >
-                  <span className="GrowerHelkaName" >{this.state.GrowerVeg1}</span>
+                  <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerVeg1)}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("1", "amount")}</span>
                   <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("1", "totalcost")}</span>
                 </div>
                 <div className="GrowerHelka2" >
-                  <span className="GrowerHelkaName" >{this.state.GrowerVeg2}</span>
+                  <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerVeg2)}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("2", "amount")}</span>
                   <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("2", "totalcost")}</span>
                 </div>
                 <div className="GrowerHelka3" >
-                  <span className="GrowerHelkaName" >{this.state.GrowerVeg3}</span>
+                  <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerVeg3)}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("3", "amount")}</span>
                   <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("3", "totalcost")}</span>
                 </div>
                 <div className="GrowerHelka4" >
-                  <span className="GrowerHelkaName" >{this.state.GrowerVeg4}</span>
+                  <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerVeg4)}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("4", "amount")}</span>
                   <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("4", "totalcost")}</span>
@@ -1654,13 +1662,11 @@ class ChooseFarmer extends Component {
                             <div className={'GrowerVegHolder ' + FloatClass}>
                               <Label for='GrowerFieldCrop1'></Label>
                               <Input type="select" name="GrowerFieldCrop1" id="GrowerFieldCrop1" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerFieldCrop1}>
-                                {ChoosenFarmerFieldCrops.map(function (item, thirdkey) {
-                                  return (
-                                    <option className='GrowerVegItem' key={thirdkey}>
-                                      {item.name}
-                                    </option>
-                                  )
-                                })}
+                                {ChoosenFarmerFieldCrops.map(({ _id, name }) => (
+                                  <option className='GrowerVegItem' key={_id} value={name}>
+                                    {this.Translate(name)}
+                                  </option>
+                                ))}
                               </Input>
                             </div>
                             <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
@@ -1675,13 +1681,11 @@ class ChooseFarmer extends Component {
                             <div className={'GrowerVegHolder ' + FloatClass}>
                               <Label for='GrowerFieldCrop2'></Label>
                               <Input type="select" name="GrowerFieldCrop2" id="GrowerFieldCrop2" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerFieldCrop2}>
-                                {ChoosenFarmerFieldCrops.map(function (item, thirdkey) {
-                                  return (
-                                    <option className='GrowerVegItem' key={thirdkey}>
-                                      {item.name}
-                                    </option>
-                                  )
-                                })}
+                                {ChoosenFarmerFieldCrops.map(({ _id, name }) => (
+                                  <option className='GrowerVegItem' key={_id} value={name}>
+                                    {this.Translate(name)}
+                                  </option>
+                                ))}
                               </Input>
                             </div>
                             <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
@@ -1696,13 +1700,11 @@ class ChooseFarmer extends Component {
                             <div className={'GrowerVegHolder ' + FloatClass}>
                               <Label for='GrowerFieldCrop3'></Label>
                               <Input type="select" name="GrowerFieldCrop3" id="GrowerFieldCrop3" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerFieldCrop3}>
-                                {ChoosenFarmerFieldCrops.map(function (item, thirdkey) {
-                                  return (
-                                    <option className='GrowerVegItem' key={thirdkey}>
-                                      {item.name}
-                                    </option>
-                                  )
-                                })}
+                                {ChoosenFarmerFieldCrops.map(({ _id, name }) => (
+                                  <option className='GrowerVegItem' key={_id} value={name}>
+                                    {this.Translate(name)}
+                                  </option>
+                                ))}
                               </Input>
                             </div>
                             <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
@@ -1717,13 +1719,11 @@ class ChooseFarmer extends Component {
                             <div className={'GrowerVegHolder ' + FloatClass}>
                               <Label for='GrowerFieldCrop4'></Label>
                               <Input type="select" name="GrowerFieldCrop4" id="GrowerFieldCrop4" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.GrowerFieldCrop4}>
-                                {ChoosenFarmerFieldCrops.map(function (item, thirdkey) {
-                                  return (
-                                    <option className='GrowerVegItem' key={thirdkey}>
-                                      {item.name}
-                                    </option>
-                                  )
-                                })}
+                                {ChoosenFarmerFieldCrops.map(({ _id, name }) => (
+                                  <option className='GrowerVegItem' key={_id} value={name}>
+                                    {this.Translate(name)}
+                                  </option>
+                                ))}
                               </Input>
                             </div>
                             <div className={'GrowerChoosenVegAVGPrice ' + FloatClass}>
@@ -1740,25 +1740,25 @@ class ChooseFarmer extends Component {
                         <div className={'GrowerFieldsGroupsContainerExample ' + FloatClass + " " + TextAlignClass} >{Language.GrowerChooseVegHelkaHeader}</div>
                         <div className="GrowerFieldsGroupsSection" >
                           <div className="GrowerHelka1" >
-                            <span className="GrowerHelkaName" >{this.state.GrowerFieldCrop1}</span>
+                            <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerFieldCrop1)}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("1", "amount")}</span>
                             <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("1", "totalcost")}</span>
                           </div>
                           <div className="GrowerHelka2" >
-                            <span className="GrowerHelkaName" >{this.state.GrowerFieldCrop2}</span>
+                            <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerFieldCrop2)}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("2", "amount")}</span>
                             <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("2", "totalcost")}</span>
                           </div>
                           <div className="GrowerHelka3" >
-                            <span className="GrowerHelkaName" >{this.state.GrowerFieldCrop3}</span>
+                            <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerFieldCrop3)}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("3", "amount")}</span>
                             <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("3", "totalcost")}</span>
                           </div>
                           <div className="GrowerHelka4" >
-                            <span className="GrowerHelkaName" >{this.state.GrowerFieldCrop4}</span>
+                            <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerFieldCrop4)}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("4", "amount")}</span>
                             <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("4", "totalcost")}</span>
@@ -1812,35 +1812,35 @@ class ChooseFarmer extends Component {
                 <div className={'GrowerFinalBillingExample ' + FloatClass + " " + TextAlignClass} >{Language.GrowerTotalBillOneTimeTitle}</div>
                 <ul className="GrowerFinalBillingSection" >
                   <li className="GrowerFinalBillingMainHeader1" >
-                  <span className={'GrowerFinalBillingItemName ' + FloatClass} >{Language.GrowerTotalBillMonthlyItem}</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{Language.GrowerTotalBillMonthlyItem}</span>
                     <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{Language.GrowerTotalBillMonthlyItemCost}</span>
                     <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{Language.GrowerTotalBillMonthlyItemAnount}</span>
                     <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{Language.GrowerTotalBillMonthlyItemTotal}</span>
                     <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillItemPaymentType}</span>
                   </li>
                   <li>
-                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerVeg1}{OnTheRightText}</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.Translate(this.state.GrowerVeg1)}{OnTheRightText}</span>
                     <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetVegTotalBilling("1", "price")}</span>
                     <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetVegTotalBilling("1", "averagecrop")}</span>
                     <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetVegTotalBilling("1", "Total")}</span>
                     <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                   </li>
                   <li>
-                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerVeg2}{OnTheRightText}</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.Translate(this.state.GrowerVeg2)}{OnTheRightText}</span>
                     <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetVegTotalBilling("2", "price")}</span>
                     <span className={'GrowerFinalBillingItemAmount ' + FloatClass}>{this.GetVegTotalBilling("2", "averagecrop")}</span>
                     <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetVegTotalBilling("2", "Total")}</span>
                     <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                   </li>
                   <li>
-                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerVeg3}{OnTheRightText}</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.Translate(this.state.GrowerVeg3)}{OnTheRightText}</span>
                     <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetVegTotalBilling("3", "price")}</span>
                     <span className={'GrowerFinalBillingItemAmount ' + FloatClass}>{this.GetVegTotalBilling("3", "averagecrop")}</span>
                     <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetVegTotalBilling("3", "Total")}</span>
                     <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} >{Language.GrowerTotalBillOneTimeItemPaymentType}</span>
                   </li>
                   <li>
-                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerVeg4}{OnTheRightText}</span>
+                    <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.Translate(this.state.GrowerVeg4)}{OnTheRightText}</span>
                     <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetVegTotalBilling("4", "price")}</span>
                     <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetVegTotalBilling("4", "averagecrop")}</span>
                     <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetVegTotalBilling("4", "Total")}</span>
@@ -1848,7 +1848,7 @@ class ChooseFarmer extends Component {
                   </li>
                   {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                     <li>
-                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerFieldCrop1}{OnTheRightText}</span>
+                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.Translate(this.state.GrowerFieldCrop1)}{OnTheRightText}</span>
                       <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetFieldCropTotalBilling("1", "price")}</span>
                       <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetFieldCropTotalBilling("1", "averagecrop")}</span>
                       <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetFieldCropTotalBilling("1", "Total")}</span>
@@ -1856,7 +1856,7 @@ class ChooseFarmer extends Component {
                     </li> : null}
                   {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                     <li>
-                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerFieldCrop2}{OnTheRightText}</span>
+                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.Translate(this.state.GrowerFieldCrop2)}{OnTheRightText}</span>
                       <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetFieldCropTotalBilling("2", "price")}</span>
                       <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetFieldCropTotalBilling("2", "averagecrop")}</span>
                       <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetFieldCropTotalBilling("2", "Total")}</span>
@@ -1864,7 +1864,7 @@ class ChooseFarmer extends Component {
                     </li> : null}
                   {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                     <li>
-                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerFieldCrop3}{OnTheRightText}</span>
+                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.Translate(this.state.GrowerFieldCrop3)}{OnTheRightText}</span>
                       <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetFieldCropTotalBilling("3", "price")}</span>
                       <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetFieldCropTotalBilling("3", "averagecrop")}</span>
                       <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetFieldCropTotalBilling("3", "Total")}</span>
@@ -1872,7 +1872,7 @@ class ChooseFarmer extends Component {
                     </li> : null}
                   {this.state.FieldCropStatus && this.state.FieldCropPlanActive ?
                     <li>
-                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.state.GrowerFieldCrop4}{OnTheRightText}</span>
+                      <span className={'GrowerFinalBillingItemName ' + FloatClass} >{OnTheLeftText}{this.Translate(this.state.GrowerFieldCrop4)}{OnTheRightText}</span>
                       <span className={'GrowerFinalBillingItemPrice ' + FloatClass} >{this.GetFieldCropTotalBilling("4", "price")}</span>
                       <span className={'GrowerFinalBillingItemAmount ' + FloatClass} >{this.GetFieldCropTotalBilling("4", "averagecrop")}</span>
                       <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{this.GetFieldCropTotalBilling("4", "Total")}</span>
@@ -1904,7 +1904,10 @@ const mapStateToProps = state => ({
   FieldCropsToBuy: state.growerfieldcropsbuyingbag.FieldCropsToBuy,
   language: state.language,
   Language: state.language.Language,
-  direction: state.language.direction
+  direction: state.language.direction,
+  LanguageCode: state.language.LanguageCode,
+  languagedbconversion: state.languagedbconversion,
+  vegetablelsanguages: state.languagedbconversion.vegetablelsanguages
 });
 
 export default connect(
@@ -1913,6 +1916,6 @@ export default connect(
     getfarmersbyarea, resetFarmersList, updatechoosenfarmer, getchoosenfarmer, resetchoosenfarmer, addToGrowerVegBag,
     deleteFromGrowerVegBag, getGrowerVegBag, ResetGrowerVegBag, SetTotalGrowerVegBag, SetPlanGrowerVegBag, SetIsValidatedVegBag,
     getGrowerFieldCropBag, addToGrowerFieldCropBag, deleteFromGrowerFieldCropBag, ResetGrowerFieldCropBag, SetTotalGrowerFieldCropBag,
-    SetPlanGrowerFieldCropBag, SetIsValidatedFieldCropBag
+    SetPlanGrowerFieldCropBag, SetIsValidatedFieldCropBag, getvegetablelanguages
   }
 )(ChooseFarmer);

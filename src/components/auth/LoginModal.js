@@ -27,6 +27,7 @@ class LoginModal extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
+    language: PropTypes.object.isRequired,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
@@ -79,22 +80,30 @@ class LoginModal extends Component {
   };
 
   render() {
+    const { direction, Language } = this.props;
+    let TextAlignClass = "Co-Text-Align-Right";
+    if (direction === 'rtl') {
+      TextAlignClass = "Co-Text-Align-Right";
+    }
+    else {
+      TextAlignClass = "Co-Text-Align-Left";
+    }
     return (
       <div>
         <NavLink onClick={this.toggle} href='#'>
-          Log In
+          {Language.LogIn}
         </NavLink>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>כניסה למערכת</ModalHeader>
+          <ModalHeader toggle={this.toggle}>{Language.LoginTitle}</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
               <Alert color='danger'>{this.state.msg}</Alert>
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <div className="login-form-group">
-                  <Label for='email'>אימייל</Label>
+                <div className={"login-form-group " + TextAlignClass}>
+                  <Label for='email'>{Language.LoginEmail}</Label>
                   <Input
                     type='email'
                     name='email'
@@ -104,8 +113,8 @@ class LoginModal extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <div className="login-form-group">
-                  <Label for='password'>סיסמה</Label>
+                <div className={"login-form-group " + TextAlignClass}>
+                  <Label for='password'>{Language.Password}</Label>
                   <Input
                     type='password'
                     name='password'
@@ -117,11 +126,11 @@ class LoginModal extends Component {
                 </div>
                 <div className="ForgotPasswordLink">
                   <Link onClick={this.toggle} href='#' to="/RecoverPassword" className="ghost-btn">
-                    שכחתי סיסמה
+                    {Language.LoginForgotPassword}
                   </Link>
                 </div>
                 <Button color='success' style={{ marginTop: '2rem' }} block>
-                  התחבר
+                  {Language.LoginConnectButton}
                 </Button>
               </FormGroup>
             </Form>
@@ -134,7 +143,10 @@ class LoginModal extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
+  language: state.language,
+  Language: state.language.Language,
+  direction: state.language.direction
 });
 
 export default connect(

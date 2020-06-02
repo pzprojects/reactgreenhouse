@@ -22,6 +22,7 @@ class LoginPage extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
+    language: PropTypes.object.isRequired,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
@@ -70,17 +71,25 @@ class LoginPage extends Component {
   };
 
   render() {
+    const { direction, Language } = this.props;
+    let TextAlignClass = "Co-Text-Align-Right";
+    if (direction === 'rtl') {
+      TextAlignClass = "Co-Text-Align-Right";
+    }
+    else {
+      TextAlignClass = "Co-Text-Align-Left";
+    }
     return (
       <div>
-        <div className='LoginPageHeader' >כניסה למערכת</div>
+        <div className='LoginPageHeader' >{Language.LoginTitle}</div>
         <div className='LoginPageContainer' >
           {this.state.msg ? (
               <Alert color='danger'>{this.state.msg}</Alert>
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <div className="login-form-group">
-                  <Label for='email'>אימייל</Label>
+                <div className={"login-form-group " + TextAlignClass}>
+                  <Label for='email'>{Language.LoginEmail}</Label>
                   <Input
                     type='email'
                     name='email'
@@ -90,8 +99,8 @@ class LoginPage extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <div className="login-form-group">
-                  <Label for='password'>סיסמה</Label>
+                <div className={"login-form-group " + TextAlignClass}>
+                  <Label for='password'>{Language.Password}</Label>
                   <Input
                     type='password'
                     name='password'
@@ -103,11 +112,11 @@ class LoginPage extends Component {
                 </div>
                 <div className="ForgotPasswordLink">
                   <Link onClick={this.toggle} href='#' to="/RecoverPassword" className="ghost-btn">
-                    שכחתי סיסמה
+                    {Language.LoginForgotPassword}
                   </Link>
                 </div>
                 <Button color='success' style={{ marginTop: '2vw' }} block>
-                  התחבר
+                  {Language.LoginConnectButton}
                 </Button>
               </FormGroup>
             </Form>
@@ -119,7 +128,10 @@ class LoginPage extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
+  language: state.language,
+  Language: state.language.Language,
+  direction: state.language.direction
 });
 
 export default connect(

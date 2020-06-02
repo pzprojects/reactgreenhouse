@@ -899,6 +899,22 @@ class GrowerRegisterPage extends Component {
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
                         <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanWater}</span>
                       </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanBfertilization}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCommunity}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanBySeeds}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -928,10 +944,6 @@ class GrowerRegisterPage extends Component {
                       <span className="GrowerCardDetailsHeader">{Language.FarmerPlan2}<br /> {Language.FarmerPlanInclude}</span>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
-                      </div>
-                      <div className={'PlanIncludeSection ' + TextAlignClass}>
-                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
                         <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
@@ -940,7 +952,23 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>דישון</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanBfertilization}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCommunity}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanBySeeds}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanApointment}</span>
                       </div>
                     </div>
                   </div>
@@ -971,10 +999,6 @@ class GrowerRegisterPage extends Component {
                       <span className="GrowerCardDetailsHeader">{Language.FarmerPlan3}<br /> {Language.FarmerPlanInclude}</span>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
-                      </div>
-                      <div className={'PlanIncludeSection ' + TextAlignClass}>
-                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
                         <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanArea} {HamamadefaultsizeContainer} {Language.SquareMeter}</span>
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
@@ -983,7 +1007,19 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>דישון</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanBfertilization}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCommunity}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
+                      </div>
+                      <div className={'PlanIncludeSection ' + TextAlignClass}>
+                        <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanBySeeds}</span>
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>

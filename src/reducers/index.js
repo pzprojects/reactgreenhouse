@@ -20,6 +20,7 @@ import veglogReducer from './veglogReducer';
 import growerShoppingListReducer from './growerShoppingListReducer';
 import personalShoopingListReducer from './personalShoopingListReducer';
 import switchLanguageReducer from './switchLanguageReducer';
+import vegLanguageConvertorReducer from './vegLanguageConvertorReducer';
 
 export default combineReducers({
   item: itemReducer,
@@ -41,5 +42,6 @@ export default combineReducers({
   veglog: veglogReducer,
   growershop: growerShoppingListReducer,
   personalshop: personalShoopingListReducer,
-  language: switchLanguageReducer
+  language: switchLanguageReducer,
+  languagedbconversion: vegLanguageConvertorReducer
 });

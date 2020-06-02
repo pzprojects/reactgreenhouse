@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getFieldcrops } from '../actions/fieldcropAction';
 import { getChoosenfieldCrops, addChoosenfieldCrop, deleteChoosenfieldCrop } from '../actions/choosenFieldCropsAction';
+import { getvegetablelanguages } from '../actions/vegLanguageConvertorAction';
 import PropTypes from 'prop-types';
 
 class FieldCrops extends Component {
@@ -17,12 +18,15 @@ class FieldCrops extends Component {
     addChoosenfieldCrop: PropTypes.func.isRequired,
     deleteChoosenfieldCrop: PropTypes.func.isRequired,
     language: PropTypes.object.isRequired,
-    choosenfieldcrop: PropTypes.object.isRequired
+    choosenfieldcrop: PropTypes.object.isRequired,
+    languagedbconversion: PropTypes.object.isRequired,
+    getvegetablelanguages: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getFieldcrops();
     this.props.getChoosenfieldCrops();
+    this.props.getvegetablelanguages();
   }
 
   componentDidUpdate(prevProps) {
@@ -46,6 +50,18 @@ class FieldCrops extends Component {
      else return false
     
    };
+
+   Translate = name => {
+    try {
+      const { vegetablelsanguages, LanguageCode } = this.props;
+      var VegToFind = vegetablelsanguages.find(vegetablelanguage => vegetablelanguage.vegname === name);
+      var NameToReturn = VegToFind.langconvert.find(vegetablelanguage => vegetablelanguage.langname === LanguageCode);
+      return(NameToReturn.langvalue);
+    }
+    catch{return name;}
+
+    return name;
+  };
 
   render() {
     const { fieldcrops } = this.props.fieldcrop;
@@ -86,7 +102,7 @@ class FieldCrops extends Component {
                   id={_id}
                   onClick={this.RemoveVegtClick.bind(this, name)}
                   /></span> }
-                  <span className={'vegetablesItemName ' + FloatClass}>{name}</span>
+                  <span className={'vegetablesItemName ' + FloatClass}>{this.Translate(name)}</span>
                 </ListGroupItem>
               </CSSTransition>
             ))}
@@ -103,10 +119,13 @@ const mapStateToProps = state => ({
     choosenfieldcrop: state.choosenfieldcrop,
     language: state.language,
     Language: state.language.Language,
-    direction: state.language.direction
+    direction: state.language.direction,
+    LanguageCode: state.language.LanguageCode,
+    languagedbconversion: state.languagedbconversion,
+    vegetablelsanguages: state.languagedbconversion.vegetablelsanguages
 });
 
 export default connect(
   mapStateToProps,
-  { getFieldcrops, getChoosenfieldCrops, addChoosenfieldCrop, deleteChoosenfieldCrop }
+  { getFieldcrops, getChoosenfieldCrops, addChoosenfieldCrop, deleteChoosenfieldCrop, getvegetablelanguages }
 )(FieldCrops);

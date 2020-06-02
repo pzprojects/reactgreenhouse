@@ -85,7 +85,8 @@ class UpdatePassword extends Component {
     var lowerCaseLetters = /[a-z]/g;
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
-    if(password.length < 8 || !password.match(numbers) || !password.match(upperCaseLetters ) || !password.match(lowerCaseLetters )){
+    var english = /^[A-Za-z0-9@!~#$%^&*_-]*$/;
+    if(password.length < 8 || !password.match(numbers) || !password.match(upperCaseLetters ) || !password.match(lowerCaseLetters ) || !english.test(password)){
       if(password.length !== 0){
         if(this.state.PasswordStrengthValidation){
           this.setState({
@@ -128,7 +129,21 @@ class UpdatePassword extends Component {
   }
 
   render() {
-    const { submitted } = this.state
+    const { submitted } = this.state;
+    const { Language, direction } = this.props;
+    let FloatClass = "Co-Align-Right";
+    let TextAlignClass = "Co-Text-Align-Right";
+    let ReverseTextAlignClass = "Co-Text-Align-Left";
+    if (direction === 'rtl') {
+      FloatClass = "Co-Align-Right";
+      TextAlignClass = "Co-Text-Align-Right";
+      ReverseTextAlignClass = "Co-Text-Align-Left";
+    }
+    else {
+      FloatClass = "Co-Align-Left";
+      TextAlignClass = "Co-Text-Align-Left";
+      ReverseTextAlignClass = "Co-Text-Align-Right";
+    }
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
     }
@@ -136,50 +151,50 @@ class UpdatePassword extends Component {
     return (
       <Container>
         <div className='ResetPasswordContainer'>
-          <div className='ResetPasswordHeader'><h3>עדכון סיסמה</h3></div>
+          <div className='ResetPasswordHeader'><h3>{Language.UpdatePasswordTitle}</h3></div>
           {submitted ? (
             <div className="ResetPasswordMessage">
-              <p>סיסמתך נשמרה בהצלחה.</p>
+              <p>{Language.UpdatePasswordSuccessText}</p>
               <Link to="/" className="ghost-btn">
-                חזור לדף הבית
+                {Language.SubmutMsgButton}
               </Link>
             </div>
           ) : (
             <div className="reset-password-form-sent-wrapper">
               <form onSubmit={this.updatePassword}>
                 <div className="form-group">
-                  <Label for='password'>סיסמה</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='password'>{Language.Password}</Label>
                   <Input
                     type='password'
                     name='password'
                     id='password'
                     placeholder=''
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     invalid= {!this.state.PasswordStrengthValidation}
                     onChange={this.handleChange}
                     value={this.state.password}
                     required
                   />
-                  <FormFeedback>הסיסמה חייבת להכיל 8 תווים, אות גדולה, אות קטנה ומספר</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.PasswordError}</FormFeedback>
                 </div>
                 <div className="form-group">
-                  <Label for='confirmPassword'>אימות סיסמה</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='confirmPassword'>{Language.PasswordConfirmation}</Label>
                   <Input
                     type='password'
                     name='confirmPassword'
                     id='confirmPassword'
                     placeholder=''
-                    className='mb-3'
+                    className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                     onChange={this.handleChange}
                     value={this.state.confirmPassword}
                     invalid= {!this.state.PasswordValidation}
                     required
                   />
-                  <FormFeedback>הסיסמאות לא זהות!</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.PasswordConfirmError}</FormFeedback>
                 </div>
                 <div className='ResetPasswordBtnHolder'>
                   <Button color='success' className="ResetPasswordBtnHolderBtn">
-                    עדכן סיסמה
+                    {Language.UpdatePasswordSendButton}
                   </Button>
                 </div>
               </form>
@@ -195,11 +210,14 @@ UpdatePassword.propTypes = {
   userId: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool,
   register: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  language: PropTypes.object.isRequired
 }
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    language: state.language,
+    Language: state.language.Language,
+    direction: state.language.direction
 });
   
 export default connect(

@@ -37,7 +37,8 @@ class UpdateGrowerEmail extends Component {
     growerupdated: PropTypes.bool,
     resetgrowerusername: PropTypes.func.isRequired,
     resetusername: PropTypes.func.isRequired,
-    clearresetgrowerusername: PropTypes.func.isRequired
+    clearresetgrowerusername: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -153,6 +154,20 @@ class UpdateGrowerEmail extends Component {
 
   render() {
     const { submitted } = this.state
+    const { Language, direction } = this.props;
+    let FloatClass = "Co-Align-Right";
+    let TextAlignClass = "Co-Text-Align-Right";
+    let ReverseTextAlignClass = "Co-Text-Align-Left";
+    if (direction === 'rtl') {
+      FloatClass = "Co-Align-Right";
+      TextAlignClass = "Co-Text-Align-Right";
+      ReverseTextAlignClass = "Co-Text-Align-Left";
+    }
+    else {
+      FloatClass = "Co-Align-Left";
+      TextAlignClass = "Co-Text-Align-Left";
+      ReverseTextAlignClass = "Co-Text-Align-Right";
+    }
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
     }
@@ -161,38 +176,38 @@ class UpdateGrowerEmail extends Component {
       <Container>
         <div className='SendResetPasswordEmailContainer'>
           {!this.state.UserLoginValidation ? (
-              <Alert color='danger'>בכדי לעדכן שם משתמש עלייך להיות מחובר</Alert>
+              <Alert color='danger'>{Language.UpdateUserNameAlert}</Alert>
           ) : null}
-          <div className='SendResetPasswordEmailHeader'><h3>עדכון שם משתמש / אימייל</h3></div>
+          <div className='SendResetPasswordEmailHeader'><h3>{Language.UpdateUserNameTitle}</h3></div>
           {submitted ? (
             <div className="SendResetPasswordEmailMessage">
               <p>
-                שם המשתמש עודכן בהצלחה, אנא התחבר מחדש למערכת
+                {Language.UpdateUserNameSuccessText}
               </p>
               <Link to="/" className="ghost-btn">
-              חזור לדף הבית
+                {Language.SubmutMsgButton}
               </Link>
             </div>
           ) : (
             <div className="reset-password-form-wrapper">
               <form onSubmit={this.ResetUserName}>
                 <div className="form-group">
-                  <Label for='email'>אימייל</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.LoginEmail}</Label>
                     <Input
                       type='email'
                       name='email'
                       id='email'
                       placeholder=''
-                      className='mb-3'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                       onChange={this.handleChange}
                       value={this.state.email}
                       invalid= {!this.state.emailValidation}
                     />
-                    <FormFeedback>כתובת האימייל שגויה</FormFeedback>
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.EmailValidationError}</FormFeedback>
                 </div>
                 <div className='SendResetPasswordEmailBtnHolder'>
                   <Button color='success' className="SendResetPasswordEmailBtn">
-                    עדכן שם משתמש
+                    {Language.UpdateUserNameButton}
                   </Button>
                 </div>
               </form>
@@ -210,7 +225,10 @@ const mapStateToProps = state => ({
     error: state.error,
     resetusername: state.resetusername,
     userupdated: state.resetusername.userupdated,
-    growerupdated: state.resetusername.growerupdated
+    growerupdated: state.resetusername.growerupdated,
+    language: state.language,
+    Language: state.language.Language,
+    direction: state.language.direction
 });
   
 export default connect(

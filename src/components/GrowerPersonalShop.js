@@ -21,6 +21,7 @@ import Loader from '../components/Loader';
 import { getfarmerbyemail, resetFarmersList } from '../actions/farmerAction';
 import { getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList, ResetGrowerShoopinList, UpdateGrowerShoopinList } from '../actions/growerShoppingListAction';
 import { addpersonalShoopingItems, resetpersonalShoopingItems } from '../actions/personalShoopingListAction';
+import { getvegetablelanguages } from '../actions/vegLanguageConvertorAction';
 import { Redirect } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 
@@ -65,10 +66,13 @@ class GrowerPersonalShop extends Component {
         addpersonalShoopingItems: PropTypes.func.isRequired,
         resetpersonalShoopingItems: PropTypes.func.isRequired,
         resetFarmersList: PropTypes.func.isRequired,
-        language: PropTypes.object.isRequired
+        language: PropTypes.object.isRequired,
+        languagedbconversion: PropTypes.object.isRequired,
+        getvegetablelanguages: PropTypes.func.isRequired
     };
 
     componentDidMount() {
+        this.props.getvegetablelanguages();
         const { user } = this.props.auth;
         try {
             if (user.usertype !== 'מגדל') {
@@ -227,8 +231,8 @@ class GrowerPersonalShop extends Component {
 
 
     onChange = e => {
-        if(e.target.name !== 'ChoosenVegAmount'){
-          this.setState({ [e.target.name]: e.target.value });
+        if (e.target.name !== 'ChoosenVegAmount') {
+            this.setState({ [e.target.name]: e.target.value });
         }
 
         // validations
@@ -240,8 +244,8 @@ class GrowerPersonalShop extends Component {
                 });
                 break;
             case "ChoosenVegAmount":
-                if(e.target.value > 0 && e.target.value < 1000){
-                  this.setState({ [e.target.name]: e.target.value });
+                if (e.target.value > 0 && e.target.value < 1000) {
+                    this.setState({ [e.target.name]: e.target.value });
                 }
                 break;
             default:
@@ -324,6 +328,18 @@ class GrowerPersonalShop extends Component {
         return TotalPayment;
     }
 
+    Translate = name => {
+        try {
+            const { vegetablelsanguages, LanguageCode } = this.props;
+            var VegToFind = vegetablelsanguages.find(vegetablelanguage => vegetablelanguage.vegname === name);
+            var NameToReturn = VegToFind.langconvert.find(vegetablelanguage => vegetablelanguage.langname === LanguageCode);
+            return (NameToReturn.langvalue);
+        }
+        catch{ return name; }
+
+        return name;
+    };
+
     RemoveFromBucket = (name) => {
         this.props.deleteFromShoopinList(name);
     }
@@ -374,13 +390,11 @@ class GrowerPersonalShop extends Component {
                                                     <div className={'GrowerPersonalShopVeg ' + FloatClass}>
                                                         <Label for='ChoosenVegName'></Label>
                                                         <Input type="select" name="ChoosenVegName" id="ChoosenVegName" className='GrowerVeg mb-3' onChange={this.onChange} value={this.state.ChoosenVeg}>
-                                                            {vegetablesforshop.map(function (item, thirdkey) {
-                                                                return (
-                                                                    <option className='GrowerVegItem' key={thirdkey}>
-                                                                        {item.name}
-                                                                    </option>
-                                                                )
-                                                            })}
+                                                            {vegetablesforshop.map(({ _id, name }) => (
+                                                                <option className='GrowerVegItem' key={_id} value={name}>
+                                                                    {this.Translate(name)}
+                                                                </option>
+                                                            ))}
                                                         </Input>
                                                     </div>
                                                     <div className={'GrowerPersonalShopVegPrice ' + FloatClass}>
@@ -402,8 +416,8 @@ class GrowerPersonalShop extends Component {
                                             :
                                             <ListGroup>
                                                 <ListGroupItem>
-                                                {Language.GrowerPersonalShopFarmerEmpty}
-                                            </ListGroupItem>
+                                                    {Language.GrowerPersonalShopFarmerEmpty}
+                                                </ListGroupItem>
                                             </ListGroup>
                                         }
                                     </div>
@@ -438,7 +452,7 @@ class GrowerPersonalShop extends Component {
                                                             <ListGroupItem className="GrowerPersonalShopBucketItem">
                                                                 <div className='GrowerPersonalShopBucketItemContainer'>
                                                                     <div className={'GrowerPersonalShopBucketItemName ' + FloatClass}>
-                                                                        <span>{ChoosenVegName}&nbsp;</span>
+                                                                        <span>{this.Translate(ChoosenVegName)}&nbsp;</span>
                                                                     </div>
                                                                     <div className={'GrowerPersonalShopBucketItemAmount ' + FloatClass}>
                                                                         <span>{ChoosenVegAmount}&nbsp;</span>
@@ -459,7 +473,7 @@ class GrowerPersonalShop extends Component {
                                                     <CSSTransition timeout={500} classNames='fade'>
                                                         <ListGroupItem className="GrowerPersonalShopBucketItem">
                                                             <div className='GrowerPersonalShopBucketItemContainer'>
-                                                            {Language.GrowerPersonalShopBucketEmpty}
+                                                                {Language.GrowerPersonalShopBucketEmpty}
                                                             </div>
                                                         </ListGroupItem>
                                                     </CSSTransition>
@@ -506,7 +520,7 @@ class GrowerPersonalShop extends Component {
                         {!this.state.ListEmptyValidation ? (<div className="DuplicatesAlert" ><Alert className='DuplicatesAlertContent' color="danger">{Language.GrowerPersonalShopError}</Alert></div>) : null}
                         <div className='GrowerPersonalShopBuyButtonHolder'>
                             <Button color="success" className='GrowerPersonalShopBuyButton' >
-                            {Language.GrowerPersonalShopPurchase}
+                                {Language.GrowerPersonalShopPurchase}
                             </Button>
                         </div>
                     </Form>
@@ -529,13 +543,16 @@ const mapStateToProps = state => ({
     transactionDone: state.personalshop.transactionDone,
     language: state.language,
     Language: state.language.Language,
-    direction: state.language.direction
+    direction: state.language.direction,
+    LanguageCode: state.language.LanguageCode,
+    languagedbconversion: state.languagedbconversion,
+    vegetablelsanguages: state.languagedbconversion.vegetablelsanguages
 });
 
 export default connect(
     mapStateToProps,
     {
         register, clearErrors, getfarmerbyemail, resetFarmersList, getGrowerShoopinList, addToGrowerShoopinList, deleteFromShoopinList,
-        ResetGrowerShoopinList, resetpersonalShoopingItems, UpdateGrowerShoopinList, addpersonalShoopingItems
+        ResetGrowerShoopinList, resetpersonalShoopingItems, UpdateGrowerShoopinList, addpersonalShoopingItems, getvegetablelanguages
     }
 )(GrowerPersonalShop);

@@ -65,7 +65,8 @@ class SystemLogs extends Component {
     const LogToExcel = logs.map( log => ({
       'מזהה': log._id,
       'שם החקלאי': log.farmername, 
-      'אימייל': log.farmeremail, 
+      'אימייל': log.farmeremail,
+      'תאריך עדכון': log.log_date,
       'מחירי ירקות ששונו': this.ReturnChoosingVegtabilesAsStringForExcel(log.vegetablesafterchange)
     }));
 

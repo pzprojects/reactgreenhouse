@@ -6,21 +6,28 @@ import PropTypes from 'prop-types';
 
 export class Logout extends Component {
   static propTypes = {
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    language: PropTypes.object.isRequired
   };
 
   render() {
+    const { Language } = this.props;
     return (
       <Fragment>
         <NavLink onClick={this.props.logout} href='#'>
-          Log Out
+          {Language.LogOut}
         </NavLink>
       </Fragment>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  language: state.language,
+  Language: state.language.Language,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { logout }
 )(Logout);

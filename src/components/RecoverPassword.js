@@ -25,6 +25,7 @@ class RecoverPassword extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
+    language: PropTypes.object.isRequired,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
@@ -91,6 +92,20 @@ class RecoverPassword extends Component {
 
   render() {
     const { submitted } = this.state
+    const { Language, direction } = this.props;
+    let FloatClass = "Co-Align-Right";
+    let TextAlignClass = "Co-Text-Align-Right";
+    let ReverseTextAlignClass = "Co-Text-Align-Left";
+    if (direction === 'rtl') {
+      FloatClass = "Co-Align-Right";
+      TextAlignClass = "Co-Text-Align-Right";
+      ReverseTextAlignClass = "Co-Text-Align-Left";
+    }
+    else {
+      FloatClass = "Co-Align-Left";
+      TextAlignClass = "Co-Text-Align-Left";
+      ReverseTextAlignClass = "Co-Text-Align-Right";
+    }
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
     }
@@ -98,37 +113,37 @@ class RecoverPassword extends Component {
     return (
       <Container>
         <div className='SendResetPasswordEmailContainer'>
-          <div className='SendResetPasswordEmailHeader'><h3>איפוס סיסמה</h3></div>
+          <div className='SendResetPasswordEmailHeader'><h3>{Language.ForgotPasswordTitle}</h3></div>
           {submitted ? (
             <div className="SendResetPasswordEmailMessage">
               <p>
-                במידה וחשבונך קיים במערכת, נשלח לך מייל עם קישור לעדכון סיסמתך
+                {Language.ForgotPasswordSuccessText}
               </p>
               <Link to="/" className="ghost-btn">
-              חזור לדף הבית
+                {Language.SubmutMsgButton}
               </Link>
             </div>
           ) : (
             <div className="reset-password-form-wrapper">
               <form onSubmit={this.sendPasswordResetEmail}>
                 <div className="form-group">
-                  <Label for='email'>אימייל</Label>
+                  <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.LoginEmail}</Label>
                     <Input
                       type='email'
                       name='email'
                       id='email'
                       placeholder=''
-                      className='mb-3'
+                      className={'mb-3 ' + FloatClass + " " + TextAlignClass}
                       onChange={this.handleChange}
                       value={this.state.email}
                       invalid= {!this.state.emailValidation}
                       required
                     />
-                    <FormFeedback>כתובת האימייל שגויה</FormFeedback>
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.EmailValidationError}</FormFeedback>
                 </div>
                 <div className='SendResetPasswordEmailBtnHolder'>
                   <Button color='success' className="SendResetPasswordEmailBtn">
-                    שלח אימייל לאיפוס סיסמה
+                    {Language.ForgotPasswordSendButton}
                   </Button>
                 </div>
               </form>
@@ -142,6 +157,9 @@ class RecoverPassword extends Component {
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
+    language: state.language,
+    Language: state.language.Language,
+    direction: state.language.direction
 });
   
 export default connect(

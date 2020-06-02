@@ -3,6 +3,7 @@ import { Container, ListGroup, ListGroupItem } from 'reactstrap';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getgrowersbyfarmer } from '../actions/growerAction';
+import { getvegetablelanguages } from '../actions/vegLanguageConvertorAction';
 import PropTypes from 'prop-types';
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 
@@ -19,11 +20,14 @@ class ListOfGrowers extends Component {
     language: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool,
     grower: PropTypes.object.isRequired,
-    getgrowersbyfarmer: PropTypes.func.isRequired
+    getgrowersbyfarmer: PropTypes.func.isRequired,
+    languagedbconversion: PropTypes.object.isRequired,
+    getvegetablelanguages: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getgrowersbyfarmer(this.props.FarmerEmail);
+    this.props.getvegetablelanguages();
   }
 
   componentDidUpdate(prevProps) {
@@ -49,13 +53,25 @@ class ListOfGrowers extends Component {
     return NameToReturn;
   };
 
+  Translate = name => {
+    try {
+      const { vegetablelsanguages, LanguageCode } = this.props;
+      var VegToFind = vegetablelsanguages.find(vegetablelanguage => vegetablelanguage.vegname === name);
+      var NameToReturn = VegToFind.langconvert.find(vegetablelanguage => vegetablelanguage.langname === LanguageCode);
+      return(NameToReturn.langvalue);
+    }
+    catch{return name;}
+
+    return name;
+  };
+
   ReturnChoosingVegtabilesAsString = (Mychoosenvegetables) => {
     var VegAsString = '';
     for(var i=0; i<Mychoosenvegetables.length ;i++){
       if(Mychoosenvegetables.length === (i+1)){
-        VegAsString += Mychoosenvegetables[i].name;
+        VegAsString += this.Translate(Mychoosenvegetables[i].name);
       }
-      else VegAsString += Mychoosenvegetables[i].name + ", ";   
+      else VegAsString +=this.Translate(Mychoosenvegetables[i].name) + ", ";   
     }
     return VegAsString;
   };
@@ -202,10 +218,13 @@ const mapStateToProps = state => ({
     grower: state.grower,
     language: state.language,
     Language: state.language.Language,
-    direction: state.language.direction
+    direction: state.language.direction,
+    LanguageCode: state.language.LanguageCode,
+    languagedbconversion: state.languagedbconversion,
+    vegetablelsanguages: state.languagedbconversion.vegetablelsanguages
 });
 
 export default connect(
   mapStateToProps,
-  { getgrowersbyfarmer }
+  { getgrowersbyfarmer, getvegetablelanguages }
 )(ListOfGrowers);

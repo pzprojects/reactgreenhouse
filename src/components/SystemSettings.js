@@ -164,7 +164,7 @@ class SystemSettings extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <Label for='plan1cost'>מחיר מסלול גידולי ירקות 1</Label>
+                  <Label for='plan1cost'>מחיר מסלול גידולי ירקות 1 בש"ח</Label>
                   <Input
                     type='text'
                     name='plan1cost'
@@ -188,7 +188,7 @@ class SystemSettings extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <Label for='plan2cost'>מחיר מסלול גידולי ירקות 2</Label>
+                  <Label for='plan2cost'>מחיר מסלול גידולי ירקות 2 בש"ח</Label>
                   <Input
                     type='text'
                     name='plan2cost'
@@ -212,7 +212,7 @@ class SystemSettings extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <Label for='plan3cost'>מחיר מסלול גידולי ירקות 3</Label>
+                  <Label for='plan3cost'>מחיר מסלול גידולי ירקות 3 בש"ח</Label>
                   <Input
                     type='text'
                     name='plan3cost'
@@ -236,7 +236,7 @@ class SystemSettings extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <Label for='fieldcropplancost'>מחיר מסלול גידולי שדה</Label>
+                  <Label for='fieldcropplancost'>מחיר מסלול גידולי שדה בש"ח</Label>
                   <Input
                     type='text'
                     name='fieldcropplancost'
