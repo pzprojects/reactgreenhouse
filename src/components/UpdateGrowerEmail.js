@@ -82,7 +82,7 @@ class UpdateGrowerEmail extends Component {
         this.setState({
           ActivateLoader: false,
           submitted: !this.state.submitted,
-          redirect: '/'
+          redirect: '/DeatilsUpdatedMSG'
         });
     }
     

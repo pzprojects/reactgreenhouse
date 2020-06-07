@@ -335,7 +335,7 @@ class AdminPersonalArea extends Component {
                   </div>
               </ListGroupItem>
               </ListGroup>
-              <ListGroup>
+              <ListGroup className='Scroolbar-style-2 AdminUsersListMaxHeight'>
                 {farmersSorted.map(({ _id, name, familyname, phone, email, sizearea, hamamasize, numberofactivefarms, choosenvegetables, plans, address, register_date}) => (
                   <CSSTransition key={_id} timeout={500} classNames='fade'>
                     <ListGroupItem className="FarmerListBodyListItem">
@@ -437,7 +437,7 @@ class AdminPersonalArea extends Component {
                   </div>
               </ListGroupItem>
               </ListGroup>
-              <ListGroup>
+              <ListGroup className='Scroolbar-style-2 AdminUsersListMaxHeight'>
                 {GrowersToSearch.map(({ _id, name, familyname, phone, email, sizearea, choosenvegetables, plan, chossenfarmerfullname, chossenfarmer, isactive, register_date}) => (
                   <CSSTransition key={_id} timeout={500} classNames='fade'>
                     <ListGroupItem className="GrowerListBodyListItem">

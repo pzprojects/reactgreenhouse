@@ -229,6 +229,7 @@ class FarmerPersonalArea extends Component {
     const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
     const { ChoosenFieldCrops } = this.props.choosenfieldcrop;
     let FoundEmpty = false;
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
     // Empty fields
     if (this.state.name === '') {
@@ -255,7 +256,7 @@ class FarmerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if (this.state.phone === '') {
+    if (this.state.phone === '' || !this.state.phone.match(phoneno)) {
       this.setState({
         phoneValidation: false
       });
@@ -724,7 +725,7 @@ class FarmerPersonalArea extends Component {
                       invalid={!this.state.phoneValidation}
                       required
                     />
-                    <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
+                    <FormFeedback className={ReverseTextAlignClass} >{Language.PhoneNumberError}</FormFeedback>
                   </div>
                   <div className="form-group">
                     <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.Email}:</Label>

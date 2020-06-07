@@ -132,7 +132,7 @@ export const Hebrew = {
     FarmerSubmitMsgText: 'חקלאי יקר',
     SubmitMsgText2: 'פרטיך נקלטו בהצלחה ונבדקים כעת ע"י Co-GreenHouse',
     SubmitMsgText3: 'נציג ייצור איתך קשר בהקדם',
-    SubmutMsgButton: 'חזרה לדף הבית',
+    SubmutMsgButton: 'חזרה לאזור האישי',
     UpdateProfileMsg: 'פרטיך עודכנו בהצלחה!',
     NumberOfActivePlots: 'מספר חלקות',
     PersonalDetails: 'פרטים אישיים',
@@ -192,11 +192,12 @@ export const Hebrew = {
     UpdateUserNameSuccessText: 'שם המשתמש עודכן בהצלחה, אנא התחבר מחדש למערכת',
     CancelSubscriptionMsg: 'המנוי הופסק בהצלחה',
     LogIn: 'התחבר',
-    LogOut: 'התנתק'
+    LogOut: 'התנתק',
+    PhoneNumberError: 'מספר הטלפון ריק או לא תקין'
 };
 
 export const English = {
-    NavBarSignIn: "Sign In",
+    NavBarSignIn: "Sign Up",
     NavBarHomePage: "Home Page",
     NavBarPersonalArea: "Personal Area",
     NavBarOurShop: "Shop",
@@ -329,7 +330,7 @@ export const English = {
     FarmerSubmitMsgText: 'Dear farmer',
     SubmitMsgText2: 'Your details have been successfully received and are now being tested by Co-GreenHouse',
     SubmitMsgText3: 'Representative will contact you shortly',
-    SubmutMsgButton: 'Back to Home page',
+    SubmutMsgButton: 'Back to Personal area',
     UpdateProfileMsg: 'Your details have been updated successfully',
     NumberOfActivePlots: 'Number of plots',
     PersonalDetails: 'Personal details',
@@ -389,5 +390,6 @@ export const English = {
     UpdateUserNameSuccessText: 'User name updated successfully please re-connect to the system',
     CancelSubscriptionMsg: 'Subscription terminated successfully',
     LogIn: 'Log In',
-    LogOut: 'Log Out'
+    LogOut: 'Log Out',
+    PhoneNumberError: 'Phone number is empty or invalid'
 };

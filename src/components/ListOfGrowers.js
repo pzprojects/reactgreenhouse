@@ -174,7 +174,7 @@ class ListOfGrowers extends Component {
             </div>
             </ListGroupItem>
         </ListGroup>
-        <ListGroup>
+        <ListGroup className='Scroolbar-style-2 GrowerListMaxHeight'>
             {SortedGrowers.map(({ _id, name, familyname, phone, email, sizearea, choosenvegetables, choosenfieldcrops, fieldcropplan, plan, isactive, register_date}) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem className="GrowerListBodyListItem">

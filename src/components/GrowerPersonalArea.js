@@ -216,6 +216,7 @@ class GrowerPersonalArea extends Component {
 
     var Validated = true;
     var ScrollToLocation = "top";
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
     // Empty fields
     if (this.state.name === '') {
@@ -242,7 +243,7 @@ class GrowerPersonalArea extends Component {
       ScrollToLocation = "top";
     }
 
-    if (this.state.phone === '') {
+    if (this.state.phone === '' || !this.state.phone.match(phoneno)) {
       this.setState({
         phoneValidation: false
       });
@@ -652,7 +653,7 @@ class GrowerPersonalArea extends Component {
                       invalid={!this.state.phoneValidation}
                       required
                     />
-                    <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
+                    <FormFeedback className={ReverseTextAlignClass}>{Language.PhoneNumberError}</FormFeedback>
                   </div>
                   <div className="personal-form-group">
                     <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.Email}:</Label>

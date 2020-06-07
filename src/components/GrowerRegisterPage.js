@@ -194,6 +194,7 @@ class GrowerRegisterPage extends Component {
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
     var english = /^[A-Za-z0-9@!~#$%^&*_-]*$/;
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     const { IsValidated } = this.props.growervegbuyingbag;
     const { FieldCropsIsValidated } = this.props.growerfieldcropsbuyingbag;
     const { ChoosenFarmerById } = this.props.choosenfarmer;
@@ -249,7 +250,7 @@ class GrowerRegisterPage extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.phone === ''){
+    if(this.state.phone === '' || !this.state.phone.match(phoneno)){
       this.setState({
         phoneValidation: false
       });
@@ -394,6 +395,39 @@ class GrowerRegisterPage extends Component {
       default:
     }
   };
+
+  OnImgClick = (ImageName) => {
+    switch(ImageName) {
+      case "Checkplan1Img":
+        this.setState({
+          plan1: true,
+          plan2: false,
+          plan3: false,
+          PlanValidation: false,
+          ActivePlan: 'מגדל עצמאי'
+        });
+        break;
+      case "Checkplan2Img":
+        this.setState({
+          plan1: false,
+          plan2: true,
+          plan3: false,
+          PlanValidation: false,
+          ActivePlan: 'ביניים'
+        });
+        break;
+      case "Checkplan3Img":
+        this.setState({
+          plan1: false,
+          plan2: false,
+          plan3: true,
+          PlanValidation: false,
+          ActivePlan: 'ליווי שוטף'
+        });
+        break;
+      default:
+    }
+  }
 
   onChange = e => {
     // deal with checkbox
@@ -795,7 +829,7 @@ class GrowerRegisterPage extends Component {
                     invalid= {!this.state.phoneValidation}
                     required
                   />
-                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.PhoneNumberError}</FormFeedback>
                 </div>
                 <div className="form-group">
                   <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.Email}</Label>
@@ -869,7 +903,7 @@ class GrowerRegisterPage extends Component {
               <div className="Plans">
                 <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
-                    <div className="Card1Image">
+                    <div className="Card1Image" onClick={() => this.OnImgClick('Checkplan1Img')}>
                        <img
                         alt=""
                         src={require('../Resources/plan1.png')}
@@ -920,7 +954,7 @@ class GrowerRegisterPage extends Component {
                 </div>
                 <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
-                    <div className="Card2Image">
+                    <div className="Card2Image" onClick={() => this.OnImgClick('Checkplan2Img')}>
                        <img
                         alt=""
                         src={require('../Resources/plan2.png')}
@@ -975,7 +1009,7 @@ class GrowerRegisterPage extends Component {
                 </div>
                 <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
-                    <div className="Card3Image">
+                    <div className="Card3Image" onClick={() => this.OnImgClick('Checkplan3Img')}>
                        <img
                         alt=""
                         src={require('../Resources/plan3.png')}

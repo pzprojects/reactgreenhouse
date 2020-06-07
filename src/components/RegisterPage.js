@@ -91,7 +91,10 @@ class RegisterPage extends Component {
     CheckFieldCropsPlan: '',
     FieldCropStatus: false,
     fieldcropplancostValidation: false,
-    fieldcropplanShouldBeActive: false
+    fieldcropplanShouldBeActive: false,
+    Checkplan1Img: false,
+    Checkplan2Img: false,
+    Checkplan3Img: false
   };
 
   static propTypes = {
@@ -200,6 +203,7 @@ class RegisterPage extends Component {
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
     var english = /^[A-Za-z0-9@!~#$%^&*_-]*$/;
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     let numberofactivefarms = (parseFloat(this.state.hamamasize)/parseFloat(SystemData.hamamadefaultsize)).toString();
     const choosenvegetables = this.props.choosenvegetable.ChoosenVegetables;
     let FoundEmpty = false;
@@ -255,7 +259,7 @@ class RegisterPage extends Component {
       ScrollToLocation = "top";
     }
 
-    if(this.state.phone === ''){
+    if(this.state.phone === '' || !this.state.phone.match(phoneno)){
       this.setState({
         phoneValidation: false
       });
@@ -470,6 +474,33 @@ class RegisterPage extends Component {
     }
   };
 
+  OnImgClick = (ImageName) => {
+    switch(ImageName) {
+      case "Checkplan1Img":
+        this.setState({
+          plan1: !this.state.plan1,
+          FarmerPlanValidation: false,
+          Checkplan1Img: !this.state.Checkplan1Img
+        });
+        break;
+      case "Checkplan2Img":
+        this.setState({
+          plan2: !this.state.plan2,
+          FarmerPlanValidation: false,
+          Checkplan2Img: !this.state.Checkplan2Img
+        });
+        break;
+      case "Checkplan3Img":
+        this.setState({
+          plan3: !this.state.plan3,
+          FarmerPlanValidation: false,
+          Checkplan3Img: !this.state.Checkplan3Img
+        });
+        break;
+      default:
+    }
+  }
+
   onChange = e => {
     // deal with checkbox
     switch(e.target.name) {
@@ -571,6 +602,7 @@ class RegisterPage extends Component {
     }
 
     this.setState({ [e.target.name]: e.target.value });
+    
   };
 
   onSubmit = e => {
@@ -911,7 +943,7 @@ class RegisterPage extends Component {
                     invalid= {!this.state.phoneValidation}
                     required
                   />
-                  <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
+                  <FormFeedback className={ReverseTextAlignClass}>{Language.PhoneNumberError}</FormFeedback>
                 </div>
                 <div className="form-group">
                   <Label className={FloatClass + " " + TextAlignClass} for='email'>{Language.Email}</Label>
@@ -1060,7 +1092,7 @@ class RegisterPage extends Component {
               <div className="Plans">
                 <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
-                    <div className="Card1Image">
+                    <div className="Card1Image" onClick={() => this.OnImgClick('Checkplan1Img')}>
                        <img
                         alt=""
                         src={require('../Resources/plan1.png')}
@@ -1072,7 +1104,7 @@ class RegisterPage extends Component {
                         name='Checkplan1'
                         id='Checkplan1'
                         className='mb-3'
-                        defaultChecked={this.state.plan1}
+                        checked={this.state.plan1}
                         onChange={this.onChange} />
                       </Label> 
                       <span className='PlanTitle' >{Language.PlanName1}</span>
@@ -1125,7 +1157,7 @@ class RegisterPage extends Component {
                 </div>
                 <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
-                    <div className="Card2Image">
+                    <div className="Card2Image" onClick={() => this.OnImgClick('Checkplan2Img')}>
                        <img
                         alt=""
                         src={require('../Resources/plan2.png')}
@@ -1136,8 +1168,8 @@ class RegisterPage extends Component {
                         type="checkbox"
                         name='Checkplan2'
                         id='Checkplan2'
-                        className='mb-3'
-                        defaultChecked={this.state.plan2}
+                        checked='mb-3'
+                        checked={this.state.plan2}
                         onChange={this.onChange} />
                       </Label> 
                       <span className='PlanTitle' >{Language.PlanName2}</span>
@@ -1194,7 +1226,7 @@ class RegisterPage extends Component {
                 </div>
                 <div className={"PlanCard " + FloatClass}>
                   <div className="PlanCardHeader">
-                    <div className="Card3Image">
+                    <div className="Card3Image" onClick={() => this.OnImgClick('Checkplan3Img')}>
                        <img
                         alt=""
                         src={require('../Resources/plan3.png')}
@@ -1206,7 +1238,7 @@ class RegisterPage extends Component {
                         name='Checkplan3'
                         id='Checkplan3'
                         className='mb-3'
-                        defaultChecked={this.state.plan3}
+                        checked={this.state.plan3}
                         onChange={this.onChange} />
                       </Label> 
                       <span className='PlanTitle' >{Language.PlanName3}</span>

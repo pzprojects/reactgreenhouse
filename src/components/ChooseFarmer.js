@@ -1458,7 +1458,7 @@ class ChooseFarmer extends Component {
               </div>
             </ListGroupItem>
           </ListGroup>
-          <ListGroup>
+          <ListGroup className='ListOfFarmersByAreaMaxHeight Scroolbar-style-2'>
             {farmers.map(({ _id, name, familyname, phone, email, address, sizearea, hamamasize, numberofactivefarms, aboutme, imageurl, choosenvegetables, choosenfieldcrops, plans, fieldcropplan }) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem>
