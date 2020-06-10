@@ -1605,25 +1605,25 @@ class ChooseFarmer extends Component {
                 <div className="GrowerHelka1" >
                   <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerVeg1)}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("1", "amount")}</span>
-                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
+                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost2}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("1", "totalcost")}</span>
                 </div>
                 <div className="GrowerHelka2" >
                   <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerVeg2)}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("2", "amount")}</span>
-                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
+                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost2}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("2", "totalcost")}</span>
                 </div>
                 <div className="GrowerHelka3" >
                   <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerVeg3)}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("3", "amount")}</span>
-                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
+                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost2}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("3", "totalcost")}</span>
                 </div>
                 <div className="GrowerHelka4" >
                   <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerVeg4)}</span>
                   <span className="GrowerHelkaAmount" >{this.GetVegData("4", "amount")}</span>
-                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
+                  <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost2}:</span>
                   <span className="GrowerHelkaTotalPrice" >{this.GetVegData("4", "totalcost")}</span>
                 </div>
               </div>
@@ -1742,25 +1742,25 @@ class ChooseFarmer extends Component {
                           <div className="GrowerHelka1" >
                             <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerFieldCrop1)}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("1", "amount")}</span>
-                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
+                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost2}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("1", "totalcost")}</span>
                           </div>
                           <div className="GrowerHelka2" >
                             <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerFieldCrop2)}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("2", "amount")}</span>
-                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
+                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost2}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("2", "totalcost")}</span>
                           </div>
                           <div className="GrowerHelka3" >
                             <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerFieldCrop3)}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("3", "amount")}</span>
-                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
+                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost2}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("3", "totalcost")}</span>
                           </div>
                           <div className="GrowerHelka4" >
                             <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerFieldCrop4)}</span>
                             <span className="GrowerHelkaAmount" >{this.GetFieldCropData("4", "amount")}</span>
-                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost}:</span>
+                            <span className="GrowerHelkaTotal" >{Language.GrowerChooseVegTotalCost2}:</span>
                             <span className="GrowerHelkaTotalPrice" >{this.GetFieldCropData("4", "totalcost")}</span>
                           </div>
                         </div>

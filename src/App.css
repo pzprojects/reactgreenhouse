@@ -1,8 +1,14 @@
 /* Desktop View*/
 
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap');
+
 @media screen and (min-width: 580px) {
 
   /* General */
+
+  .App {
+    font-family: 'Heebo', sans-serif;
+  }
 
   .remove-btn {
     margin-right: 0.5rem;
@@ -3550,6 +3556,11 @@
 /* Mobile and tablet View */ 
 
 @media screen and (max-width: 580px) {
+
+  .App {
+    font-family: 'Heebo', sans-serif;
+  }
+  
   .remove-btn {
     margin-right: 0.5rem;
   }

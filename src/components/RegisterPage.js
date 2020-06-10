@@ -1280,7 +1280,7 @@ class RegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport}</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanSupport2}</span>
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -1311,7 +1311,7 @@ class RegisterPage extends Component {
                 </div>
                 <div className={'RegulationsLink ' + FloatClass}>
                     <span>{Language.Approval1} </span>
-                    <a href="/" target="_blank" rel="noopener noreferrer" >{Language.Approval2}</a>
+                    <a href="https://www.co-greenhouse.com/terms-and-conditions" target="_blank" rel="noopener noreferrer" >{Language.Approval2}</a>
                     <span> {Language.Approval3}</span>
                 </div>
               </div>
