@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput, Alert } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Input, Label, CustomInput, Alert, UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getfarmersbyarea, resetFarmersList } from '../actions/farmerAction';
@@ -9,6 +9,7 @@ import { getGrowerFieldCropBag, addToGrowerFieldCropBag, deleteFromGrowerFieldCr
 import { getvegetablelanguages } from '../actions/vegLanguageConvertorAction';
 import PropTypes from 'prop-types';
 import ReadMoreModal from './ReadMoreModal';
+import PopUpImage from './PopUpImage';
 
 class ChooseFarmer extends Component {
   state = {
@@ -1477,17 +1478,20 @@ class ChooseFarmer extends Component {
                       </Label>
                     </div>
                     <div className={'FarmerListImage ' + FloatClass}>
-                      <img
-                        alt=""
-                        src={imageurl}
-                        className='FarmerThemeImage'
-                      />
+                      <PopUpImage ImageUrl={imageurl} />
                     </div>
                     <div className={'FarmerListName ' + FloatClass}>
                       <span>{name + " " + familyname}</span>
                     </div>
                     <div className={'FarmerListAboutme ' + FloatClass}>
-                      <span>{aboutme}&nbsp;</span>
+                      <span>{aboutme.length > 100 ? aboutme.slice(0, 100) + "..." : aboutme}&nbsp;</span>
+                      <span style={{ color: "#007bff", cursor: "pointer"}} href="#" id={'LegacyMoreInfo' + _id}>{aboutme.length > 100 ? Language.GrowerFarmerReadMore : null}</span>
+                      {aboutme.length > 100 ?
+                        <UncontrolledPopover trigger="legacy" placement="left" target={'LegacyMoreInfo' + _id}>
+                          <PopoverBody style={{ direction: direction }}>{aboutme}</PopoverBody>
+                        </UncontrolledPopover>
+                        :
+                        null}
                     </div>
                     <div className={'FarmerListchoosenvegetables ' + FloatClass}>
                       <span>{this.ReturnChoosingVegtabilesAsString(choosenvegetables)}&nbsp;</span>
@@ -1501,7 +1505,7 @@ class ChooseFarmer extends Component {
                       ))}
                     </div>
                     <div className={'FarmerListReadMore ' + FloatClass}>
-                      <span><ReadMoreModal FarmerFullNmae={name + " " + familyname} FarmerPhone={phone} FarmerEmail={email} FarmerLocation={address} FarmerFieldCropPlan={fieldcropplan} FarmerFieldCrops={this.ReturnChoosingVegtabilesAsString(choosenfieldcrops)} FarmerNumberOfActiveFarms={numberofactivefarms} /></span>
+                      <span><ReadMoreModal FarmerFullNmae={name + " " + familyname} FarmerPhone={phone} FarmerEmail={email} FarmerLocation={address} FarmerFieldCropPlan={fieldcropplan} FarmerFieldCrops={this.ReturnChoosingVegtabilesAsString(choosenfieldcrops)} FarmerNumberOfActiveFarms={numberofactivefarms} FarmerImageUrl={imageurl} FarmerAboutMe={aboutme} /></span>
                     </div>
                   </div>
                 </ListGroupItem>

@@ -815,13 +815,6 @@ class GrowerPersonalArea extends Component {
                         onChange={this.onChange}
                       />
                     </div>
-                    {this.state.ScreenNumber === "2" ? (
-                      <div className='MoveToSecondPaymentScreenButton'>
-                        <Button color="info" onClick={() => this.ChangeScreen("3")} type="button" >
-                          {Language.Approve}
-                        </Button>
-                      </div>
-                    ) : null}
                   </div>
                 </div>
               </FormGroup>

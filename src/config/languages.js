@@ -299,7 +299,7 @@ export const English = {
     GrowerFarmerVegs: 'Suggested crops',
     GrowerFarmerPlans: 'Plans',
     GrowerFarmerReadMore: 'Read more',
-    ReadMoreTitle: 'More information on the farmer',
+    ReadMoreTitle: 'More information about the farmer',
     ReadMoreActiveFarms: 'Available plot of land',
     ReadMoreFieldsCropsCostInformation: 'Crops plan cost (optional)',
     ReadMoreFieldsCrops: 'Possible field crops:',

@@ -7,7 +7,7 @@
   /* General */
 
   .App {
-    font-family: 'Heebo', sans-serif;
+    font-family: 'Heebo', sans-serif!important;
   }
 
   .remove-btn {
@@ -150,6 +150,11 @@
     border-radius: 4vw; 
   }
 
+  .ConnectionLinksRTL li.RegisterLink:hover, .ConnectionLinksLTR li.RegisterLink:hover {
+    background-color: rgb(247, 235, 243);
+    border-radius: 4vw; 
+  }
+
   nav .container div.collapse ul.navbar-nav {
     margin-left: auto!important;
     margin-right: auto!important;
@@ -158,13 +163,13 @@
 
   nav .container div.collapse ul.navbar-nav > li {
     margin-left: 0.5vw;
-    margin-top: 2vw;
+    margin-top: 1.5vw;
     border-top: 0.2vw solid #5E6269;
   }
 
   nav .container div.collapse ul.navbar-nav > li.active {
     margin-left: 0.5vw;
-    margin-top: 2vw;
+    margin-top: 1.5vw;
     border-top: 0.2vw solid #ADC742;
   }
 
@@ -174,7 +179,7 @@
 
   nav .container div.collapse ul.navbar-nav > li:hover {
     margin-left: 0.5vw;
-    margin-top: 2vw;
+    margin-top: 1.5vw;
     border-top: 0.2vw solid #ADC742;
   }
 
@@ -235,6 +240,7 @@
 
   .ProfileName h1 {
     font-size: 2.1vw;
+    color: #5F0038;
   }
   
   .PersonalDetails {
@@ -382,6 +388,7 @@
   .vegetables h3 {
     margin-bottom: 2vw;
     font-size: 1.45vw;
+    color: #5F0038;
   }
 
   .vegetables button {
@@ -678,7 +685,7 @@
     right: 22.5%;
     bottom: -2%;
     width: 55%;
-    background-color: #7ECCC5;
+    background-color: #5F0038;
     color: white;
     font-size: 1.20vw;
     z-index: 10;
@@ -692,7 +699,7 @@
     display: block;
     float: right;
     margin-top: 5vw;
-    background-color: #D5F3F0;
+    background-color: #ebe9e0;
     text-align: center;
     font-size: 0.83vw;
     border-radius: 2vw;
@@ -813,10 +820,17 @@
   
   .MoveToPaymentScreenButton button {
     color: white;
-    background-color: #7ECCC5;
+    background-color: #5F0038;
     display: block;
     margin-right: auto;
     margin-left: auto;
+    border-radius: 4vw;
+    font-size: 1.2vw;
+  }
+
+  .MoveToPaymentScreenButton button:hover {
+    color: white;
+    background-color: #327047;
   }
   
   .MoveToSecondPaymentScreenButton {
@@ -829,19 +843,33 @@
   
   .MoveToSecondPaymentScreenButton button {
     color: white;
-    background-color: #7ECCC5;
+    background-color: #5F0038;
     display: block;
     margin-right: auto;
     margin-left: auto;
+    border-radius: 4vw;
+    font-size: 1.2vw;
+  }
+
+  .MoveToSecondPaymentScreenButton button:hover {
+    color: white;
+    background-color: #327047;
   }
   
   .RegisterButtonContainer button.RegisterButton {
     color: white;
-    background-color: #7ECCC5;
+    background-color: #5F0038;
     display: block;
     margin-right: auto;
     margin-left: auto;
     width: 100%;
+    border-radius: 4vw;
+    font-size: 1.2vw;
+  }
+
+  .RegisterButtonContainer button:hover {
+    color: white;
+    background-color: #327047;
   }
   
   .RegisterButtonContainer {
@@ -961,12 +989,19 @@
   
   .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder a.FarmerSubmissionMSGButton {
     color: white;
-    background-color: #7ECCC5;
+    background-color: #5F0038;
     display: block;
     margin-right: auto;
     margin-left: auto;
     width: 25%;
     margin-top: 1vw;
+    border-radius: 4vw;
+    font-size: 1.2vw;
+  }
+
+  .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder a.FarmerSubmissionMSGButton:hover {
+    color: white;
+    background-color: #327047;
   }
 
   /* Grower register page*/ 
@@ -1100,7 +1135,13 @@
     margin-left: auto;
     width: 3.5vw;
     height: 3.5vw;
+    cursor: pointer;
   }
+
+  .FarmerListContent div.container li div.FarmerList div.FarmerListImage img.FarmerThemeImage:hover {
+    opacity: 0.7;
+  }
+  
 
   .FarmerListContent div.container li div.FarmerList div.FarmerListName {
     width: 14%;
@@ -1537,6 +1578,7 @@
     text-align: center;
     font-weight: bold;
     font-size: 1.4vw;
+    color: #5F0038;
   }
 
   .DuplicatesAlert {
@@ -1707,6 +1749,15 @@
     margin-left: auto;
     position: relative;
     display: block;
+    color: white;
+    background-color: #5F0038;
+    border-radius: 4vw;
+    font-size: 1.2vw;
+  }
+
+  .RegisterButtonContainer Button.UpdateDetails:hover {
+    color: white;
+    background-color: #327047;
   }
 
   .CancelSubscriptionAlertText {
@@ -2823,6 +2874,7 @@
     text-align: center;
     font-size: 2.2vw;
     font-weight: bold;
+    color: #5F0038;
   }
 
   /* Reset password */
@@ -2845,6 +2897,7 @@
     text-align: center;
     font-size: 2.2vw;
     font-weight: bold;
+    color: #5F0038;
   }
 
   .SendResetPasswordEmailContainer div.reset-password-form-wrapper {
@@ -2882,6 +2935,22 @@
     margin-top: 2vw;
   }
 
+  .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder button {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #5F0038;
+    border-radius: 4vw;
+    font-size: 1.2vw;
+  }
+  
+  .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder button:hover {
+    color: white;
+    background-color: #327047;
+  }
+
   .SendResetPasswordEmailContainer div.SendResetPasswordEmailMessage {
     width: 100%;
     float: right;
@@ -2910,6 +2979,7 @@
     text-align: center;
     font-size: 2.2vw;
     font-weight: bold;
+    color: #5F0038;
   }
 
   .ResetPasswordContainer div.reset-password-form-sent-wrapper {
@@ -2945,6 +3015,22 @@
     position: relative;
     display: block;
     margin-top: 2vw;
+  }
+
+  .ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder button {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #5F0038;
+    border-radius: 4vw;
+    font-size: 1.2vw;
+  }
+  
+  .ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder button:hover {
+    color: white;
+    background-color: #327047;
   }
 
   .ResetPasswordContainer div.ResetPasswordMessage {
@@ -2991,6 +3077,72 @@
 
   .modal-header h5 {
     font-size: 1.2vw;
+    color: #5F0038;
+  }
+
+  .ReadMoreContainer {
+    width:100%;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListContainer {
+    width:60%;
+    float: right;
+    display: block;
+    position: relative;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListContainer > ul > li.EmptyReadMoreItem {
+    padding: 0px;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder {
+    width:40%;
+    float: right;
+    display: block;
+    position: relative;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder img {
+    width: 10vw;
+    height: 10vw;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData {
+    width: 12vw;
+    max-height: 5vw;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData span.ReadMoreExtraDataAboutMe {
+    width: 100%;
+    max-height: 3.75vw;
+    display: block;
+    float: right;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData span.ReadMoreExtraDataAboutMeLink {
+    width: 100%;
+    height: 1.25vw;
+    display: block;
+    float: right;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .ReadMoreContainer > ul.ReadMoreCompletedList {
+    width:100%;
+    float: right;
+    display: block;
+    position: relative;
   }
 
   /* System Logs */
@@ -3044,6 +3196,7 @@
     font-size: 1.6vw;
     margin-bottom: 3vw;
     margin-top: 2vw;
+    color: #5F0038;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group {
@@ -3334,6 +3487,15 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    color: white;
+    background-color: #5F0038;
+    border-radius: 4vw;
+    font-size: 1.2vw;
+  }
+  
+  .GrowerPersonalShopBuyButtonHolder button:hover {
+    color: white;
+    background-color: #327047;
   }
 
   /* Languages */
@@ -3550,6 +3712,20 @@
     position: relative;
     display: block;
   }
+
+  /* PopUpImage */
+
+  .PopUpImageContainer {
+    width: 100%;
+    position: relative;
+    display: block;
+    float: right;
+  }
+
+  .PopUpImageContainer img.PopUpImageContent {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 /********************************************************************************************************************************************************************/
@@ -3558,9 +3734,9 @@
 @media screen and (max-width: 580px) {
 
   .App {
-    font-family: 'Heebo', sans-serif;
+    font-family: 'Heebo', sans-serif!important;
   }
-  
+
   .remove-btn {
     margin-right: 0.5rem;
   }
@@ -3705,6 +3881,7 @@ div.alert {
 
 .ProfileName h1 {
   font-size: 2.1vw;
+  color: #5F0038;
 }
 
 .PersonalDetails {
@@ -3852,6 +4029,7 @@ div.PersonalDetails .form-group input {
 .vegetables h3 {
   margin-bottom: 2vw;
   font-size: 1.45vw;
+  color: #5F0038;
 }
 
 .vegetables button {
@@ -4143,7 +4321,7 @@ div.PersonalDetails .form-group input {
   right: 22.5%;
   bottom: -2%;
   width:55%;
-  background-color: #7ECCC5;
+  background-color: #5F0038;
   color: white;
   font-size: 1.20vw;
   z-index: 10;
@@ -4156,7 +4334,7 @@ div.PersonalDetails .form-group input {
   display: block;
   float: right;
   margin-top: 5vw;
-  background-color: #D5F3F0;
+  background-color: #ebe9e0;
   text-align: center;
   font-size: 0.83vw;
   border-radius: 2vw;
@@ -4276,10 +4454,17 @@ div.PersonalDetails .form-group input {
 
 .MoveToPaymentScreenButton button {
   color: white;
-  background-color: #7ECCC5;
+  background-color: #5F0038;
   display: block;
   margin-right: auto;
   margin-left: auto;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.MoveToPaymentScreenButton button:hover {
+  color: white;
+  background-color: #327047;
 }
 
 .MoveToSecondPaymentScreenButton {
@@ -4292,19 +4477,33 @@ div.PersonalDetails .form-group input {
 
 .MoveToSecondPaymentScreenButton button {
   color: white;
-  background-color: #7ECCC5;
+  background-color: #5F0038;
   display: block;
   margin-right: auto;
   margin-left: auto;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.MoveToSecondPaymentScreenButton button:hover {
+  color: white;
+  background-color: #327047;
 }
 
 .RegisterButtonContainer button.RegisterButton {
   color: white;
-  background-color: #7ECCC5;
+  background-color: #5F0038;
   display: block;
   margin-right: auto;
   margin-left: auto;
   width: 100%;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.RegisterButtonContainer button:hover {
+  color: white;
+  background-color: #327047;
 }
 
 .RegisterButtonContainer {
@@ -4424,12 +4623,19 @@ div.PersonalDetails .form-group input {
 
 .FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder a.FarmerSubmissionMSGButton {
   color: white;
-  background-color: #7ECCC5;
+  background-color: #5F0038;
   display: block;
   margin-right: auto;
   margin-left: auto;
   width: 25%;
   margin-top: 1vw;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.FarmerSubmissionMSGHolder div.FarmerSubmissionMSGButtonHolder a.FarmerSubmissionMSGButton:hover {
+  color: white;
+  background-color: #327047;
 }
 
 /* Grower register page*/ 
@@ -4563,6 +4769,11 @@ div.PersonalDetails .form-group input {
   margin-left: auto;
   width: 3.5vw;
   height: 3.5vw;
+  cursor: pointer;
+}
+
+.FarmerListContent div.container li div.FarmerList div.FarmerListImage img.FarmerThemeImage:hover {
+  opacity: 0.7;
 }
 
 .FarmerListContent div.container li div.FarmerList div.FarmerListName {
@@ -6285,6 +6496,7 @@ div.SystemDetails .form-group input {
   text-align: center;
   font-size: 2.2vw;
   font-weight: bold;
+  color: #5F0038;
 }
 
 /* Reset password */
@@ -6307,6 +6519,7 @@ div.SystemDetails .form-group input {
   text-align: center;
   font-size: 2.2vw;
   font-weight: bold;
+  color: #5F0038;
 }
 
 .SendResetPasswordEmailContainer div.reset-password-form-wrapper {
@@ -6372,6 +6585,7 @@ div.SystemDetails .form-group input {
   text-align: center;
   font-size: 2.2vw;
   font-weight: bold;
+  color: #5F0038;
 }
 
 .ResetPasswordContainer div.reset-password-form-sent-wrapper {
@@ -6409,6 +6623,22 @@ div.SystemDetails .form-group input {
   margin-top: 2vw;
 }
 
+.ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder button {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  background-color: #5F0038;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder button:hover {
+  color: white;
+  background-color: #327047;
+}
+
 .ResetPasswordContainer div.ResetPasswordMessage {
   width: 100%;
   float: right;
@@ -6429,31 +6659,97 @@ div.SystemDetails .form-group input {
   margin-bottom: 2vw;
 }
 
-/* Read More */
+  /* Read More */
 
-.ReadMoreItemRtl {
-  direction: rtl;
-  text-align: right;
-  font-size: 0.83vw;
-}
+  .ReadMoreItemRtl {
+    direction: rtl;
+    text-align: right;
+    font-size: 0.83vw;
+  }
+  
+  .ReadMoreItemRtl span img {
+    margin-left: 2vw;
+  }
 
-.ReadMoreItemRtl span img {
-  margin-left: 2vw;
-}
+  .ReadMoreItemLtr {
+    direction: left;
+    text-align: left;
+    font-size: 0.83vw;
+  }
+  
+  .ReadMoreItemLtr span img {
+    margin-right: 2vw;
+  }
 
-.ReadMoreItemLtr {
-  direction: left;
-  text-align: left;
-  font-size: 0.83vw;
-}
+  .modal-header h5 {
+    font-size: 1.2vw;
+    color: #5F0038;
+  }
 
-.ReadMoreItemLtr span img {
-  margin-right: 2vw;
-}
+  .ReadMoreContainer {
+    width:100%;
+  }
 
-.modal-header h5 {
-  font-size: 1.2vw;
-}
+  .ReadMoreContainer div.ReadMoreImageListContainer {
+    width:60%;
+    float: right;
+    display: block;
+    position: relative;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListContainer > ul > li.EmptyReadMoreItem {
+    padding: 0px;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder {
+    width:40%;
+    float: right;
+    display: block;
+    position: relative;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder img {
+    width: 10vw;
+    height: 10vw;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData {
+    width: 12vw;
+    max-height: 5vw;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData span.ReadMoreExtraDataAboutMe {
+    width: 100%;
+    max-height: 3.75vw;
+    display: block;
+    float: right;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+  }
+
+  .ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData span.ReadMoreExtraDataAboutMeLink {
+    width: 100%;
+    height: 1.25vw;
+    display: block;
+    float: right;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .ReadMoreContainer > ul.ReadMoreCompletedList {
+    width:100%;
+    float: right;
+    display: block;
+    position: relative;
+  }
 
 /* System Logs */
 
@@ -6506,6 +6802,7 @@ div.SystemDetails .form-group input {
   font-size: 1.6vw;
   margin-bottom: 3vw;
   margin-top: 2vw;
+  color: #5F0038;
 }
 
 .GrowerPersonalShop div.GrowerPersonalShop-form-group {
@@ -6796,6 +7093,15 @@ div.SystemDetails .form-group input {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  color: white;
+  background-color: #5F0038;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.GrowerPersonalShopBuyButtonHolder button:hover {
+  color: white;
+  background-color: #327047;
 }
 
 /* Languages */
@@ -7011,6 +7317,20 @@ div.SystemDetails .form-group input {
   float: right;
   position: relative;
   display: block;
+}
+
+/* PopUpImage */
+
+.PopUpImageContainer {
+  width: 100%;
+  position: relative;
+  display: block;
+  float: right;
+}
+
+.PopUpImageContainer img.PopUpImageContent {
+  width: 100%;
+  height: 100%;
 }
 
 }

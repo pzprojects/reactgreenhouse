@@ -10,6 +10,7 @@ import {
   Input,
   NavLink,
   Alert,
+  Spinner 
 } from 'reactstrap';
 import { Link } from "react-router-dom"
 import { connect } from 'react-redux';
@@ -22,7 +23,8 @@ class LoginModal extends Component {
     modal: false,
     email: '',
     password: '',
-    msg: null
+    msg: null,
+    spinneron: false
   };
 
   static propTypes = {
@@ -38,9 +40,9 @@ class LoginModal extends Component {
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'LOGIN_FAIL') {
-        this.setState({ msg: error.msg.msg });
+        this.setState({ msg: error.msg.msg, spinneron: false });
       } else {
-        this.setState({ msg: null });
+        this.setState({ msg: null, spinneron: false });
       }
     }
 
@@ -56,7 +58,8 @@ class LoginModal extends Component {
     // Clear errors
     this.props.clearErrors();
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
+      spinneron: false
     });
   };
 
@@ -69,6 +72,9 @@ class LoginModal extends Component {
 
     const { password } = this.state;
     const email = this.state.email.toLowerCase();
+    this.setState({
+      spinneron: true
+    });
     
     const user = {
       email,
@@ -82,11 +88,14 @@ class LoginModal extends Component {
   render() {
     const { direction, Language } = this.props;
     let TextAlignClass = "Co-Text-Align-Right";
+    let FloatClass = "Co-Align-Right";
     if (direction === 'rtl') {
       TextAlignClass = "Co-Text-Align-Right";
+      FloatClass = "Co-Align-Left";
     }
     else {
       TextAlignClass = "Co-Text-Align-Left";
+      FloatClass = "Co-Align-Right";
     }
     return (
       <div>
@@ -130,7 +139,7 @@ class LoginModal extends Component {
                   </Link>
                 </div>
                 <Button color='success' style={{ marginTop: '2rem' }} block>
-                  {Language.LoginConnectButton}
+                  {Language.LoginConnectButton}{this.state.spinneron ? <Spinner className={'LoginSpinner ' + FloatClass} color="light" size='sm'/> : null}
                 </Button>
               </FormGroup>
             </Form>

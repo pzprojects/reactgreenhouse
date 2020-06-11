@@ -5,7 +5,8 @@ import {
   FormGroup,
   Label,
   Input,
-  Alert
+  Alert,
+  Spinner
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -17,7 +18,8 @@ class LoginPage extends Component {
   state = {
     email: '',
     password: '',
-    msg: null
+    msg: null,
+    spinneron: false
   };
 
   static propTypes = {
@@ -33,9 +35,9 @@ class LoginPage extends Component {
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'LOGIN_FAIL') {
-        this.setState({ msg: error.msg.msg });
+        this.setState({ msg: error.msg.msg, spinneron: false });
       } else {
-        this.setState({ msg: null });
+        this.setState({ msg: null, spinneron: false });
       }
     }
 
@@ -60,6 +62,9 @@ class LoginPage extends Component {
 
     const { password } = this.state;
     const email = this.state.email.toLowerCase();
+    this.setState({
+      spinneron: true
+    });
     
     const user = {
       email,
@@ -73,11 +78,14 @@ class LoginPage extends Component {
   render() {
     const { direction, Language } = this.props;
     let TextAlignClass = "Co-Text-Align-Right";
+    let FloatClass = "Co-Align-Right";
     if (direction === 'rtl') {
       TextAlignClass = "Co-Text-Align-Right";
+      FloatClass = "Co-Align-Left";
     }
     else {
       TextAlignClass = "Co-Text-Align-Left";
+      FloatClass = "Co-Align-Right";
     }
     return (
       <div>
@@ -116,7 +124,7 @@ class LoginPage extends Component {
                   </Link>
                 </div>
                 <Button color='success' style={{ marginTop: '2vw' }} block>
-                  {Language.LoginConnectButton}
+                  {Language.LoginConnectButton}{this.state.spinneron ? <Spinner className={'LoginSpinner ' + FloatClass} color="light" size='sm'/> : null}
                 </Button>
               </FormGroup>
             </Form>
