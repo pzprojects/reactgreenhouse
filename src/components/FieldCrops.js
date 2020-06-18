@@ -102,7 +102,10 @@ class FieldCrops extends Component {
                   id={_id}
                   onClick={this.RemoveVegtClick.bind(this, name)}
                   /></span> }
-                  <span className={'vegetablesItemName ' + FloatClass}>{this.Translate(name)}</span>
+                  { this.ImgToPresent(name) ? 
+                  <span className={'vegetablesItemName ' + FloatClass} onClick={this.onVegtClick.bind(this, _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink)}>{this.Translate(name)}</span>
+                  :
+                  <span className={'vegetablesItemName ' + FloatClass} onClick={this.RemoveVegtClick.bind(this, name)}>{this.Translate(name)}</span>}
                 </ListGroupItem>
               </CSSTransition>
             ))}

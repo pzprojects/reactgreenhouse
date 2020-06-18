@@ -419,12 +419,14 @@
     height: 0.73vw;
     margin-top: 0.4vw;
     display: block;
+    cursor: pointer;
   }
   
   .vegetablesList li span.vegetablesItemName {
     margin-right: 0.5vw;
     margin-left: 0.5vw;
     font-size: 0.83vw;
+    cursor: pointer;
   }
   
   .vegetablesApproveButton {
@@ -4060,12 +4062,14 @@ div.PersonalDetails .form-group input {
   height: 0.73vw;
   margin-top: 0.4vw;
   display: block;
+  cursor: pointer;
 }
 
 .vegetablesList li span.vegetablesItemName {
   margin-right: 0.5vw;
   margin-left: 0.5vw;
   font-size: 0.83vw;
+  cursor: pointer;
 }
 
 .vegetablesApproveButton {

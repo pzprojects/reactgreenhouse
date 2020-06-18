@@ -73,7 +73,7 @@ class FarmCropsPricing extends Component {
             {ChoosenFieldCrops.map(({ _id, name, price, averagecrop, amount, numberofveginrow, moreinfolink}) => (
               <CSSTransition key={_id} timeout={500} classNames='fade'>
                 <ListGroupItem className={FloatClass}>
-                  <span className={FloatClass}><img
+                  <span className={FloatClass + ' ChoosenVegetableImage'}><img
                   alt=""
                   src={require('../Resources/Leaf.png')}
                   className='ChoosenVegetableImage'
