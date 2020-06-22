@@ -20,7 +20,6 @@ class GrowersubmissionMSG extends Component {
         <div className="FarmerSubmissionMSGHolder">
           <div className="FarmerSubmissionMSGHeader">{Language.GrowerSubmitMsgText}</div>
           <div className="FarmerSubmissionMSGHeader">{Language.SubmitMsgText2}</div>
-          <div className="FarmerSubmissionMSGHeader">{Language.SubmitMsgText3}</div>
           <div className="FarmerSubmissionMSGButtonHolder">
             <Button className="FarmerSubmissionMSGButton" type="button" size="lg" tag={Link} to="/">{Language.SubmutMsgButton}</Button>
          </div>

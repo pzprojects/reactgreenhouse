@@ -243,7 +243,7 @@ class AppNavbar extends Component {
                 {isAuthenticated ? user.usertype === 'SysAdmin' && user.usertype !== "null" ? adminnavitems : navitems
                   : navitems}
                 <div className={this.state.LogoClass} >
-                  <NavbarBrand tag={Link} to='/'><img alt="" src={require('../Resources/logo.png')} /></NavbarBrand>
+                  <NavbarBrand href="https://www.co-greenhouse.com" target="_blank" rel="noopener noreferrer"><img alt="" src={require('../Resources/logo.png')} /></NavbarBrand>
                 </div>
               </Nav>
             </Collapse>

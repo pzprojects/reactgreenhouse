@@ -939,7 +939,7 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCommunity}</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCommunity}<a href="https://www.co-greenhouse.com/ourcommunity" className='PlansCommunityLink' target="_blank" rel="noopener noreferrer">{Language.FarmerPlanCommunity2}</a></span>
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -990,7 +990,7 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCommunity}</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCommunity}<a href="https://www.co-greenhouse.com/ourcommunity" className='PlansCommunityLink' target="_blank" rel="noopener noreferrer">{Language.FarmerPlanCommunity2}</a></span>
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
@@ -1045,7 +1045,7 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCommunity}</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCommunity}<a href="https://www.co-greenhouse.com/ourcommunity" className='PlansCommunityLink' target="_blank" rel="noopener noreferrer">{Language.FarmerPlanCommunity2}</a></span>
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
