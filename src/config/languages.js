@@ -196,7 +196,9 @@ export const Hebrew = {
     CancelSubscriptionMsg: 'המנוי הופסק בהצלחה',
     LogIn: 'התחבר',
     LogOut: 'התנתק',
-    PhoneNumberError: 'מספר הטלפון ריק או לא תקין'
+    PhoneNumberError: 'מספר הטלפון ריק או לא תקין',
+    NonActivePlan: 'למנוי זה אין מסלול פעיל',
+    FarmerHaveEmptyVegInList: 'יש לבחור לפחות ירק או גידול שדה אחד בתכנית שנבחרה'
 };
 
 export const English = {
@@ -397,5 +399,7 @@ export const English = {
     CancelSubscriptionMsg: 'Subscription terminated successfully',
     LogIn: 'Log In',
     LogOut: 'Log Out',
-    PhoneNumberError: 'Phone number is empty or invalid'
+    PhoneNumberError: 'Phone number is empty or invalid',
+    NonActivePlan: 'This subscription has no active plan',
+    FarmerHaveEmptyVegInList: 'You must select at least one vegetable or field crop in the selected plan'
 };

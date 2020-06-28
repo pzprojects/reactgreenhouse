@@ -94,7 +94,8 @@ class RegisterPage extends Component {
     fieldcropplanShouldBeActive: false,
     Checkplan1Img: false,
     Checkplan2Img: false,
-    Checkplan3Img: false
+    Checkplan3Img: false,
+    EmptyVegActive: false
   };
 
   static propTypes = {
@@ -353,6 +354,21 @@ class RegisterPage extends Component {
       })
     }
 
+    // Check if there is atleast one vegtabile or one field Crop
+    console.log(ChoosenFieldCrops.length + '  :  ' + this.state.FieldCropStatus)
+    if(choosenvegetables.length === 0 || (ChoosenFieldCrops.length === 0 && this.state.FieldCropStatus)){
+      this.setState({
+        EmptyVegActive: true
+      });
+      Validated = false;
+      ScrollToLocation = "bottom";
+    }
+    else{
+      this.setState({
+        EmptyVegActive: false
+      });
+    }
+
     // Fields crops validation
 
     if(this.state.FieldCropStatus && this.state.fieldcropplancost === ''){
@@ -507,26 +523,30 @@ class RegisterPage extends Component {
       case "Checkplan1":
         this.setState({
           plan1: e.target.checked,
-          FarmerPlanValidation: false
+          FarmerPlanValidation: false,
+          EmptyVegActive: false
         });
         break;
       case "Checkplan2":
         this.setState({
           plan2: e.target.checked,
-          FarmerPlanValidation: false
+          FarmerPlanValidation: false,
+          EmptyVegActive: false
         });
         break;
       case "Checkplan3":
         this.setState({
           plan3: e.target.checked,
-          FarmerPlanValidation: false
+          FarmerPlanValidation: false,
+          EmptyVegActive: false
         });
         break;
       case "CheckFieldCropsPlan":
         this.setState({
           FieldCropStatus: e.target.checked,
           fieldcropplancostValidation: false,
-          fieldcropplanShouldBeActive: false
+          fieldcropplanShouldBeActive: false,
+          EmptyVegActive: false
         });
         break;
       default:
@@ -1051,6 +1071,7 @@ class RegisterPage extends Component {
                 <Button color="success" onClick={this.OpenListOfFieldsCrops}>{Language.FieldCropList}</Button> : null }
                 { this.state.FieldCropsButtonOn ? null : <FieldCrops OpenListOffieldcrops={this.OpenListOfFieldsCrops} /> }
               </div>
+              {this.state.EmptyVegActive ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerHaveEmptyVegInList}</Alert></div> : null}
               <div className="ListOfVegCost">
                 <p>{Language.PricingComment}</p>
                 { ShowVegPricing ? <VegetablesPricing /> : null}
@@ -1219,7 +1240,7 @@ class RegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanApointment}</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}><strong>{Language.FarmerPlanApointment}</strong></span>
                       </div>
                     </div>
                   </div>
@@ -1288,7 +1309,7 @@ class RegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCare}</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}><strong>{Language.FarmerPlanCare}</strong></span>
                       </div>
                     </div>
                   </div>

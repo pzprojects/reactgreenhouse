@@ -160,11 +160,6 @@ class AppNavbar extends Component {
            {Language.NavBarOurShop}
           </NavLink>
         </NavItem>
-        <NavItem className={this.GetActiveLink('/CommunityServices')}>
-          <NavLink href='https://www.co-greenhouse.com/communityfarmers' target="_blank">
-           {Language.NavBarComunityFarmers}
-          </NavLink>
-        </NavItem>
         <NavItem className={this.GetActiveLink('/FAQ')}>
           <NavLink href='https://www.co-greenhouse.com/faq' target="_blank">
           {Language.NavBarFaq}

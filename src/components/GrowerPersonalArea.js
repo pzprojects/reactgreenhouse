@@ -688,26 +688,9 @@ class GrowerPersonalArea extends Component {
                     <FormFeedback className={ReverseTextAlignClass}>{Language.EmptyField}</FormFeedback>
                   </div>
                   <div className="personal-form-group">
-                    <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaSubscriptionActivationDate}:</Label>
-                    <div className={'RegisterDate ' + FloatClass + " " + TextAlignClass}>{RegisterDateToStringFormat}</div>
-                    <div className={'CancelSubscription ' + FloatClass}>
-                      <Button color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" disabled={!this.state.UserActive} >{Language.GrowerPersonalAreaCancelSubButton}</Button>
-                      <UncontrolledCollapse toggler="#toggler">
-                        <Card>
-                          <CardBody>
-                            <span className="CancelSubscriptionAlertText">{Language.GrowerPersonalAreaCancelSubButtonAreUSure}</span>
-                            <span className="CancelSubscriptionAlertButtons">
-                              <span><Button outline color="success" onClick={() => this.DeactivateAcount()} type="button" >{Language.Yes}</Button></span>
-                              <span><Button outline color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" >{Language.No}</Button></span>
-                            </span>
-                          </CardBody>
-                        </Card>
-                      </UncontrolledCollapse>
-                    </div>
-                  </div>
-                  <div className="personal-form-group">
                     <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenPlan}:</Label>
-                    <div className={'CurrentPlan ' + FloatClass + " " + TextAlignClass}>{this.ReturnPlanInChoosenLanguage(PlanName)}{this.state.FieldCropPlanActive ? Language.GrowerListFieldCropsExtra : null}</div>
+                    {this.state.UserActive ? <div className={'CurrentPlan ' + FloatClass + " " + TextAlignClass}>{this.ReturnPlanInChoosenLanguage(PlanName)}{this.state.FieldCropPlanActive ? Language.GrowerListFieldCropsExtra : null}</div>
+                    : <div className={'CurrentPlan ' + FloatClass + " " + TextAlignClass}>{Language.NonActivePlan}</div>}
                   </div>
                   <div className="personal-form-group">
                     <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenVeg}:</Label>
@@ -740,6 +723,24 @@ class GrowerPersonalArea extends Component {
                       <span><img alt="" src={require('../Resources/phone.png')} size='sm' />{this.state.FarmerPhone}</span>
                       <span><img alt="" src={require('../Resources/mail.png')} size='sm' /><a href={"mailto:" + this.state.FarmerEmail}>{this.state.FarmerEmail}</a></span>
                       <span><img alt="" src={require('../Resources/location.png')} size='sm' />{this.state.FarmerLocation}</span>
+                    </div>
+                  </div>
+                  <div className="personal-form-group">
+                    <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaSubscriptionActivationDate}:</Label>
+                    <div className={'RegisterDate ' + FloatClass + " " + TextAlignClass}>{RegisterDateToStringFormat}</div>
+                    <div className={'CancelSubscription ' + FloatClass}>
+                      <Button color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" disabled={!this.state.UserActive} >{Language.GrowerPersonalAreaCancelSubButton}</Button>
+                      <UncontrolledCollapse toggler="#toggler">
+                        <Card>
+                          <CardBody>
+                            <span className="CancelSubscriptionAlertText">{Language.GrowerPersonalAreaCancelSubButtonAreUSure}</span>
+                            <span className="CancelSubscriptionAlertButtons">
+                              <span><Button outline color="success" onClick={() => this.DeactivateAcount()} type="button" >{Language.Yes}</Button></span>
+                              <span><Button outline color="danger" id="toggler" style={{ marginBottom: '1rem' }} type="button" >{Language.No}</Button></span>
+                            </span>
+                          </CardBody>
+                        </Card>
+                      </UncontrolledCollapse>
                     </div>
                   </div>
                 </div>

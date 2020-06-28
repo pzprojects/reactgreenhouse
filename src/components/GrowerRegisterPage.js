@@ -1002,7 +1002,7 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanApointment}</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}><strong>{Language.FarmerPlanApointment}</strong></span>
                       </div>
                     </div>
                   </div>
@@ -1057,7 +1057,7 @@ class GrowerRegisterPage extends Component {
                       </div>
                       <div className={'PlanIncludeSection ' + TextAlignClass}>
                         <span className={'PlanVegetableImage ' + FloatClass + " " + ReverseTextAlignClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
-                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}>{Language.FarmerPlanCare}</span>
+                        <span className={'PlanVegetableImageText ' + FloatClass + " " + TextAlignClass}><strong>{Language.FarmerPlanCare}</strong></span>
                       </div>
                     </div>
                   </div>
