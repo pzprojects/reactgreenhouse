@@ -2950,6 +2950,7 @@
     display: block;
     float: right;
     text-align: right;
+    font-size: 0.93vw;
   }
 
   .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.form-group input {
@@ -2960,6 +2961,7 @@
     display: block;
     border-color: #329258;
     text-align: right;
+    font-size: 0.93vw;
   }
 
   .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder {
@@ -2994,7 +2996,8 @@
     position: relative;
     display: block;
     margin-top: 2vw;
-    text-align: center
+    text-align: center;
+    font-size: 0.83vw;
   }
 
   .ResetPasswordContainer {
@@ -3032,6 +3035,7 @@
     display: block;
     float: right;
     text-align: right;
+    font-size: 0.93vw;
   }
 
   .ResetPasswordContainer div.reset-password-form-sent-wrapper div.form-group input {
@@ -3042,6 +3046,7 @@
     display: block;
     border-color: #329258;
     text-align: right;
+    font-size: 0.93vw;
   }
 
   .ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder {
@@ -3076,7 +3081,8 @@
     position: relative;
     display: block;
     margin-top: 2vw;
-    text-align: center
+    text-align: center;
+    font-size: 0.93vw;
   }
 
   .ForgotPasswordLink {
@@ -3140,6 +3146,7 @@
     float: right;
     display: block;
     position: relative;
+    font-size: 0.83vw;
   }
 
   .ReadMoreContainer div.ReadMoreImageListImageHolder img {
@@ -6696,7 +6703,7 @@
     display: block;
     float: right;
     text-align: center;
-    font-size: 2.2vw;
+    font-size: 2.8vw;
     font-weight: bold;
     color: #5F0038;
   }
@@ -6715,6 +6722,7 @@
     display: block;
     float: right;
     text-align: right;
+    font-size: 1.2vw;
   }
 
   .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.form-group input {
@@ -6725,6 +6733,7 @@
     display: block;
     border-color: #329258;
     text-align: right;
+    font-size: 1.2vw;
   }
 
   .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder {
@@ -6744,7 +6753,7 @@
     color: white;
     background-color: #5F0038;
     border-radius: 4vw;
-    font-size: 1.2vw;
+    font-size: 1.5vw;
   }
   
   .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder button:hover {
@@ -6759,7 +6768,8 @@
     position: relative;
     display: block;
     margin-top: 2vw;
-    text-align: center
+    text-align: center;
+    font-size: 1.1vw;
   }
 
   .ResetPasswordContainer {
@@ -6778,7 +6788,7 @@
     display: block;
     float: right;
     text-align: center;
-    font-size: 2.2vw;
+    font-size: 2.9vw;
     font-weight: bold;
     color: #5F0038;
   }
@@ -6797,6 +6807,7 @@
     display: block;
     float: right;
     text-align: right;
+    font-size: 1.2vw;
   }
 
   .ResetPasswordContainer div.reset-password-form-sent-wrapper div.form-group input {
@@ -6807,6 +6818,7 @@
     display: block;
     border-color: #329258;
     text-align: right;
+    font-size: 1.2vw;
   }
 
   .ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder {
@@ -6826,7 +6838,7 @@
     color: white;
     background-color: #5F0038;
     border-radius: 4vw;
-    font-size: 1.2vw;
+    font-size: 1.6vw;
   }
   
   .ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder button:hover {
@@ -6841,7 +6853,8 @@
     position: relative;
     display: block;
     margin-top: 2vw;
-    text-align: center
+    text-align: center;
+    font-size: 1.2vw;
   }
 
   .ForgotPasswordLink {
@@ -6863,7 +6876,7 @@
   .ReadMoreItemRtl {
     direction: rtl;
     text-align: right;
-    font-size: 0.83vw;
+    font-size: 1.1vw;
   }
   
   .ReadMoreItemRtl span img {
@@ -6873,7 +6886,7 @@
   .ReadMoreItemLtr {
     direction: left;
     text-align: left;
-    font-size: 0.83vw;
+    font-size: 1.1vw;
   }
   
   .ReadMoreItemLtr span img {
@@ -6881,7 +6894,7 @@
   }
 
   .modal-header h5 {
-    font-size: 1.2vw;
+    font-size: 1.6vw;
     color: #5F0038;
   }
 
@@ -6905,6 +6918,7 @@
     float: right;
     display: block;
     position: relative;
+    font-size: 1.1vw;
   }
 
   .ReadMoreContainer div.ReadMoreImageListImageHolder img {
@@ -6998,7 +7012,7 @@
     float: right;
     text-align: center;
     font-weight: bold;
-    font-size: 1.6vw;
+    font-size: 2.1vw;
     margin-bottom: 3vw;
     margin-top: 2vw;
     color: #5F0038;
@@ -7040,7 +7054,7 @@
     position: relative;
     display: block;
     border-color: #329258;
-    font-size: 0.83vw;
+    font-size: 1.1vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegPrice {
@@ -7049,7 +7063,7 @@
     display: block;
     float: right;
     font-weight: bold;
-    font-size: 0.93vw;
+    font-size: 1.1vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount {
@@ -7079,7 +7093,7 @@
     margin-left: 5%;
     margin-right: 5%;
     text-align: center;
-    font-size: 0.83vw;
+    font-size: 1.1vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount div.GrowerPersonalShopVegAmountContainer span {
@@ -7093,7 +7107,7 @@
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAmount div.GrowerPersonalShopVegAmountContainer span button {
-    font-size: 0.83vw;
+    font-size: 1.1vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAddToBucket {
@@ -7104,7 +7118,7 @@
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopItemsToBuy div.GrowerPersonalShopVegAddToBucket span button {
-    font-size: 0.83vw;
+    font-size: 1.1vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling {
@@ -7126,12 +7140,12 @@
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer div.card div.card-header {
     text-align: center;
     font-weight: bold;
-    font-size: 0.93vw;
+    font-size: 1.2vw;
     background-color:#E4FBDC;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer div.card div.card-body {
-    font-size: 0.83vw;
+    font-size: 1.1vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopChoosingFarmer div.card div.card-body span {
@@ -7173,7 +7187,7 @@
     float: right;
     font-weight: bold;
     text-align: center;
-    font-size: 0.93vw;
+    font-size: 1.2vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItemHeader div.GrowerPersonalShopBucketItemHeaderContainer div.GrowerPersonalShopBucketItemHeaderText1 {
@@ -7217,7 +7231,7 @@
     display: block;
     float: right;
     text-align: center;
-    font-size: 0.83vw;
+    font-size: 1.1vw;
     margin-top: 0.2vw;
   }
 
@@ -7257,7 +7271,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    font-size: 0.93vw;
+    font-size: 1.2vw;
   }
 
   .GrowerPersonalShop div.GrowerPersonalShop-form-group div.GrowerPersonalShopBilling div.GrowerPersonalShopBucket >ul >li.GrowerPersonalShopBucketItem  div.GrowerPersonalShopBucketItemContainer div.GrowerPersonalShopBucketItemRemoveBtn span span.Deletebutton {
@@ -7295,7 +7309,7 @@
     color: white;
     background-color: #5F0038;
     border-radius: 4vw;
-    font-size: 1.2vw;
+    font-size: 1.6vw;
   }
   
   .GrowerPersonalShopBuyButtonHolder button:hover {
@@ -7315,24 +7329,24 @@
   }
 
   .ChooseLang div.dropdown button.LanguagePickerDropdown {
-    font-size: 0.93vw;
+    font-size: 1.2vw;
     float: right;
     margin-right: 0.5vw;
   }
 
   .ChooseLang div.dropdown div.dropdown-menu {
-    font-size: 0.93vw;
+    font-size: 1.2vw;
     margin-right: 0.5vw;
   }
 
   .ChooseLang div.dropdown div.dropdown-menu button.LanguagePicker span.LanguagePickerItemImgContainer {
-    font-size: 0.93vw;
+    font-size: 1.2vw;
     float: right;
     margin-right: 1vw;
   }
 
   .ChooseLang div.dropdown div.dropdown-menu button.LanguagePicker span.LanguagePickerItemName {
-    font-size: 0.93vw;
+    font-size: 1.2vw;
     float: right;
     margin-right: 1vw;
   }
@@ -7654,7 +7668,6 @@ div.alert {
   top: 25vw;
 }
 
-
 /*Personal Details*/
 
 .RegisterStatus {
@@ -7678,9 +7691,7 @@ div.alert {
 .ProfileName {
   position: relative;
   display: block;
-  float: right;
   width: 100%;
-  text-align: right;
   margin-bottom: 1.5vw;
 }
 
@@ -7995,6 +8006,7 @@ div.PersonalDetails .form-group input {
   width: 2vw;
 }
 
+
 /* Field Crop plan */
 
 .AddFieldCropsPlan{
@@ -8055,6 +8067,10 @@ div.PersonalDetails .form-group input {
   margin-bottom: 1vw;
   text-align: right;
   padding-right: 40px;
+}
+
+.GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBox label div {
+  margin-left: 0.5vw;
 }
 
 .GrowerChoosenFieldCrops div.GrowerChoosenFieldCropsCheckBoxLogic {
@@ -8136,7 +8152,7 @@ div.PersonalDetails .form-group input {
   display: block;
   right: 22.5%;
   bottom: -2%;
-  width:55%;
+  width: 55%;
   background-color: #5F0038;
   color: white;
   font-size: 1.20vw;
@@ -8145,6 +8161,7 @@ div.PersonalDetails .form-group input {
 
 .Plans div.PlanCard div.PlanCardBody {
   width: 100%;
+  min-height: 27vw;
   padding-bottom: 1vw;
   position: relative;
   display: block;
@@ -8154,7 +8171,6 @@ div.PersonalDetails .form-group input {
   text-align: center;
   font-size: 0.83vw;
   border-radius: 2vw;
-  min-height: 27vw;
 }
 
 .Plans div.PlanCard div.PlanCardBody div.CardCost {
@@ -8225,14 +8241,16 @@ div.PersonalDetails .form-group input {
   height: 0.73vw;
 }
 
+
 .Plans div.PlanCard div.PlanCardBody div.CardDetails div.PlanIncludeSection span.PlanVegetableImageText {
-  padding-left: 0.5vw;
-  padding-right: 0.5vw;
+  padding-left:0.5vw;
+  padding-right:0.5vw;
   position: relative;
   display: block;
   float: right;
   width: 80%;
 }
+
 
 /* Approve Regulations */
 
@@ -8591,6 +8609,7 @@ div.PersonalDetails .form-group input {
 .FarmerListContent div.container li div.FarmerList div.FarmerListImage img.FarmerThemeImage:hover {
   opacity: 0.7;
 }
+
 
 .FarmerListContent div.container li div.FarmerList div.FarmerListName {
   width: 14%;
@@ -9027,6 +9046,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   text-align: center;
   font-weight: bold;
   font-size: 1.4vw;
+  color: #5F0038;
 }
 
 .DuplicatesAlert {
@@ -9197,6 +9217,15 @@ div.PersonalDetails .personal-form-group input {
   margin-left: auto;
   position: relative;
   display: block;
+  color: white;
+  background-color: #5F0038;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.RegisterButtonContainer Button.UpdateDetails:hover {
+  color: white;
+  background-color: #327047;
 }
 
 .CancelSubscriptionAlertText {
@@ -9338,6 +9367,7 @@ div.PersonalDetails .personal-form-group input {
   display: block;
   float: right;
 }
+
 
 .ListOfGrowersByFarmer ul.GrowerListMaxHeight {
   max-height: 50vw;
@@ -9511,6 +9541,10 @@ div.PersonalDetails .personal-form-group input {
 }
 
 /* Login Modal */
+
+.login-form-group {
+  text-align: right;
+}
 
 .login-form-group {
   text-align: right;
@@ -10361,6 +10395,7 @@ div.SystemDetails .form-group input {
   display: block;
   float: right;
   text-align: right;
+  font-size: 0.93vw;
 }
 
 .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.form-group input {
@@ -10371,6 +10406,7 @@ div.SystemDetails .form-group input {
   display: block;
   border-color: #329258;
   text-align: right;
+  font-size: 0.93vw;
 }
 
 .SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder {
@@ -10382,6 +10418,22 @@ div.SystemDetails .form-group input {
   margin-top: 2vw;
 }
 
+.SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder button {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  background-color: #5F0038;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.SendResetPasswordEmailContainer div.reset-password-form-wrapper div.SendResetPasswordEmailBtnHolder button:hover {
+  color: white;
+  background-color: #327047;
+}
+
 .SendResetPasswordEmailContainer div.SendResetPasswordEmailMessage {
   width: 100%;
   float: right;
@@ -10389,7 +10441,8 @@ div.SystemDetails .form-group input {
   position: relative;
   display: block;
   margin-top: 2vw;
-  text-align: center
+  text-align: center;
+  font-size: 0.83vw;
 }
 
 .ResetPasswordContainer {
@@ -10427,6 +10480,7 @@ div.SystemDetails .form-group input {
   display: block;
   float: right;
   text-align: right;
+  font-size: 0.93vw;
 }
 
 .ResetPasswordContainer div.reset-password-form-sent-wrapper div.form-group input {
@@ -10437,6 +10491,7 @@ div.SystemDetails .form-group input {
   display: block;
   border-color: #329258;
   text-align: right;
+  font-size: 0.93vw;
 }
 
 .ResetPasswordContainer div.reset-password-form-sent-wrapper div.ResetPasswordBtnHolder {
@@ -10471,7 +10526,8 @@ div.SystemDetails .form-group input {
   position: relative;
   display: block;
   margin-top: 2vw;
-  text-align: center
+  text-align: center;
+  font-size: 0.93vw;
 }
 
 .ForgotPasswordLink {
@@ -10488,97 +10544,98 @@ div.SystemDetails .form-group input {
   font-size: 1.1vw;
 }
 
-  /* Read More */
+/* Read More */
 
-  .ReadMoreItemRtl {
-    direction: rtl;
-    text-align: right;
-    font-size: 0.83vw;
-  }
-  
-  .ReadMoreItemRtl span img {
-    margin-left: 2vw;
-  }
+.ReadMoreItemRtl {
+  direction: rtl;
+  text-align: right;
+  font-size: 0.83vw;
+}
 
-  .ReadMoreItemLtr {
-    direction: left;
-    text-align: left;
-    font-size: 0.83vw;
-  }
-  
-  .ReadMoreItemLtr span img {
-    margin-right: 2vw;
-  }
+.ReadMoreItemRtl span img {
+  margin-left: 2vw;
+}
 
-  .modal-header h5 {
-    font-size: 1.2vw;
-    color: #5F0038;
-  }
+.ReadMoreItemLtr {
+  direction: left;
+  text-align: left;
+  font-size: 0.83vw;
+}
 
-  .ReadMoreContainer {
-    width:100%;
-  }
+.ReadMoreItemLtr span img {
+  margin-right: 2vw;
+}
 
-  .ReadMoreContainer div.ReadMoreImageListContainer {
-    width:60%;
-    float: right;
-    display: block;
-    position: relative;
-  }
+.modal-header h5 {
+  font-size: 1.2vw;
+  color: #5F0038;
+}
 
-  .ReadMoreContainer div.ReadMoreImageListContainer > ul > li.EmptyReadMoreItem {
-    padding: 0px;
-  }
+.ReadMoreContainer {
+  width:100%;
+}
 
-  .ReadMoreContainer div.ReadMoreImageListImageHolder {
-    width:40%;
-    float: right;
-    display: block;
-    position: relative;
-  }
+.ReadMoreContainer div.ReadMoreImageListContainer {
+  width:60%;
+  float: right;
+  display: block;
+  position: relative;
+}
 
-  .ReadMoreContainer div.ReadMoreImageListImageHolder img {
-    width: 10vw;
-    height: 10vw;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-  }
+.ReadMoreContainer div.ReadMoreImageListContainer > ul > li.EmptyReadMoreItem {
+  padding: 0px;
+}
 
-  .ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData {
-    width: 12vw;
-    max-height: 5vw;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    text-align: center;
-  }
+.ReadMoreContainer div.ReadMoreImageListImageHolder {
+  width:40%;
+  float: right;
+  display: block;
+  position: relative;
+  font-size: 0.83vw;
+}
 
-  .ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData span.ReadMoreExtraDataAboutMe {
-    width: 100%;
-    max-height: 3.75vw;
-    display: block;
-    float: right;
-    position: relative;
-    overflow: hidden;
-    direction: rtl;
-  }
+.ReadMoreContainer div.ReadMoreImageListImageHolder img {
+  width: 10vw;
+  height: 10vw;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
 
-  .ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData span.ReadMoreExtraDataAboutMeLink {
-    width: 100%;
-    height: 1.25vw;
-    display: block;
-    float: right;
-    position: relative;
-    cursor: pointer;
-  }
+.ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData {
+  width: 12vw;
+  max-height: 5vw;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
 
-  .ReadMoreContainer > ul.ReadMoreCompletedList {
-    width:100%;
-    float: right;
-    display: block;
-    position: relative;
-  }
+.ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData span.ReadMoreExtraDataAboutMe {
+  width: 100%;
+  max-height: 3.75vw;
+  display: block;
+  float: right;
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+}
+
+.ReadMoreContainer div.ReadMoreImageListImageHolder div.ReadMoreExtraData span.ReadMoreExtraDataAboutMeLink {
+  width: 100%;
+  height: 1.25vw;
+  display: block;
+  float: right;
+  position: relative;
+  cursor: pointer;
+}
+
+.ReadMoreContainer > ul.ReadMoreCompletedList {
+  width:100%;
+  float: right;
+  display: block;
+  position: relative;
+}
 
 /* System Logs */
 
@@ -10939,7 +10996,7 @@ div.SystemDetails .form-group input {
   width: 10%;
   position: absolute;
   top: 0vw;
-  left: 45vw;
+  right: 0vw;
   display: block;
   z-index: 1000;
 }

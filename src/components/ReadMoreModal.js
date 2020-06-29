@@ -76,7 +76,7 @@ class ReadMoreModal extends Component {
                   <span className='ReadMoreExtraDataAboutMe' style={{direction:direction}}>{this.props.FarmerAboutMe.length>60 ? ShortenAboutMe + "..." : ShortenAboutMe}</span>
                   <span className='ReadMoreExtraDataAboutMeLink' style={{color:"blue"}} href="#" id="UncontrolledTooltipExample">{this.props.FarmerAboutMe.length>60 ? Language.GrowerFarmerReadMore : null}</span>
                   {this.props.FarmerAboutMe.length>60 ?
-                    <UncontrolledTooltip placement="bottom" target="UncontrolledTooltipExample">
+                    <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
                       {this.props.FarmerAboutMe}
                     </UncontrolledTooltip>
                   :
