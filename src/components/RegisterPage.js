@@ -1065,15 +1065,16 @@ class RegisterPage extends Component {
               <div className={this.state.AddBackgroundClassToVeg}>
                 <h3>{Language.ExperienceToGrow}</h3>
                 { this.state.VegtButtonOn && this.state.FieldCropsButtonOn ? 
-                <Button color="success" onClick={this.OpenListOfvegetables}>{Language.VegList}</Button> : null }
+                <Button color="success" onClick={this.OpenListOfvegetables}>{Language.FarmerGreenhouseCropsButtonText}</Button> : null }
                 { this.state.VegtButtonOn ? null : <Vegetables OpenListOfvegetables={this.OpenListOfvegetables} /> }
                 { this.state.FieldCropsButtonOn && this.state.VegtButtonOn ? 
-                <Button color="success" onClick={this.OpenListOfFieldsCrops}>{Language.FieldCropList}</Button> : null }
+                <Button color="success" onClick={this.OpenListOfFieldsCrops}>{Language.FarmerFieldCropsButtonText}</Button> : null }
                 { this.state.FieldCropsButtonOn ? null : <FieldCrops OpenListOffieldcrops={this.OpenListOfFieldsCrops} /> }
               </div>
               {this.state.EmptyVegActive ? <div className='FarmerChoosePlanAlert'><Alert color='danger'>{Language.FarmerHaveEmptyVegInList}</Alert></div> : null}
               <div className="ListOfVegCost">
                 <p>{Language.PricingComment}</p>
+                <p>{Language.SeasonWarning}</p>
                 { ShowVegPricing ? <VegetablesPricing /> : null}
                 { ShowFieldCropPricing ? <FarmCropsPricing /> : null}
               </div> 

@@ -198,7 +198,10 @@ export const Hebrew = {
     LogOut: 'התנתק',
     PhoneNumberError: 'מספר הטלפון ריק או לא תקין',
     NonActivePlan: 'למנוי זה אין מסלול פעיל',
-    FarmerHaveEmptyVegInList: 'יש לבחור לפחות ירק או גידול שדה אחד בתכנית שנבחרה'
+    FarmerHaveEmptyVegInList: 'יש לבחור לפחות ירק או גידול שדה אחד בתכנית שנבחרה',
+    FarmerFieldCropsButtonText: 'גידולי שדה',
+    FarmerGreenhouseCropsButtonText: 'גידולי חממה',
+    SeasonWarning: 'מיקומי הגידולים עשויים להשתנות ע"פ מזג האוויר והעונה'
 };
 
 export const English = {
@@ -401,5 +404,8 @@ export const English = {
     LogOut: 'Log Out',
     PhoneNumberError: 'Phone number is empty or invalid',
     NonActivePlan: 'This subscription has no active plan',
-    FarmerHaveEmptyVegInList: 'You must select at least one vegetable or field crop in the selected plan'
+    FarmerHaveEmptyVegInList: 'You must select at least one vegetable or field crop in the selected plan',
+    FarmerFieldCropsButtonText: 'Field crops',
+    FarmerGreenhouseCropsButtonText: 'Greenhouse crops',
+    SeasonWarning: 'The locations of the crops may vary according to weather and season'
 };

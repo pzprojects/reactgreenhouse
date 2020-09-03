@@ -1513,6 +1513,7 @@ class ChooseFarmer extends Component {
             ))}
           </ListGroup>
         </div>
+        {(this.state.ChoosenFarmerId !== '' && this.state.ChoosenFarmerId !== undefined) ? <div className="SeasonWarning"><p>{Language.SeasonWarning}</p></div> : null}
         {this.state.ChoosenFarmerId !== '' && this.state.ChoosenFarmerId !== undefined ?
           <div className="GrowerMainPicking">
             <div className={'GrowerVegContainer2 ' + FloatClass}>

@@ -33,8 +33,8 @@ class RegisterUserType extends Component {
     return (
       <div className="UserTypesHolder">
         <div className="UserTypesHeader">{Language.RegisterChooseHeader}</div>
-        <Button className="UserTypesButton" outline color="secondary" size="lg" tag={Link} to="/GrowerRegisterPage">{Language.RegisterChooseGrowerButton}</Button>
         <Button className="UserTypesButton" outline color="secondary" size="lg" tag={Link} to="/RegisterPage">{Language.RegisterChooseFarmerButton}</Button>
+        <Button className="UserTypesButton" outline color="secondary" size="lg" tag={Link} to="/GrowerRegisterPage">{Language.RegisterChooseGrowerButton}</Button>
       </div>
     );
   }
