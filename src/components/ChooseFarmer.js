@@ -1806,7 +1806,7 @@ class ChooseFarmer extends Component {
                     <span className={'GrowerFinalBillingItemName ' + FloatClass} >{Language.GrowerTotalBillMonthlyTotalToPay}</span>
                     <span className={'GrowerFinalBillingItemPrice ' + FloatClass} ></span>
                     <span className={'GrowerFinalBillingItemAmount ' + FloatClass} ></span>
-                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{(parseFloat(this.GetFieldCropTotalPayment("2")) + parseFloat(this.GetTotalPayment("2"))).toString()} {Language.Shekals}</span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} ><b>{(parseFloat(this.GetFieldCropTotalPayment("2")) + parseFloat(this.GetTotalPayment("2"))).toString()} {Language.Shekals}</b></span>
                     <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} ></span>
                   </li>
                 </ul>
@@ -1887,7 +1887,7 @@ class ChooseFarmer extends Component {
                     <span className={'GrowerFinalBillingItemName ' + FloatClass} >{Language.GrowerTotalBillMonthlyTotalToPay}</span>
                     <span className={'GrowerFinalBillingItemPrice ' + FloatClass} ></span>
                     <span className={'GrowerFinalBillingItemAmount ' + FloatClass} ></span>
-                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} >{(parseFloat(this.GetFieldCropTotalPayment("1")) + parseFloat(this.GetTotalPayment("1"))).toString()} {Language.Shekals}</span>
+                    <span className={'GrowerFinalBillingItemTotal ' + FloatClass} ><b>{(parseFloat(this.GetFieldCropTotalPayment("1")) + parseFloat(this.GetTotalPayment("1"))).toString()} {Language.Shekals}</b></span>
                     <span className={'GrowerFinalBillingItemBullingType ' + FloatClass} ></span>
                   </li>
                 </ul>

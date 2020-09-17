@@ -175,13 +175,13 @@
 
   nav .container div.collapse ul.navbar-nav > li {
     margin-left: 0.5vw;
-    margin-top: 1.5vw;
+    margin-top: 2vw;
     border-top: 0.2vw solid #5F0038;
   }
 
   nav .container div.collapse ul.navbar-nav > li.active {
     margin-left: 0.5vw;
-    margin-top: 1.5vw;
+    margin-top: 2vw;
     border-top: 0.2vw solid #ADC742;
   }
 
@@ -191,13 +191,12 @@
 
   nav .container div.collapse ul.navbar-nav > li:hover {
     margin-left: 0.5vw;
-    margin-top: 1.5vw;
+    margin-top: 2vw;
     border-top: 0.2vw solid #ADC742;
   }
 
   nav .container div.collapse ul.navbar-nav > li:hover a {
     color: #ADC742 !important;
-    margin-top: 0.25vw;
   }
 
   nav .container li a {
@@ -253,6 +252,7 @@
   .ProfileName h1 {
     font-size: 2.1vw;
     color: #5F0038;
+    text-align: center;
   }
   
   .PersonalDetails {
@@ -344,15 +344,16 @@
   
   .UserTypesHolder {
     text-align: center;
-    position: relative;
+    position: absolute;
     display: block;
-    position: relative;
     background-image: url(./Resources/ChooseGrowerImg.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: 30vw;
+    height: 40vw;
+    width: 100%;
     box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
     cursor: pointer;
+    left: 0px;
   }
   
   .UserTypesHolder .UserTypesButton {
@@ -717,9 +718,24 @@
     background-color: #5F0038;
     color: white;
     font-size: 1.20vw;
+    font-weight: bold;
     z-index: 10;
   }
   
+  .Plans div.PlanCard div.PlanCardHeader div span.PlanTitleSelected {
+    text-align: center;
+    position: absolute;
+    display: block;
+    right: 22.5%;
+    bottom: -2%;
+    width: 55%;
+    background-color: #327047;
+    color: white;
+    font-size: 1.20vw;
+    font-weight: bold;
+    z-index: 10;
+  }
+
   .Plans div.PlanCard div.PlanCardBody {
     width: 100%;
     min-height: 27vw;
@@ -793,7 +809,7 @@
     position: relative;
     display: block;
     float: right;
-    width: 20%;
+    width: 14%;
     text-align: left;
   }
 
@@ -945,7 +961,7 @@
     text-align: center;
     font-size: 1.2vw;
     font-weight: bold;
-    color: #329258;
+    color: #5F0038;
   }
   
   .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group {
@@ -1098,6 +1114,7 @@
     float: right;
     margin-bottom: 0.5vw;
     margin-top: 1.5vw;
+    font-weight: bold;
   }
 
   .FarmerListContent {
@@ -1397,7 +1414,7 @@
     position: relative;
     display: block;
     float: right;
-    background-color: #E38788;
+    background-color: #744EB2;
     height: 11vw;
   }
 
@@ -1406,7 +1423,7 @@
     position: relative;
     display: block;
     float: right;
-    background-color: #A8E5E8;
+    background-color: #8D6EC1;
     height: 11vw;
   }
 
@@ -1415,7 +1432,7 @@
     position: relative;
     display: block;
     float: right;
-    background-color: #F3E990;
+    background-color: #A88CD7;
     height: 11vw;
   }
 
@@ -1424,7 +1441,7 @@
     position: relative;
     display: block;
     float: right;
-    background-color: #98D085;
+    background-color: #C3AFE4;
     height: 11vw;
   }
 
@@ -1673,10 +1690,11 @@
 
   .CancelSubscription {
     width: 40%;
-    position: relative;
+    position: absolute;
     display: block;
     float: right;
     margin-bottom: 1.5vw;
+    left: -88%;
   }
 
   .CancelSubscription button {
@@ -2134,14 +2152,23 @@
 
   .PersonalAreaWelcomeContainer {
     width: 100%;
-    position: relative;
+    position: absolute;
     display: block;
     float: right;
     text-align: center;
-    margin-top: 7vw;
+    margin-top: 1vw;
     font-size: 5vw;
     font-weight: bold;
-    color: #CCEEC0;
+    color: #5F0038;
+    left: 0px;
+    height: 40vw;
+    overflow: hidden;
+    object-fit: cover;
+    background-image: url(./Resources/HomePageImg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
+    cursor: pointer;
   }
 
   .PersonalAreaWelcomeContainer span.PersonalAreaWelcomeText1 {
@@ -2909,13 +2936,27 @@
 
   /* Login page */
 
+  .LoginBackground{
+    position: absolute;
+    display: block;
+    background-image: url(./Resources/LogInImg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 40vw;
+    width: 100%;
+    box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
+    cursor: pointer;
+    left: 0px;
+  }
+
   .LoginPageContainer{
-    width: 35%;
+    width: 20%;
     position: relative;
     display: block;
     margin-right: auto;
     margin-left: auto;
     margin-top: 2vw;
+    color: #329258;
   }
 
   .LoginPageHeader {
@@ -3967,13 +4008,13 @@
 
   nav .container div.collapse ul.navbar-nav > li {
     margin-left: 0.5vw;
-    margin-top: 1.5vw;
+    margin-top: 2vw;
     border-top: 0.2vw solid #5F0038;
   }
 
   nav .container div.collapse ul.navbar-nav > li.active {
     margin-left: 0.5vw;
-    margin-top: 1.5vw;
+    margin-top: 2vw;
     border-top: 0.2vw solid #ADC742;
   }
 
@@ -3983,13 +4024,12 @@
 
   nav .container div.collapse ul.navbar-nav > li:hover {
     margin-left: 0.5vw;
-    margin-top: 1.5vw;
+    margin-top: 2vw;
     border-top: 0.2vw solid #ADC742;
   }
 
   nav .container div.collapse ul.navbar-nav > li:hover a {
     color: #ADC742 !important;
-    margin-top: 0.25vw;
   }
 
   nav .container li a {
@@ -4045,6 +4085,7 @@
   .ProfileName h1 {
     font-size: 2.9vw;
     color: #5F0038;
+    text-align: center;
   }
   
   .PersonalDetails {
@@ -4136,15 +4177,16 @@
   
   .UserTypesHolder {
     text-align: center;
-    position: relative;
+    position: absolute;
     display: block;
-    position: relative;
     background-image: url(./Resources/ChooseGrowerImg.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: 30vw;
+    height: 40vw;
+    width: 100%;
     box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
     cursor: pointer;
+    left: 0px
   }
   
   .UserTypesHolder .UserTypesButton {
@@ -4509,6 +4551,21 @@
     background-color: #5F0038;
     color: white;
     font-size: 1.4vw;
+    font-weight: bold;
+    z-index: 10;
+  }
+
+  .Plans div.PlanCard div.PlanCardHeader div span.PlanTitleSelected {
+    text-align: center;
+    position: absolute;
+    display: block;
+    right: 22.5%;
+    bottom: -2%;
+    width: 55%;
+    background-color: #327047;
+    color: white;
+    font-size: 1.4vw;
+    font-weight: bold;
     z-index: 10;
   }
   
@@ -4585,7 +4642,7 @@
     position: relative;
     display: block;
     float: right;
-    width: 20%;
+    width: 14%;
     text-align: left;
   }
 
@@ -4737,7 +4794,7 @@
     text-align: center;
     font-size: 1.6vw;
     font-weight: bold;
-    color: #329258;
+    color: #5F0038;
   }
   
   .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group {
@@ -4890,6 +4947,7 @@
     float: right;
     margin-bottom: 0.5vw;
     margin-top: 1.5vw;
+    font-weight: bold;
   }
 
   .FarmerListContent {
@@ -5189,7 +5247,7 @@
     position: relative;
     display: block;
     float: right;
-    background-color: #E38788;
+    background-color: #744EB2;
     height: 11vw;
   }
 
@@ -5198,7 +5256,7 @@
     position: relative;
     display: block;
     float: right;
-    background-color: #A8E5E8;
+    background-color: #8D6EC1;
     height: 11vw;
   }
 
@@ -5207,7 +5265,7 @@
     position: relative;
     display: block;
     float: right;
-    background-color: #F3E990;
+    background-color: #A88CD7;
     height: 11vw;
   }
 
@@ -5216,7 +5274,7 @@
     position: relative;
     display: block;
     float: right;
-    background-color: #98D085;
+    background-color: #C3AFE4;
     height: 11vw;
   }
 
@@ -5465,10 +5523,11 @@
 
   .CancelSubscription {
     width: 40%;
-    position: relative;
+    position: absolute;
     display: block;
     float: right;
     margin-bottom: 1.5vw;
+    left: -88%;
   }
 
   .CancelSubscription button {
@@ -5922,14 +5981,23 @@
 
   .PersonalAreaWelcomeContainer {
     width: 100%;
-    position: relative;
+    position: absolute;
     display: block;
     float: right;
     text-align: center;
-    margin-top: 7vw;
+    margin-top: 1vw;
     font-size: 5vw;
     font-weight: bold;
-    color: #CCEEC0;
+    color: #5F0038;
+    left: 0px;
+    height: 60vw;
+    overflow: hidden;
+    object-fit: cover;
+    background-image: url(./Resources/HomePageImg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
+    cursor: pointer;
   }
 
   .PersonalAreaWelcomeContainer span.PersonalAreaWelcomeText1 {
@@ -6697,6 +6765,19 @@
 
   /* Login page */
 
+  .LoginBackground{
+    position: absolute;
+    display: block;
+    background-image: url(./Resources/LogInImg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 55vw;
+    width: 100%;
+    box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
+    cursor: pointer;
+    left: 0px;
+  }
+
   .LoginPageContainer{
     width: 35%;
     position: relative;
@@ -6704,6 +6785,7 @@
     margin-right: auto;
     margin-left: auto;
     margin-top: 2vw;
+    color: #329258;
   }
 
   .LoginPageHeader {
@@ -7730,6 +7812,7 @@ div.alert {
 .ProfileName h1 {
   font-size: 2.1vw;
   color: #5F0038;
+  text-align: center;
 }
 
 .PersonalDetails {
@@ -7821,15 +7904,16 @@ div.PersonalDetails .form-group input {
 
 .UserTypesHolder {
   text-align: center;
-  position: relative;
+  position: absolute;
   display: block;
-  position: relative;
   background-image: url(./Resources/ChooseGrowerImg.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  height: 30vw;
+  height: 40vw;
+  width: 100%;
   box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
   cursor: pointer;
+  left: 0px;
 }
 
 .UserTypesHolder .UserTypesButton {
@@ -8194,6 +8278,21 @@ div.PersonalDetails .form-group input {
   background-color: #5F0038;
   color: white;
   font-size: 1.20vw;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.Plans div.PlanCard div.PlanCardHeader div span.PlanTitleSelected {
+  text-align: center;
+  position: absolute;
+  display: block;
+  right: 22.5%;
+  bottom: -2%;
+  width: 55%;
+  background-color: #327047;
+  color: white;
+  font-size: 1.20vw;
+  font-weight: bold;
   z-index: 10;
 }
 
@@ -8270,7 +8369,7 @@ div.PersonalDetails .form-group input {
   position: relative;
   display: block;
   float: right;
-  width: 20%;
+  width: 14%;
   text-align: left;
 }
 
@@ -8422,7 +8521,7 @@ div.PersonalDetails .form-group input {
   text-align: center;
   font-size: 1.2vw;
   font-weight: bold;
-  color: #329258;
+  color: #5F0038;
 }
 
 .BankCollectPaymentContainer div.BankCollectPayment div.payment-form-group {
@@ -8575,6 +8674,7 @@ div.PersonalDetails .form-group input {
   float: right;
   margin-bottom: 0.5vw;
   margin-top: 1.5vw;
+  font-weight: bold;
 }
 
 .FarmerListContent {
@@ -8874,7 +8974,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   position: relative;
   display: block;
   float: right;
-  background-color: #E38788;
+  background-color: #744EB2;
   height: 11vw;
 }
 
@@ -8883,7 +8983,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   position: relative;
   display: block;
   float: right;
-  background-color: #A8E5E8;
+  background-color: #8D6EC1;
   height: 11vw;
 }
 
@@ -8892,7 +8992,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   position: relative;
   display: block;
   float: right;
-  background-color: #F3E990;
+  background-color: #A88CD7;
   height: 11vw;
 }
 
@@ -8901,7 +9001,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   position: relative;
   display: block;
   float: right;
-  background-color: #98D085;
+  background-color: #C3AFE4;
   height: 11vw;
 }
 
@@ -9150,10 +9250,11 @@ div.PersonalDetails .personal-form-group input {
 
 .CancelSubscription {
   width: 40%;
-  position: relative;
+  position: absolute;
   display: block;
   float: right;
   margin-bottom: 1.5vw;
+  left: -88%;
 }
 
 .CancelSubscription button {
@@ -9611,14 +9712,23 @@ div.PersonalDetails .personal-form-group input {
 
 .PersonalAreaWelcomeContainer {
   width: 100%;
-  position: relative;
+  position: absolute;
   display: block;
   float: right;
   text-align: center;
-  margin-top: 7vw;
+  margin-top: 1vw;
   font-size: 5vw;
   font-weight: bold;
-  color: #CCEEC0;
+  color: #5F0038;
+  left: 0px;
+  height: 55vw;
+  overflow: hidden;
+  object-fit: cover;
+  background-image: url(./Resources/HomePageImg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
+  cursor: pointer;
 }
 
 .PersonalAreaWelcomeContainer span.PersonalAreaWelcomeText1 {
@@ -10386,6 +10496,19 @@ div.SystemDetails .form-group input {
 
 /* Login page */
 
+.LoginBackground{
+  position: absolute;
+  display: block;
+  background-image: url(./Resources/LogInImg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 65vw;
+  width: 100%;
+  box-shadow: 0.1vw 0.1vw 0.8vw 0px rgba(48, 38, 38, 0.75);
+  cursor: pointer;
+  left: 0px;
+}
+
 .LoginPageContainer{
   width: 35%;
   position: relative;
@@ -10393,6 +10516,7 @@ div.SystemDetails .form-group input {
   margin-right: auto;
   margin-left: auto;
   margin-top: 2vw;
+  color: #329258;
 }
 
 .LoginPageHeader {

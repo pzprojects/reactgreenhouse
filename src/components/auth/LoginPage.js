@@ -88,7 +88,7 @@ class LoginPage extends Component {
       FloatClass = "Co-Align-Right";
     }
     return (
-      <div>
+      <div className='LoginBackground' >>
         <div className='LoginPageHeader' >{Language.LoginTitle}</div>
         <div className='LoginPageContainer' >
           {this.state.msg ? (

@@ -919,7 +919,7 @@ class GrowerRegisterPage extends Component {
                         checked={this.state.plan1}
                         onChange={this.onChange} />
                       </Label> 
-                      <span className='PlanTitle' >{Language.PlanName1}</span>
+                      <span className={this.state.plan1 ? 'PlanTitleSelected' : 'PlanTitle'} >{Language.PlanName1}</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
@@ -970,7 +970,7 @@ class GrowerRegisterPage extends Component {
                         checked={this.state.plan2}
                         onChange={this.onChange} />
                       </Label> 
-                      <span className='PlanTitle' >{Language.PlanName2}</span>
+                      <span className={this.state.plan2 ? 'PlanTitleSelected' : 'PlanTitle'} >{Language.PlanName2}</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
@@ -1025,7 +1025,7 @@ class GrowerRegisterPage extends Component {
                         className='mb-3'
                         onChange={this.onChange} />
                       </Label> 
-                      <span className='PlanTitle' >{Language.PlanName3}</span>
+                      <span className={this.state.plan3 ? 'PlanTitleSelected' : 'PlanTitle'} >{Language.PlanName3}</span>
                     </div>
                   </div>
                   <div className="PlanCardBody">
