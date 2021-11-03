@@ -39,7 +39,7 @@ export const Hebrew = {
     Approve: "אישור",
     PricingComment: 'מחירי הירקות וגידולי השדה הינם המחירים המומלצים ע"י החנות של Co-Greenhouse וניתנים לשינוי',
     VegPricingComment: 'יש לוודא שלכל ירק מעודכן מחיר',
-    IntrestingInFieldCrops: 'אני מעוניין לאפשר רכישת גידולי שדה',
+    IntrestingInFieldCrops: 'אני מעוניין לגדל גידולי שדה בנוסף לגידולי החממה',
     FieldCropPrice: 'עלות מסלול גידולי שדה תהיה',
     Shekals: 'ש"ח',
     FarmerFieldCropsChoosePlanError: 'יש לבחור תכנית לגידולי שדה או להסיר גידולי שדה נבחרים',
@@ -110,6 +110,7 @@ export const Hebrew = {
     GrowerChooseVegWeight: 'ק"ג',
     GrowerChooseVegMoreInformation: 'מידע נוסף',
     GrowerChooseVegHelkaHeader: 'הרכב החלקה לגידולי חממה (לפי טור גידול)',
+    GrowerChooseVegFieldHelkaHeader: 'הרכב החלקה לגידולי שדה (לפי טור גידול)',
     GrowerChooseVegPlants: 'שתילים',
     GrowerChooseVegTotalCost: 'עלות כוללת',
     GrowerChooseVegTotalCost2: 'עלות שתילים',
@@ -201,7 +202,7 @@ export const Hebrew = {
     FarmerHaveEmptyVegInList: 'יש לבחור לפחות ירק או גידול שדה אחד בתכנית שנבחרה',
     FarmerFieldCropsButtonText: 'גידולי שדה',
     FarmerGreenhouseCropsButtonText: 'גידולי חממה',
-    SeasonWarning: 'מיקומי הגידולים עשויים להשתנות ע"פ מזג האוויר והעונה'
+    SeasonWarning: 'מיקומי הגידולים וסוגם עשויים להשתנות בין החממה לגידולי שדה בשטח פתוח ע"פ מזג האויר והעונה.'
 };
 
 export const English = {
@@ -245,7 +246,7 @@ export const English = {
     Approve: "Update",
     PricingComment: "The price of vegetables and field crops is recommended by Co-Greenhouse's shop and can be changed",
     VegPricingComment: 'Make sure that each vegetable has an updated price',
-    IntrestingInFieldCrops: 'I would like to enable the purchase of field crops',
+    IntrestingInFieldCrops: 'I am interested in growing field crops in addition to greenhouse crops',
     FieldCropPrice: "Field crops's plan cost will be",
     Shekals: 'NIS',
     FarmerFieldCropsChoosePlanError: 'Field crops plan must be selected or remove selected field crops',
@@ -316,6 +317,7 @@ export const English = {
     GrowerChooseVegWeight: 'kilogram',
     GrowerChooseVegMoreInformation: 'Additional Information',
     GrowerChooseVegHelkaHeader: 'Plot composition for greenhouse crops (according to the growth column)',
+    GrowerChooseVegFieldHelkaHeader: 'Plot composition for field crops (according to the growth column)',
     GrowerChooseVegPlants: 'seedlings',
     GrowerChooseVegTotalCost: 'Total cost',
     GrowerChooseVegTotalCost2: 'Seedlings cost',
@@ -407,5 +409,5 @@ export const English = {
     FarmerHaveEmptyVegInList: 'You must select at least one vegetable or field crop in the selected plan',
     FarmerFieldCropsButtonText: 'Field crops',
     FarmerGreenhouseCropsButtonText: 'Greenhouse crops',
-    SeasonWarning: 'The locations of the crops may vary according to weather and season'
+    SeasonWarning: 'Crop locations and thier type may vary between greenhouses and field crops in the open according to the weather and the season'
 };

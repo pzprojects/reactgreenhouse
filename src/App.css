@@ -363,6 +363,7 @@
     color: white;
     background-color: #5F0038;
     border-radius: 4vw;
+    width: 6vw;
   }
 
   .UserTypesHolder .UserTypesButton:hover {
@@ -375,6 +376,7 @@
     margin-top: 3vw;
     font-size: 1.93vw;
     color: #5F0038;
+    font-weight: bold;
   }
   
   /*vegetables*/
@@ -1367,6 +1369,8 @@
     padding-top: 0.75vw;
     background-color: #98D084;
     font-size: 0.83vw;
+    color: white;
+    font-weight: bold;
   }
 
   div.FarmerListTitle {
@@ -1375,6 +1379,7 @@
     padding-top: 0.5vw;
     font-weight: bold;
     font-size: 0.83vw;
+    color: white;
   }
 
   .FarmerListContent .container div.ListOfFarmersByArea ul > li.FarmerListTitleListItem{
@@ -1454,6 +1459,7 @@
     margin-top: 1vw;
     overflow-wrap: break-word;
     height: 2vw;
+    color: white;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaAmount {
@@ -1464,6 +1470,7 @@
     margin-top: 1vw;
     overflow-wrap: break-word;
     height: 2vw;
+    color: white;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotal {
@@ -1474,6 +1481,7 @@
     margin-top: 1vw;
     overflow-wrap: break-word;
     height: 1vw;
+    color: white;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotalPrice {
@@ -1481,9 +1489,10 @@
     position: relative;
     display: block;
     float: right;
-    margin-bottom: 1vw;
+    margin-top: 1vw;
     overflow-wrap: break-word;
     height: 2vw;
+    color: white;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsContainerExample {
@@ -2159,7 +2168,7 @@
     margin-top: 1vw;
     font-size: 5vw;
     font-weight: bold;
-    color: #5F0038;
+    color: white;
     left: 0px;
     height: 40vw;
     overflow: hidden;
@@ -2640,6 +2649,7 @@
 
   .AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle {
     font-size: 0.70vw;
+    color: white;
   }
 
   .AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText1 {
@@ -2956,7 +2966,7 @@
     margin-right: auto;
     margin-left: auto;
     margin-top: 2vw;
-    color: #329258;
+    color: white;
   }
 
   .LoginPageHeader {
@@ -2967,7 +2977,7 @@
     text-align: center;
     font-size: 2.2vw;
     font-weight: bold;
-    color: #5F0038;
+    color: white;
   }
 
   /* Reset password */
@@ -3154,6 +3164,7 @@
 
   .ForgotPasswordLink a {
     font-size: 1.1vw;
+    color: #8DC63F;
   }
 
   /* Read More */
@@ -3181,6 +3192,8 @@
   .modal-header h5 {
     font-size: 1.2vw;
     color: #5F0038;
+    text-align: center;
+    width: 100%;
   }
 
   .ReadMoreContainer {
@@ -4196,6 +4209,7 @@
     color: white;
     background-color: #5F0038;
     border-radius: 4vw;
+    width: 10vw;
   }
 
   .UserTypesHolder .UserTypesButton:hover {
@@ -4208,6 +4222,7 @@
     margin-top: 3vw;
     font-size: 2.6vw;
     color: #5F0038;
+    font-weight: bold;
   }
   
   /*vegetables*/
@@ -5200,6 +5215,8 @@
     padding-top: 0.75vw;
     background-color: #98D084;
     font-size: 1.1vw;
+    color: white;
+    font-weight: bold;
   }
 
   div.FarmerListTitle {
@@ -5208,6 +5225,7 @@
     padding-top: 0.5vw;
     font-weight: bold;
     font-size: 1.1vw;
+    color: white;
   }
 
   .FarmerListContent .container div.ListOfFarmersByArea ul > li.FarmerListTitleListItem{
@@ -5287,6 +5305,7 @@
     margin-top: 1vw;
     overflow-wrap: break-word;
     height: 2vw;
+    color: white;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaAmount {
@@ -5297,6 +5316,7 @@
     margin-top: 1vw;
     overflow-wrap: break-word;
     height: 2vw;
+    color: white;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotal {
@@ -5307,6 +5327,7 @@
     margin-top: 1vw;
     overflow-wrap: break-word;
     height: 1vw;
+    color: white;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotalPrice {
@@ -5314,9 +5335,10 @@
     position: relative;
     display: block;
     float: right;
-    margin-bottom: 1vw;
+    margin-top: 1vw;
     overflow-wrap: break-word;
     height: 2vw;
+    color: white;
   }
 
   .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsContainerExample {
@@ -5988,7 +6010,7 @@
     margin-top: 1vw;
     font-size: 5vw;
     font-weight: bold;
-    color: #5F0038;
+    color: white;
     left: 0px;
     height: 60vw;
     overflow: hidden;
@@ -6469,6 +6491,7 @@
 
   .AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle {
     font-size: 0.70vw;
+    color: white;
   }
 
   .AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText1 {
@@ -6785,7 +6808,7 @@
     margin-right: auto;
     margin-left: auto;
     margin-top: 2vw;
-    color: #329258;
+    color: white;
   }
 
   .LoginPageHeader {
@@ -6796,7 +6819,7 @@
     text-align: center;
     font-size: 2.8vw;
     font-weight: bold;
-    color: #5F0038;
+    color: white;
   }
 
   /* Reset password */
@@ -6983,6 +7006,7 @@
 
   .ForgotPasswordLink a {
     font-size: 1.4vw;
+    color: #8DC63F;
   }
 
   /* Read More */
@@ -7010,6 +7034,8 @@
   .modal-header h5 {
     font-size: 1.6vw;
     color: #5F0038;
+    text-align: center;
+    width: 100%;
   }
 
   .ReadMoreContainer {
@@ -7923,6 +7949,7 @@ div.PersonalDetails .form-group input {
   color: white;
   background-color: #5F0038;
   border-radius: 4vw;
+  width: 10vw;
 }
 
 .UserTypesHolder .UserTypesButton:hover {
@@ -7935,6 +7962,7 @@ div.PersonalDetails .form-group input {
   margin-top: 3vw;
   font-size: 1.93vw;
   color: #5F0038;
+  font-weight: bold;
 }
 
 /*vegetables*/
@@ -8927,6 +8955,8 @@ div.GrowerMainPickingTitle {
   padding-top: 0.75vw;
   background-color: #98D084;
   font-size: 0.83vw;
+  color: white;
+  font-weight: bold;
 }
 
 div.FarmerListTitle {
@@ -8935,6 +8965,7 @@ div.FarmerListTitle {
   padding-top: 0.5vw;
   font-weight: bold;
   font-size: 0.83vw;
+  color: white;
 }
 
 .FarmerListContent .container div.ListOfFarmersByArea ul > li.FarmerListTitleListItem{
@@ -9014,6 +9045,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   margin-top: 1vw;
   overflow-wrap: break-word;
   height: 2vw;
+  color: white;
 }
 
 .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaAmount {
@@ -9024,6 +9056,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   margin-top: 1vw;
   overflow-wrap: break-word;
   height: 2vw;
+  color: white;
 }
 
 .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotal {
@@ -9034,6 +9067,7 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   margin-top: 1vw;
   overflow-wrap: break-word;
   height: 1vw;
+  color: white;
 }
 
 .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsSection div span.GrowerHelkaTotalPrice {
@@ -9041,9 +9075,10 @@ div.FarmerListTitle div.FarmerListTitleText4 {
   position: relative;
   display: block;
   float: right;
-  margin-bottom: 1vw;
+  margin-top: 1vw;
   overflow-wrap: break-word;
   height: 2vw;
+  color: white;
 }
 
 .GrowerFieldsGroupsContainer div.GrowerFieldsGroupsContainerExample {
@@ -9719,7 +9754,7 @@ div.PersonalDetails .personal-form-group input {
   margin-top: 1vw;
   font-size: 5vw;
   font-weight: bold;
-  color: #5F0038;
+  color: white;
   left: 0px;
   height: 55vw;
   overflow: hidden;
@@ -10200,6 +10235,7 @@ div.SystemDetails .form-group input {
 
 .AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle {
   font-size: 0.70vw;
+  color: white;
 }
 
 .AdminFarmersList ul li.FarmerListTitleListItem div.FarmerListTitle div.FarmerListTitleText1 {
@@ -10516,7 +10552,7 @@ div.SystemDetails .form-group input {
   margin-right: auto;
   margin-left: auto;
   margin-top: 2vw;
-  color: #329258;
+  color: white;
 }
 
 .LoginPageHeader {
@@ -10527,7 +10563,7 @@ div.SystemDetails .form-group input {
   text-align: center;
   font-size: 2.2vw;
   font-weight: bold;
-  color: #5F0038;
+  color: white;
 }
 
 /* Reset password */
@@ -10714,6 +10750,7 @@ div.SystemDetails .form-group input {
 
 .ForgotPasswordLink a {
   font-size: 1.1vw;
+  color: #8DC63F;
 }
 
 /* Read More */
@@ -10741,6 +10778,8 @@ div.SystemDetails .form-group input {
 .modal-header h5 {
   font-size: 1.2vw;
   color: #5F0038;
+  text-align: center;
+  width: 100%;
 }
 
 .ReadMoreContainer {

@@ -1742,7 +1742,7 @@ class ChooseFarmer extends Component {
                         </ListGroup>
                       </div>
                       <div className={'GrowerFieldsGroupsContainer ' + FloatClass} >
-                        <div className={'GrowerFieldsGroupsContainerExample ' + FloatClass + " " + TextAlignClass} >{Language.GrowerChooseVegHelkaHeader}</div>
+                        <div className={'GrowerFieldsGroupsContainerExample ' + TextAlignClass} >{Language.GrowerChooseVegFieldHelkaHeader}</div>
                         <div className="GrowerFieldsGroupsSection" >
                           <div className="GrowerHelka1" >
                             <span className="GrowerHelkaName" >{this.Translate(this.state.GrowerFieldCrop1)}</span>

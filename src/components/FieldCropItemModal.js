@@ -94,7 +94,7 @@ class FieldCropItemModal extends Component {
                 <div className="Admin-veg-form-group">
                   <Label for='price'>מחיר בש"ח</Label>
                   <Input
-                    type='text'
+                    type='number'
                     name='price'
                     id='price'
                     placeholder=''
@@ -106,7 +106,7 @@ class FieldCropItemModal extends Component {
                 <div className="Admin-veg-form-group">
                   <Label for='averagecrop'>יבול ממוצע לשנה בק"ג</Label>
                   <Input
-                    type='text'
+                    type='number'
                     name='averagecrop'
                     id='averagecrop'
                     placeholder=''
@@ -118,7 +118,7 @@ class FieldCropItemModal extends Component {
                 <div className="Admin-veg-form-group">
                   <Label for='amount'>כמות שתילים לטור גידול</Label>
                   <Input
-                    type='text'
+                    type='number'
                     name='amount'
                     id='amount'
                     placeholder=''
@@ -130,7 +130,7 @@ class FieldCropItemModal extends Component {
                 <div className="Admin-veg-form-group">
                   <Label for='numberofveginrow'>מספר שורות לגידול</Label>
                   <Input
-                    type='text'
+                    type='number'
                     name='numberofveginrow'
                     id='numberofveginrow'
                     placeholder=''
