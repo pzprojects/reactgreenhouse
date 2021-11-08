@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Button
+  Button, Fade
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../actions/authActions';
 import { clearErrors } from '../actions/errorActions';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class RegisterUserType extends Component {
@@ -22,7 +22,7 @@ class RegisterUserType extends Component {
   };
 
   Register = (UserType) => {
-    if(UserType === "1"){
+    if (UserType === "1") {
       this.props.history.push('/RegisterPage');
     }
     else this.props.history.push('/RegisterPage');
