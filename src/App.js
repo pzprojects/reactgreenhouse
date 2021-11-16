@@ -22,6 +22,7 @@ import FieldCropManagment from './components/FieldCropManagment';
 import GrowerPersonalShop from './components/GrowerPersonalShop';
 import PurchaseCompleted from './components/PurchaseCompleted';
 import GrowerDeactivateMsg from './components/GrowerDeactivateMsg';
+import PaymentSuccessPage from './components/PaymentSuccessPage';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -70,6 +71,7 @@ class App extends Component {
               <Route path="/FieldCropManagment" component={FieldCropManagment} />
               <Route path="/LanguagesManagment" component={LanguagesManagment} />
               <Route path="/GrowerDeactivateMsg" component={GrowerDeactivateMsg} />
+              <Route path="/PaymentSuccessPage" component={PaymentSuccessPage} />
               <Route path="/UpdatePassword/:userId/:token" render={({ match }) => (<UpdatePassword userId={match.params.userId} token={match.params.token} /> )} />
             </Container>
           </div>

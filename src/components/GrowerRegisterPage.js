@@ -60,7 +60,7 @@ class GrowerRegisterPage extends Component {
     plan3: false,
     Checkplan3: '',
     PasswordValidation: true,
-    ScreenNumber: "2",
+    ScreenNumber: "1",
     Regulations: false,
     RegulationsValidation: true,
     CheckRegulations: '',
@@ -320,6 +320,10 @@ class GrowerRegisterPage extends Component {
       this.setState({
         ScreenNumber: ScreenNum
       });
+
+      if(ScreenNum === '2'){
+        this.CheckIfPaymentRecived();
+      }
     }
   };
 
@@ -662,6 +666,31 @@ class GrowerRegisterPage extends Component {
 
     document.getElementById("profileimg").click()
 
+  }
+
+  CheckIfPaymentRecived = () => {
+    const role = this.state.usertype;
+    const email = this.state.email;
+    axios
+      .get(`${API_URL}/api/payments/${role}/${email}`).then(res =>
+        console.log("RESPONSE FROM SERVER TO CLIENT:", res)
+      )
+      .catch(err => console.log("SERVER ERROR TO CLIENT:", err))
+  }
+
+  GenerateIframeUrl = () => {
+    const GrowerChoosenFarmer = this.props.choosenfarmer.ChoosenFarmerById[0];
+    let totalpayment = (parseFloat(this.props.growervegbuyingbag.Total) + parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal)).toString();
+    let chossenfarmer = GrowerChoosenFarmer.email;
+    let IframeUrl = 'https://direct.tranzila.com/testsales/iframenew.php?sum=1&currency=1&lang=il&recur_transaction=4'
+    //IframeUrl += '&sum=' + totalpayment;
+    IframeUrl += '&company=' + this.state.usertype;
+    IframeUrl += '&pdesc=' + this.state.usertype;
+    IframeUrl += '&email=' + this.state.email;
+    IframeUrl += '&phone=' + this.state.phone;
+    IframeUrl += '&contact=' + chossenfarmer;
+
+    return IframeUrl;
   }
 
   uploadFile = e => {
@@ -1111,7 +1140,7 @@ class GrowerRegisterPage extends Component {
 
             {this.state.ScreenNumber === "2" || this.state.ScreenNumber === "3" ? (
               <FormGroup>
-                <iframe src="https://direct.tranzila.com/testsales/iframenew.php?sum=1&currency=1&lang=il&recur_transaction=4" height="700" width="700" title="Iframe Example"></iframe>
+                <iframe src={this.GenerateIframeUrl()} height="700" width="700" title="Iframe Example"></iframe>
                 <div className='BankCollectPaymentContainer'>
                   <div className='BankCollectPayment'>
                     <span className='RecivePaymentHeader'>{Language.PaymentCreditCardTitle}</span>
