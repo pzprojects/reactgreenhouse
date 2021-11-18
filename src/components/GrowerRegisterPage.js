@@ -116,11 +116,6 @@ class GrowerRegisterPage extends Component {
   };
 
   componentDidMount() {
-    fetch('http://localhost:3000/manifest.json').then(response => {
-      response.headers.forEach(Header => {
-        console.log(Header);
-      })
-    });
     this.props.getchoosenfarmer();
     this.props.getGrowerVegBag();
     this.props.getGrowerFieldCropBag();
@@ -684,7 +679,7 @@ class GrowerRegisterPage extends Component {
     let chossenfarmer = GrowerChoosenFarmer.email;
     let IframeUrl = 'https://direct.tranzila.com/testsales/iframenew.php?sum=1&currency=1&lang=il&recur_transaction=4'
     //IframeUrl += '&sum=' + totalpayment;
-    IframeUrl += '&company=' + this.state.usertype;
+    IframeUrl += '&company=' + GrowerChoosenFarmer.name + ' ' + GrowerChoosenFarmer.familyname;
     IframeUrl += '&pdesc=' + this.state.usertype;
     IframeUrl += '&email=' + this.state.email;
     IframeUrl += '&phone=' + this.state.phone;

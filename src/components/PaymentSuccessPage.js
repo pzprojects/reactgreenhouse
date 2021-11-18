@@ -15,7 +15,7 @@ class Loader extends Component {
 
 
     componentDidMount() {
-        this.SavePaymentData();
+        //this.SavePaymentData();
     }
 
     SavePaymentData = () => {
@@ -24,7 +24,7 @@ class Loader extends Component {
         const farmertopay = 'farmer@projects.org.il';
         const phone = '0500000000';
         const sumpayed = '50';
-        const credtype = '1';
+        const cardtype = '1';
         const currency = '1';
 
         const NewPayment = {
@@ -33,7 +33,7 @@ class Loader extends Component {
             farmertopay,
             phone,
             sumpayed,
-            credtype,
+            cardtype,
             currency
         };
 
