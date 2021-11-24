@@ -202,7 +202,15 @@ export const Hebrew = {
     FarmerHaveEmptyVegInList: 'יש לבחור לפחות ירק או גידול שדה אחד בתכנית שנבחרה',
     FarmerFieldCropsButtonText: 'גידולי שדה',
     FarmerGreenhouseCropsButtonText: 'גידולי חממה',
-    SeasonWarning: 'מיקומי הגידולים וסוגם עשויים להשתנות בין החממה לגידולי שדה בשטח פתוח ע"פ מזג האויר והעונה.'
+    SeasonWarning: 'מיקומי הגידולים וסוגם עשויים להשתנות בין החממה לגידולי שדה בשטח פתוח ע"פ מזג האויר והעונה.',
+    PaymentTimeoutMsg: 'לצערנו התשלום לא התקבל בטווח הזמן המקובל!',
+    PaymentTimeoutMsgDesc: 'המנוי לא נרשם במערכת ולא בוצע תשלום.',
+    PaymentFraudMsg: 'התקבלה בקשה למניעת הונאה!',
+    PaymentFraudMsgDesc: 'הסכום ששולם אינו זהה לסכום שהתבקש, אנא צור עימנו קשר בכדי לבדוק את הבעיה.',
+    PaymentSuccessMsg: 'התשלום התקבל בהצלחה!',
+    PaymentSuccessMsgDesc: 'אנא המתן בזמן שאנו רושמים אותך למערכת.',
+    UserExistErrorMsg: 'המשתמש כבר קיים במערכת, אנא הירשם עם כתובת אימייל שונה',
+    WaitButtonText: 'בודק נתונים'
 };
 
 export const English = {
@@ -409,5 +417,13 @@ export const English = {
     FarmerHaveEmptyVegInList: 'You must select at least one vegetable or field crop in the selected plan',
     FarmerFieldCropsButtonText: 'Field crops',
     FarmerGreenhouseCropsButtonText: 'Greenhouse crops',
-    SeasonWarning: 'Crop locations and thier type may vary between greenhouses and field crops in the open according to the weather and the season'
+    SeasonWarning: 'Crop locations and thier type may vary between greenhouses and field crops in the open according to the weather and the season',
+    PaymentTimeoutMsg: 'Unfortunately, the payment was not received within the usual timeframe!',
+    PaymentTimeoutMsgDesc: 'The subscription was not registered in the system and no payment was made Microsoft® Translator.',
+    PaymentFraudMsg: 'Fraud prevention request received!',
+    PaymentFraudMsgDesc: 'The amount paid is not the same as the amount requested please contact us to check the issue.',
+    PaymentSuccessMsg: 'Payment received successfully!',
+    PaymentSuccessMsgDesc: 'Please wait while we sign you up to the system.',
+    UserExistErrorMsg: 'The user already exists in the system Please register with a different email address',
+    WaitButtonText: 'Checking data'
 };

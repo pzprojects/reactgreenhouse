@@ -23,6 +23,9 @@ import GrowerPersonalShop from './components/GrowerPersonalShop';
 import PurchaseCompleted from './components/PurchaseCompleted';
 import GrowerDeactivateMsg from './components/GrowerDeactivateMsg';
 import PaymentSuccessPage from './components/PaymentSuccessPage';
+import TimoutMsg from './components/TimoutMsg';
+import PaymentFraudMsg from './components/PaymentFraudMsg';
+
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -72,6 +75,8 @@ class App extends Component {
               <Route path="/LanguagesManagment" component={LanguagesManagment} />
               <Route path="/GrowerDeactivateMsg" component={GrowerDeactivateMsg} />
               <Route path="/PaymentSuccessPage" component={PaymentSuccessPage} />
+              <Route path="/TimoutMsg" component={TimoutMsg} />
+              <Route path="/PaymentFraudMsg" component={PaymentFraudMsg} />
               <Route path="/UpdatePassword/:userId/:token" render={({ match }) => (<UpdatePassword userId={match.params.userId} token={match.params.token} /> )} />
             </Container>
           </div>

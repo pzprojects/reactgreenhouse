@@ -56,6 +56,11 @@
     text-align: left!important;
   }
 
+  .MarginSpinner{
+    margin-right: 1%;
+    margin-left: 1%;
+  }
+
   /* Scrollbar */
   .Scroolbar-style-2::-webkit-scrollbar-track
   {
@@ -932,6 +937,20 @@
     margin-top: 3vw;
     margin-bottom: 9vw;
   }
+
+  /* Countdown */
+
+  .Countdown {
+    display: block;
+    width: 100%;
+    position: relative;
+    float: right;
+    padding-bottom: 1vw;
+    text-align: center;
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: #5F0038;
+  }
   
   
   /* Recive Payment */
@@ -949,7 +968,7 @@
     display: block;
     margin-right: auto;
     margin-left: auto;
-    width: 40%;
+    width: 48%;
     background-color: #DDF4D5;
     padding-left: 4vw;
     padding-right: 4vw;
@@ -1009,6 +1028,118 @@
     float: right;
     margin-right: 2%;
   }
+
+  /* Payment Success Page*/
+
+  .PaymentSuccessHeader {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-top: 5vw;
+    margin-bottom: 4vw;
+    text-align: center;
+  }
+  
+  .PaymentSuccessHeader span.PaymentSuccessHeaderText1 {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-bottom: 1vw;
+    font-size: 3vw;
+    font-weight: bold;
+    color: #5F0038;
+  }
+
+  .PaymentSuccessHeader span.PaymentSuccessHeaderText2 {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-bottom: 1vw;
+    font-size: 2.4vw;
+    font-weight: bold;
+    color: #5F0038;
+  }
+
+  /* General Msg */
+
+.GeneralMsgHeader {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-top: 5vw;
+  margin-bottom: 4vw;
+  text-align: center;
+}
+
+.GeneralMsgHeader span.GeneralMsgHeaderText1 {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 1vw;
+  font-size: 3vw;
+  font-weight: bold;
+  color: #5F0038;
+}
+
+.GeneralMsgHeader span.GeneralMsgHeaderText2 {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 1vw;
+  font-size: 2.4vw;
+  font-weight: bold;
+  color: #5F0038;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+  margin-top: 1.5vw;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.GeneralMsgBtn {
+  color: white;
+  background-color: #5F0038;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 25%;
+  margin-top: 1vw;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.GeneralMsgBtn:hover {
+  color: white;
+  background-color: #327047;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.FraudMsgBtn {
+  color: white;
+  background-color: #5F0038;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 25%;
+  margin-top: 1vw;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+  padding: 1%;
+  text-decoration: none;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.FraudMsgBtn:hover {
+  color: white;
+  background-color: #327047;
+}
   
   /* Farmer Submission MSG page */
   
@@ -4810,7 +4941,7 @@
     display: block;
     margin-right: auto;
     margin-left: auto;
-    width: 40%;
+    width: 48%;
     background-color: #DDF4D5;
     padding-left: 4vw;
     padding-right: 4vw;
@@ -4870,6 +5001,118 @@
     float: right;
     margin-right: 2%;
   }
+
+  /* Payment Success Page*/
+
+  .PaymentSuccessHeader {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-top: 5vw;
+    margin-bottom: 4vw;
+    text-align: center;
+  }
+  
+  .PaymentSuccessHeader span.PaymentSuccessHeaderText1 {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-bottom: 1vw;
+    font-size: 3.6vw;
+    font-weight: bold;
+    color: #5F0038;
+  }
+
+  .PaymentSuccessHeader span.PaymentSuccessHeaderText2 {
+    width: 100%;
+    display: block;
+    position: relative;
+    float: right;
+    margin-bottom: 1vw;
+    font-size: 3vw;
+    font-weight: bold;
+    color: #5F0038;
+  }
+
+   /* General Msg */
+
+.GeneralMsgHeader {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-top: 5vw;
+  margin-bottom: 4vw;
+  text-align: center;
+}
+
+.GeneralMsgHeader span.GeneralMsgHeaderText1 {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 1vw;
+  font-size: 3vw;
+  font-weight: bold;
+  color: #5F0038;
+}
+
+.GeneralMsgHeader span.GeneralMsgHeaderText2 {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 1vw;
+  font-size: 2.4vw;
+  font-weight: bold;
+  color: #5F0038;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+  margin-top: 1.5vw;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.GeneralMsgBtn {
+  color: white;
+  background-color: #5F0038;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 25%;
+  margin-top: 1vw;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.GeneralMsgBtn:hover {
+  color: white;
+  background-color: #327047;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.FraudMsgBtn {
+  color: white;
+  background-color: #5F0038;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 25%;
+  margin-top: 1vw;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+  padding: 1%;
+  text-decoration: none;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.FraudMsgBtn:hover {
+  color: white;
+  background-color: #327047;
+}
   
   /* Farmer Submission MSG page */
   
@@ -8565,7 +8808,7 @@ div.PersonalDetails .form-group input {
   display: block;
   margin-right: auto;
   margin-left: auto;
-  width: 40%;
+  width: 48%;
   background-color: #DDF4D5;
   padding-left: 4vw;
   padding-right: 4vw;
@@ -8624,6 +8867,118 @@ div.PersonalDetails .form-group input {
   position: relative;
   float: right;
   margin-right: 2%;
+}
+
+/* Payment Success Page*/
+
+.PaymentSuccessHeader {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-top: 5vw;
+  margin-bottom: 4vw;
+  text-align: center;
+}
+
+.PaymentSuccessHeader span.PaymentSuccessHeaderText1 {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 1vw;
+  font-size: 3vw;
+  font-weight: bold;
+  color: #5F0038;
+}
+
+.PaymentSuccessHeader span.PaymentSuccessHeaderText2 {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 1vw;
+  font-size: 2.4vw;
+  font-weight: bold;
+  color: #5F0038;
+}
+
+ /* General Msg */
+
+ .GeneralMsgHeader {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-top: 5vw;
+  margin-bottom: 4vw;
+  text-align: center;
+}
+
+.GeneralMsgHeader span.GeneralMsgHeaderText1 {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 1vw;
+  font-size: 3vw;
+  font-weight: bold;
+  color: #5F0038;
+}
+
+.GeneralMsgHeader span.GeneralMsgHeaderText2 {
+  width: 100%;
+  display: block;
+  position: relative;
+  float: right;
+  margin-bottom: 1vw;
+  font-size: 2.4vw;
+  font-weight: bold;
+  color: #5F0038;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder {
+  display: block;
+  position: relative;
+  float: right;
+  width: 100%;
+  margin-top: 1.5vw;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.GeneralMsgBtn {
+  color: white;
+  background-color: #5F0038;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 25%;
+  margin-top: 1vw;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.GeneralMsgBtn:hover {
+  color: white;
+  background-color: #327047;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.FraudMsgBtn {
+  color: white;
+  background-color: #5F0038;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 25%;
+  margin-top: 1vw;
+  border-radius: 4vw;
+  font-size: 1.2vw;
+  padding: 1%;
+  text-decoration: none;
+}
+
+.GeneralMsgHeader span.GeneralMsgButtonHolder a.FraudMsgBtn:hover {
+  color: white;
+  background-color: #327047;
 }
 
 /* Farmer Submission MSG page */

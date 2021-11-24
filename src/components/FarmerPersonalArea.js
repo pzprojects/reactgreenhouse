@@ -84,7 +84,11 @@ class FarmerPersonalArea extends Component {
     SuccessFileUpload: false,
     CropFieldPlanActive: false,
     CropFieldPlanCost: '',
-    IgnoreVegLog: false
+    IgnoreVegLog: false,
+    fullnameValidation: true,
+    accountnumberValidation: true,
+    banknameValidation: true,
+    banknumberValidation: true
   };
 
   static propTypes = {
@@ -183,7 +187,7 @@ class FarmerPersonalArea extends Component {
           DefaultNumberOfHamamot: (parseFloat(this.state.hamamasize) / parseFloat(SystemData.hamamadefaultsize)).toString()
         });
       }
-      catch{ }
+      catch { }
     }
 
     // If authenticated, close modal
@@ -309,6 +313,42 @@ class FarmerPersonalArea extends Component {
     return Validated;
   };
 
+  ValidatePayment = () => {
+
+    var Validated = true;
+
+    // Empty fields
+    if (this.state.fullname === '') {
+      this.setState({
+        fullnameValidation: false
+      });
+      Validated = false;
+    }
+
+    if (this.state.accountnumber === '') {
+      this.setState({
+        accountnumberValidation: false
+      });
+      Validated = false;
+    }
+
+    if (this.state.bankname === '' || this.state.bankname === 'בנק') {
+      this.setState({
+        banknameValidation: false
+      });
+      Validated = false;
+    }
+
+    if (this.state.banknumber === '') {
+      this.setState({
+        banknumberValidation: false
+      });
+      Validated = false;
+    }
+
+    return Validated;
+  };
+
   ChangeScreen = (ScreenNum) => {
     if (this.ValidateForm()) {
       this.setState({
@@ -350,6 +390,26 @@ class FarmerPersonalArea extends Component {
           hamamasizeValidation: true
         });
         break;
+      case "fullname":
+        this.setState({
+          fullnameValidation: true
+        });
+        break;
+      case "accountnumber":
+        this.setState({
+          accountnumberValidation: true
+        });
+        break;
+      case "bankname":
+        this.setState({
+          banknameValidation: true
+        });
+        break;
+      case "banknumber":
+        this.setState({
+          banknumberValidation: true
+        });
+        break;
       default:
     }
   };
@@ -386,6 +446,26 @@ class FarmerPersonalArea extends Component {
           TotalNumberOfHamamot: (parseFloat(e.target.value) / parseFloat(this.state.SystemDefaulNumberOfHamamot)).toString()
         })
         break;
+      case "fullname":
+        if (this.state.fullnameValidation === false) {
+          this.ResetValidation("fullname")
+        }
+        break;
+      case "accountnumber":
+        if (this.state.accountnumberValidation === false) {
+          this.ResetValidation("accountnumber")
+        }
+        break;
+      case "bankname":
+        if (this.state.banknameValidation === false) {
+          this.ResetValidation("bankname")
+        }
+        break;
+      case "banknumber":
+        if (this.state.banknumberValidation === false) {
+          this.ResetValidation("banknumber")
+        }
+        break;
       default:
     }
 
@@ -406,8 +486,7 @@ class FarmerPersonalArea extends Component {
     return merge;
   }
 
-  onSubmit = e => {
-    e.preventDefault();
+  onSubmit = () => {
 
     if (this.ValidateForm()) {
       const { user } = this.props.auth;
@@ -485,6 +564,22 @@ class FarmerPersonalArea extends Component {
 
     }
   };
+
+  SendAccDetailsToAccountent = () => {
+    if (this.ValidatePayment()) {
+      const { fullname, accountnumber, bankname, banknumber, email, phone } = this.state;
+      const farmerfullname = this.state.name + ' ' + this.state.familyname;
+      const newpaymentmethod = { fullname, accountnumber, bankname, banknumber, email, phone, farmerfullname };
+      axios
+        .post(`${API_URL}/api/sendpaymentdata`, newpaymentmethod).then(res => {
+          this.toggle();
+        })
+        .catch(err => {
+          console.log("SERVER ERROR TO CLIENT:", err);
+          this.props.history.push('/TimoutMsg');
+        });
+    }
+  }
 
   handleUploadFile = e => {
     e.preventDefault();
@@ -678,7 +773,7 @@ class FarmerPersonalArea extends Component {
               </div>
             </div>
           ) : null}
-          <Form onSubmit={this.onSubmit}>
+          <Form>
             {this.state.ScreenNumber === "1" ? (
               <FormGroup>
                 <div className={'PersonalDetails ' + FloatClass}>
@@ -849,7 +944,9 @@ class FarmerPersonalArea extends Component {
                         className='mb-3'
                         onChange={this.onChange}
                         value={this.state.fullname}
+                        invalid={!this.state.fullnameValidation}
                       />
+                      <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
                     </div>
                     <div className="payment-form-group">
                       <Label for='accountnumber'></Label>
@@ -861,13 +958,15 @@ class FarmerPersonalArea extends Component {
                         className='mb-3'
                         onChange={this.onChange}
                         value={this.state.accountnumber}
+                        invalid={!this.state.accountnumberValidation}
                       />
+                      <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
                     </div>
                     <div className="payment-form-group">
                       <div className="bankDetails">
                         <div className="bankname">
                           <Label for='bankname'></Label>
-                          <Input type="select" name="bankname" id="bankname" className='mb-3' placeholder='בנק' onChange={this.onChange} value={this.state.bankname}>
+                          <Input type="select" name="bankname" id="bankname" className='mb-3' placeholder='בנק' onChange={this.onChange} value={this.state.bankname} invalid={!this.state.banknameValidation}>
                             <option value='בנק' >{Language.PaymentDetailsChooseBank}</option>
                             <option value='בנק אגוד'>{Language.PaymentDetailsBankName1}</option>
                             <option value='בנק אוצר החייל'>{Language.PaymentDetailsBankName2}</option>
@@ -877,6 +976,7 @@ class FarmerPersonalArea extends Component {
                             <option value='בנק מזרחי'>{Language.PaymentDetailsBankName6}</option>
                             <option value='הבנק הבינלאומי'>{Language.PaymentDetailsBankName7}</option>
                           </Input>
+                          <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
                         </div>
                         <div className="banknumber">
                           <Label for='banknumber'></Label>
@@ -888,7 +988,9 @@ class FarmerPersonalArea extends Component {
                             className='mb-3'
                             onChange={this.onChange}
                             value={this.state.banknumber}
+                            invalid={!this.state.banknumberValidation}
                           />
+                          <FormFeedback className={ReverseTextAlignClass} >{Language.EmptyField}</FormFeedback>
                         </div>
                       </div>
                     </div>
@@ -896,88 +998,15 @@ class FarmerPersonalArea extends Component {
                 </div>
               </FormGroup>
             ) : null}
-
-            {this.state.ScreenNumber === "2" ? (
-              <FormGroup>
-                <div className='BankCollectPaymentContainer'>
-                  <div className='BankCollectPayment'>
-                    <span className='RecivePaymentHeader'>{Language.PaymentCreditCardTitle}</span>
-                    <div className="payment-form-group">
-                      <Label for='CreditCardfullname'></Label>
-                      <Input
-                        type='text'
-                        name='CreditCardfullname'
-                        id='CreditCardfullname'
-                        placeholder={Language.PaymentCreditCardfullname}
-                        className='mb-3'
-                        onChange={this.onChange}
-                      />
-                    </div>
-                    <div className="payment-form-group">
-                      <Label for='CreditCardNumber'></Label>
-                      <Input
-                        type='text'
-                        name='CreditCardNumber'
-                        id='CreditCardNumber'
-                        placeholder={Language.PaymentCreditCardNumber}
-                        className='mb-3'
-                        onChange={this.onChange}
-                      />
-                    </div>
-                    <div className="payment-form-group">
-                      <div className="bankDetails">
-                        <div className="bankname">
-                          <Label for='CreditCardDate'></Label>
-                          <Input
-                            type="text"
-                            maxLength="5"
-                            name="CreditCardDate"
-                            id="CreditCardDate"
-                            className='mb-3'
-                            placeholder={Language.PaymentCreditCardDate}
-                            onChange={this.onChange}>
-                          </Input>
-                        </div>
-                        <div className="banknumber">
-                          <Label for='CreditCardCVV'></Label>
-                          <Input
-                            type='text'
-                            name='CreditCardCVV'
-                            id='CreditCardCVV'
-                            placeholder={Language.PaymentCreditCardCVV}
-                            className='mb-3'
-                            onChange={this.onChange}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="payment-form-group">
-                      <Label for='CreditCardBusniessNumber'></Label>
-                      <Input
-                        type='text'
-                        name='CreditCardBusniessNumber'
-                        id='CreditCardBusniessNumber'
-                        placeholder={Language.PaymentCreditCardBusniessNumber}
-                        className='mb-3'
-                        onChange={this.onChange}
-                      />
-                    </div>
-                    {this.state.ScreenNumber === "3" ? (
-                      <div className='MoveToSecondPaymentScreenButton'>
-                        <Button color="info" onClick={() => this.ChangeScreen("4")} type="button" >
-                          {Language.Approve}
-                        </Button>
-                      </div>
-                    ) : null}
-                  </div>
-                </div>
-              </FormGroup>
-            ) : null}
-
             <div className='RegisterButtonContainer'>
-              <Button color="success" className='UpdateDetails' >
-                {Language.Update} 
+              {this.state.ScreenNumber === "1" ?
+                <Button color="success" onClick={this.onSubmit} className='UpdateDetails' >
+                  {Language.Update}
+                </Button> :
+                <Button color="success" onClick={this.SendAccDetailsToAccountent} className='UpdateDetails' >
+                  {Language.Update}
                 </Button>
+              }
             </div>
           </Form>
           {this.state.ActivateLoader ? <Loader /> : null}

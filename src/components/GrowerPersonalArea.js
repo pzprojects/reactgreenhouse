@@ -585,9 +585,6 @@ class GrowerPersonalArea extends Component {
                 <Button tag={Link} to='/GrowerPersonalShop' outline color="success" type="button" disabled={!this.state.UserActive} >
                   {Language.GrowerPurchaseInShop}
                 </Button>
-                <Button outline color="success" onClick={() => this.ChangeScreen("2")} type="button" >
-                  {Language.ChangePaymentMethod}
-                </Button>
               </div>
             </div>
           ) : null}
@@ -695,8 +692,8 @@ class GrowerPersonalArea extends Component {
                   <div className="personal-form-group">
                     <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenVeg}:</Label>
                     <div className={'PersonalChoosenVeg ' + FloatClass + " " + TextAlignClass}>
-                      {ChoosenPersonalUserVeg.map(({ _id, name }) => (
-                        <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={_id}>
+                      {ChoosenPersonalUserVeg.map(({ _id, name }, index) => (
+                        <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={_id + index}>
                           <span className={'PersonalChoosenVegItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
                           <span className={'PersonalChoosenVegItemName ' + FloatClass}>{this.Translate(name)}</span>
                         </div>
@@ -707,8 +704,8 @@ class GrowerPersonalArea extends Component {
                     <div className="personal-form-group">
                       <Label className={FloatClass + " " + TextAlignClass}>{Language.GrowerPersonalAreaChoosenFieldCrops}:</Label>
                       <div className={'PersonalChoosenVeg ' + FloatClass + " " + TextAlignClass}>
-                        {ChoosenPersonalUserFieldCrops.map(({ _id, name }) => (
-                          <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={_id}>
+                        {ChoosenPersonalUserFieldCrops.map(({ _id, name }, index) => (
+                          <div className={'PersonalChoosenVegItem ' + TextAlignClass} key={_id + index}>
                             <span className={'PersonalChoosenVegItemImage ' + FloatClass}><img alt="" src={require('../Resources/Leaf.png')} size='sm' /></span>
                             <span className={'PersonalChoosenVegItemName ' + FloatClass}>{this.Translate(name)}</span>
                           </div>

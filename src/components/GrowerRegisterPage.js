@@ -8,7 +8,8 @@ import {
   Container,
   CustomInput,
   Alert,
-  FormFeedback
+  FormFeedback,
+  Spinner
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -85,7 +86,9 @@ class GrowerRegisterPage extends Component {
     SuccessFileUpload: false,
     PlanValidation: false,
     ChooseFarmerValidation: false,
-    UpdateActiveFarms: true
+    UpdateActiveFarms: true,
+    SmallLoaderActivated: false,
+    CountdownTime: "10"
   };
 
   static propTypes = {
@@ -311,13 +314,49 @@ class GrowerRegisterPage extends Component {
   };
 
   ChangeScreen = (ScreenNum) => {
+    const { Language } = this.props;
     if (this.ValidateForm()) {
-      this.setState({
-        ScreenNumber: ScreenNum
-      });
-
-      if(ScreenNum === '2'){
-        this.CheckIfPaymentRecived();
+      if (ScreenNum === '2') {
+        this.setState({
+          SmallLoaderActivated: true
+        });
+        // Check if user exist
+        axios
+          .get(`${API_URL}/api/userexist/${this.state.email}`).then(res => {
+            if (res.data.useravaliabile) {
+              this.setState({
+                ScreenNumber: ScreenNum,
+                SmallLoaderActivated: false
+              });
+              this.CheckIfPaymentRecived();
+            } else {
+              // User already exist
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              });
+              this.setState({
+                msg: Language.UserExistErrorMsg,
+                SmallLoaderActivated: false
+              });
+            }
+          })
+          .catch(err => {
+            console.log("SERVER ERROR TO CLIENT:", err);
+            // User already exist
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            });
+            this.setState({
+              msg: Language.UserExistErrorMsg,
+              SmallLoaderActivated: false
+            });
+          });
+      } else {
+        this.setState({
+          ScreenNumber: ScreenNum
+        });
       }
     }
   };
@@ -470,7 +509,7 @@ class GrowerRegisterPage extends Component {
       case "passwordconfirmation":
         // password validation
         if (this.state.PasswordValidation === false) {
-          this.ResetValidation("password")
+          this.ResetValidation("password");
         }
         break;
       case "password":
@@ -480,7 +519,7 @@ class GrowerRegisterPage extends Component {
       case "CheckRegulations":
         // Regulations validation
         if (e.target.checked === true) {
-          this.ResetValidation("Regulations")
+          this.ResetValidation("Regulations");
         }
         this.setState({
           Regulations: e.target.checked
@@ -489,37 +528,38 @@ class GrowerRegisterPage extends Component {
       case "name":
         // password strength validation
         if (this.state.nameValidation === false) {
-          this.ResetValidation("name")
+          this.ResetValidation("name");
         }
         break;
       case "familyname":
         // password strength validation
         if (this.state.familynameValidation === false) {
-          this.ResetValidation("familyname")
+          this.ResetValidation("familyname");
         }
         break;
       case "email":
         // password strength validation
         if (this.state.emailValidation === false) {
-          this.ResetValidation("email")
+          this.ResetValidation("email");
         }
         break;
       case "phone":
         // password strength validation
         if (this.state.phoneValidation === false) {
-          this.ResetValidation("phone")
+          this.ResetValidation("phone");
         }
         break;
       case "address":
         // password strength validation
         if (this.state.addressValidation === false) {
-          this.ResetValidation("address")
+          this.ResetValidation("address");
         }
         break;
       default:
     }
 
     this.setState({ [e.target.name]: e.target.value });
+    this.setState({ msg: null });
   };
 
   UpdateFarmersActiveFarms = () => {
@@ -541,8 +581,7 @@ class GrowerRegisterPage extends Component {
     });
   };
 
-  onSubmit = e => {
-    e.preventDefault();
+  onSubmit = () => {
 
     if (this.ValidateForm()) {
 
@@ -560,10 +599,10 @@ class GrowerRegisterPage extends Component {
       plans.push(this.props.growervegbuyingbag.Plan);
       plan = this.props.growervegbuyingbag.Plan;
       if (this.props.growerfieldcropsbuyingbag.FieldCropsTotal !== "0") {
-        fieldcropplan = { avaliabile: true, cost: GrowerChoosenFarmer.fieldcropplan.cost }
+        fieldcropplan = { avaliabile: true, cost: GrowerChoosenFarmer.fieldcropplan.cost };
       }
       else {
-        fieldcropplan = { avaliabile: false, cost: '0' }
+        fieldcropplan = { avaliabile: false, cost: '0' };
       }
 
       this.setState({
@@ -625,7 +664,6 @@ class GrowerRegisterPage extends Component {
       // Attempt to register
       this.props.addgrower(newGrower);
       this.props.register(newUser);
-
     }
   };
 
@@ -663,22 +701,63 @@ class GrowerRegisterPage extends Component {
 
   }
 
+  StartCountDown = () => {
+    let CalcCountdownTime = parseInt(this.state.CountdownTime);
+    let RefreshTimer = setInterval(() => {
+      CalcCountdownTime = CalcCountdownTime - 1;
+      if (CalcCountdownTime == 0) {
+        clearInterval(RefreshTimer);
+      } else {
+        this.setState({
+          CountdownTime: CalcCountdownTime.toString()
+        });
+      }
+    }, 60000);
+  }
+
   CheckIfPaymentRecived = () => {
+    this.StartCountDown();
     const role = this.state.usertype;
     const email = this.state.email;
     axios
-      .get(`${API_URL}/api/payments/${role}/${email}`).then(res =>
-        console.log("RESPONSE FROM SERVER TO CLIENT:", res)
-      )
-      .catch(err => console.log("SERVER ERROR TO CLIENT:", err))
+      .get(`${API_URL}/api/payments/${role}/${email}`).then(res => {
+        // Get payments data
+        const GrowerChoosenFarmer = this.props.choosenfarmer.ChoosenFarmerById[0];
+        let totalpayment = (parseFloat(this.props.growervegbuyingbag.Total) + parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal)).toString();
+        let TotalPlans = (parseFloat(this.props.growervegbuyingbag.VegToBuy.length > 0 ? this.props.growervegbuyingbag.Plan.cost : "0") +
+        parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal === "0" ? 0 : GrowerChoosenFarmer.fieldcropplan.cost)).toString();
+        if (res.data.length == 1) {
+          if (res.data[0].sumpayed == totalpayment && res.data[0].recursum == TotalPlans) {
+            // Change To Final Screen
+            this.ChangeScreen("3");
+            this.onSubmit();
+          } else {
+            // Payment fraud
+            this.props.history.push('/PaymentFraudMsg');
+          }
+
+        } else {
+          // Payment fraud
+          this.props.history.push('/PaymentFraudMsg');
+        }
+      })
+      .catch(err => {
+        console.log("SERVER ERROR TO CLIENT:", err);
+        this.props.history.push('/TimoutMsg');
+      });
   }
 
   GenerateIframeUrl = () => {
     const GrowerChoosenFarmer = this.props.choosenfarmer.ChoosenFarmerById[0];
     let totalpayment = (parseFloat(this.props.growervegbuyingbag.Total) + parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal)).toString();
+    let TotalPlans = (parseFloat(this.props.growervegbuyingbag.VegToBuy.length > 0 ? this.props.growervegbuyingbag.Plan.cost : "0") +
+      parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal === "0" ? 0 : GrowerChoosenFarmer.fieldcropplan.cost)).toString();
     let chossenfarmer = GrowerChoosenFarmer.email;
-    let IframeUrl = 'https://direct.tranzila.com/testsales/iframenew.php?sum=1&currency=1&lang=il&recur_transaction=4'
+    let IframeUrl = 'https://direct.tranzila.com/testsales/iframenew.php?currency=1&lang=il&recur_transaction=4_approved'
     //IframeUrl += '&sum=' + totalpayment;
+    //IframeUrl += '&recur_sum=' + TotalPlans;
+    IframeUrl += '&sum=5';
+    IframeUrl += '&recur_sum=10';
     IframeUrl += '&company=' + GrowerChoosenFarmer.name + ' ' + GrowerChoosenFarmer.familyname;
     IframeUrl += '&pdesc=' + this.state.usertype;
     IframeUrl += '&email=' + this.state.email;
@@ -801,7 +880,7 @@ class GrowerRegisterPage extends Component {
           ) :
             null
           }
-          <Form onSubmit={this.onSubmit}>
+          <Form>
             {this.state.ScreenNumber === "1" || this.state.ScreenNumber === "3" ? (
               <FormGroup>
                 {this.state.ScreenNumber === "1" ? (
@@ -1126,97 +1205,24 @@ class GrowerRegisterPage extends Component {
                 {this.state.ScreenNumber === "1" ? (
                   <div className='MoveToPaymentScreenButton'>
                     <Button color="info" onClick={() => this.ChangeScreen("2")} type="button" >
-                      {Language.FormContinue}
+                      {this.state.SmallLoaderActivated ? Language.WaitButtonText : Language.FormContinue} {this.state.SmallLoaderActivated ? <Spinner color="light"></Spinner> : null}
                     </Button>
                   </div>
                 ) : null}
               </FormGroup>
             ) : null}
 
-            {this.state.ScreenNumber === "2" || this.state.ScreenNumber === "3" ? (
+            {this.state.ScreenNumber === "2" ? (
               <FormGroup>
-                <iframe src={this.GenerateIframeUrl()} height="700" width="700" title="Iframe Example"></iframe>
                 <div className='BankCollectPaymentContainer'>
-                  <div className='BankCollectPayment'>
-                    <span className='RecivePaymentHeader'>{Language.PaymentCreditCardTitle}</span>
-                    <div className="payment-form-group">
-                      <Label for='CreditCardfullname'></Label>
-                      <Input
-                        type='text'
-                        name='CreditCardfullname'
-                        id='CreditCardfullname'
-                        placeholder={Language.PaymentCreditCardfullname}
-                        className='mb-3'
-                        onChange={this.onChange}
-                      />
-                    </div>
-                    <div className="payment-form-group">
-                      <Label for='CreditCardNumber'></Label>
-                      <Input
-                        type='text'
-                        name='CreditCardNumber'
-                        id='CreditCardNumber'
-                        placeholder={Language.PaymentCreditCardNumber}
-                        className='mb-3'
-                        onChange={this.onChange}
-                      />
-                    </div>
-                    <div className="payment-form-group">
-                      <div className="bankDetails">
-                        <div className="bankname">
-                          <Label for='CreditCardDate'></Label>
-                          <Input
-                            type="text"
-                            maxLength="5"
-                            name="CreditCardDate"
-                            id="CreditCardDate"
-                            className='mb-3'
-                            placeholder={Language.PaymentCreditCardDate}
-                            onChange={this.onChange}>
-                          </Input>
-                        </div>
-                        <div className="banknumber">
-                          <Label for='CreditCardCVV'></Label>
-                          <Input
-                            type='text'
-                            name='CreditCardCVV'
-                            id='CreditCardCVV'
-                            placeholder={Language.PaymentCreditCardCVV}
-                            className='mb-3'
-                            onChange={this.onChange}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="payment-form-group">
-                      <Label for='CreditCardBusniessNumber'></Label>
-                      <Input
-                        type='text'
-                        name='CreditCardBusniessNumber'
-                        id='CreditCardBusniessNumber'
-                        placeholder={Language.PaymentCreditCardBusniessNumber}
-                        className='mb-3'
-                        onChange={this.onChange}
-                      />
-                    </div>
+                  <div className='PaymentContainer'>
+                    <div className="Countdown">{'ההרשמה תינעל בעוד כ ' + this.state.CountdownTime + ' דקות'}</div>
                     {this.state.ScreenNumber === "2" ? (
-                      <div className='MoveToSecondPaymentScreenButton'>
-                        <Button color="info" onClick={() => this.ChangeScreen("3")} type="button" >
-                          {Language.Approve}
-                        </Button>
-                      </div>
+                      <iframe src={this.GenerateIframeUrl()} height="700" width="100%" title="Iframe Example"></iframe>
                     ) : null}
                   </div>
                 </div>
               </FormGroup>
-            ) : null}
-
-            {this.state.ScreenNumber === "3" ? (
-              <div className='RegisterButtonContainer'>
-                <Button className='RegisterButton' >
-                  {Language.SignUpButton}
-                </Button>
-              </div>
             ) : null}
           </Form>
           {this.state.ActivateLoader ? <Loader /> : null}

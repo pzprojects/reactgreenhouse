@@ -32,6 +32,7 @@ class SystemSettings extends Component {
     plan3cost: '',
     fieldcropplanname: '',
     fieldcropplancost: '',
+    farmerplancost: '',
     FirstTimeIn: true
   };
 
@@ -78,6 +79,7 @@ class SystemSettings extends Component {
             plan3cost: SystemData.plan3cost,
             fieldcropplanname: SystemData.fieldcropplanname,
             fieldcropplancost: SystemData.fieldcropplancost,
+            farmerplancost: SystemData.farmerplancost,
             FirstTimeIn: false
         });
       }
@@ -91,8 +93,12 @@ class SystemSettings extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    
+    this.setState({
+      ActivateLoader: !this.state.ActivateLoader,
+    });
 
-    const { hamamadefaultsize, plan1name, plan1cost, plan2name, plan2cost, plan3name, plan3cost, fieldcropplanname, fieldcropplancost } = this.state;
+    const { hamamadefaultsize, plan1name, plan1cost, plan2name, plan2cost, plan3name, plan3cost, fieldcropplanname, fieldcropplancost, farmerplancost } = this.state;
     const { SystemData } = this.props.system;
 
     const newItem = {
@@ -104,7 +110,8 @@ class SystemSettings extends Component {
         plan3name,
         plan3cost,
         fieldcropplanname,
-        fieldcropplancost
+        fieldcropplancost,
+        farmerplancost
     };
 
     this.props.updateSystemData(SystemData._id, newItem);
@@ -142,7 +149,7 @@ class SystemSettings extends Component {
                 <div className="form-group">
                   <Label for='hamamadefaultsize'>גודל חלקה סטנדרטי במ"ר</Label>
                   <Input
-                    type='text'
+                    type='number'
                     name='hamamadefaultsize'
                     id='hamamadefaultsize'
                     value={this.state.hamamadefaultsize}
@@ -166,7 +173,7 @@ class SystemSettings extends Component {
                 <div className="form-group">
                   <Label for='plan1cost'>מחיר מסלול גידולי ירקות 1 בש"ח</Label>
                   <Input
-                    type='text'
+                    type='number'
                     name='plan1cost'
                     id='plan1cost'
                     value={this.state.plan1cost}
@@ -190,7 +197,7 @@ class SystemSettings extends Component {
                 <div className="form-group">
                   <Label for='plan2cost'>מחיר מסלול גידולי ירקות 2 בש"ח</Label>
                   <Input
-                    type='text'
+                    type='number'
                     name='plan2cost'
                     id='plan2cost'
                     value={this.state.plan2cost}
@@ -214,7 +221,7 @@ class SystemSettings extends Component {
                 <div className="form-group">
                   <Label for='plan3cost'>מחיר מסלול גידולי ירקות 3 בש"ח</Label>
                   <Input
-                    type='text'
+                    type='number'
                     name='plan3cost'
                     id='plan3cost'
                     value={this.state.plan3cost}
@@ -238,10 +245,22 @@ class SystemSettings extends Component {
                 <div className="form-group">
                   <Label for='fieldcropplancost'>מחיר מסלול גידולי שדה בש"ח</Label>
                   <Input
-                    type='text'
+                    type='number'
                     name='fieldcropplancost'
                     id='fieldcropplancost'
                     value={this.state.fieldcropplancost}
+                    className='mb-3'
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <Label for='farmerplancost'>מחיר מסלול חקלאי</Label>
+                  <Input
+                    type='number'
+                    name='farmerplancost'
+                    id='farmerplancost'
+                    value={this.state.farmerplancost}
                     className='mb-3'
                     onChange={this.onChange}
                     required
