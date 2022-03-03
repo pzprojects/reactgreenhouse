@@ -715,36 +715,60 @@ class GrowerRegisterPage extends Component {
     }, 60000);
   }
 
-  CheckIfPaymentRecived = () => {
-    this.StartCountDown();
-    const role = this.state.usertype;
-    const email = this.state.email;
-    axios
-      .get(`${API_URL}/api/payments/${role}/${email}`).then(res => {
-        // Get payments data
-        const GrowerChoosenFarmer = this.props.choosenfarmer.ChoosenFarmerById[0];
-        let totalpayment = (parseFloat(this.props.growervegbuyingbag.Total) + parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal)).toString();
-        let TotalPlans = (parseFloat(this.props.growervegbuyingbag.VegToBuy.length > 0 ? this.props.growervegbuyingbag.Plan.cost : "0") +
-        parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal === "0" ? 0 : GrowerChoosenFarmer.fieldcropplan.cost)).toString();
-        if (res.data.length == 1) {
-          if (res.data[0].sumpayed == totalpayment && res.data[0].recursum == TotalPlans) {
-            // Change To Final Screen
-            this.ChangeScreen("3");
-            this.onSubmit();
+  PaymentRecivedApiCall = () => {
+    return new Promise((resolve, reject) => {
+      const role = this.state.usertype;
+      const email = this.state.email;
+      axios
+        .get(`${API_URL}/api/payments/${role}/${email}`).then(res => {
+          // Get payments data
+          const GrowerChoosenFarmer = this.props.choosenfarmer.ChoosenFarmerById[0];
+          let totalpayment = (parseFloat(this.props.growervegbuyingbag.Total) + parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal)).toString();
+          let TotalPlans = (parseFloat(this.props.growervegbuyingbag.VegToBuy.length > 0 ? this.props.growervegbuyingbag.Plan.cost : "0") +
+            parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal === "0" ? 0 : GrowerChoosenFarmer.fieldcropplan.cost)).toString();
+          //let totalpayment = 5;
+          //let TotalPlans = 10;
+          if (res.data.length == 1) {
+            if (res.data[0].sumpayed == totalpayment && res.data[0].recursum == TotalPlans) {
+              // Change To Final Screen
+              this.ChangeScreen("3");
+              this.onSubmit();
+              resolve(true);
+            } else {
+              // Payment fraud
+              this.props.history.push('/PaymentFraudMsg');
+              resolve(true);
+            }
+
           } else {
             // Payment fraud
             this.props.history.push('/PaymentFraudMsg');
+            resolve(true);
           }
+        })
+        .catch(err => {
+          console.log("SERVER ERROR TO CLIENT:", err);
+          resolve(false);
+        });
+    });
+  }
 
-        } else {
-          // Payment fraud
-          this.props.history.push('/PaymentFraudMsg');
-        }
-      })
-      .catch(err => {
-        console.log("SERVER ERROR TO CLIENT:", err);
-        this.props.history.push('/TimoutMsg');
-      });
+  CheckIfPaymentRecived = async () => {
+    this.StartCountDown();
+    let Result = false;
+    let CalcCountdownTime = parseInt(this.state.CountdownTime);
+
+    while (1 < CalcCountdownTime) {
+      Result = await this.PaymentRecivedApiCall();
+      if (Result) {
+        break;
+      }
+      CalcCountdownTime = parseInt(this.state.CountdownTime);
+    }
+
+    if (!Result) {
+      this.props.history.push('/TimoutMsg');
+    }
   }
 
   GenerateIframeUrl = () => {
@@ -753,11 +777,11 @@ class GrowerRegisterPage extends Component {
     let TotalPlans = (parseFloat(this.props.growervegbuyingbag.VegToBuy.length > 0 ? this.props.growervegbuyingbag.Plan.cost : "0") +
       parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal === "0" ? 0 : GrowerChoosenFarmer.fieldcropplan.cost)).toString();
     let chossenfarmer = GrowerChoosenFarmer.email;
-    let IframeUrl = 'https://direct.tranzila.com/testsales/iframenew.php?currency=1&lang=il&recur_transaction=4_approved'
-    //IframeUrl += '&sum=' + totalpayment;
-    //IframeUrl += '&recur_sum=' + TotalPlans;
-    IframeUrl += '&sum=5';
-    IframeUrl += '&recur_sum=10';
+    let IframeUrl = 'https://direct.tranzila.com/greenhouse/iframenew.php?currency=1&lang=il&recur_transaction=4_approved'
+    IframeUrl += '&sum=' + totalpayment;
+    IframeUrl += '&recur_sum=' + TotalPlans;
+    //IframeUrl += '&sum=5';
+    //IframeUrl += '&recur_sum=10';
     IframeUrl += '&company=' + GrowerChoosenFarmer.name + ' ' + GrowerChoosenFarmer.familyname;
     IframeUrl += '&pdesc=' + this.state.usertype;
     IframeUrl += '&email=' + this.state.email;

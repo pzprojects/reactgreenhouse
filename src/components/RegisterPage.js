@@ -884,34 +884,56 @@ class RegisterPage extends Component {
     }, 60000);
   }
 
-  CheckIfPaymentRecived = () => {
-    this.StartCountDown();
-    const role = this.state.usertype;
-    const email = this.state.email;
-    axios
-      .get(`${API_URL}/api/payments/${role}/${email}`).then(res => {
-        // Get payments data
-        const { SystemData } = this.props.system;
-        if (res.data.length == 1) {
-          if (res.data[0].sumpayed == SystemData.farmerplancost && res.data[0].recursum == SystemData.farmerplancost) {
-            // Change To Final Screen
-            this.ChangeScreen("4");
-            this.SendAccDetailsToAccountent();
-            this.onSubmit();
+  PaymentRecivedApiCall = () => {
+    return new Promise((resolve, reject) => {
+      const role = this.state.usertype;
+      const email = this.state.email;
+      axios
+        .get(`${API_URL}/api/payments/${role}/${email}`).then(res => {
+          // Get payments data
+          const { SystemData } = this.props.system;
+          if (res.data.length == 1) {
+            if (res.data[0].sumpayed == SystemData.farmerplancost && res.data[0].recursum == SystemData.farmerplancost) {
+              // Change To Final Screen
+              this.ChangeScreen("4");
+              this.SendAccDetailsToAccountent();
+              this.onSubmit();
+              resolve(true);
+            } else {
+              // Payment fraud
+              this.props.history.push('/PaymentFraudMsg');
+              resolve(true);
+            }
+
           } else {
             // Payment fraud
             this.props.history.push('/PaymentFraudMsg');
+            resolve(true);
           }
+        })
+        .catch(err => {
+          console.log("SERVER ERROR TO CLIENT:", err);
+          resolve(false);
+        });
+    });
+  }
 
-        } else {
-          // Payment fraud
-          this.props.history.push('/PaymentFraudMsg');
-        }
-      })
-      .catch(err => {
-        console.log("SERVER ERROR TO CLIENT:", err);
-        this.props.history.push('/TimoutMsg');
-      });
+  CheckIfPaymentRecived = async () => {
+    this.StartCountDown();
+    let Result = false;
+    let CalcCountdownTime = parseInt(this.state.CountdownTime);
+
+    while (1 < CalcCountdownTime) {
+      Result = await this.PaymentRecivedApiCall();
+      if (Result) {
+        break;
+      }
+      CalcCountdownTime = parseInt(this.state.CountdownTime);
+    }
+
+    if (!Result) {
+      this.props.history.push('/TimoutMsg');
+    }
   }
 
   SendAccDetailsToAccountent = () => {
@@ -930,7 +952,7 @@ class RegisterPage extends Component {
 
   GenerateIframeUrl = () => {
     const { SystemData } = this.props.system;
-    let IframeUrl = 'https://direct.tranzila.com/testsales/iframenew.php?currency=1&lang=il&recur_transaction=4_approved'
+    let IframeUrl = 'https://direct.tranzila.com/greenhouse/iframenew.php?currency=1&lang=il&recur_transaction=4_approved'
     IframeUrl += '&sum=' + SystemData.farmerplancost;
     IframeUrl += '&recur_sum=' + SystemData.farmerplancost;
     IframeUrl += '&company=' + 'GreenHouse';
