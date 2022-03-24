@@ -741,8 +741,6 @@ class GrowerRegisterPage extends Component {
             }
 
           } else {
-            // Payment fraud
-            this.props.history.push('/PaymentFraudMsg');
             resolve(true);
           }
         })
