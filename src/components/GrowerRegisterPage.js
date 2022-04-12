@@ -1239,6 +1239,12 @@ class GrowerRegisterPage extends Component {
                 <div className='BankCollectPaymentContainer'>
                   <div className='PaymentContainer'>
                     <div className="Countdown">{'ההרשמה תינעל בעוד כ ' + this.state.CountdownTime + ' דקות'}</div>
+                    <div className='GrowerRegisterPlanAlert'>
+                      <Alert color='warning'>
+                        <span className='GrowerPaymentWarning'>{Language.GrowerPaymentWarning1}</span>
+                        <span className='GrowerPaymentWarning'>{Language.GrowerPaymentWarning2}</span>
+                      </Alert>
+                    </div>
                     {this.state.ScreenNumber === "2" ? (
                       <iframe src={this.GenerateIframeUrl()} height="700" width="100%" title="Iframe Example"></iframe>
                     ) : null}

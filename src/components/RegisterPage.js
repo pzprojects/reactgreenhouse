@@ -1414,7 +1414,7 @@ class RegisterPage extends Component {
                             type="checkbox"
                             name='Checkplan2'
                             id='Checkplan2'
-                            checked='mb-3'
+                            className='mb-3'
                             checked={this.state.plan2}
                             onChange={this.onChange} />
                         </Label>

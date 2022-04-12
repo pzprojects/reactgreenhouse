@@ -210,7 +210,9 @@ export const Hebrew = {
     PaymentSuccessMsg: 'התשלום התקבל בהצלחה!',
     PaymentSuccessMsgDesc: 'אנא המתן בזמן שאנו רושמים אותך למערכת.',
     UserExistErrorMsg: 'המשתמש כבר קיים במערכת, אנא הירשם עם כתובת אימייל שונה',
-    WaitButtonText: 'בודק נתונים'
+    WaitButtonText: 'בודק נתונים',
+    GrowerPaymentWarning1: "החיוב לתשלום מיידי כולל את עלות השתילים ועלות המסלול שבחרת.", 
+    GrowerPaymentWarning2: "החל מחודש הבא, יחויב רק בעלות המסלול."
 };
 
 export const English = {
@@ -425,5 +427,7 @@ export const English = {
     PaymentSuccessMsg: 'Payment received successfully!',
     PaymentSuccessMsgDesc: 'Please wait while we sign you up to the system.',
     UserExistErrorMsg: 'The user already exists in the system Please register with a different email address',
-    WaitButtonText: 'Checking data'
+    WaitButtonText: 'Checking data',
+    GrowerPaymentWarning1: "The debit for immediate payment includes the cost of the seedlings and the cost of the plan you have chosen.", 
+    GrowerPaymentWarning2: "Starting next month only the cost of the plan will be charged."
 };

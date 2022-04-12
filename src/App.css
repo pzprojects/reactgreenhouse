@@ -951,6 +951,14 @@
     font-weight: bold;
     color: #5F0038;
   }
+
+  .GrowerPaymentWarning {
+    display: block;
+    width: 100%;
+    position: relative;
+    padding-bottom: 0.5vw;
+    text-align: center;
+  }
   
   
   /* Recive Payment */
@@ -4924,6 +4932,28 @@
     margin-top: 3vw;
     margin-bottom: 9vw;
   }
+
+  /* Countdown */
+
+  .Countdown {
+    display: block;
+    width: 100%;
+    position: relative;
+    float: right;
+    padding-bottom: 1vw;
+    text-align: center;
+    font-size: 1.6vw;
+    font-weight: bold;
+    color: #5F0038;
+  }
+
+  .GrowerPaymentWarning {
+    display: block;
+    width: 100%;
+    position: relative;
+    padding-bottom: 0.5vw;
+    text-align: center;
+  }
   
   
   /* Recive Payment */
@@ -8790,6 +8820,28 @@ div.PersonalDetails .form-group input {
   width: 100%;
   margin-top: 3vw;
   margin-bottom: 9vw;
+}
+
+/* Countdown */
+
+.Countdown {
+  display: block;
+  width: 100%;
+  position: relative;
+  float: right;
+  padding-bottom: 1vw;
+  text-align: center;
+  font-size: 1.6vw;
+  font-weight: bold;
+  color: #5F0038;
+}
+
+.GrowerPaymentWarning {
+  display: block;
+  width: 100%;
+  position: relative;
+  padding-bottom: 0.5vw;
+  text-align: center;
 }
 
 
