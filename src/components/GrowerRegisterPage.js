@@ -776,15 +776,18 @@ class GrowerRegisterPage extends Component {
       parseFloat(this.props.growerfieldcropsbuyingbag.FieldCropsTotal === "0" ? 0 : GrowerChoosenFarmer.fieldcropplan.cost)).toString();
     let chossenfarmer = GrowerChoosenFarmer.email;
     let IframeUrl = 'https://direct.tranzila.com/greenhouse/iframenew.php?currency=1&lang=il&recur_transaction=4_approved'
+    //let IframeUrl = 'https://direct.tranzila.com/testsales/iframenew.php?currency=1&lang=il&recur_transaction=4_approved'
     IframeUrl += '&sum=' + totalpayment;
     IframeUrl += '&recur_sum=' + TotalPlans;
     //IframeUrl += '&sum=5';
     //IframeUrl += '&recur_sum=10';
-    IframeUrl += '&company=' + GrowerChoosenFarmer.name + ' ' + GrowerChoosenFarmer.familyname;
+    IframeUrl += '&company=' + this.state.name + ' ' + this.state.familyname;
+    IframeUrl += '&SupplierName=' + GrowerChoosenFarmer.name + ' ' + GrowerChoosenFarmer.familyname;
     IframeUrl += '&pdesc=' + this.state.usertype;
     IframeUrl += '&email=' + this.state.email;
     IframeUrl += '&phone=' + this.state.phone;
-    IframeUrl += '&contact=' + chossenfarmer;
+    IframeUrl += '&contact=' + this.state.email;
+    IframeUrl += '&SupplierEmail=' + chossenfarmer;
 
     return IframeUrl;
   }

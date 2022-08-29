@@ -953,11 +953,13 @@ class RegisterPage extends Component {
     let IframeUrl = 'https://direct.tranzila.com/greenhouse/iframenew.php?currency=1&lang=il&recur_transaction=4_approved'
     IframeUrl += '&sum=' + SystemData.farmerplancost;
     IframeUrl += '&recur_sum=' + SystemData.farmerplancost;
-    IframeUrl += '&company=' + 'GreenHouse';
+    IframeUrl += '&company=' + this.state.name + ' ' + this.state.familyname;
+    IframeUrl += '&SupplierName=' + 'GreenHouse';
     IframeUrl += '&pdesc=' + this.state.usertype;
     IframeUrl += '&email=' + this.state.email;
     IframeUrl += '&phone=' + this.state.phone;
-    IframeUrl += '&contact=' + 'GreenHouse';
+    IframeUrl += '&contact=' + this.state.email;
+    IframeUrl += '&SupplierEmail=' + 'GreenHouse';
 
     return IframeUrl;
   }
